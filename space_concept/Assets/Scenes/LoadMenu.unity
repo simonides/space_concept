@@ -129,6 +129,7 @@ GameObject:
   - 223: {fileID: 109294362}
   - 114: {fileID: 109294361}
   - 114: {fileID: 109294360}
+  - 114: {fileID: 109294363}
   m_Layer: 5
   m_Name: LoadMenuBackground
   m_TagString: Untagged
@@ -210,6 +211,17 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!114 &109294363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 109294358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b128429397747d94ea88d2b890e6ca4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &148639692
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,8 +431,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1850706274}
   m_HandleRect: {fileID: 1850706273}
   m_Direction: 2
-  m_Value: .999999821
-  m_Size: .527377486
+  m_Value: 1
+  m_Size: .527377546
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -938,7 +950,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 748754126}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 109294363}
+        m_MethodName: Button_LoadSaveGame
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &748754126
@@ -1120,7 +1143,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1648905354}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 109294363}
+        m_MethodName: Button_LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1648905354
@@ -1264,7 +1298,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 487412723}
   m_Direction: 0
   m_Value: 0
-  m_Size: .999999881
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
