@@ -8,11 +8,10 @@ using System.Collections.Generic;
  * Is initialised with a Space Entity (whose properties should not be modified outside afterwards).
  * Contains display properties and is attached to a space object in the game.
  */
-[RequireComponent(typeof(SpriteRenderer))]
 public class Space : MonoBehaviour {
 
     // ****    CONFIGURATION    **** //
-    public const float BORDER_WIDTH = 8;            //Additional border on each side of the map which is added to the bounds. In this area are no planets
+    public const float BORDER_WIDTH = 0;            //Additional border on each side of the map which is added to the bounds. In this area are no planets
     public GameObject planetPrefab;
     public Texture2D backgroundTexture;            
 
@@ -67,6 +66,7 @@ public class Space : MonoBehaviour {
             CreatePlanet(planet);
         }
         
+        Debug.Log(bounds);
 
         // Initialise the background texture:
         background.transform.localPosition = new Vector3(bounds.xMin, bounds.yMin, 0);
@@ -77,6 +77,7 @@ public class Space : MonoBehaviour {
         float backgroundRatio = backgroundTexture.width / backgroundTexture.height;
 
         Rect textureRect;
+        //textureRect = new Rect(0, 0, backgroundTexture.width, backgroundTexture.height);
         if (mapRatio > backgroundRatio) {       // clip top/bottom of texture
             float height = backgroundTexture.height / mapRatio;
             scaling.y = scaling.x;
@@ -105,6 +106,11 @@ public class Space : MonoBehaviour {
 
         Planet planetScript = planetObject.GetComponent<Planet>();
         planetScript.Init(planet);
+
+        planetObject.name = "Planet '" + planet.name + "'";
+        planetObject.transform.position = planet.position;
+        planetObject.transform.localScale = new Vector3(planet.diameter, planet.diameter, 1);       
+        //TODO: set background sprite of planet here
 
         planets.Add(planetScript);
     }

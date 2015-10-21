@@ -68,17 +68,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Animations\BackgroundAnimation.cs" />
+    <Compile Include="Assets\Scripts\BigBang.cs" />
+    <Compile Include="Assets\Scripts\Entities\PlanetData.cs" />
+    <Compile Include="Assets\Scripts\Entities\SpaceData.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\LoadMenuController.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\MenuFunctions.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\SettingMenuController.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\StartMenuController.cs" />
+    <Compile Include="Assets\Scripts\Planet.cs" />
+    <Compile Include="Assets\Scripts\Space.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Assets\GitInitMe.txt" />
     <None Include="Assets\Extensions\GitInitMe.txt" />
-    <None Include="Assets\Prefabs\GitInitMe.txt" />
-    <None Include="Assets\Scripts\GitInitMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
