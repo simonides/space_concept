@@ -123,7 +123,10 @@
     <Compile Include="Assets\Editor\SceneViewWindow.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Assets\GitInitMe.txt" />
     <None Include="Assets\Extensions\GitInitMe.txt" />
+    <None Include="Assets\Prefabs\GitInitMe.txt" />
+    <None Include="Assets\Scripts\GitInitMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
