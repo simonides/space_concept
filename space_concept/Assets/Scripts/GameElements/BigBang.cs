@@ -20,13 +20,13 @@ public class BigBang : MonoBehaviour {
         planet.Name = "first";
         spaceData.AddPlanet(planet);
 
-        //planet = new PlanetData(new Vector2(400, -40), 70, 50, 10000, 100, true);
-        //planet.name = "second";
-        //spaceData.AddPlanet(planet);
+        planet = new PlanetData(new Vector2(400, -40), 120, 50, 10000, 100, true);
+        planet.Name = "second";
+        spaceData.AddPlanet(planet);
 
-        //planet = new PlanetData(new Vector2(-200, 80), 70, 50, 10000, 100, true);
-        //planet.name = "third";
-        //spaceData.AddPlanet(planet);
+        planet = new PlanetData(new Vector2(-200, 80), 90, 50, 10000, 100, true);
+        planet.Name = "third";
+        spaceData.AddPlanet(planet);
 
 
         space.Init(spaceData);

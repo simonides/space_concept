@@ -11,14 +11,37 @@ using System.Collections;
  */
 [RequireComponent(typeof(SpriteRenderer))]
 public class Planet : MonoBehaviour {
-   
 
-    public Sprite planetSprite { get; private set; }    // The image of this planet
+    // ****    CONFIGURATION    **** //    
 
+    // ****  ATTACHED OBJECTS   **** //
+    SpriteRenderer spriteRenderer;
+
+    // ****                     **** //
     PlanetData planetData;
+
+    // ****                     **** //
+
+
+    void Awake() {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null) {
+            throw new MissingComponentException("Unable to find SpriteRenderer on Planet. The planet game object should have a sprite renderer for the planet texture.");
+        }
+    }
+
 
     public void Init(PlanetData planet) {
         planetData = planet;
+        this.name = "Planet '" + planet.Name + "'";
+        this.transform.position = planet.Position;
+
+        Vector2 spriteSize = spriteRenderer.sprite.rect.size;
+        if(spriteSize.x != spriteSize.y) {
+            Debug.LogWarning("The used planet sprite is not rectangular and therefore distorted");
+        }
+        this.transform.localScale = new Vector3(planet.Diameter / spriteSize.x, planet.Diameter / spriteSize.y, 1);
+        //TODO: set background sprite of planet here
     }
 
     //public Vector2 position {                           // The position of this planet in the cosmos
