@@ -16,15 +16,15 @@ public class BigBang : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         SpaceData spaceData = new SpaceData();
-        PlanetData planet = new PlanetData(new Vector2(0,0), 50, 50, 10000, 100);
-        planet.name = "first";
+        PlanetData planet = new PlanetData(new Vector2(0,0), 50, 50, 10000, 100, true);
+        planet.Name = "first";
         spaceData.AddPlanet(planet);
-        
-        //planet = new PlanetData(new Vector2(400, -40), 70, 50, 10000, 100);
+
+        //planet = new PlanetData(new Vector2(400, -40), 70, 50, 10000, 100, true);
         //planet.name = "second";
         //spaceData.AddPlanet(planet);
 
-        //planet = new PlanetData(new Vector2(-200, 80), 70, 50, 10000, 100);
+        //planet = new PlanetData(new Vector2(-200, 80), 70, 50, 10000, 100, true);
         //planet.name = "third";
         //spaceData.AddPlanet(planet);
 

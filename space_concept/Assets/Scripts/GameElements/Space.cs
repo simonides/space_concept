@@ -98,7 +98,7 @@ public class Space : MonoBehaviour {
 
     // Creates a planet object (GameObject) of the given planet using the prefab and adds it to the space game object.
     void CreatePlanet(PlanetData planet) {
-        Debug.Log("Creating planet object for planet \"" + planet.name + "\"");
+        Debug.Log("Creating planet object for planet \"" + planet.Name + "\"");
 
         GameObject planetObject = Instantiate(planetPrefab) as GameObject;        //Create new planet
         planetObject.transform.parent = this.transform;                           //set as child of the map
@@ -107,9 +107,9 @@ public class Space : MonoBehaviour {
         Planet planetScript = planetObject.GetComponent<Planet>();
         planetScript.Init(planet);
 
-        planetObject.name = "Planet '" + planet.name + "'";
-        planetObject.transform.position = planet.position;
-        planetObject.transform.localScale = new Vector3(planet.diameter, planet.diameter, 1);       
+        planetObject.name = "Planet '" + planet.Name + "'";
+        planetObject.transform.position = planet.Position;
+        planetObject.transform.localScale = new Vector3(planet.Diameter, planet.Diameter, 1);       
         //TODO: set background sprite of planet here
 
         planets.Add(planetScript);

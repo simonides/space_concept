@@ -12,12 +12,13 @@ public class SpaceData {
 
     public List<PlanetData> planets { get; private set; }
     public Rect bounds { get; private set; }     // Size/bounds of the cosmos
-
+    public int MaxPlayerCount { get; private set; }     // The maximum number of players on this map. Defined by the number of start planets in this map.
 
 
     public SpaceData() {
         planets = new List<PlanetData>();
         bounds = new Rect(0, 0, 0, 0);
+        MaxPlayerCount = 0;
     }
 
 
@@ -29,20 +30,22 @@ public class SpaceData {
 
     public void AddPlanet(PlanetData planet) {
         foreach (PlanetData otherPlanet in planets) {
-            if (otherPlanet.name.Equals(planet.name)) {          //ID's must be unique
-                throw new UnityException("Unable to create planet. There is already a planet with the name " + planet.name);
+            if (otherPlanet.Name.Equals(planet.Name)) {          //ID's must be unique
+                throw new UnityException("Unable to create planet. There is already a planet with the name " + planet.Name);
             }
         }
-        Debug.Log("Adding planet \"" + planet.name + "\"");
+        Debug.Log("Adding planet \"" + planet.Name + "\"");
 
         planets.Add(planet);
-
+        if(planet.IsStartPlanet) {
+            ++MaxPlayerCount;
+        }
 
         //Update mapBounds:
         Rect newMapBounds = bounds;
 
-        Vector2 position = planet.position;
-        float diameter = planet.diameter;
+        Vector2 position = planet.Position;
+        float diameter = planet.Diameter;
 
         if (position.x - diameter / 2 < bounds.xMin) {
             newMapBounds.xMin = position.x - diameter / 2;
@@ -61,7 +64,7 @@ public class SpaceData {
 
     public PlanetData GetPlanet(string name) {
         foreach (PlanetData planet in planets) {
-            if (planet.name.Equals(name)) {          //ID's must be unique
+            if (planet.Name.Equals(name)) {          //ID's must be unique
                 return planet;
             }
         }
