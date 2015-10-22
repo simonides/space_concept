@@ -100,6 +100,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9428eaa8f07e5cc4eb9a4238d2719b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &785740357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 785740353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e22ef3922ec8a342b4e54842f51c7d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1695880180
 Prefab:
   m_ObjectHideFlags: 0
@@ -158,7 +169,7 @@ Prefab:
     - target: {fileID: 11440600, guid: ca72cec5c7f62154d90382577dbbfb40, type: 2}
       propertyPath: backgroundTexture
       value: 
-      objectReference: {fileID: 2800000, guid: 2cb030743e1a93a40b39550456080387, type: 3}
+      objectReference: {fileID: 2800000, guid: 901c91d89dbeead439f4c25cf8dc207d, type: 3}
     - target: {fileID: 21270482, guid: ca72cec5c7f62154d90382577dbbfb40, type: 2}
       propertyPath: m_Sprite
       value: 
