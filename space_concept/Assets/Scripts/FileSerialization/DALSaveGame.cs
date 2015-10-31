@@ -21,6 +21,10 @@ namespace Custom
 		        {
 					return path = System.IO.Path.Combine(location, fileName);
 		        }
+                private static string CombinePath(string dir, string fileName)
+                {
+                    return path = System.IO.Path.Combine(dir, fileName);
+                }
 
 				public static void WriteFile(string fileName, string input)
 				{	
@@ -46,6 +50,26 @@ namespace Custom
                     Debug.Log("DAL: path: " + target);
 					return target;
 				}
+                public static string GetFilePath(string directory, string fileName)
+                {
+                    string target;
+                    target = CombinePath(directory);
+                    try
+                    {
+                        if (!Directory.Exists(target))
+                        {
+                            DirectoryInfo di = Directory.CreateDirectory(target);
+                        }
+                    }
+                    catch (System.Exception e)
+                    {
+                        Debug.Log("The process failed: "+ e.ToString());
+                    } 
+                    target = CombinePath(target, fileName);
+                    Debug.Log("DAL: path: " + target);
+                    return target;
+                }
+
 
 				public static FileStream GetFilestreamWrite(string fileName){
 					string target;

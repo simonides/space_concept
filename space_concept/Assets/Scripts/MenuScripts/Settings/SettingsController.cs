@@ -9,9 +9,9 @@ public class SettingsController : SingletonBase<SettingsController> {
     void Awake() {
         base.Awake(this);
         //at awake, check if settings.dat exists, if not, create it with default values
-        if ((dataFile = SaveFileSerializer.Load<SettingsData>("Settings.dat")) == null) {
+        if ((dataFile = SaveFileSerializer.Load<SettingsData>("Settings", "Settings.dat")) == null) {
             dataFile = new SettingsData();
-            SaveFileSerializer.Save<SettingsData>(dataFile, "Settings.dat");
+            SaveFileSerializer.Save<SettingsData>(dataFile, "Settings", "Settings.dat");
             Debug.Log("Settings.dat file did not exist, so it was created");
         }
     }
