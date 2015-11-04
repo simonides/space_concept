@@ -100,6 +100,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9428eaa8f07e5cc4eb9a4238d2719b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &785740355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 785740353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd88b009b274c774d98a4fb280517af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TouchInputMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  SingleTouchReceiver: []
+  DoubleTouchReceiver: []
 --- !u!114 &785740357
 MonoBehaviour:
   m_ObjectHideFlags: 0

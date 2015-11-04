@@ -5,15 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/StartMenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SettingsMenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LoadMenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game.unity
   - enabled: 1
     path: Assets/Scenes/Jakob_TestScene1.unity

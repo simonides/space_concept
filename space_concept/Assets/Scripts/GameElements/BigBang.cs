@@ -24,10 +24,25 @@ public class BigBang : MonoBehaviour {
         planet.Name = "second";
         spaceData.AddPlanet(planet);
 
-        planet = new PlanetData(new Vector2(-200, 80), 90, 50, 10000, 100, true);
+        planet = new PlanetData(new Vector2(-200, 480), 90, 50, 10000, 100, true);
         planet.Name = "third";
         spaceData.AddPlanet(planet);
 
+        planet = new PlanetData(new Vector2(-500, 250), 90, 50, 10000, 100, true);
+        planet.Name = "four";
+        spaceData.AddPlanet(planet);
+
+        planet = new PlanetData(new Vector2(500, -90), 90, 50, 10000, 100, true);
+        planet.Name = "five";
+        spaceData.AddPlanet(planet);
+
+        planet = new PlanetData(new Vector2(1000, 150), 90, 50, 10000, 100, true);
+        planet.Name = "six";
+        spaceData.AddPlanet(planet);
+
+        planet = new PlanetData(new Vector2(-20, 800), 90, 50, 10000, 100, true);
+        planet.Name = "seven";
+        spaceData.AddPlanet(planet);
 
         space.Init(spaceData);
 

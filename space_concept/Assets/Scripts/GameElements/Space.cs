@@ -57,12 +57,14 @@ public class Space : MonoBehaviour {
         spaceData = space;
 
         Rect bounds = space.bounds;
+
         bounds.xMin -= BORDER_WIDTH;
         bounds.yMin -= BORDER_WIDTH;
         bounds.xMax += BORDER_WIDTH;
         bounds.yMax += BORDER_WIDTH;
+        this.bounds = bounds;
 
-        foreach(PlanetData planet in spaceData.planets) {
+        foreach (PlanetData planet in spaceData.planets) {
             CreatePlanet(planet);
         }
         
@@ -91,6 +93,8 @@ public class Space : MonoBehaviour {
 
         Sprite sprite = Sprite.Create(backgroundTexture, textureRect, new Vector2(0, 0), 1);    //origin (pivot) = corner
         backgroundRenderer.sprite = sprite;
+
+       
     }
 
 
@@ -118,6 +122,7 @@ public class Space : MonoBehaviour {
     // Returns the size of the map
     public Vector2 GetSize() {
         return bounds.size;
+        
     }
 
 
