@@ -71,7 +71,7 @@ public class Space : MonoBehaviour {
         Debug.Log(bounds);
 
         // Initialise the background texture:
-        background.transform.localPosition = new Vector3(bounds.xMin, bounds.yMin, 0);
+        background.transform.localPosition = new Vector3(bounds.xMin, bounds.yMin, 10);
         Vector2 scaling = new Vector2(bounds.width / backgroundTexture.width, bounds.height / backgroundTexture.height);    //scaling of the background to be as big as the map
         
         //Update the textureRect according to the aspect ratio:

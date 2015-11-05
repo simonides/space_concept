@@ -69,7 +69,7 @@ public class MapInput : MonoBehaviour
         //_moveToPosition.y += acceleration.y;
 
         //Debug.Log("move by: " + dist);
-        _moveToPosition += new Vector3(dist.x, dist.y, 10f);
+        _moveToPosition += new Vector3(dist.x, dist.y, 0f);
     }
 
     void Awake()
@@ -112,6 +112,7 @@ public class MapInput : MonoBehaviour
                  _map.transform.position,
                  _moveToPosition,
                  ScrollAnimationSpeed * Time.deltaTime);
+           
 
             if (Vector3.SqrMagnitude(newPosition - oldPosition) >= .5f)
             {
@@ -189,7 +190,8 @@ public class MapInput : MonoBehaviour
                     ((cameraYMax * -1) + mapSize.y / 2f + mapOrigin.y) * -1 + CameraBorderOffset);
             _map.transform.position = _moveToPosition;
         }
-
+        _moveToPosition.z = 10;
+        _map.transform.position = new Vector3(_map.transform.position.x, _map.transform.position.y,10f);
     }
 
     void OnDestroy()
