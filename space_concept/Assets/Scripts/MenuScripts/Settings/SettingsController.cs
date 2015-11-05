@@ -14,6 +14,12 @@ public class SettingsController : SingletonBase<SettingsController> {
             SaveFileSerializer.Save<SettingsData>(dataFile, "Settings", "Settings.dat");
             Debug.Log("Settings.dat file did not exist, so it was created");
         }
+        if ((dataFile = SaveFileSerializer.XMLLoad<SettingsData>("Settings", "Settings.xml")) == null)
+        {
+            dataFile = new SettingsData();
+            SaveFileSerializer.XMLSave<SettingsData>(dataFile, "Settings", "Settings.xml");
+            Debug.Log("Settings.xml file did not exist, so it was created");
+        }
     }
 
 	// Use this for initialization
