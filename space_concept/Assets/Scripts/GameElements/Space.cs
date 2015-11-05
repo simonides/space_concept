@@ -125,5 +125,11 @@ public class Space : MonoBehaviour {
         
     }
 
+    //returns the center of the bounds rect in local space from the origin that does not have to be the bottom left corner.. it can be everywhere -> depends on the map file
+    public Vector2 GetCenter()
+    {
+        return bounds.center;
+    }
+
 
 }

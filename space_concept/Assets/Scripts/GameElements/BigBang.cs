@@ -11,12 +11,8 @@ public class BigBang : MonoBehaviour {
         if (space == null) {
             throw new MissingComponentException("Unable to find Space. The big bang doesn't have enough space to happen. The 'Space' game object also needs to be added to the level and the space script attached.");
         }
-    }
-
-	// Use this for initialization
-	void Start () {
         SpaceData spaceData = new SpaceData();
-        PlanetData planet = new PlanetData(new Vector2(0,0), 50, 50, 10000, 100, true);
+        PlanetData planet = new PlanetData(new Vector2(0, 0), 50, 50, 10000, 100, true);
         planet.Name = "first";
         spaceData.AddPlanet(planet);
 
@@ -45,6 +41,11 @@ public class BigBang : MonoBehaviour {
         spaceData.AddPlanet(planet);
 
         space.Init(spaceData);
+    }
+
+	// Use this for initialization
+	void Start () {
+       
 
 
         Debug.Log("The Big Bang happened guys!");

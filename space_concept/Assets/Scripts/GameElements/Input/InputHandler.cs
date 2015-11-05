@@ -92,6 +92,7 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
                 Vector3 deltaMousePos = _oldMousePosition - Input.mousePosition;
                 _oldMousePosition = Input.mousePosition;
 
+                deltaMousePos *= -1f;
                 TouchMove(deltaMousePos);
             }
         }
@@ -161,7 +162,7 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
 
                 case TouchPhase.Moved:
                     _touchMoved = true;
-                    TouchMove(touch.deltaPosition);
+                    TouchMove(touch.deltaPosition *3);
                     break;
 
                 case TouchPhase.Stationary:
@@ -187,15 +188,7 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
         {
             Touch touchZero = Input.GetTouch(0);
             Touch touchOne = Input.GetTouch(1);
-            //if (touchZero.position.x > (Screen.width - Screen.width * SidebarWidth))
-            //{
-            //    return;
-            //}
 
-            //if (GameEventSystem.IsPointerOverGameObject(touchZero.fingerId) || GameEventSystem.IsPointerOverGameObject(touchOne.fingerId))
-            //{
-            //return;
-            //}
             Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
             Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
 
@@ -204,7 +197,7 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
 
             float deltaMagnitudediff = prevTouchDeltaMag - touchDeltaMag;
 
-            deltaMagnitudediff *= .22f;
+            deltaMagnitudediff *= 2f;
 
             Zoom(deltaMagnitudediff);
             //foreach (var receiver in DoubleTouchReceiver)
