@@ -47,7 +47,7 @@ namespace Custom
 				public static string GetFilePath (string fileName){
 					string target;
 					target = CombinePath(fileName);
-                    Debug.Log("DAL: path: " + target);
+                    //Debug.Log("DAL: path: " + target);
 					return target;
 				}
                 public static string GetFilePath(string directory, string fileName)
@@ -66,7 +66,7 @@ namespace Custom
                         Debug.Log("The process failed: "+ e.ToString());
                     } 
                     target = CombinePath(target, fileName);
-                    Debug.Log("DAL: path: " + target);
+                    //Debug.Log("DAL: path: " + target);
                     return target;
                 }
 
