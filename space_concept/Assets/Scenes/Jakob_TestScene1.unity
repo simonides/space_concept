@@ -112,7 +112,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SingleTouchReceiver: []
-  DoubleTouchReceiver: []
 --- !u!114 &785740357
 MonoBehaviour:
   m_ObjectHideFlags: 0

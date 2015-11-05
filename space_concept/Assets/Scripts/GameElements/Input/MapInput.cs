@@ -69,7 +69,7 @@ public class MapInput : MonoBehaviour
         //_moveToPosition.y += acceleration.y;
 
         //Debug.Log("move by: " + dist);
-        _moveToPosition += new Vector3(dist.x, dist.y, 0f);
+        _moveToPosition += new Vector3(dist.x, dist.y, 10f);
     }
 
     void Awake()

@@ -5,10 +5,7 @@ using System.Linq;
 
 public class InputHandler : MonoBehaviour, IEventSystemHandler
 {
-
-    //public LayerMask TouchInputMask;            
     public GameObject[] SingleTouchReceiver;    // one finger
-    public GameObject[] DoubleTouchReceiver;    // tow fingers
 
     public delegate void ZoomEvent(float normalisedMagnitudeDiff); // To tell listeners that the map the mouse scroll or pinch is used by the user
     public static event ZoomEvent OnZoom;
@@ -27,8 +24,7 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
 
 
     private void Zoom(float magnitudeDiff)
-    {
-        //Debug.Log("Zoom, send to subscribers: " + normalisedMagnitudeDiff);
+    {   //Debug.Log("Zoom, send to subscribers: " + normalisedMagnitudeDiff);
         if (OnZoom != null) // null means there are no subscribers
         {
             OnZoom(magnitudeDiff);
@@ -51,9 +47,6 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
     }
 
 
-
-
-    //change to fixed??
     void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -61,6 +54,7 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
             Debug.Log("ESC pressed");
             //_uiHandler.ShowEndGameDialog();
         }
+
         //#if UNITY_EDITOR
 
         // wenn der button nicht mehr geklickt ist soll 
@@ -70,18 +64,13 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
         }
 
         if (Input.GetMouseButton(0))
-        {
-
-            //Debug.Log("Mouse clicked: ");
-
+        {//Debug.Log("Mouse clicked: ");
             if (!_clickstarted)
             {
                 //print("mousepressed:");
                 _oldMousePosition = Input.mousePosition;
                 _clickstarted = true;
             }
-
-
             //if (_oldMousePosition != Input.mousePosition) // this is safe because unity implements this like that: Vector3.SqrMagnitude(lhs - rhs) < 9.99999944E-11f;
             // but the delta may need to be higher to avoid clicks with jitter to be interpreted as movements
             if (Vector3.SqrMagnitude(_oldMousePosition - Input.mousePosition) >= 20.0f)
@@ -96,7 +85,6 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
                 TouchMove(deltaMousePos);
             }
         }
-
 
         if (Input.GetMouseButtonUp(0))
         {
@@ -113,7 +101,6 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
         if (scrollSpeed > 0) // forward
         {
             Zoom(-12);
-
         }
         else if (scrollSpeed < 0)
         {
@@ -146,7 +133,6 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
 
         if (Input.touchCount == 1)
         {
-
             // Debug.Log("touching.. ");
             Touch touch = Input.GetTouch(0);
             //if (touch.position.x > (Screen.width - Screen.width * SidebarWidth))
@@ -188,22 +174,15 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
         {
             Touch touchZero = Input.GetTouch(0);
             Touch touchOne = Input.GetTouch(1);
-
             Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
             Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
 
             float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
             float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
-
             float deltaMagnitudediff = prevTouchDeltaMag - touchDeltaMag;
-
             deltaMagnitudediff *= 2f;
 
             Zoom(deltaMagnitudediff);
-            //foreach (var receiver in DoubleTouchReceiver)
-            //{
-            //    receiver.SendMessage("DoubleTouchAnywhere", deltaMagnitudediff, SendMessageOptions.DontRequireReceiver);
-            //}
         }
     }
 
