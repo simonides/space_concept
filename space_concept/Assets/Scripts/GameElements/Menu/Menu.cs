@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Menu : MonoBehaviour
 {
-
-
     private Animator _animator;
     private CanvasGroup _canvasGroup;
 
