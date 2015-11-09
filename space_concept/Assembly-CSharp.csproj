@@ -58,6 +58,10 @@
      <Compile Include="Assets\Scripts\GameElements\GameState.cs" />
      <Compile Include="Assets\Scripts\GameElements\Input\InputHandler.cs" />
      <Compile Include="Assets\Scripts\GameElements\Input\MapInput.cs" />
+     <Compile Include="Assets\Scripts\GameElements\Menu\AlphaRaycastFilter.cs" />
+     <Compile Include="Assets\Scripts\GameElements\Menu\Menu.cs" />
+     <Compile Include="Assets\Scripts\GameElements\Menu\MenuManager.cs" />
+     <Compile Include="Assets\Scripts\GameElements\Menu\TestButtonAlphaRaycaster.cs" />
      <Compile Include="Assets\Scripts\GameElements\Planet.cs" />
      <Compile Include="Assets\Scripts\GameElements\PoolAllocator.cs" />
      <Compile Include="Assets\Scripts\GameElements\Poolable.cs" />
@@ -70,6 +74,7 @@
      <Compile Include="Assets\Scripts\MenuScripts\Settings\SettingsController.cs" />
      <Compile Include="Assets\Scripts\MenuScripts\Settings\SettingsData.cs" />
      <Compile Include="Assets\Scripts\MenuScripts\StartMenuController.cs" />
+     <Compile Include="Assets\Scripts\Test.cs" />
      <None Include="Assets\Extensions\GitInitMe.txt" />
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
