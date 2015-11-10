@@ -136,7 +136,7 @@ public class MapInput : MonoBehaviour
     {
         Vector2 mapSize = _map.GetSize();
 
-        float minOrthoSizeX = ((mapSize.x + mapSize.x) / Camera.main.aspect / 2) - PreventShakeOffset; //-1 that the camera doesn't shake
+        float minOrthoSizeX = ((mapSize.x ) / Camera.main.aspect / 2) - PreventShakeOffset; //-1 that the camera doesn't shake
         float minOrthoSizeY = (mapSize.y / 2) - PreventShakeOffset;
 
         _cameraMinOrthoSize = _smallestPlanetDiameter * 4f;
@@ -172,7 +172,7 @@ public class MapInput : MonoBehaviour
             _map.transform.position = _moveToPosition;
         }
 
-        if (xMax < cameraXMax)
+        else if (xMax < cameraXMax)
         {
             print("right");
             _moveToPosition = new Vector2(
@@ -190,7 +190,7 @@ public class MapInput : MonoBehaviour
             _map.transform.position = _moveToPosition;
         }
 
-        if (yMax < cameraYMax) // check top
+        else if (yMax < cameraYMax) // check top
         {
             print("top");
             _moveToPosition = new Vector2(
