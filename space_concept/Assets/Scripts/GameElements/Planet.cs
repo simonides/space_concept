@@ -19,9 +19,10 @@ public class Planet : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     // ****                     **** //
-    PlanetData planetData;
+    public PlanetData planetData;
 
     // ****                     **** //
+
 
 
     void Awake()
@@ -51,8 +52,8 @@ public class Planet : MonoBehaviour
 
     public void SingleTouchClick()
     {
-        MenuManager.menuManager.ShowMenu(MenuManager.menuManager.PlanetMenu);
         Debug.Log("planet clicked ");
+        UIManager.instance.PlanetClicked(this);
     }
 
     //public Vector2 position {                           // The position of this planet in the cosmos

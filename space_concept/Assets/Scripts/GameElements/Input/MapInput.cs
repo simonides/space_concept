@@ -27,8 +27,16 @@ public class MapInput : MonoBehaviour
     private float _cameraOrthoSizeTo;
 
 
+    private void ZoomToPlanet(Vector2 location)
+    {
+        _moveToPosition = new Vector3(400, 300, 10);
+    }
+
     private Vector2 FindHomePlanet()
     {
+
+
+
         //int _planetCount = _map.GetPlanetCount();
         //for (int i = 0; i < _planetCount; ++i)
         //{
@@ -112,7 +120,7 @@ public class MapInput : MonoBehaviour
                  _map.transform.position,
                  _moveToPosition,
                  ScrollAnimationSpeed * Time.deltaTime);
-           
+
 
             if (Vector3.SqrMagnitude(newPosition - oldPosition) >= .5f)
             {
@@ -191,7 +199,7 @@ public class MapInput : MonoBehaviour
             _map.transform.position = _moveToPosition;
         }
         _moveToPosition.z = 10;
-        _map.transform.position = new Vector3(_map.transform.position.x, _map.transform.position.y,10f);
+        _map.transform.position = new Vector3(_map.transform.position.x, _map.transform.position.y, 10f);
     }
 
     void OnDestroy()
