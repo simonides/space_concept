@@ -200,10 +200,10 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
         foreach (RaycastHit2D hit in hits)
         {
             GameObject recipient = hit.transform.gameObject;
-            if (hits.Count() > 1 && recipient.CompareTag("ship"))
-            { // should go throug and fire to planet only
-                continue;
-            }
+            //if (hits.Count() > 1 && recipient.CompareTag("ship"))
+            //{ // should go throug and fire to planet only
+            //    continue;
+            //}
             recipient.SendMessage("SingleTouchClick", SendMessageOptions.DontRequireReceiver);
         }
 

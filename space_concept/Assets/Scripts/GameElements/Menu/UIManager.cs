@@ -11,8 +11,8 @@ public class UIManager : MonoBehaviour
 
     public void PlanetClicked(Planet planet)
     {
-        _planetMenuManager.SetPlanetMenuVisible();
-        _planetMenuManager.FillPlanetMenu(planet.planetData);
+        _planetMenuManager.ActivePlanet = planet.planetData;
+        _planetMenuManager.SwitchToFirstLevel();
     }
 
     public void HideAllMenus()
