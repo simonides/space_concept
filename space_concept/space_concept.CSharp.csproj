@@ -51,17 +51,11 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -75,9 +69,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Animations\BackgroundAnimation.cs" />
+    <Compile Include="Assets\Scripts\BaseClasses\SingletonBase.cs" />
     <Compile Include="Assets\Scripts\Entities\PlanetData.cs" />
+    <Compile Include="Assets\Scripts\Entities\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Entities\SpaceData.cs" />
     <Compile Include="Assets\Scripts\Entities\TroopData.cs" />
+    <Compile Include="Assets\Scripts\FileSerialization\DALSaveGame.cs" />
+    <Compile Include="Assets\Scripts\FileSerialization\QuaternionSurrogate.cs" />
+    <Compile Include="Assets\Scripts\FileSerialization\SaveFileSerializer.cs" />
+    <Compile Include="Assets\Scripts\FileSerialization\Vector3Surrogate.cs" />
     <Compile Include="Assets\Scripts\GameElements\BigBang.cs" />
     <Compile Include="Assets\Scripts\GameElements\GameState.cs" />
     <Compile Include="Assets\Scripts\GameElements\Planet.cs" />
@@ -89,6 +89,8 @@
     <Compile Include="Assets\Scripts\MenuScripts\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\MenuFunctions.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\SettingMenuController.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\Settings\SettingsController.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\Settings\SettingsData.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\StartMenuController.cs" />
   </ItemGroup>
   <ItemGroup>

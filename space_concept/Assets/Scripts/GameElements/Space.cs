@@ -61,12 +61,15 @@ public class Space : MonoBehaviour {
         bounds.yMin -= BORDER_WIDTH;
         bounds.xMax += BORDER_WIDTH;
         bounds.yMax += BORDER_WIDTH;
+        
+        Debug.Log(bounds);
+        this.bounds = bounds;
 
-        foreach(PlanetData planet in spaceData.planets) {
+
+        foreach (PlanetData planet in spaceData.planets) {
             CreatePlanet(planet);
         }
         
-        Debug.Log(bounds);
 
         // Initialise the background texture:
         background.transform.localPosition = new Vector3(bounds.xMin, bounds.yMin, 0);
@@ -91,10 +94,12 @@ public class Space : MonoBehaviour {
 
         Sprite sprite = Sprite.Create(backgroundTexture, textureRect, new Vector2(0, 0), 1);    //origin (pivot) = corner
         backgroundRenderer.sprite = sprite;
+
+        //translate the whole Space gameobject so that it's origin is the map's center:
+        Vector2 center = bounds.center;
+        transform.localPosition = new Vector3(-center.x, -center.y, 0);
     }
-
-
-
+    
 
     // Creates a planet object (GameObject) of the given planet using the prefab and adds it to the space game object.
     void CreatePlanet(PlanetData planet) {
@@ -111,14 +116,14 @@ public class Space : MonoBehaviour {
 
         planets.Add(planetScript);
     }
-
-    
-    
+  
 
     // Returns the size of the map
     public Vector2 GetSize() {
         return bounds.size;
     }
 
-
+    public Vector2 GetCenter() {
+        return bounds.center;
+    }
 }

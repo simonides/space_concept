@@ -17,7 +17,7 @@ public class TroopData {
     public PlanetData TargetPlanet { get; private set; }
 
     public int ShipCount { get; private set; }
-    public object Owner { get; private set; }       // todo: player type
+    public PlayerData Owner { get; private set; }
 
     public int ArrivalTime { get; private set; }    
 

@@ -8,9 +8,8 @@ using System.Collections.Generic;
  *  Can be serialised / deserialised to a file.
  */
 public class PlanetData {
-
-    //TODO: user class
-    public Object Owner { get; set; }               // The player who owns this planet
+    
+    public PlayerData Owner { get; set; }               // The player who owns this planet
 
     public string Name { get; set; }                // Name of the planet
 
@@ -103,7 +102,7 @@ public class PlanetData {
 
     
     public override string ToString() {
-        return "Planet \"" + Name + "\"" + (IsStartPlanet ? "(startPlanet) " : "" )+ "at " + Position.ToString() + " belongs to " + ((Owner == null) ? "noone" : "unknown"/*TODO: owner.name*/) + " , diameter = " + Diameter + " has: " + Ships + " (+" + FactorySpeed + " á turn) ships, with hangar size " + HangarSize;
+        return "Planet \"" + Name + "\"" + (IsStartPlanet ? "(startPlanet) " : "" )+ "at " + Position.ToString() + " belongs to " + ((Owner == null) ? "noone" : Owner.Name) + " , diameter = " + Diameter + " has: " + Ships + " (+" + FactorySpeed + " á turn) ships, with hangar size " + HangarSize;
     }
        
 }
