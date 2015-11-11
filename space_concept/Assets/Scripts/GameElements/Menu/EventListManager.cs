@@ -15,38 +15,49 @@ public class Item
     public Button.ButtonClickedEvent thingToDo;
 }
 
+[System.Serializable]
+public class Event{
+    public string planetName;
+}
+
 public class EventListManager : MonoBehaviour {
 
 
-    public GameObject sampleButton;
-    public Transform contentPanel;
-    public List<Item> itemList;
+    public Menu eventListMenu;
 
-	// Use this for initialization
-	void Start () {
-       PopulateList();
-	}
+    private Menu _currentMenu;
+    private EventListFiller _eventListFiller;
 
-    private void PopulateList()
+    public List<Event> activeEventlist;
+
+
+    void Awake()
     {
-        foreach(var item in itemList)
-        {
-            GameObject newButton = Instantiate(sampleButton) as GameObject;
-            EventButton eventBtn = newButton.GetComponent<EventButton>();
-            eventBtn.name = item.name;
-            eventBtn.icon.sprite = item.icon;
-            eventBtn.typeLabel.text = item.type;
-            eventBtn.rarityLabel.text = item.rarity;
-            eventBtn.championIcon.SetActive( item.isChampion);
+        _eventListFiller = GetComponentInChildren<EventListFiller>();
+    }
 
-            eventBtn.button.onClick = item.thingToDo;
-            newButton.transform.SetParent(contentPanel,false);
+    public void SwitchToEventlist()
+    {
+        _eventListFiller.Fill(activeEventlist);
+        SwitchMenu(eventListMenu);
+    }
+
+    private void SwitchMenu(Menu menu)
+    {
+        if (_currentMenu != null)
+        {
+            _currentMenu.IsOpen = false;
         }
+        _currentMenu = menu;
+        _currentMenu.IsOpen = true;
     }
 
 
-    // Update is called once per frame
-    public  void SomethingToDo () {
-        Debug.Log("test me... print ");
-	}
+    // close the current menu
+    public void SetEventMenuInvisible()
+    {
+        if (_currentMenu != null){
+            _currentMenu.IsOpen = false;
+        }
+    }
 }
