@@ -15,9 +15,10 @@ public class GameState : MonoBehaviour {
 
     void Start() {
         CurrentDay = 1;
-        TroopPool = new PoolAllocator<Troop>();
+         TroopPool = new PoolAllocator<Troop>(  ()=> new Troop()   );
     }
     
+   
    
 
     void NewTroopMovement(TroopData troopData) {

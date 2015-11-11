@@ -16,7 +16,7 @@ public class Item
 }
 
 [System.Serializable]
-public class Event{
+public class PlanetEvent{
     public string planetName;
 }
 
@@ -28,7 +28,7 @@ public class EventListManager : MonoBehaviour {
     private Menu _currentMenu;
     private EventListFiller _eventListFiller;
 
-    public List<Event> activeEventlist;
+    public List<PlanetEvent> activeEventlist;
 
 
     void Awake()
