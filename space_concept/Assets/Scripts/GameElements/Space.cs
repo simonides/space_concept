@@ -57,14 +57,14 @@ public class Space : MonoBehaviour {
         spaceData = space;
 
         Rect bounds = space.bounds;
+
         bounds.xMin -= BORDER_WIDTH;
         bounds.yMin -= BORDER_WIDTH;
         bounds.xMax += BORDER_WIDTH;
         bounds.yMax += BORDER_WIDTH;
         
-        Debug.Log(bounds);
+        //Debug.Log(bounds);
         this.bounds = bounds;
-
 
         foreach (PlanetData planet in spaceData.planets) {
             CreatePlanet(planet);
@@ -72,7 +72,7 @@ public class Space : MonoBehaviour {
         
 
         // Initialise the background texture:
-        background.transform.localPosition = new Vector3(bounds.xMin, bounds.yMin, 0);
+        background.transform.localPosition = new Vector3(bounds.xMin, bounds.yMin, 10);
         Vector2 scaling = new Vector2(bounds.width / backgroundTexture.width, bounds.height / backgroundTexture.height);    //scaling of the background to be as big as the map
         
         //Update the textureRect according to the aspect ratio:
@@ -94,7 +94,7 @@ public class Space : MonoBehaviour {
 
         Sprite sprite = Sprite.Create(backgroundTexture, textureRect, new Vector2(0, 0), 1);    //origin (pivot) = corner
         backgroundRenderer.sprite = sprite;
-
+       
         //translate the whole Space gameobject so that it's origin is the map's center:
         Vector2 center = bounds.center;
         transform.localPosition = new Vector3(-center.x, -center.y, 0);
@@ -121,9 +121,11 @@ public class Space : MonoBehaviour {
     // Returns the size of the map
     public Vector2 GetSize() {
         return bounds.size;
+        
     }
 
-    public Vector2 GetCenter() {
+    //returns the center of the bounds rect in local space from the origin that does not have to be the bottom left corner.. it can be everywhere -> depends on the map file
+     public Vector2 GetCenter() {
         return bounds.center;
     }
 }

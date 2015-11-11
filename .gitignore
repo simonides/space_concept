@@ -13,14 +13,14 @@ sysinfo.txt
 # ===================================== #
 [Ee]xported[Oo]bj/
 .vs/
-/*.userprefs
-/*.csproj
-/*.pidb
-/*.suo
-/*.sln*
-/*.user
-/*.unityproj
-/*.booproj
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln*
+*.user
+*.unityproj
+*.booproj
  
 # ============ #
 # OS generated #
@@ -32,3 +32,6 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 [Tt]humbs.db
+
+*.apk
+*.exe

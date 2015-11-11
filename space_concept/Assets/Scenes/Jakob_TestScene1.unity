@@ -100,6 +100,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9428eaa8f07e5cc4eb9a4238d2719b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &785740355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 785740353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd88b009b274c774d98a4fb280517af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SingleTouchReceiver: []
 --- !u!114 &785740357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +121,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e22ef3922ec8a342b4e54842f51c7d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &785740359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 785740353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f6b82ad0b02654ba1eb82e6016c4b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1695880180
