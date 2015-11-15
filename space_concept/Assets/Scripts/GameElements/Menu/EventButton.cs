@@ -11,4 +11,7 @@ public class EventButton : MonoBehaviour {
     public Text typeLabel;
     public Text rarityLabel;
     public GameObject championIcon;
+
+
+
 }
