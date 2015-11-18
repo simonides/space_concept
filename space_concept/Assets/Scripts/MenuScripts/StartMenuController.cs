@@ -7,8 +7,8 @@ public class StartMenuController : MonoBehaviour {
     public UnityEngine.UI.Button colorButton;
     public UnityEngine.UI.InputField name;
     void Awake() {
-        playerColor = SettingsController.GetInstance().playerFile.playerColor;
-        fieldNameInput = SettingsController.GetInstance().playerFile.playerName;
+        playerColor = SettingsController.GetInstance().playerFile.Color;
+        fieldNameInput = SettingsController.GetInstance().playerFile.Name;
 
         //set color of button
         UnityEngine.UI.ColorBlock cb = colorButton.colors;
@@ -32,7 +32,7 @@ public class StartMenuController : MonoBehaviour {
 
     public void TextField_OnEditFinish(UnityEngine.UI.Text f_input) {
         Debug.Log(fieldNameInput);
-        SettingsController.GetInstance().playerFile.playerName = f_input.text;//wirte text into playerData --- not nice at the moment this way
+        SettingsController.GetInstance().playerFile.Name = f_input.text;//wirte text into playerData --- not nice at the moment this way
     }
 
     public void Button_ChooseColor(UnityEngine.UI.Button f_button) {
@@ -43,7 +43,7 @@ public class StartMenuController : MonoBehaviour {
         cb.highlightedColor = playerColor;
         f_button.colors = cb;
 
-        SettingsController.GetInstance().playerFile.playerColor = playerColor;//wirte color into playerData --- not nice at the moment this way
+        SettingsController.GetInstance().playerFile.Color = playerColor;//wirte color into playerData --- not nice at the moment this way
     }
 
     private void SaveChanges() {

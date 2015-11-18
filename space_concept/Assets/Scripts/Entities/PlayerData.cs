@@ -7,7 +7,13 @@ using System.Collections.Generic;
  *  Contains all information about a single player.
  *  Can be serialised / deserialised to a file.
  */
+[System.Serializable]
 public class PlayerData {
+
+    public PlayerData() {
+        Name = "";
+        Color = Color.white;
+    }
     public string Name { get; set; } 
     public Color Color { get; set; }
 

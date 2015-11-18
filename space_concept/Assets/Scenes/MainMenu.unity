@@ -715,9 +715,7 @@ MonoBehaviour:
   dataFile:
     soundON: 0
     volume: 100
-  playerFile:
-    playerName: 
-    playerColor: {r: 1, g: 1, b: 1, a: 1}
+  loadMap: 0
 --- !u!4 &1288800497
 Transform:
   m_ObjectHideFlags: 0

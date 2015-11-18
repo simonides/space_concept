@@ -5,7 +5,7 @@ using Custom.Base;
 
 public class SettingsController : SingletonBase<SettingsController> {
     public SettingsData dataFile;
-    public PlayerSettingsData playerFile;
+    public PlayerData playerFile;
     public SpaceData map = null;
     public bool loadMap = false;
     void Awake() {
@@ -22,10 +22,10 @@ public class SettingsController : SingletonBase<SettingsController> {
             SaveFileSerializer.XMLSave<SettingsData>(dataFile, "Settings", "Settings.xml");
             Debug.Log("Settings.xml file did not exist, so it was created");
         }
-        if ((playerFile = SaveFileSerializer.XMLLoad<PlayerSettingsData>("Settings", "Player.xml")) == null)
+        if ((playerFile = SaveFileSerializer.XMLLoad<PlayerData>("Settings", "Player.xml")) == null)
         {
-            playerFile = new PlayerSettingsData();
-            SaveFileSerializer.XMLSave<PlayerSettingsData>(playerFile, "Settings", "Player.xml");
+            playerFile = new PlayerData();
+            SaveFileSerializer.XMLSave<PlayerData>(playerFile, "Settings", "Player.xml");
             Debug.Log("Player.xml file did not exist, so it was created");
         }
     }
@@ -42,6 +42,6 @@ public class SettingsController : SingletonBase<SettingsController> {
 
     public void SaveData() {
         SaveFileSerializer.XMLSave<SettingsData>(dataFile, "Settings", "Settings.xml");
-        SaveFileSerializer.XMLSave<PlayerSettingsData>(playerFile, "Settings", "Player.xml");
+        SaveFileSerializer.XMLSave<PlayerData>(playerFile, "Settings", "Player.xml");
     }
 }
