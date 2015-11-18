@@ -11,27 +11,26 @@ public class EventListFiller : MonoBehaviour
     public EventButton prefab;
 
     public GameObject sampleButton;
-    public Transform contentPanel;
     public List<PlanetEvent> itemList;
 
     PoolAllocator<GameObject> eventButtonPool;
 
+    public Transform contentPanel;
     public Transform objectPool;
 
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         eventButtonPool = new PoolAllocator<GameObject>(
         () =>
-        //{
-        //    GameObject gObj =
-                GameObject.Instantiate(sampleButton) as GameObject//;
-           // gObj.transform.SetParent(objectPool, false);
-            //return gameObject;
-        //}
+        {
+            GameObject gObj =
+                GameObject.Instantiate(sampleButton) as GameObject;
+            gObj.SetActive(false);
+            gObj.transform.SetParent(objectPool, false);
+           return gObj;
+        }
         );
-        //  PopulateList();
     }
 
     private void PopulateList()
@@ -40,10 +39,17 @@ public class EventListFiller : MonoBehaviour
         foreach (var item in itemList)
         {
             GameObject newButton = eventButtonPool.Get();
-            newButton.transform.SetParent(null);
+            newButton.SetActive(true);
+            //newButton.transform.SetParent(null);
             //GameObject newButton = Instantiate(sampleButton) as GameObject;
             //EventButton eventBtn = newButton.GetComponentInChildren<EventButton>();
             EventButton eventBtn = newButton.GetComponent<EventButton>();
+            if (eventBtn == null)
+            {
+                Debug.Log("eventbutton was null");
+                newButton.transform.SetParent(contentPanel, false);
+                continue;
+            }
             eventBtn.name = item.planetName;
             //eventBtn.icon.sprite = item.icon;
             eventBtn.typeLabel.text = item.planetName;
