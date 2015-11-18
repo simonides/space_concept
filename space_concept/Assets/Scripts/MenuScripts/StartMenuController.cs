@@ -9,7 +9,7 @@ public class StartMenuController : MonoBehaviour {
     void Awake() {
         playerColor = SettingsController.GetInstance().playerFile.Color;
         fieldNameInput = SettingsController.GetInstance().playerFile.Name;
-
+        SettingsController.GetInstance().loadMap = false; //set it false when entering the startMenu
         //set color of button
         UnityEngine.UI.ColorBlock cb = colorButton.colors;
         cb.normalColor = playerColor;

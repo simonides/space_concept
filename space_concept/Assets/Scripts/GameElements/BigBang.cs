@@ -24,7 +24,7 @@ public class BigBang : MonoBehaviour {
             spaceData = SettingsController.GetInstance().map;
         }
        // SpaceData spaceData = new SpaceData();
-        SaveFileSerializer.XMLSave<SpaceData>(spaceData, "Maps", "0_Map.xml");
+        SaveFileSerializer.XMLSave<SpaceData>(spaceData, "SaveGames", "Autosave.xml");
         space.Init(spaceData);
     }
 

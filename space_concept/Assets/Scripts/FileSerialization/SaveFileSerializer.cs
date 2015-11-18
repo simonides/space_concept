@@ -19,6 +19,44 @@ namespace Custom
 
 
             public SaveFileSerializer() { }
+
+
+            public static bool FileExists(string directory, string fileName)
+            { 
+                string f_path = DALSaveGame.GetFilePath(directory, fileName);
+                if (File.Exists(f_path))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            public static bool FileExists(string fileName)
+            {
+                string f_path = DALSaveGame.GetFilePath(fileName);
+                if (File.Exists(f_path))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            public static List<string> GetFileNames(string directory)
+            {
+                string f_path = DALSaveGame.GetFilePath(directory);
+                List<string> listFiles = new List<string>();
+                if (Directory.Exists(f_path))
+                {
+                    listFiles = new List<string>(Directory.GetFiles(f_path));
+                    for (int i = 0; i < listFiles.Count; i++) {
+                        int charPos =  listFiles[i].LastIndexOf('\\')+1;
+                        listFiles[i] = listFiles[i].Substring(charPos, listFiles[i].Length-charPos);
+                        charPos = listFiles[i].LastIndexOf('.');
+                        listFiles[i] = listFiles[i].Substring(0, charPos);
+                    }
+                }
+                return listFiles;
+            }
             /// <summary>
             /// Pass down a DataClass of type <T> to save it.
             /// </summary>

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
 using Custom.Utility;
 using Custom.Base;
 
@@ -43,5 +44,19 @@ public class SettingsController : SingletonBase<SettingsController> {
     public void SaveData() {
         SaveFileSerializer.XMLSave<SettingsData>(dataFile, "Settings", "Settings.xml");
         SaveFileSerializer.XMLSave<PlayerData>(playerFile, "Settings", "Player.xml");
+    }
+
+    public bool LoadMap(string name) {
+        if ((map = SaveFileSerializer.XMLLoad<SpaceData>("SaveGames", name + ".xml")) != null)
+        {
+            loadMap = true;
+            return true;
+        }
+        else {
+            loadMap = false;
+            return false;
+          //  throw new FileNotFoundException(name + ".xml not found");
+        }
+        
     }
 }
