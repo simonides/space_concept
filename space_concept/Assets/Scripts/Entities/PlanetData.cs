@@ -7,6 +7,7 @@ using System.Collections.Generic;
  *  Contains all information about a single planet.
  *  Can be serialised / deserialised to a file.
  */
+[System.Serializable]
 public class PlanetData {
     
     public PlayerData Owner { get; set; }               // The player who owns this planet

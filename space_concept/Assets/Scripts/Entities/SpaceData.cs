@@ -8,6 +8,7 @@ using System.Collections.Generic;
  *  Contains a list of planet entities and defines a single map.
  *  Can be serialised / deserialised to a file.
  */
+[System.Serializable]
 public class SpaceData {
 
     public List<PlanetData> planets { get; private set; }

@@ -4,21 +4,29 @@ using Custom.Utility;
 using Custom.Base;
 
 public class SettingsController : SingletonBase<SettingsController> {
-    private SettingsData dataFile;
-
+    public SettingsData dataFile;
+    public PlayerSettingsData playerFile;
+    public SpaceData map = null;
+    public bool loadMap = false;
     void Awake() {
         base.Awake(this);
         //at awake, check if settings.dat exists, if not, create it with default values
-        if ((dataFile = SaveFileSerializer.Load<SettingsData>("Settings", "Settings.dat")) == null) {
-            dataFile = new SettingsData();
-            SaveFileSerializer.Save<SettingsData>(dataFile, "Settings", "Settings.dat");
-            Debug.Log("Settings.dat file did not exist, so it was created");
-        }
+        //if ((dataFile = SaveFileSerializer.Load<SettingsData>("Settings", "Settings.dat")) == null) {
+        //    dataFile = new SettingsData();
+        //    SaveFileSerializer.Save<SettingsData>(dataFile, "Settings", "Settings.dat");
+        //    Debug.Log("Settings.dat file did not exist, so it was created");
+        //}
         if ((dataFile = SaveFileSerializer.XMLLoad<SettingsData>("Settings", "Settings.xml")) == null)
         {
             dataFile = new SettingsData();
             SaveFileSerializer.XMLSave<SettingsData>(dataFile, "Settings", "Settings.xml");
             Debug.Log("Settings.xml file did not exist, so it was created");
+        }
+        if ((playerFile = SaveFileSerializer.XMLLoad<PlayerSettingsData>("Settings", "Player.xml")) == null)
+        {
+            playerFile = new PlayerSettingsData();
+            SaveFileSerializer.XMLSave<PlayerSettingsData>(playerFile, "Settings", "Player.xml");
+            Debug.Log("Player.xml file did not exist, so it was created");
         }
     }
 
@@ -31,4 +39,9 @@ public class SettingsController : SingletonBase<SettingsController> {
 	void Update () {
 	
 	}
+
+    public void SaveData() {
+        SaveFileSerializer.XMLSave<SettingsData>(dataFile, "Settings", "Settings.xml");
+        SaveFileSerializer.XMLSave<PlayerSettingsData>(playerFile, "Settings", "Player.xml");
+    }
 }
