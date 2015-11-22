@@ -19,15 +19,27 @@ public class TroopData {
     public int ShipCount { get; private set; }
     public PlayerData Owner { get; private set; }
 
-    public int ArrivalTime { get; private set; }    
+    public int ArrivalTime { get; private set; }
 
-    TroopData(PlanetData start, PlanetData target, int shipCount) {
+
+    public TroopData() {
+        Init(null, null, 0, 0);
+    }
+
+    public TroopData(PlanetData start, PlanetData target, int shipCount, int currentDay) {
+        Init(start, target, shipCount, currentDay);
+    }
+
+    public void Init(PlanetData start, PlanetData target, int shipCount, int currentDay) {
         StartPlanet = start;
         TargetPlanet = target;
         ShipCount = shipCount;
-        Owner = start.Owner;
-        ArrivalTime = (int)System.Math.Round(0 + start.GetSurfaceDistance(target) / TravelSpeed);       // TODO: replace 0 with current day
+        if (start == null) {
+            Owner = null;
+            ArrivalTime = 0;
+        } else {
+            Owner = start.Owner;
+            ArrivalTime = (int)System.Math.Round(currentDay + start.GetSurfaceDistance(target) / TravelSpeed);
+        }
     }
-
-
 }

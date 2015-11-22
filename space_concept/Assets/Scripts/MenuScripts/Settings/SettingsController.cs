@@ -9,7 +9,9 @@ public class SettingsController : SingletonBase<SettingsController> {
     public PlayerData playerFile;
     public SpaceData map = null;
     public bool loadMap = false;
-    void Awake() {
+
+
+    override protected void Awake() {
         base.Awake(this);
         //at awake, check if settings.dat exists, if not, create it with default values
         //if ((dataFile = SaveFileSerializer.Load<SettingsData>("Settings", "Settings.dat")) == null) {
@@ -31,21 +33,12 @@ public class SettingsController : SingletonBase<SettingsController> {
         }
     }
 
-	// Use this for initialization
-	void Start () {
-	    
-	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     public void SaveData() {
         SaveFileSerializer.XMLSave<SettingsData>(dataFile, "Settings", "Settings.xml");
         SaveFileSerializer.XMLSave<PlayerData>(playerFile, "Settings", "Player.xml");
     }
-
+     
     public bool LoadMap(string name) {
         if ((map = SaveFileSerializer.XMLLoad<SpaceData>("SaveGames", name + ".xml")) != null)
         {

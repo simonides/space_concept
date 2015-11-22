@@ -68,13 +68,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Others\TinyMessenger\TinyMessenger.cs" />
+    <ProjectReference Include="space_concept.CSharp.Plugins.csproj">
+      <Project>{A39E0672-AE37-D1B7-D11C-905586A3BE3F}</Project>
+      <Name>space_concept.CSharp.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\Animations\BackgroundAnimation.cs" />
     <Compile Include="Assets\Scripts\BaseClasses\SingletonBase.cs" />
+    <Compile Include="Assets\Scripts\Entities\GameStateData.cs" />
     <Compile Include="Assets\Scripts\Entities\PlanetData.cs" />
     <Compile Include="Assets\Scripts\Entities\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Entities\SpaceData.cs" />
     <Compile Include="Assets\Scripts\Entities\TroopData.cs" />
+    <Compile Include="Assets\Scripts\Events\NextDay.cs" />
+    <Compile Include="Assets\Scripts\Events\NextDayRequest.cs" />
     <Compile Include="Assets\Scripts\FileSerialization\DALSaveGame.cs" />
     <Compile Include="Assets\Scripts\FileSerialization\QuaternionSurrogate.cs" />
     <Compile Include="Assets\Scripts\FileSerialization\SaveFileSerializer.cs" />
@@ -105,6 +113,7 @@
     <Compile Include="Assets\Scripts\MenuScripts\Settings\SettingsController.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\Settings\SettingsData.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\StartMenuController.cs" />
+    <Compile Include="Assets\Scripts\MessageHub.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

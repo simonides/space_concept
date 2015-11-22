@@ -85,10 +85,13 @@ public class MapInput : MonoBehaviour
         InputHandler.OnZoom += this.Zoom;               // Subscribe to Zoom Event
         InputHandler.OnTouchMove += this.OnTouchMove;   // Subscribe to OnTouchMove Event
 
-        _map = GameObject.Find("Space").GetComponent<Space>();
-        if (_map == null)
-        {
-            throw new MissingComponentException("Unable to find Init Item.");
+        var spaceGO = GameObject.Find("Space");
+        if (spaceGO == null) {
+            throw new MissingComponentException("Unable to find Space GameObject. This should be a global GO that contains the Space script.");
+        }
+        _map = spaceGO.GetComponent<Space>();
+        if (_map == null) {
+            throw new MissingComponentException("Unable to find space script. This component should be attached to the Space GameObject.");
         }
 
         _cameraOrthoSizeTo = Camera.main.orthographicSize; // needed?
