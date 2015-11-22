@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class AirTrafficControl : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class AirTrafficControl : MonoBehaviour {
     // ****  ATTACHED OBJECTS   **** //
     GameStateData gameStateData;
     GameObject pooledGameObjectHolder;
+    Space space;
 
     // ****     ALLOCATORS      **** //
     PoolAllocator<TroopData> troopDataPool;              // Pool allocator for the troop data
@@ -25,6 +27,11 @@ public class AirTrafficControl : MonoBehaviour {
         if (pooledGameObjectHolder == null) {
             throw new MissingComponentException("Unable to find PooledGameObjects There should be an empty game object that holds the pooled data.");
         }
+
+        space = GameObject.Find("Space").GetComponent<Space>();
+        if (space == null) {
+            throw new MissingComponentException("Unable to find Space. The 'Space' game object also needs to be added to the level and have the space script attached.");
+        }
     }
 
     void Start() {
@@ -40,15 +47,19 @@ public class AirTrafficControl : MonoBehaviour {
         troops = new List<GameObject>();
 
         troopDataPool = new PoolAllocator<TroopData>(
-            () => { return new TroopData(); }
+            () => { return new TroopData(); },
+            (TroopData troop) => { troop.Init(null, null, 0, 0); }
         );
 
         troopPool = new PoolAllocator<GameObject>(
             () => {
                 GameObject gObj = GameObject.Instantiate(troopPrefab) as GameObject;
-                gObj.SetActive(false);
-                gObj.transform.SetParent(pooledGameObjectHolder.transform, false);
                 return gObj;
+            },
+            (GameObject gObj) => {
+                gObj.SetActive(false);
+                gObj.name = "Pooled troop";
+                gObj.transform.SetParent(pooledGameObjectHolder.transform, false);
             }
         );
 
@@ -58,19 +69,18 @@ public class AirTrafficControl : MonoBehaviour {
 
     public void Init(AirTrafficData airTrafficData) {
         this.airTrafficData = airTrafficData;
+        foreach(TroopData troopData  in airTrafficData.airTraffic) {
+            InitGraphicalTroopMovement(troopData);
+        }
     }
-
-
-
+    
 
     void InitEventSubscriptions() {
-        MessageHub.Subscribe<NextDayEvent>(NextDay);
         MessageHub.Subscribe<NewTroopMovementEvent>(NewTroopMovement);
+        MessageHub.Subscribe<NextDayEvent>(NextDay);
     }
 
-    private void NextDay(NextDayEvent evt) {
-        //TODO: troop movements
-    }
+
 
     private void NewTroopMovement(NewTroopMovementEvent evt) {
         TroopData troopData = troopDataPool.Get();
@@ -78,18 +88,32 @@ public class AirTrafficControl : MonoBehaviour {
         //troopData.Init(evt.StartPlanet.planetData, evt.TargetPlanet.planetData, evt.ShipCount, gameStateData.CurrentDay);
         airTrafficData.AddTroopMovement(troopData);
 
+        InitGraphicalTroopMovement(troopData);
+
+        Debug.Log("New troop movement confirmed: " + troopData.ToString());
+    }
+
+    private void InitGraphicalTroopMovement(TroopData troopData) {
         GameObject troopObject = troopPool.Get();
         Troop troop = troopObject.GetComponent<Troop>();
         if (troop == null) {
             throw new MissingComponentException("A pooled Troop-GameObect doesn't have a Troop-Component. Each Troop-GO should have a Troop Script attached.");
         }
 
+
+        troopObject.transform.SetParent(space.transform);
         troop.Init(troopData);
+        troopObject.SetActive(true);
+
+
 
         //TODO: initialise graphical representation
 
         troops.Add(troopObject);
+    }
 
-        Debug.Log("New troop movement confirmed: " + troopData.ToString());
+
+    private void NextDay(NextDayEvent evt) {
+        //TODO: troop movements
     }
 }

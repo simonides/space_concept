@@ -14,14 +14,23 @@ public class PoolAllocator<T> {
 
 
     public delegate T TCreator();                   // delegate used to instantiate a new object
-    private TCreator _tCreator;                     // keep the delegate
+    public delegate void TReset(T obj);             // delegate used to reset game object when it is created and when it is put back into the pool
 
-    public PoolAllocator(TCreator tcreator, int initialPoolSize = 100, int poolSizeIncrement = 50) {
+    private TCreator _tCreator;                     // keep the delegate
+    private TReset _tReset;                         // keep the delegate
+
+    public PoolAllocator(TCreator tcreator, TReset treset, int initialPoolSize = 100, int poolSizeIncrement = 50) {
         this._tCreator = tcreator;
+        this._tReset = treset;
+
         this.InitialPoolSize = initialPoolSize;
         this.PoolSizeIncrement = poolSizeIncrement;
+
         this.PoolSize = 0;
-        if(poolSizeIncrement == 0) {  throw new UnityException("Invalid argument: poolSizeIncrement must be greater than zero."); }
+        if(poolSizeIncrement == 0) {
+            throw new UnityException("Invalid argument: poolSizeIncrement must be greater than zero.");
+        }
+
         pool = new Stack<T>(InitialPoolSize);
         allocateObjects(InitialPoolSize);
     }
@@ -31,7 +40,9 @@ public class PoolAllocator<T> {
     void allocateObjects(int count)  {
         Debug.Log("Allocating " + count + " new objects for pool.");
         for(int i=0; i< count; ++i) {
-            pool.Push(_tCreator());
+            T obj = _tCreator();
+            _tReset(obj);
+            pool.Push(obj);
         }
         PoolSize += count;
     }
@@ -45,7 +56,10 @@ public class PoolAllocator<T> {
         return pool.Pop();
     }
 
+    // It is possible to put back objects that have been generated without/another pool allocator.
+    // Objects must not, however, put back twice
     public void PutBack(T obj) {
+        _tReset(obj);
         pool.Push(obj);
     }
 

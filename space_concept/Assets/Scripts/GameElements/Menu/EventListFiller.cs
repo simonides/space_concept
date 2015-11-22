@@ -7,29 +7,46 @@ using System.Linq;
 
 public class EventListFiller : MonoBehaviour
 {
+    // ****    CONFIGURATION    **** //
+
+    // ****  ATTACHED OBJECTS   **** //
+    GameObject pooledGameObjectHolder;
+
+    // ****     ALLOCATORS      **** //
+    PoolAllocator<GameObject> eventButtonPool;
+
+    // ****                     **** //
+    
 
     public EventButton prefab;
 
     public GameObject sampleButton;
     public List<PlanetEvent> itemList;
 
-    PoolAllocator<GameObject> eventButtonPool;
 
     public Transform contentPanel;
-    public Transform objectPool;
+
+
+    void Awake() {
+        pooledGameObjectHolder = GameObject.Find("PooledGameObjects");
+        if (pooledGameObjectHolder == null) {
+            throw new MissingComponentException("Unable to find PooledGameObjects There should be an empty game object that holds the pooled data.");
+        }
+    }
 
 
     // Use this for initialization
     void Start() {
         eventButtonPool = new PoolAllocator<GameObject>(
-        () =>
-        {
-            GameObject gObj =
-                GameObject.Instantiate(sampleButton) as GameObject;
-            gObj.SetActive(false);
-            gObj.transform.SetParent(objectPool, false);
-           return gObj;
-        }
+            () => {
+                GameObject gObj = GameObject.Instantiate(sampleButton) as GameObject;
+                return gObj;
+            },
+            (GameObject gObj) => {
+                gObj.SetActive(false);
+                gObj.name = "Pooled EventButton";
+                gObj.transform.SetParent(pooledGameObjectHolder.transform, false);
+            }
         );
     }
 
@@ -73,7 +90,7 @@ public class EventListFiller : MonoBehaviour
         // generate new buttons
 
     }
-    // Update is called once per frame
+
     public void SomethingToDo()
     {
         Debug.Log("test me... print ");
