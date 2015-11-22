@@ -30,23 +30,18 @@ public class GameState : MonoBehaviour {
 
     void InitEventSubscriptions() {
         MessageHub.Subscribe<NextDayRequestEvent>(NextDayRequest);
-        MessageHub.Subscribe<NextDayEvent>(NextDay);
     }
 
     void NextDayRequest(NextDayRequestEvent evt) {
         TimeSpan time = DateTime.Now.Subtract(lastDayChange);
         if (time.TotalMilliseconds > MINIMUM_DAY_DURATION_IN_MS) {
-            MessageHub.Publish(new NextDayEvent(this));
+            lastDayChange = DateTime.Now;
+            gameStateData.NextDay();
+            UnityEngine.Debug.Log("Good morning! We have day " + gameStateData.CurrentDay + " now!");
+            MessageHub.Publish(new NextDayEvent(this, gameStateData.CurrentDay));
         } else {
             Debug.LogWarning("You clicked too fast. I don't like that. I was programmed to ignore fast clicks.");
         }
     }
-
-    private void NextDay(NextDayEvent evt) {
-        lastDayChange = DateTime.Now;
-        gameStateData.NextDay();
-        UnityEngine.Debug.Log("Good morning! We have day " + gameStateData.CurrentDay + " now!");
-    }
-
-
+    
 }

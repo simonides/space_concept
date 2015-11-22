@@ -3429,7 +3429,6 @@ MonoBehaviour:
   sampleButton: {fileID: 154094, guid: 9579af042a894ee41be47bb68c010057, type: 2}
   itemList: []
   contentPanel: {fileID: 898570671}
-  objectPool: {fileID: 274254855}
 --- !u!1 &1067598450
 GameObject:
   m_ObjectHideFlags: 0

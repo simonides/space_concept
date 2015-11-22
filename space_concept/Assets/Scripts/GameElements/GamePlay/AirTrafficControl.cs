@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class AirTrafficControl : MonoBehaviour {
 
@@ -81,6 +82,22 @@ public class AirTrafficControl : MonoBehaviour {
     }
 
 
+    // Returns all troops that arrive on the given day
+    private List<Troop> GetTroopsForDay(int arrivalDay) {
+        List<Troop> troopsForDay = new List<Troop>();
+        foreach(GameObject troopGO in troops) {
+            Troop troop = troopGO.GetComponent<Troop>();
+            if (troop.troopData.ArrivalTime <= arrivalDay) {
+                troopsForDay.Add(troop);
+            }
+        }
+        return troopsForDay;
+    }
+
+
+
+
+
 
     private void NewTroopMovement(NewTroopMovementEvent evt) {
         TroopData troopData = troopDataPool.Get();
@@ -113,7 +130,38 @@ public class AirTrafficControl : MonoBehaviour {
     }
 
 
+
     private void NextDay(NextDayEvent evt) {
-        //TODO: troop movements
+        int currentDay = evt.GetCurrentDay();
+        List<Troop> todaysTroops = GetTroopsForDay(currentDay);
+        Debug.Log("Day " + currentDay + ": " + todaysTroops.Count() + " troops arrived.");
+        AnimateTroopObjects(todaysTroops, currentDay);
+        var evaluation = PerformTroopEvaluation(todaysTroops);
+        PublishTroopEvaluation(evaluation);
+        DisposeOfTodaysTroops(todaysTroops);
     }
+
+    private void AnimateTroopObjects(List<Troop> todaysTroops, int CurrentDay) {
+
+    }
+
+    private List<PlanetEventEvaluationResult> PerformTroopEvaluation(List<Troop> todaysTroops) {
+        Dictionary<Planet, PlanetEventEvaluationResult> evaluation = new Dictionary<Planet, PlanetEventEvaluationResult>();
+
+        foreach(Troop troop in todaysTroops) {
+
+        }
+
+        return evaluation.Values.ToList();
+    }
+
+    private void PublishTroopEvaluation(List<PlanetEventEvaluationResult> evaluations) {
+        TroopEvaluationResultEvent evt = new TroopEvaluationResultEvent(this, evaluations);
+        MessageHub.Publish<TroopEvaluationResultEvent>(evt);
+    }
+
+    private void DisposeOfTodaysTroops(List<Troop> todaysTroops) {
+        // TODO: put troops and troopData back into pool allocator
+    }
+
 }

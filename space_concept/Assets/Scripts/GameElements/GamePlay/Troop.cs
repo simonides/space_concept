@@ -5,7 +5,7 @@ using System;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Troop : MonoBehaviour {
     
-    TroopData troopData;
+    public TroopData troopData { get; private set; }
 
     public void Init(TroopData troop) {
         troopData = troop;
@@ -13,8 +13,7 @@ public class Troop : MonoBehaviour {
         this.name = GetNameForTroopGameObject(troopData);
         this.transform.localScale = new Vector3(30, 30, 1);
     }
-
-    
+        
 
     private string GetNameForTroopGameObject(TroopData troopData) {
         try {
