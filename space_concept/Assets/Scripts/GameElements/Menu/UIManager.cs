@@ -59,7 +59,13 @@ public class UIManager : MonoBehaviour
     }
 
     public void NextDayClicked() {
-        MessageHub.Publish(new NextDayRequest(this));
+        MessageHub.Publish(new NextDayRequestEvent(this));
+    }
+
+
+    public void SendSomeSpaceShips() {
+        //TODO: This is a test method. Remove it when it is not needed anymore!
+        MessageHub.Publish(new NewTroopMovementEvent(this, null, null, 42));
     }
 
     public void HidePlanetMenus()

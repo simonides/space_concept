@@ -16,7 +16,7 @@ public class PoolAllocator<T> {
     public delegate T TCreator();                   // delegate used to instantiate a new object
     private TCreator _tCreator;                     // keep the delegate
 
-    public PoolAllocator(TCreator tcreator,int initialPoolSize = 100, int poolSizeIncrement = 50) {
+    public PoolAllocator(TCreator tcreator, int initialPoolSize = 100, int poolSizeIncrement = 50) {
         this._tCreator = tcreator;
         this.InitialPoolSize = initialPoolSize;
         this.PoolSizeIncrement = poolSizeIncrement;
@@ -25,9 +25,7 @@ public class PoolAllocator<T> {
         pool = new Stack<T>(InitialPoolSize);
         allocateObjects(InitialPoolSize);
     }
-
-    // Use this for initialization
-
+    
 
 
     void allocateObjects(int count)  {
@@ -39,15 +37,12 @@ public class PoolAllocator<T> {
     }
 
     public T Get() {
-        T obj = pool.Pop();
-        if(obj == null) {
+        if(pool.Count == 0) {
             Debug.LogWarning("Pool ran out of objects. Allocating " + PoolSizeIncrement + " more objects.");
             allocateObjects(PoolSizeIncrement);
             PoolSizeIncrement = (int)(PoolSizeIncrement * 1.5);
-            obj = pool.Pop();
         }
-       // obj.Reset();
-        return obj;
+        return pool.Pop();
     }
 
     public void PutBack(T obj) {

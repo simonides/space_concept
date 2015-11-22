@@ -13,7 +13,7 @@ public class TroopData {
     // ****                     **** //
 
 
-    public PlanetData StartPlanet { get; private set;}
+    public PlanetData StartPlanet { get; private set; }
     public PlanetData TargetPlanet { get; private set; }
 
     public int ShipCount { get; private set; }
@@ -42,4 +42,17 @@ public class TroopData {
             ArrivalTime = (int)System.Math.Round(currentDay + start.GetSurfaceDistance(target) / TravelSpeed);
         }
     }
+
+    public override string ToString() {
+        string ownerName = "unknown";
+        if (Owner != null) {
+            ownerName = Owner.Name;
+        }
+
+        string startPlanetName = StartPlanet == null ? "unknown" : StartPlanet.Name;
+        string targetPlanetName = TargetPlanet == null ? "unknown" : TargetPlanet.Name;
+
+        return "Troop from Player \"" + ownerName + "\" with " + ShipCount + " ships from Planet \"" + startPlanetName + "\" to \"" + targetPlanetName + "\"";
+    }
+
 }

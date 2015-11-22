@@ -17,6 +17,9 @@ namespace Custom
                 if (instance == null)
                 {
                     instance = GameObject.FindObjectOfType<T>();
+                    if(instance == null) {
+                        throw new MissingComponentException("Can't find GameObject of type " + typeof(T).Name);
+                    }
 
                     DontDestroyOnLoad(instance.gameObject);
                 }

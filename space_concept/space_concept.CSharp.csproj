@@ -76,17 +76,21 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Animations\BackgroundAnimation.cs" />
     <Compile Include="Assets\Scripts\BaseClasses\SingletonBase.cs" />
+    <Compile Include="Assets\Scripts\Entities\AirTrafficData.cs" />
     <Compile Include="Assets\Scripts\Entities\GameStateData.cs" />
     <Compile Include="Assets\Scripts\Entities\PlanetData.cs" />
     <Compile Include="Assets\Scripts\Entities\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Entities\SpaceData.cs" />
     <Compile Include="Assets\Scripts\Entities\TroopData.cs" />
-    <Compile Include="Assets\Scripts\Events\NextDay.cs" />
-    <Compile Include="Assets\Scripts\Events\NextDayRequest.cs" />
+    <Compile Include="Assets\Scripts\Events\NewTroopMovementEvent.cs" />
+    <Compile Include="Assets\Scripts\Events\NextDayEvent.cs" />
+    <Compile Include="Assets\Scripts\Events\NextDayRequestEvent.cs" />
+    <Compile Include="Assets\Scripts\Events\SimpleEventBase.cs" />
     <Compile Include="Assets\Scripts\FileSerialization\DALSaveGame.cs" />
     <Compile Include="Assets\Scripts\FileSerialization\QuaternionSurrogate.cs" />
     <Compile Include="Assets\Scripts\FileSerialization\SaveFileSerializer.cs" />
     <Compile Include="Assets\Scripts\FileSerialization\Vector3Surrogate.cs" />
+    <Compile Include="Assets\Scripts\GameElements\AirTrafficControl.cs" />
     <Compile Include="Assets\Scripts\GameElements\BigBang.cs" />
     <Compile Include="Assets\Scripts\GameElements\GameState.cs" />
     <Compile Include="Assets\Scripts\GameElements\Input\InputHandler.cs" />

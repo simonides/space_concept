@@ -773,8 +773,11 @@ namespace TinyMessenger
                 {
                     sub.Proxy.Deliver(message, sub.Subscription);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    throw e;    // Edited my maja, so that we can see errors
+
+
                     // Ignore any errors and carry on
                     // TODO - add to a list of erroring subs and remove them?
                 }

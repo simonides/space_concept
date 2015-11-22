@@ -19,7 +19,7 @@ public class Planet : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     // ****                     **** //
-    public PlanetData planetData;
+    public PlanetData planetData { get; private set; }
 
     // ****                     **** //
 

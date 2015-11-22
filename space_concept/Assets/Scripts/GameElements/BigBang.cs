@@ -6,6 +6,7 @@ public class BigBang : MonoBehaviour {
 
     // ****  ATTACHED OBJECTS   **** //
     Space space;
+    AirTrafficControl airTrafficControl;
     GameState gameState;
     // ****                     **** //
 
@@ -16,6 +17,11 @@ public class BigBang : MonoBehaviour {
         space = GameObject.Find("Space").GetComponent<Space>();
         if (space == null) {
             throw new MissingComponentException("Unable to find Space. The big bang doesn't have enough space to happen. The 'Space' game object also needs to be added to the level and the space script attached.");
+        }
+
+        airTrafficControl = GameObject.Find("AirTrafficControl").GetComponent<AirTrafficControl>();
+        if (space == null) {
+            throw new MissingComponentException("Unable to find AirTrafficControl. There can't be any troops flying around without an global AirTrafficControl GameObject that has an AirTrafficControl Script attached.");
         }
 
         gameState = gameObject.GetComponent<GameState>();
@@ -37,11 +43,17 @@ public class BigBang : MonoBehaviour {
 
     void InitialiseGame() {
         Debug.Log("Initialising game...");
-        if (SettingsController.GetInstance().loadMap == false) {
+        try {
+            if (SettingsController.GetInstance().loadMap == false) {
+                InitialiseNewGame();
+            } else {
+                InitialiseGameFromSaveGame();
+            }
+        } catch(MissingComponentException e) {
+            Debug.LogWarning("Failed to communicate with SettingsController. \n" + e.ToString());
             InitialiseNewGame();
-        } else {
-            InitialiseGameFromSaveGame();
         }
+       
         Debug.Log("The Big Bang happened guys!");
     }
 
@@ -50,7 +62,7 @@ public class BigBang : MonoBehaviour {
         Debug.Log("Loading save game...");
 
         //TODO: load GameStateData too...
-
+    
         SpaceData spaceData = SettingsController.GetInstance().map;        
         SaveFileSerializer.XMLSave<SpaceData>(spaceData, "SaveGames", "Autosave.xml");
         
@@ -61,6 +73,9 @@ public class BigBang : MonoBehaviour {
         Debug.Log("Generating new game...");
         GameStateData gameStateData = new GameStateData();
         gameState.Init(gameStateData);
+
+        AirTrafficData airTrafficData = new AirTrafficData();
+        airTrafficControl.Init(airTrafficData);
 
         SpaceData spaceData = GenerateDefaultMap();
         space.Init(spaceData);
