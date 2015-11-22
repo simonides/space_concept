@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Others\TinyMessenger\TinyMessenger.cs" />
     <Compile Include="Assets\Scripts\Animations\BackgroundAnimation.cs" />
     <Compile Include="Assets\Scripts\BaseClasses\SingletonBase.cs" />
     <Compile Include="Assets\Scripts\Entities\PlanetData.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Scripts\GameElements\Input\MapInput.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\AlphaRaycastFilter.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\EventButton.cs" />
+    <Compile Include="Assets\Scripts\GameElements\Menu\EventListFiller.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\EventListManager.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\Menu.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\PlanetMenuFiller.cs" />
@@ -104,9 +106,6 @@
     <Compile Include="Assets\Scripts\MenuScripts\Settings\SettingsData.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\StartMenuController.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Extensions\GitInitMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

@@ -165,7 +165,7 @@ public class MapInput : MonoBehaviour
 
         if (xMin > cameraXMin)
         {
-            print("left " + xMin + " " + cameraXMin);
+            //print("left " + xMin + " " + cameraXMin);
             _moveToPosition = new Vector2(
                     cameraXMin + (mapSize.x - mapSize.x / 2f - mapOrigin.x) - CameraBorderOffset,
                     _map.transform.position.y);
@@ -174,7 +174,7 @@ public class MapInput : MonoBehaviour
 
         else if (xMax < cameraXMax)
         {
-            print("right");
+            //print("right");
             _moveToPosition = new Vector2(
                   ((cameraXMax * -1) + mapSize.x / 2f + mapOrigin.x) * -1 + CameraBorderOffset,
                    _map.transform.position.y);
@@ -183,7 +183,7 @@ public class MapInput : MonoBehaviour
 
         if (yMin > cameraYMin) // check bottom
         {
-            print("bottom");
+            //print("bottom");
             _moveToPosition = new Vector2(
                   _map.transform.position.x,
                    cameraYMin + (mapSize.y - mapSize.y / 2f - mapOrigin.y) - CameraBorderOffset);
@@ -192,7 +192,7 @@ public class MapInput : MonoBehaviour
 
         else if (yMax < cameraYMax) // check top
         {
-            print("top");
+            //print("top");
             _moveToPosition = new Vector2(
                    _map.transform.position.x,
                     ((cameraYMax * -1) + mapSize.y / 2f + mapOrigin.y) * -1 + CameraBorderOffset);

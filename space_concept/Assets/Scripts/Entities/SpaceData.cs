@@ -71,4 +71,8 @@ public class SpaceData {
         }
         return null;
     }
+
+    public int getPlanetCount() {
+        return planets.Count;
+    }
 }
