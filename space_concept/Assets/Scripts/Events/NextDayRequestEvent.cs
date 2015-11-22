@@ -48,10 +48,7 @@
 
 //}
 
-using UnityEngine;
-using System.Collections;
 using TinyMessenger;
-using System;
 
 
 // The user wants the next day to be started (DOES NOT START A NEW DAY)

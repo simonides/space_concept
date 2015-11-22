@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
 
 
     public List<PlanetEvent> events;
-
+    public GameObject space;
 
 
     void Awake() {
@@ -64,8 +64,12 @@ public class UIManager : MonoBehaviour
 
 
     public void SendSomeSpaceShips() {
+        Planet[] planets = space.GetComponentsInChildren<Planet>();
+
+
+
         //TODO: This is a test method. Remove it when it is not needed anymore!
-        MessageHub.Publish(new NewTroopMovementEvent(this, null, null, 42));
+        MessageHub.Publish(new NewTroopMovementEvent(this, planets[0], planets[1], 42));
     }
 
     public void HidePlanetMenus()
