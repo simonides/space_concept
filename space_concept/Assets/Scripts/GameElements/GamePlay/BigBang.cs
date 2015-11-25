@@ -82,18 +82,6 @@ public class BigBang : MonoBehaviour {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     SpaceData GenerateDefaultMap() {
         SpaceData spaceData = new SpaceData();
         PlanetData planet = new PlanetData(new Vector2(0, 0), 50, 50, 10000, 100, true);
