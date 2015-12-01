@@ -21,6 +21,8 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
     // to calculate the delta for the mouse
     private Vector3 _oldMousePosition;
 
+    // use to deactivate the mapmovement when the menu is active
+    private bool _moveMap = true;
 
 
     private void Zoom(float magnitudeDiff)
@@ -34,9 +36,12 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
 
     private void TouchMove(Vector2 deltaPosition)
     {
-        if (OnTouchMove != null)
+        if (_moveMap)
         {
-            OnTouchMove(deltaPosition);
+            if (OnTouchMove != null)
+            {
+                OnTouchMove(deltaPosition);
+            }
         }
     }
 
@@ -44,8 +49,14 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
     public void Awake()
     {
         Input.simulateMouseWithTouches = false;
+        MessageHub.Subscribe<MapMovementEvent>(MapMovement);
     }
 
+    private void MapMovement(MapMovementEvent mapEvent)
+    {
+        _moveMap = mapEvent.Content;
+        Debug.Log("movemap event: " + mapEvent.Content);
+    }
 
     void FixedUpdate()
     {
@@ -88,7 +99,7 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
 
         if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("clicked on point");
+            //Debug.Log("clicked on point");
             if (!_touchMoved)
             {
                 SendTouchClick(Input.mousePosition);
@@ -200,10 +211,11 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
         foreach (RaycastHit2D hit in hits)
         {
             GameObject recipient = hit.transform.gameObject;
-            //if (hits.Count() > 1 && recipient.CompareTag("ship"))
-            //{ // should go throug and fire to planet only
-            //    continue;
-            //}
+            if (hits.Count() > 1 && recipient.CompareTag("Menu"))
+            { // should go throug and fire to planet only
+                Debug.Log("menu active");
+                continue;
+            }
             recipient.SendMessage("SingleTouchClick", SendMessageOptions.DontRequireReceiver);
         }
 

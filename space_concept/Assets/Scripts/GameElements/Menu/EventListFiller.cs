@@ -49,7 +49,7 @@ public class EventListFiller : MonoBehaviour
             }
         );
     }
-
+    
     private void PopulateList()
     {
 
@@ -57,9 +57,6 @@ public class EventListFiller : MonoBehaviour
         {
             GameObject newButton = eventButtonPool.Get();
             newButton.SetActive(true);
-            //newButton.transform.SetParent(null);
-            //GameObject newButton = Instantiate(sampleButton) as GameObject;
-            //EventButton eventBtn = newButton.GetComponentInChildren<EventButton>();
             EventButton eventBtn = newButton.GetComponent<EventButton>();
             if (eventBtn == null)
             {

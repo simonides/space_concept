@@ -56,6 +56,7 @@ public class EventListManager : MonoBehaviour {
     // close the current menu
     public void SetEventMenuInvisible()
     {
+        MessageHub.Publish(new MapMovementEvent(this, true));// todo remove
         if (_currentMenu != null){
             _currentMenu.IsOpen = false;
         }

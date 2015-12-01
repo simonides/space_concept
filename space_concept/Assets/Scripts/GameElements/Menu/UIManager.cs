@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
     public void ShowEventList()
     {
         ShowEventList(events);
+        MessageHub.Publish(new MapMovementEvent(this, false));// todo remove
     }
 
 
@@ -70,17 +71,20 @@ public class UIManager : MonoBehaviour
 
         //TODO: This is a test method. Remove it when it is not needed anymore!
         MessageHub.Publish(new NewTroopMovementEvent(this, planets[0], planets[1], 42));
+      
     }
 
     public void HidePlanetMenus()
     {
         _planetMenuManager.SetPlanetMenuInVisible();
+        MessageHub.Publish(new MapMovementEvent(this, true));// todo remove
     }
 
     public void HideAllMenus()
     {
         _planetMenuManager.SetPlanetMenuInVisible();
         _eventlistManager.SetEventMenuInvisible();
+        MessageHub.Publish(new MapMovementEvent(this, true));// todo remove
     }
 
 }
