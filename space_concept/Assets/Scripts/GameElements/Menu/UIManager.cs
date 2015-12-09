@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
         if (_eventlistManager == null) {
             throw new MissingComponentException("Unable to find EventListManager.");
         }
+
     }
 
 

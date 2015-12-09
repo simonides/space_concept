@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using TinyMessenger;
 
-public class ShowOptionsMenu : GenericTinyMessage<bool>
+public class ShowOptionsMenu : TinyMessageBase
 {
 
-    public ShowOptionsMenu(object sender, bool moveMap)
-        : base(sender, moveMap) {
+    public ShowOptionsMenu(object sender)
+        : base(sender) {
     }
 }
