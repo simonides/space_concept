@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
     public void ShowEventList()
     {
         ShowEventList(events);
-        MessageHub.Publish(new MapMovementEvent(this, false));// todo remove
+        MessageHub.Publish(new MenuActiveEvent(this, true));// todo remove
     }
 
 
@@ -55,6 +55,7 @@ public class UIManager : MonoBehaviour
 
     public void PlanetClicked(Planet planet)
     {
+        MessageHub.Publish(new MenuActiveEvent(this, true));// todo remove
         _planetMenuManager.ActivePlanet = planet.planetData;
         _planetMenuManager.SwitchToFirstLevel();
     }
@@ -77,14 +78,14 @@ public class UIManager : MonoBehaviour
     public void HidePlanetMenus()
     {
         _planetMenuManager.SetPlanetMenuInVisible();
-        MessageHub.Publish(new MapMovementEvent(this, true));// todo remove
+        MessageHub.Publish(new MenuActiveEvent(this, false));// todo remove
     }
 
     public void HideAllMenus()
     {
         _planetMenuManager.SetPlanetMenuInVisible();
         _eventlistManager.SetEventMenuInvisible();
-        MessageHub.Publish(new MapMovementEvent(this, true));// todo remove
+        MessageHub.Publish(new MenuActiveEvent(this, false));// todo remove
     }
 
 }

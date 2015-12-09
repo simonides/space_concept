@@ -9,6 +9,7 @@ public class PlanetMenuManager : MonoBehaviour
 
     public Menu PlanetMenu;
     public Menu PlanetMenu_2ndLevel;
+    public Menu InGameOptionsMenu;
 
     private Menu _currentMenu;
     private PlanetMenuFiller _planetMenuFiller;
@@ -18,6 +19,12 @@ public class PlanetMenuManager : MonoBehaviour
     {
         _planetMenuFiller = this.GetComponentInChildren<PlanetMenuFiller>();
         _planetMenuFiller_2ndLevel = GetComponentInChildren<PlanetMenuFiller_2ndLevel>();
+        MessageHub.Subscribe<ToggleInGameMenuEvent>(MapMovement);
+    }
+
+    private void MapMovement(ToggleInGameMenuEvent toggleEvent)
+    {
+        SwitchMenu(InGameOptionsMenu);
     }
 
     public void SwitchToFirstLevel()

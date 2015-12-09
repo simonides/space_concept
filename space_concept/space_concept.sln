@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+# Visual Studio 2013
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "space_concept.CSharp.Plugins", "space_concept.CSharp.Plugins.csproj", "{A39E0672-AE37-D1B7-D11C-905586A3BE3F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "space_concept.CSharp", "space_concept.CSharp.csproj", "{9B3CC907-7ADD-D19F-1636-A187D81153A2}"
