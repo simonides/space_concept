@@ -115,6 +115,78 @@ GameObject:
 Transform:
   m_PrefabParentObject: {fileID: 434162, guid: ca72cec5c7f62154d90382577dbbfb40, type: 2}
   m_PrefabInternal: {fileID: 1417634268}
+--- !u!1 &102593209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 102593210}
+  - 222: {fileID: 102593212}
+  - 114: {fileID: 102593211}
+  m_Layer: 8
+  m_Name: DebugButtons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &102593210
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 102593209}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1229347607}
+  - {fileID: 2007785862}
+  - {fileID: 1067598451}
+  - {fileID: 706145005}
+  - {fileID: 1312217629}
+  m_Father: {fileID: 1150372147}
+  m_RootOrder: 4
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 188, y: 236}
+  m_Pivot: {x: 1, y: 1}
+--- !u!114 &102593211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 102593209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.52205884, b: 0.52205884, a: 0.859}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &102593212
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 102593209}
 --- !u!1 &117469377
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +197,7 @@ GameObject:
   - 224: {fileID: 117469378}
   - 222: {fileID: 117469380}
   - 114: {fileID: 117469379}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +270,7 @@ GameObject:
   - 224: {fileID: 143777001}
   - 222: {fileID: 143777003}
   - 114: {fileID: 143777002}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,8 +672,9 @@ GameObject:
   - 225: {fileID: 251796572}
   - 114: {fileID: 251796571}
   - 114: {fileID: 251796574}
+  - 114: {fileID: 251796575}
   m_Layer: 5
-  m_Name: Planet Menu 2Btn
+  m_Name: SendShipsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -677,6 +750,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlanetName: {fileID: 554885264}
+--- !u!114 &251796575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 251796569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b2028a870ae8442bd8c30a81f59286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &271898813
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,7 +1302,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1648946577}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999998
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1291,7 +1375,7 @@ RectTransform:
   - {fileID: 677173298}
   - {fileID: 1724612143}
   m_Father: {fileID: 1150372147}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 2659, y: -924}
@@ -1934,7 +2018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.47794116, g: 0.47794116, b: 0.47794116, a: 0.9411765}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2317,7 +2401,7 @@ GameObject:
   - 222: {fileID: 706145008}
   - 114: {fileID: 706145007}
   - 114: {fileID: 706145006}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: NextDayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2335,11 +2419,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 117469378}
-  m_Father: {fileID: 1150372147}
-  m_RootOrder: 7
+  m_Father: {fileID: 102593210}
+  m_RootOrder: 3
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20, y: -20}
+  m_AnchoredPosition: {x: -11.6, y: -17.2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &706145006
@@ -2574,7 +2658,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 757729479}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 251796575}
+        m_MethodName: SendShips
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &757729479
@@ -2940,7 +3035,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 915048776}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 251796575}
+        m_MethodName: CancelSendShips
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &915048776
@@ -3222,7 +3328,7 @@ GameObject:
   - 114: {fileID: 951502932}
   - 114: {fileID: 951502931}
   m_Layer: 5
-  m_Name: Planet Menu 3Btn
+  m_Name: Planet Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3241,7 +3347,7 @@ RectTransform:
   - {fileID: 227499137}
   - {fileID: 314833573}
   m_Father: {fileID: 1150372147}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -2730, y: 189}
@@ -3308,7 +3414,7 @@ GameObject:
   - 224: {fileID: 952094213}
   - 222: {fileID: 952094215}
   - 114: {fileID: 952094214}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3551,7 +3657,7 @@ RectTransform:
   - {fileID: 1244405340}
   - {fileID: 274254855}
   m_Father: {fileID: 1150372147}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -45, y: -1055}
@@ -3622,7 +3728,7 @@ GameObject:
   - 222: {fileID: 1067598454}
   - 114: {fileID: 1067598453}
   - 114: {fileID: 1067598452}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Button (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3640,11 +3746,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 143777001}
-  m_Father: {fileID: 1150372147}
-  m_RootOrder: 6
+  m_Father: {fileID: 102593210}
+  m_RootOrder: 2
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -21, y: -153}
+  m_AnchoredPosition: {x: -12.6, y: -146.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1067598452
@@ -3997,15 +4103,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1229347607}
-  - {fileID: 443714228}
-  - {fileID: 251796570}
-  - {fileID: 951502930}
   - {fileID: 1024118352}
-  - {fileID: 2007785862}
-  - {fileID: 1067598451}
-  - {fileID: 706145005}
-  - {fileID: 1312217629}
+  - {fileID: 951502930}
+  - {fileID: 251796570}
+  - {fileID: 443714228}
+  - {fileID: 102593210}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
@@ -4219,7 +4321,7 @@ GameObject:
   - 224: {fileID: 1220120965}
   - 222: {fileID: 1220120967}
   - 114: {fileID: 1220120966}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4293,7 +4395,7 @@ GameObject:
   - 222: {fileID: 1229347610}
   - 114: {fileID: 1229347609}
   - 114: {fileID: 1229347608}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: SendSomeShipsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4311,11 +4413,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1619003761}
-  m_Father: {fileID: 1150372147}
+  m_Father: {fileID: 102593210}
   m_RootOrder: 0
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20.000008, y: -63}
+  m_AnchoredPosition: {x: -11.6, y: -60.2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1229347608
@@ -4745,7 +4847,7 @@ GameObject:
   - 222: {fileID: 1312217632}
   - 114: {fileID: 1312217631}
   - 114: {fileID: 1312217630}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Button (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4763,11 +4865,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1220120965}
-  m_Father: {fileID: 1150372147}
-  m_RootOrder: 8
+  m_Father: {fileID: 102593210}
+  m_RootOrder: 4
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -21, y: -198}
+  m_AnchoredPosition: {x: -12.6, y: -191.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1312217630
@@ -5423,7 +5525,7 @@ GameObject:
   - 224: {fileID: 1619003761}
   - 222: {fileID: 1619003760}
   - 114: {fileID: 1619003759}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6219,11 +6321,11 @@ RectTransform:
   - {fileID: 1960345917}
   m_Father: {fileID: 443714228}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30, y: 0}
-  m_SizeDelta: {x: 451, y: -60}
-  m_Pivot: {x: 0.000000011175871, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.00024414062, y: 0.00076293945}
+  m_SizeDelta: {x: 451, y: -28}
+  m_Pivot: {x: 0.49999958, y: 0.5000001}
 --- !u!114 &1724612144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6771,7 +6873,7 @@ GameObject:
   - 222: {fileID: 2007785865}
   - 114: {fileID: 2007785864}
   - 114: {fileID: 2007785863}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6789,11 +6891,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 952094213}
-  m_Father: {fileID: 1150372147}
-  m_RootOrder: 5
+  m_Father: {fileID: 102593210}
+  m_RootOrder: 1
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -21, y: -103}
+  m_AnchoredPosition: {x: -12.600006, y: -103}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2007785863

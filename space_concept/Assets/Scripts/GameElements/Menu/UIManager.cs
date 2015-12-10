@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TinyMessenger;
+using System;
 
 public class UIManager : MonoBehaviour 
 {
@@ -26,10 +27,15 @@ public class UIManager : MonoBehaviour
             throw new MissingComponentException("Unable to find PlanetMenuManager.");
         }
 
+        MessageHub.Subscribe<CancelSendShipsEvent>(CancelSendShips);
+
     }
 
-
-
+    private void CancelSendShips(CancelSendShipsEvent obj)
+    {
+        //todo!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        _planetMenuManager.SwitchToFirstLevel();
+    }
 
     public void PlanetClicked(Planet planet)
     {

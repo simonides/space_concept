@@ -123,6 +123,8 @@
     <Compile Include="Assets\Scripts\GameElements\Menu\PlanetMenu\PlanetMenuFiller.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\PlanetMenu\PlanetMenuFiller_2ndLevel.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\PlanetMenu\PlanetMenuManager.cs" />
+    <Compile Include="Assets\Scripts\GameElements\Menu\SendShipMenu\Events\CancelSendShipsEvent.cs" />
+    <Compile Include="Assets\Scripts\GameElements\Menu\SendShipMenu\SendShipButtons.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\TestButtonAlphaRaycaster.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\UIManager.cs" />
     <Compile Include="Assets\Scripts\GameElements\PoolAllocator.cs" />
