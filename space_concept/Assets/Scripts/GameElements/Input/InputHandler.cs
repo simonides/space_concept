@@ -60,15 +60,17 @@ class InputHandler : MonoBehaviour, IEventSystemHandler
 
     void FixedUpdate()
     {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("ESC pressed");
+            MessageHub.Publish(new ESCKeyPressedEvent(this));
+        }
         if (_menuActive)
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("ESC pressed");
-            //_uiHandler.ShowEndGameDialog();
-        }
+        
 
         //#if UNITY_EDITOR
 

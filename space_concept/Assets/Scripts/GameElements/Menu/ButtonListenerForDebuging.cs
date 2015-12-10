@@ -29,6 +29,6 @@ public class ButtonListenerForDebuging : MonoBehaviour {
 
     public void OptionMenu()
     {
-        MessageHub.Publish(new ShowPauseMenu(this));
+        MessageHub.Publish(new ShowPauseMenuEvent(this));
     }
 }

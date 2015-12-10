@@ -94,11 +94,13 @@
     <Compile Include="Assets\Scripts\FileSerialization\Vector3Surrogate.cs" />
     <Compile Include="Assets\Scripts\GameElements\GamePlay\AirTrafficControl.cs" />
     <Compile Include="Assets\Scripts\GameElements\GamePlay\BigBang.cs" />
+    <Compile Include="Assets\Scripts\GameElements\GamePlay\GameSaver.cs" />
     <Compile Include="Assets\Scripts\GameElements\GamePlay\GameState.cs" />
     <Compile Include="Assets\Scripts\GameElements\GamePlay\Planet.cs" />
     <Compile Include="Assets\Scripts\GameElements\GamePlay\PlanetEventEvaluationResult.cs" />
     <Compile Include="Assets\Scripts\GameElements\GamePlay\Space.cs" />
     <Compile Include="Assets\Scripts\GameElements\GamePlay\Troop.cs" />
+    <Compile Include="Assets\Scripts\GameElements\Input\Events\ESCKeyPressedEvent.cs" />
     <Compile Include="Assets\Scripts\GameElements\Input\Events\MapMovementEvent.cs" />
     <Compile Include="Assets\Scripts\GameElements\Input\InputHandler.cs" />
     <Compile Include="Assets\Scripts\GameElements\Input\MapInput.cs" />
@@ -111,10 +113,11 @@
     <Compile Include="Assets\Scripts\GameElements\Menu\EventList\Events\HideEventListEvent.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\EventList\Events\ShowEventListEvent.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\Menu.cs" />
-    <Compile Include="Assets\Scripts\GameElements\Menu\PauseMenu\Events\HidePauseMenu.cs" />
+    <Compile Include="Assets\Scripts\GameElements\Menu\PauseMenu\Events\AutoSaveGameEvent.cs" />
+    <Compile Include="Assets\Scripts\GameElements\Menu\PauseMenu\Events\HidePauseMenuEvent.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\PauseMenu\Events\QuitGameEvent.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\PauseMenu\Events\SaveGameEvent.cs" />
-    <Compile Include="Assets\Scripts\GameElements\Menu\PauseMenu\Events\ShowPauseMenu.cs" />
+    <Compile Include="Assets\Scripts\GameElements\Menu\PauseMenu\Events\ShowPauseMenuEvent.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\PauseMenu\PauseMenuButtonClicks.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\PauseMenu\PauseMenuManager.cs" />
     <Compile Include="Assets\Scripts\GameElements\Menu\PlanetMenu\PlanetMenuFiller.cs" />

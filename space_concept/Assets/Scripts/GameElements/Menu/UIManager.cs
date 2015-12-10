@@ -14,11 +14,8 @@ public class UIManager : MonoBehaviour
     // ****                     **** //
 
     public static UIManager instance;
-    
-
 
     public List<PlanetEvent> events;
-    public GameObject space;
 
 
     void Awake() {
@@ -29,29 +26,9 @@ public class UIManager : MonoBehaviour
             throw new MissingComponentException("Unable to find PlanetMenuManager.");
         }
 
-        //_eventlistManager = GetComponent<EventListManager>();
-        //if (_eventlistManager == null) {
-        //    throw new MissingComponentException("Unable to find EventListManager.");
-        //}
-
     }
 
 
-
-
-
-    //public void ShowEventList()
-    //{
-    //    ShowEventList(events);
-    //    MessageHub.Publish(new MenuActiveEvent(this, true));// todo remove
-    //}
-
-
-    //public void ShowEventList(List<PlanetEvent> events)
-    //{
-    //    //_eventlistManager.activeEventlist = events;
-    //    //_eventlistManager.SwitchToEventlist();
-    //}
 
 
     public void PlanetClicked(Planet planet)
@@ -61,20 +38,6 @@ public class UIManager : MonoBehaviour
         _planetMenuManager.SwitchToFirstLevel();
     }
 
-    public void NextDayClicked() {
-        MessageHub.Publish(new NextDayRequestEvent(this));
-    }
-
-
-    public void SendSomeSpaceShips() {
-        Planet[] planets = space.GetComponentsInChildren<Planet>();
-
-
-
-        //TODO: This is a test method. Remove it when it is not needed anymore!
-        MessageHub.Publish(new NewTroopMovementEvent(this, planets[0], planets[1], 42));
-      
-    }
 
     public void HidePlanetMenus()
     {

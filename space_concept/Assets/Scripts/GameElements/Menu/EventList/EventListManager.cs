@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 [System.Serializable]
 public class Item
@@ -33,8 +34,10 @@ public class EventListManager : AbstractMenuManager {
         _eventListFiller = GetComponentInChildren<EventListFiller>();
         MessageHub.Subscribe<ShowEventListEvent>(ShowEventList);
         MessageHub.Subscribe<HideEventListEvent>(HideEventList);
-
     }
+
+
+
     public void ShowEventList(ShowEventListEvent event_)
     {
         _eventListFiller.Fill(activeEventlist);

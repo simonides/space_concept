@@ -1,16 +1,11 @@
 ﻿using System.Collections;
 using TinyMessenger;
 
-public class SaveGameEvent : ITinyMessage {
-
-    public object Sender { get; private set; }
-
-    public string Filename{ get; private set; }
-
-    public SaveGameEvent(object sender, string filename)
+public class SaveGameEvent : GenericTinyMessage<string>
+{
+    public SaveGameEvent(object sender, string filename) 
+        : base(sender, filename)
     {
-        Sender = sender;
-        Filename = filename;
     }
 }
 
