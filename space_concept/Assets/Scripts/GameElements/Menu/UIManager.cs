@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
 
     // ****  ATTACHED OBJECTS   **** //
     private PlanetMenuManager _planetMenuManager;
-    private EventListManager _eventlistManager;
+    //private EventListManager _eventlistManager;
     // ****                     **** //
 
     public static UIManager instance;
@@ -29,10 +29,10 @@ public class UIManager : MonoBehaviour
             throw new MissingComponentException("Unable to find PlanetMenuManager.");
         }
 
-        _eventlistManager = GetComponent<EventListManager>();
-        if (_eventlistManager == null) {
-            throw new MissingComponentException("Unable to find EventListManager.");
-        }
+        //_eventlistManager = GetComponent<EventListManager>();
+        //if (_eventlistManager == null) {
+        //    throw new MissingComponentException("Unable to find EventListManager.");
+        //}
 
     }
 
@@ -40,18 +40,18 @@ public class UIManager : MonoBehaviour
 
 
 
-    public void ShowEventList()
-    {
-        ShowEventList(events);
-        MessageHub.Publish(new MenuActiveEvent(this, true));// todo remove
-    }
+    //public void ShowEventList()
+    //{
+    //    ShowEventList(events);
+    //    MessageHub.Publish(new MenuActiveEvent(this, true));// todo remove
+    //}
 
 
-    public void ShowEventList(List<PlanetEvent> events)
-    {
-        _eventlistManager.activeEventlist = events;
-        _eventlistManager.SwitchToEventlist();
-    }
+    //public void ShowEventList(List<PlanetEvent> events)
+    //{
+    //    //_eventlistManager.activeEventlist = events;
+    //    //_eventlistManager.SwitchToEventlist();
+    //}
 
 
     public void PlanetClicked(Planet planet)
@@ -85,7 +85,7 @@ public class UIManager : MonoBehaviour
     public void HideAllMenus()
     {
         _planetMenuManager.SetPlanetMenuInVisible();
-        _eventlistManager.SetEventMenuInvisible();
+        //_eventlistManager.SetEventMenuInvisible();
         MessageHub.Publish(new MenuActiveEvent(this, false));// todo remove
     }
 

@@ -16,6 +16,6 @@ public class PauseMenuButtonClicks : MonoBehaviour {
 
     public void CloseInGameMenu()
     {
-        MessageHub.Publish(new HideOptionsMenu(this));
+        MessageHub.Publish(new HidePauseMenu(this));
     }
 }

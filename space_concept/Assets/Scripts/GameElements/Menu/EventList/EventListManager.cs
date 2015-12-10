@@ -20,45 +20,29 @@ public class PlanetEvent{
     public string planetName;
 }
 
-public class EventListManager : MonoBehaviour {
+public class EventListManager : AbstractMenuManager {
 
 
     public Menu eventListMenu;
-
-    private Menu _currentMenu;
     private EventListFiller _eventListFiller;
-
     public List<PlanetEvent> activeEventlist;
 
 
     void Awake()
     {
         _eventListFiller = GetComponentInChildren<EventListFiller>();
-    }
+        MessageHub.Subscribe<ShowEventListEvent>(ShowEventList);
+        MessageHub.Subscribe<HideEventListEvent>(HideEventList);
 
-    public void SwitchToEventlist()
+    }
+    public void ShowEventList(ShowEventListEvent event_)
     {
         _eventListFiller.Fill(activeEventlist);
         SwitchMenu(eventListMenu);
     }
 
-    private void SwitchMenu(Menu menu)
+    public void HideEventList(HideEventListEvent event_)
     {
-        if (_currentMenu != null)
-        {
-            _currentMenu.IsOpen = false;
-        }
-        _currentMenu = menu;
-        _currentMenu.IsOpen = true;
-    }
-
-
-    // close the current menu
-    public void SetEventMenuInvisible()
-    {
-        MessageHub.Publish(new MenuActiveEvent(this, true));// todo remove
-        if (_currentMenu != null){
-            _currentMenu.IsOpen = false;
-        }
+        SwitchMenu(null);
     }
 }

@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class PlanetMenuManager : MonoBehaviour
+public class PlanetMenuManager : AbstractMenuManager
 {
 
     public PlanetData ActivePlanet { get; set; }
@@ -11,14 +11,21 @@ public class PlanetMenuManager : MonoBehaviour
     public Menu PlanetMenu_2ndLevel;
     public Menu InGameOptionsMenu;
 
-    private Menu _currentMenu;
     private PlanetMenuFiller _planetMenuFiller;
     private PlanetMenuFiller_2ndLevel _planetMenuFiller_2ndLevel;
 
     void Awake()
     {
-        _planetMenuFiller = this.GetComponentInChildren<PlanetMenuFiller>();
+        _planetMenuFiller = GetComponentInChildren<PlanetMenuFiller>();
+        if (_planetMenuFiller == null)
+        {
+            throw new MissingComponentException("Unable to find PlanetMenuFiller.");
+        }
         _planetMenuFiller_2ndLevel = GetComponentInChildren<PlanetMenuFiller_2ndLevel>();
+        if (_planetMenuFiller_2ndLevel == null)
+        {
+            throw new MissingComponentException("Unable to find _planetMenuFiller_2ndLevel.");
+        }
         MessageHub.Subscribe<ToggleInGameMenuEvent>(MapMovement);
     }
 
@@ -39,23 +46,10 @@ public class PlanetMenuManager : MonoBehaviour
         SwitchMenu(PlanetMenu_2ndLevel);
     }
 
-    private void SwitchMenu(Menu menu)
-    {
-        if (_currentMenu != null)
-        {
-            _currentMenu.IsOpen = false;
-        }
-        _currentMenu = menu;
-        _currentMenu.IsOpen = true;
-    }
-
-
 
     // close the current menu
     public void SetPlanetMenuInVisible()
     {
-        if (_currentMenu != null){
-            _currentMenu.IsOpen = false;
-        }
+        SwitchMenu(null);
     }
 }

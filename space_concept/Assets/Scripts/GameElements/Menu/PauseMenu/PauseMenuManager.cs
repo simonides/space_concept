@@ -14,16 +14,16 @@ public class PauseMenuManager : AbstractMenuManager
 
     void Awake()
     {
-        MessageHub.Subscribe<ShowOptionsMenu>(ShowOptionsMenu);
-        MessageHub.Subscribe<HideOptionsMenu>(HideOptionsMenu);
+        MessageHub.Subscribe<ShowPauseMenu>(ShowOptionsMenu);
+        MessageHub.Subscribe<HidePauseMenu>(HideOptionsMenu);
     }
 
-    public void ShowOptionsMenu(ShowOptionsMenu event_)
+    public void ShowOptionsMenu(ShowPauseMenu event_)
     {
         SwitchMenu(PauseMenu);
     }
 
-    public void HideOptionsMenu(HideOptionsMenu event_)
+    public void HideOptionsMenu(HidePauseMenu event_)
     {
         SwitchMenu(null);
     }

@@ -6,7 +6,8 @@ public class AbstractMenuManager : MonoBehaviour {
 
     public void SwitchMenu(Menu menu)
     {
-
+        Debug.Log("Enable World interaction");
+        MessageHub.Publish(new MenuActiveEvent(this, true));
         if (_currentMenu != null)
         {
             _currentMenu.IsOpen = false;
@@ -15,6 +16,11 @@ public class AbstractMenuManager : MonoBehaviour {
         if (_currentMenu != null)
         {
             _currentMenu.IsOpen = true;
+        }
+        else
+        {
+            Debug.Log("Disable World interaction");
+            MessageHub.Publish(new MenuActiveEvent(this, false));
         }
     }
 }
