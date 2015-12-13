@@ -1353,7 +1353,6 @@ GameObject:
   - 95: {fileID: 443714230}
   - 225: {fileID: 443714229}
   - 114: {fileID: 443714231}
-  - 114: {fileID: 443714232}
   - 114: {fileID: 443714233}
   m_Layer: 5
   m_Name: Pause Menu
@@ -1418,17 +1417,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97a0edcf95145834cb73885a93a4cca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &443714232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 443714227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c74554439381ee43955459270742b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &443714233

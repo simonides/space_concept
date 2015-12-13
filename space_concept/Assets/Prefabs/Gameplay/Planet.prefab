@@ -66,6 +66,7 @@ CircleCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124314}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
@@ -88,6 +89,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: de3e5291352028e4aa20a592ca845ee2, type: 3}
   - {fileID: 21300000, guid: a58dd8afa12953c458b533d492aa258a, type: 3}
   - {fileID: 21300000, guid: c6fea67e97ee2a84baed37674108b752, type: 3}
+  - {fileID: 21300000, guid: f963b5db98154d440831420a21ae942b, type: 3}
+  - {fileID: 21300000, guid: a2b03eeb2194bfe4d83162de060957b0, type: 3}
+  - {fileID: 21300000, guid: 129e183da15b7774f981c1e842737cef, type: 3}
+  - {fileID: 21300000, guid: c22d4d1b23db19148b12105cdc500301, type: 3}
+  - {fileID: 21300000, guid: 1ac6a9b76c56cc149a30f8c52bf943da, type: 3}
+  - {fileID: 21300000, guid: 90d809e291c689349883d2b751b5c499, type: 3}
+  - {fileID: 21300000, guid: ea1d4dc42b6c7bb46a92e99fdda96fc8, type: 3}
+  - {fileID: 21300000, guid: 9c0311484e0f07f43a7e29e2c87b4a78, type: 3}
+  - {fileID: 21300000, guid: cf435889bdeed844c947d4f2fed692af, type: 3}
+  - {fileID: 21300000, guid: 48e6bcd8b3f14144fa3e8ad1b81e6dd3, type: 3}
+  - {fileID: 21300000, guid: b2885ef6d184c84498f1e061bab5f0d1, type: 3}
+  - {fileID: 21300000, guid: 6ff819b3550ba514aaf3a9d104f201a7, type: 3}
+  - {fileID: 21300000, guid: ebf78fc410dc36347a18f5f184cf65a0, type: 3}
   planetFX:
   - {fileID: 21300000, guid: 3263fe31cde1234438513acd123637d1, type: 3}
   - {fileID: 21300000, guid: 8180a6ce16ec0a44a83eeac9aeb4e034, type: 3}
@@ -115,14 +129,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 1b8abff5772eb0b4b8d9627f11a581fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!212 &21291134
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -141,14 +159,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3263fe31cde1234438513acd123637d1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -170,7 +192,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.size
-      value: 4
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -300,6 +322,71 @@ Prefab:
       propertyPath: glowMatOwned
       value: 
       objectReference: {fileID: 2100000, guid: 6d69960cb1d780d48aca092da180ed07, type: 2}
+    - target: {fileID: 0}
+      propertyPath: planetSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: f963b5db98154d440831420a21ae942b,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: planetSprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: a2b03eeb2194bfe4d83162de060957b0,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: planetSprites.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 129e183da15b7774f981c1e842737cef,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: planetSprites.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: c22d4d1b23db19148b12105cdc500301,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: planetSprites.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1ac6a9b76c56cc149a30f8c52bf943da,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: planetSprites.Array.data[9]
+      value: 
+      objectReference: {fileID: 21300000, guid: 90d809e291c689349883d2b751b5c499,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: planetSprites.Array.data[10]
+      value: 
+      objectReference: {fileID: 21300000, guid: ea1d4dc42b6c7bb46a92e99fdda96fc8,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: planetSprites.Array.data[11]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9c0311484e0f07f43a7e29e2c87b4a78,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: planetSprites.Array.data[12]
+      value: 
+      objectReference: {fileID: 21300000, guid: cf435889bdeed844c947d4f2fed692af,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: planetSprites.Array.data[13]
+      value: 
+      objectReference: {fileID: 21300000, guid: 48e6bcd8b3f14144fa3e8ad1b81e6dd3,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: planetSprites.Array.data[14]
+      value: 
+      objectReference: {fileID: 21300000, guid: b2885ef6d184c84498f1e061bab5f0d1,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: planetSprites.Array.data[15]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6ff819b3550ba514aaf3a9d104f201a7,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: planetSprites.Array.data[16]
+      value: 
+      objectReference: {fileID: 21300000, guid: ebf78fc410dc36347a18f5f184cf65a0,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 124314}

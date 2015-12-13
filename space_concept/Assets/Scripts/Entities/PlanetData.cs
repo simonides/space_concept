@@ -102,7 +102,8 @@ public class PlanetData {
                                                                     "Miknaitis", "Namba", "Orchiston", "Pandion", "Penttila", "Quero", "Radmall", "Ruetsch", "Serra", "Shustov", "Siurana", "Smaklosa", "Szalay",
                                                                     "Tenmu", "Tietjen", "Trombka", "Tytgat", "Velichko", "Vulpius", "Wupatki", "Xanthus", "Yarilo", "Zajonc", "Zeissia", "Zykina" };
 
-    string GetRandomPlanetName() {
+    string GetRandomPlanetName()
+    {
         return predefinedPlanetNames[UnityEngine.Random.Range(0, predefinedPlanetNames.Count)];
     }
 

@@ -12,6 +12,7 @@ public class PauseMenuButtonClicks : MonoBehaviour {
     public void QuitGame()
     {
         MessageHub.Publish(new QuitGameEvent(this));
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
     public void CloseInGameMenu()

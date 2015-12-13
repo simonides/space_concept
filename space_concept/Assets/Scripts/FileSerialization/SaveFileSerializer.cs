@@ -401,6 +401,25 @@ namespace Custom
 
                 return myFile;
             }
-        }
+
+            public static void DeleteFile(string directory, string fileName)
+            {
+                //path to file
+                string tempPath = DALSaveGame.GetFilePath(directory, fileName);
+                if (File.Exists(tempPath))
+                {
+                    File.Delete(tempPath);
+                }
+            }
+            public static void DeleteFile(string fileName)
+            {
+                //path to file
+                string tempPath = DALSaveGame.GetFilePath(fileName);
+                if (File.Exists(tempPath))
+                {
+                    File.Delete(tempPath);
+                }
+            }
+        }//ende class
     }
 }
