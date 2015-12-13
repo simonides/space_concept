@@ -24,6 +24,7 @@ namespace Custom
             public static bool FileExists(string directory, string fileName)
             { 
                 string f_path = DALSaveGame.GetFilePath(directory, fileName);
+                Debug.Log("File Exists: "+f_path);
                 if (File.Exists(f_path))
                 {
                     return true;

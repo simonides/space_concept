@@ -164,4 +164,8 @@ public class AirTrafficControl : MonoBehaviour {
         // TODO: put troops and troopData back into pool allocator
     }
 
+    public AirTrafficData GetData()
+    {
+        return airTrafficData;
+    }
 }

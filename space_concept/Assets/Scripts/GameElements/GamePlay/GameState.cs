@@ -27,7 +27,6 @@ public class GameState : MonoBehaviour {
     }
 
 
-
     void InitEventSubscriptions() {
         MessageHub.Subscribe<NextDayRequestEvent>(NextDayRequest);
     }

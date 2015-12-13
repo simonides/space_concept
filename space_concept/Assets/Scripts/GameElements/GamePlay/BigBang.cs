@@ -62,11 +62,17 @@ public class BigBang : MonoBehaviour {
         Debug.Log("Loading save game...");
 
         //TODO: load GameStateData too...
-    
-        SpaceData spaceData = SettingsController.GetInstance().map;        
-        SaveFileSerializer.XMLSave<SpaceData>(spaceData, "SaveGames", "Autosave.xml");
-        
+        var saving = SettingsController.GetInstance();
+
+        GameStateData gameStateData = saving.map.gameStateData;
+        gameState.Init(gameStateData);
+
+        AirTrafficData airTrafficData = saving.map.airTrafficData;
+        airTrafficControl.Init(airTrafficData);
+
+        SpaceData spaceData = saving.map.spaceData;
         space.Init(spaceData);
+        
     }
 
     void InitialiseNewGame() {
