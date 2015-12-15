@@ -22,11 +22,13 @@ public class StartMenuController : MonoBehaviour {
     }
 
     public void Button_LoadScene(string f_sceneName){
-        Application.LoadLevel(f_sceneName);
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(f_sceneName);
         SaveChanges();//save changes when leaving this menu scene
     }
     public void Button_LoadScene(int f_sceneIndex){
-        Application.LoadLevel(f_sceneIndex);
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(f_sceneIndex);
         SaveChanges(); //save changes when leaving this menu scene
     }
 
