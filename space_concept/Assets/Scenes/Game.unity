@@ -2497,7 +2497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa63d4ae193093148b75f17a1cba8c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Header: {fileID: 0}
+  Header: {fileID: 1803824330}
 --- !u!114 &951502932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5229,7 +5229,7 @@ GameObject:
   - 222: {fileID: 1803824331}
   - 114: {fileID: 1803824330}
   m_Layer: 5
-  m_Name: Text
+  m_Name: PlanetName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
