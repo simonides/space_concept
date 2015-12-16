@@ -23,12 +23,12 @@ public class SettingMenuController : MonoBehaviour {
     public void Button_LoadScene(string f_sceneName)
     {
         SaveSettings();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(f_sceneName);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(f_sceneName);
     }
     public void Button_LoadScene(int f_sceneIndex)
     {
         SaveSettings();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(f_sceneIndex);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(f_sceneIndex);
 
     }
 

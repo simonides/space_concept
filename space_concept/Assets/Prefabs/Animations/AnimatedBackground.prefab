@@ -8,6 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 449762}
+  - 114: {fileID: 11428514}
   m_Layer: 0
   m_Name: AnimatedBackground
   m_TagString: Untagged
@@ -248,8 +249,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: .300000012
+  animationSpeed: 0.3
   maxScale: 50
+--- !u!114 &11428514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc501ac07aec4004baa7be28b5232018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11476876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: .300000012
+  animationSpeed: 0.3
   maxScale: 50
 --- !u!114 &11482924
 MonoBehaviour:
@@ -274,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: .300000012
+  animationSpeed: 0.3
   maxScale: 50
 --- !u!114 &11487008
 MonoBehaviour:
@@ -287,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: .300000012
+  animationSpeed: 0.3
   maxScale: 50
 --- !u!114 &11488648
 MonoBehaviour:
@@ -300,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: .300000012
+  animationSpeed: 0.3
   maxScale: 50
 --- !u!114 &11490924
 MonoBehaviour:
@@ -313,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: .300000012
+  animationSpeed: 0.3
   maxScale: 50
 --- !u!114 &11497010
 MonoBehaviour:
@@ -326,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: .300000012
+  animationSpeed: 0.3
   maxScale: 50
 --- !u!212 &21228836
 SpriteRenderer:
@@ -346,14 +358,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!212 &21233160
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -372,14 +388,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!212 &21249900
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -398,14 +418,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!212 &21251876
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -424,14 +448,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!212 &21252026
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -450,14 +478,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!212 &21268826
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -476,14 +508,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!212 &21279040
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -502,14 +538,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

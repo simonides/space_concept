@@ -30,13 +30,13 @@ public class LoadMenuController : MonoBehaviour {
     public void Button_LoadScene(string f_sceneName)
     {
         //Application.LoadLevel(f_sceneName);
-        UnityEngine.SceneManagement.SceneManager.LoadScene(f_sceneName);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(f_sceneName);
         Debug.Log("Loading Game scene");
     }
     public void Button_LoadScene(int f_sceneIndex)
     {
         //Application.LoadLevel(f_sceneIndex);
-        UnityEngine.SceneManagement.SceneManager.LoadScene(f_sceneIndex);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(f_sceneIndex);
     }
 
     public void Button_SelectSaveGame(UnityEngine.UI.Text f_text)
