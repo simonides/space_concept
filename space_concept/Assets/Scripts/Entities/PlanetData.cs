@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 /**
  *  Planet Entity.
@@ -73,6 +74,37 @@ public class PlanetData {
         this.FactorySpeed = factorySpeed;
         this.IsStartPlanet = isStartPlanet;
     }
+
+
+
+    public AttackEvaluation EvaluateIncomingTroop(TroopData troop) {
+        if(troop.TargetPlanet != this) {
+            throw new ArgumentException("Unable to evaluate incoming troop: The troop is not arriving at this planet. Me: " + Name + ", Troop: " + troop.ToString());
+        }
+
+
+        if(troop.Owner == Owner) {
+            return EvaluateIncommingSupply(troop);
+        }
+
+        // TODO: Implement
+
+        return new AttackEvaluation();
+    }
+
+    // Supply ships from other planet
+    private AttackEvaluation EvaluateIncommingSupply(TroopData troop) {
+        Debug.Assert(troop.Owner == Owner, "Invalid call");
+        AttackEvaluation evaluation = new AttackEvaluation();
+        //evaluation.type = EvaluationType.Supply;
+
+        //TODO: implement
+
+        return evaluation;
+    }
+
+
+
 
 
     public float GetDistance(Vector2 ToPosition) {

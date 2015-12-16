@@ -121,10 +121,8 @@ public class AirTrafficControl : MonoBehaviour {
         troopObject.transform.SetParent(space.transform);
         troop.Init(troopData);
         troopObject.SetActive(true);
-
-
-
-        //TODO: initialise graphical representation
+        
+        //TODO: initialise graphical representation correctly
 
         troops.Add(troopObject);
     }
@@ -135,7 +133,9 @@ public class AirTrafficControl : MonoBehaviour {
         int currentDay = evt.GetCurrentDay();
         List<Troop> todaysTroops = GetTroopsForDay(currentDay);
         Debug.Log("Day " + currentDay + ": " + todaysTroops.Count() + " troops arrived.");
+
         AnimateTroopObjects(todaysTroops, currentDay);
+
         var evaluation = PerformTroopEvaluation(todaysTroops);
         PublishTroopEvaluation(evaluation);
         DisposeOfTodaysTroops(todaysTroops);
@@ -145,17 +145,19 @@ public class AirTrafficControl : MonoBehaviour {
 
     }
 
-    private List<PlanetEventEvaluationResult> PerformTroopEvaluation(List<Troop> todaysTroops) {
-        Dictionary<Planet, PlanetEventEvaluationResult> evaluation = new Dictionary<Planet, PlanetEventEvaluationResult>();
+    private List<AttackEvaluation> PerformTroopEvaluation(List<Troop> todaysTroops) {
+        Dictionary<PlanetData, AttackEvaluation> evaluation = new Dictionary<PlanetData, AttackEvaluation>();   // Order by planet, so that they are grouped
 
         foreach(Troop troop in todaysTroops) {
-
+            TroopData data = troop.troopData;
+            AttackEvaluation eval = data.TargetPlanet.EvaluateIncomingTroop(data);
+            evaluation.Add(data.TargetPlanet, eval);
         }
 
         return evaluation.Values.ToList();
     }
 
-    private void PublishTroopEvaluation(List<PlanetEventEvaluationResult> evaluations) {
+    private void PublishTroopEvaluation(List<AttackEvaluation> evaluations) {
         TroopEvaluationResultEvent evt = new TroopEvaluationResultEvent(this, evaluations);
         MessageHub.Publish<TroopEvaluationResultEvent>(evt);
     }
