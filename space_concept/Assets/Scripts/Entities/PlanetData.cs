@@ -10,7 +10,12 @@ using System;
  */
 [System.Serializable]
 public class PlanetData {
-    
+    public const float UPGRADE_FACTOR = 1.5f;       //Multiplication factor for upgrade steps (both hangar + factory)
+    public const int UPGRADE_STEP = 5;              //Upgrade steps: the different upgrade-levels are always "modulo UPGRADE_STEP == 0". --> if step is 5, the different levels can only be 5, 10, 15, 20, ...  (Note: the fist level is loaded from the mapfile and can be anything)
+    public const int FACTORY_UPGRADE_COSTS = 5;     //The number of ships that are required to increase the speed by 1.
+    public const int HANGAR_UPGRADE_COSTS = 1;      //The number of ships that are required to increase the hangar by 1.
+
+
     public PlayerData Owner { get; set; }               // The player who owns this planet
 
     public string Name { get; set; }                // Name of the planet
@@ -80,6 +85,47 @@ public class PlanetData {
         this.TextureFXName = "";
     }
 
+    //Upgrading costs and steps:
+    public int GetFactoryUpgradeCosts() {
+        int upgradeAmount = GetNextFactoryUpgrade() - FactorySpeed;
+        return upgradeAmount * FACTORY_UPGRADE_COSTS;
+    }
+    public int GetNextFactoryUpgrade() {
+        int next = Mathf.CeilToInt(FactorySpeed * UPGRADE_FACTOR);
+        next += UPGRADE_STEP - (next % UPGRADE_STEP);
+        return next;
+    }
+    public int GetHangarUpgradeCosts() {
+        int upgradeAmount = GetNextHangarUpgrade() - HangarSize;
+        return upgradeAmount * HANGAR_UPGRADE_COSTS;
+    }
+    public int GetNextHangarUpgrade() {
+        int next = Mathf.CeilToInt(HangarSize * UPGRADE_FACTOR);
+        next += UPGRADE_STEP - (next % UPGRADE_STEP);
+        return next;
+    }
+
+    public void UpgradeFactory() {
+        int costs = GetFactoryUpgradeCosts();
+        if( costs > Ships) {
+            Debug.LogError("Unable to upgrade Factory - Can't afford expenses");
+            return;
+        }
+        Ships -= costs;
+        FactorySpeed = GetNextFactoryUpgrade();
+        Debug.Log("Upgraded Factory of planet " + Name);
+    }
+
+    public void UpgradeHangar() {
+        int costs = GetHangarUpgradeCosts();
+        if (costs > Ships) {
+            Debug.LogError("Unable to upgrade Hangar - Can't afford expenses");
+            return;
+        }
+        Ships -= costs;
+        HangarSize = GetNextHangarUpgrade();
+        Debug.Log("Upgraded Hangar of planet " + Name);
+    }
 
 
     public int ProduceShips() {
@@ -100,15 +146,12 @@ public class PlanetData {
         if(troop.TargetPlanet != this) {
             throw new ArgumentException("Unable to evaluate incoming troop: The troop is not arriving at this planet. Me: " + Name + ", Troop: " + troop.ToString());
         }
-
-
+        
         if(troop.Owner == Owner) {
             return EvaluateIncommingSupply(troop);
         }
 
-        // TODO: Implement
-
-        return new AttackEvaluation();
+        return EvaluateIncommingAttack(troop);
     }
 
 
@@ -136,7 +179,43 @@ public class PlanetData {
         return evaluation;
     }
 
+    // Attacking ships from other planet
+    private AttackEvaluation EvaluateIncommingAttack(TroopData troop) {
+        Debug.Assert(troop.Owner != Owner, "Invalid call");
 
+        bool gotCaptured = (Ships <= troop.ShipCount);
+        if(Owner == null && Ships == troop.ShipCount) { // Planet was neutral and stayed neutral. But there are no more ships on this planet anymore.
+            gotCaptured = false;
+        }
+        
+        PlayerData oldOwner = Owner;
+        PlayerData newOwner = (gotCaptured ? troop.Owner : oldOwner);
+
+        int lostShipsByOwner = 0;
+        int lostShipsByAttacker = 0;
+        int lostShipsByLanding = 0;
+
+        if(Ships <= troop.ShipCount) {
+            lostShipsByOwner = Ships;
+            lostShipsByAttacker -= Ships;
+            // check for landing - maybe the attacker won, but not all ships have space to land:
+            lostShipsByLanding = Mathf.RoundToInt((troop.ShipCount - Ships - HangarSize) * 0.5f);     //50% of all ships that hadn't enough space lost
+        } else {
+            lostShipsByOwner = Ships - troop.ShipCount;
+            lostShipsByAttacker = troop.ShipCount;
+        }
+                
+        // Perform actions:
+        if(gotCaptured) {
+            Owner = newOwner;
+            Ships = troop.ShipCount - lostShipsByAttacker - lostShipsByLanding;
+        } else {
+            Ships -= lostShipsByOwner;
+        }
+
+        AttackEvaluation evaluation = AttackEvaluation.Attack(troop, oldOwner, newOwner, Ships, lostShipsByOwner, lostShipsByAttacker, lostShipsByLanding);
+        return evaluation;
+    }
 
 
 

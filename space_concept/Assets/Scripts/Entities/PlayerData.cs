@@ -13,9 +13,12 @@ public class PlayerData {
     public PlayerData() {
         Name = "";
         Color = Color.white;
+        IsHumanPlayer = true;
     }
     public string Name { get; set; } 
     public Color Color { get; set; }
+
+    public bool IsHumanPlayer { get; set; }     // True: this is the player who plays the game; false: AI (=enemy)
 
     static List<string> predefinedPlayerNames = new List<string> { "Adriatik", "Alemmania", "Apple", "Papa Schlumpf", "Aladin", "Dimitridis", "Bluna", "Champagna", "Emilia-Extra", "Godpower", "Hope",
                                                                     "Junior", "Klee", "Laser", "Legolas", "London", "Magic", "Pepsi-Carola", "Phoenix", "Popo", "Precious", "Pumuckl", "Schneewittchen",
