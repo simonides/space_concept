@@ -7,7 +7,8 @@
 [Ll]ibrary/
 sysinfo.txt
 *.stackdump
- 
+*.meta*
+
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
@@ -17,10 +18,12 @@ sysinfo.txt
 *.csproj
 *.pidb
 *.suo
+*.sln
 *.sln*
 *.user
 *.unityproj
 *.booproj
+
  
 # ============ #
 # OS generated #
