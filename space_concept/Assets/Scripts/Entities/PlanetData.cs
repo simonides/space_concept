@@ -84,6 +84,7 @@ public class PlanetData {
 
     public int ProduceShips() {
         int empty = HangarSize - Ships;
+        if(empty < 0) { empty = 0; }
         if(empty > FactorySpeed) {
             Ships += FactorySpeed;
             return FactorySpeed;
@@ -117,11 +118,21 @@ public class PlanetData {
     // Supply ships from other planet
     private AttackEvaluation EvaluateIncommingSupply(TroopData troop) {
         Debug.Assert(troop.Owner == Owner, "Invalid call");
-        AttackEvaluation evaluation = new AttackEvaluation();// = AttackEvaluation.Supply(troop);
-        //evaluation.Type = EvaluationType.Supply;
 
-        //TODO: implement
+        int remainingSpace = HangarSize - Ships;  //Remaining space
+        if (remainingSpace < 0) { remainingSpace = 0; }
 
+        int lostShips = 0;
+
+        if (remainingSpace < troop.ShipCount) {          //Some ships will get lost
+            Ships += remainingSpace;
+            lostShips = Mathf.RoundToInt((troop.ShipCount - remainingSpace) * 0.5f);     //All other ships will get a 50% penality
+            Ships += troop.ShipCount - remainingSpace - lostShips;
+        } else {
+            Ships += troop.ShipCount;
+        }
+        
+        AttackEvaluation evaluation = AttackEvaluation.Supply(troop, Ships, lostShips);
         return evaluation;
     }
 
