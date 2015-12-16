@@ -27,7 +27,7 @@ public class SFXMixerController : MonoBehaviour {
 
     void Start()
     {
-        float volume = SettingsController.GetInstance().dataFile.musicVolume;
+        float volume = SettingsController.GetInstance().dataFile.sfxVolume;
         SetVoulume(volume);
     }
 
