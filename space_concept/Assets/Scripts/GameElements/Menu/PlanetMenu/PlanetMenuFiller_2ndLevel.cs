@@ -8,7 +8,7 @@ public class PlanetMenuFiller_2ndLevel : MonoBehaviour {
 
     public void Fill2B(PlanetData planet)
     {
-        PlanetName.text = planet.Name;
+        //PlanetName.text = planet.Name;
         //TODO fill more fields
     }
 }
