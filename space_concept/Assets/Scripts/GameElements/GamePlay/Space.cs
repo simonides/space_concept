@@ -49,7 +49,7 @@ public class Space : MonoBehaviour {
     }
 
     void Start() {
-
+        MessageHub.Subscribe<NextDayEvent>(NextDay);
     }
 
 
@@ -111,17 +111,22 @@ public class Space : MonoBehaviour {
 
         Planet planetScript = planetObject.GetComponent<Planet>();
         planetScript.Init(planet);
-
-       
-
+        
         planets.Add(planetScript);
     }
-  
+
+    private void NextDay(NextDayEvent evt) {
+        int totalShipsProduced = 0;
+        foreach(Planet p in planets) {
+            totalShipsProduced += p.planetData.ProduceShips();
+        }
+        Debug.Log(totalShipsProduced + " ships have been produced in total on all planets.");
+        MessageHub.Publish<EvaluationRequestEvent>(new EvaluationRequestEvent(this, evt));
+    }
 
     // Returns the size of the map
     public Vector2 GetSize() {
-        return bounds.size;
-        
+        return bounds.size;        
     }
 
     //returns the center of the bounds rect in local space from the origin that does not have to be the bottom left corner.. it can be everywhere -> depends on the map file

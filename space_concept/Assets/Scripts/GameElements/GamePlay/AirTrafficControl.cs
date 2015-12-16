@@ -78,7 +78,7 @@ public class AirTrafficControl : MonoBehaviour {
 
     void InitEventSubscriptions() {
         MessageHub.Subscribe<NewTroopMovementEvent>(NewTroopMovement);
-        MessageHub.Subscribe<NextDayEvent>(NextDay);
+        MessageHub.Subscribe<EvaluationRequestEvent>(EvaluateAttacks);
     }
 
 
@@ -129,7 +129,7 @@ public class AirTrafficControl : MonoBehaviour {
 
 
 
-    private void NextDay(NextDayEvent evt) {
+    private void EvaluateAttacks(EvaluationRequestEvent evt) {
         int currentDay = evt.GetCurrentDay();
         List<Troop> todaysTroops = GetTroopsForDay(currentDay);
         Debug.Log("Day " + currentDay + ": " + todaysTroops.Count() + " troops arrived.");

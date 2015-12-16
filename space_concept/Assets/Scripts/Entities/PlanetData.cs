@@ -82,6 +82,19 @@ public class PlanetData {
 
 
 
+    public int ProduceShips() {
+        int empty = HangarSize - Ships;
+        if(empty > FactorySpeed) {
+            Ships += FactorySpeed;
+            return FactorySpeed;
+        } else {
+            Ships += empty;
+            Debug.Log("Hangar full, factory can't produce at full speed");
+            return empty;
+        }
+    }
+
+
     public AttackEvaluation EvaluateIncomingTroop(TroopData troop) {
         if(troop.TargetPlanet != this) {
             throw new ArgumentException("Unable to evaluate incoming troop: The troop is not arriving at this planet. Me: " + Name + ", Troop: " + troop.ToString());
@@ -97,11 +110,15 @@ public class PlanetData {
         return new AttackEvaluation();
     }
 
+
+
+
+
     // Supply ships from other planet
     private AttackEvaluation EvaluateIncommingSupply(TroopData troop) {
         Debug.Assert(troop.Owner == Owner, "Invalid call");
-        AttackEvaluation evaluation = new AttackEvaluation();
-        //evaluation.type = EvaluationType.Supply;
+        AttackEvaluation evaluation = new AttackEvaluation();// = AttackEvaluation.Supply(troop);
+        //evaluation.Type = EvaluationType.Supply;
 
         //TODO: implement
 
