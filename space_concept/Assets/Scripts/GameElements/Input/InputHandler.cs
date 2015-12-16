@@ -2,17 +2,22 @@
 using UnityEngine.EventSystems;
 using System.Linq;
 
-
-public class InputHandler : MonoBehaviour, IEventSystemHandler
+public
+class InputHandler : MonoBehaviour, IEventSystemHandler
 {
-    public GameObject[] SingleTouchReceiver;    // one finger
+    public
+      GameObject[] SingleTouchReceiver; // one finger
 
-    public delegate void ZoomEvent(float normalisedMagnitudeDiff); // To tell listeners that the map the mouse scroll or pinch is used by the user
+    public
+      delegate void ZoomEvent(float normalisedMagnitudeDiff); // To tell listeners
+                                                              // that the map the
+                                                              // mouse scroll or
+                                                              // pinch is used by
+                                                              // the user
     public static event ZoomEvent OnZoom;
 
-    public delegate void TouchMoveEvent(Vector2 deltaPosition); // Use this delegate 
+    public delegate void TouchMoveEvent(Vector2 deltaPosition); // Use this delegate
     public static event TouchMoveEvent OnTouchMove;
-
 
     // to interpret different gestures
     private bool _touchMoved = false;
@@ -21,16 +26,17 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
     // to calculate the delta for the mouse
     private Vector3 _oldMousePosition;
 
-
+    // use to deactivate the mapmovement when the menu is active
+    private bool _menuActive = false;
 
     private void Zoom(float magnitudeDiff)
-    {   //Debug.Log("Zoom, send to subscribers: " + normalisedMagnitudeDiff);
-        if (OnZoom != null) // null means there are no subscribers
+    { // Debug.Log("Zoom, send to subscribers: " +
+      // normalisedMagnitudeDiff);
+        if (OnZoom != null)            // null means there are no subscribers
         {
             OnZoom(magnitudeDiff);
         }
     }
-
 
     private void TouchMove(Vector2 deltaPosition)
     {
@@ -40,42 +46,58 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
         }
     }
 
-
     public void Awake()
     {
         Input.simulateMouseWithTouches = false;
+        MessageHub.Subscribe<MenuActiveEvent>(MapMovement);
     }
 
+    private void MapMovement(MenuActiveEvent mapEvent)
+    {
+        _menuActive = mapEvent.Content;
+        Debug.Log("MenuActive event: " + mapEvent.Content);
+    }
 
     void FixedUpdate()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("ESC pressed");
-            //_uiHandler.ShowEndGameDialog();
+            MessageHub.Publish(new ESCKeyPressedEvent(this));
         }
+        if (_menuActive)
+        {
+            return;
+        }
+        
 
         //#if UNITY_EDITOR
 
-        // wenn der button nicht mehr geklickt ist soll 
+        // wenn der button nicht mehr geklickt ist soll
         if (!Input.GetMouseButton(0))
         {
             _clickstarted = false;
         }
 
         if (Input.GetMouseButton(0))
-        {//Debug.Log("Mouse clicked: ");
+        { // Debug.Log("Mouse clicked: ");
             if (!_clickstarted)
             {
-                //print("mousepressed:");
+                // print("mousepressed:");
                 _oldMousePosition = Input.mousePosition;
                 _clickstarted = true;
             }
-            //if (_oldMousePosition != Input.mousePosition) // this is safe because unity implements this like that: Vector3.SqrMagnitude(lhs - rhs) < 9.99999944E-11f;
-            // but the delta may need to be higher to avoid clicks with jitter to be interpreted as movements
-            if (Vector3.SqrMagnitude(_oldMousePosition - Input.mousePosition) >= 20.0f)
+            // if (_oldMousePosition != Input.mousePosition) // this is safe because
+            // unity implements this like that: Vector3.SqrMagnitude(lhs - rhs) <
+            // 9.99999944E-11f;
+            // but the delta may need to be higher to avoid clicks with jitter to be
+            // interpreted as movements
+            if (Vector3.SqrMagnitude(_oldMousePosition - Input.mousePosition) >=
+                20.0f)
             {
-                //print("mouse moved " + Vector3.SqrMagnitude(_oldMousePosition - Input.mousePosition));
+                // print("mouse moved " + Vector3.SqrMagnitude(_oldMousePosition -
+                // Input.mousePosition));
                 //_touchMoved = true;
 
                 Vector3 deltaMousePos = _oldMousePosition - Input.mousePosition;
@@ -88,7 +110,6 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
 
         if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("clicked on point");
             if (!_touchMoved)
             {
                 SendTouchClick(Input.mousePosition);
@@ -106,39 +127,10 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
         {
             Zoom(12);
         }
-
-
-        //if (scrollSpeed != 0)
-        //{
-        //    scrollSpeed *= -1f;
-        //    scrollSpeed *= 30f;
-        //    //scrollSpeed *= 100f;
-        //    //// t       speed
-        //    ////------------------ -
-        //    //// 0       0
-        //    //// 1       0.00990
-        //    //// 2       0.01960
-        //    //// 3       0.02912
-        //    //// 4       0.03846
-        //    //// 5       0,04761
-        //    //// 6       0.05660
-        //    //// 42      0.29577
-        //    //// 100     0.5
-        //    //// 333     0.76905
-        //    //// 1234    0.92503
-        //    //// + inf    1.0
-        //    ////1f - 100f / (100f + t)
-
-        //#endif
-
         if (Input.touchCount == 1)
         {
             // Debug.Log("touching.. ");
             Touch touch = Input.GetTouch(0);
-            //if (touch.position.x > (Screen.width - Screen.width * SidebarWidth))
-            //{
-            //    return;
-            //}
             TouchPhase phase = touch.phase;
             switch (phase)
             {
@@ -148,7 +140,7 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
 
                 case TouchPhase.Moved:
                     _touchMoved = true;
-                    TouchMove(touch.deltaPosition *3);
+                    TouchMove(touch.deltaPosition * 3);
                     break;
 
                 case TouchPhase.Stationary:
@@ -186,8 +178,8 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
         }
     }
 
-
-    private void SendTouchClick(Vector3 InputPos)
+    private
+      void SendTouchClick(Vector3 InputPos)
     {
         Vector3 pos = Camera.main.ScreenToWorldPoint(InputPos);
 
@@ -200,13 +192,15 @@ public class InputHandler : MonoBehaviour, IEventSystemHandler
         foreach (RaycastHit2D hit in hits)
         {
             GameObject recipient = hit.transform.gameObject;
-            //if (hits.Count() > 1 && recipient.CompareTag("ship"))
-            //{ // should go throug and fire to planet only
-            //    continue;
-            //}
-            recipient.SendMessage("SingleTouchClick", SendMessageOptions.DontRequireReceiver);
+            if (hits.Count() > 1 &&
+                recipient.CompareTag(
+                    "Menu"))
+            { // should go throug and fire to planet only
+                Debug.Log("menu active");
+                continue;
+            }
+            recipient.SendMessage("SingleTouchClick",
+                                  SendMessageOptions.DontRequireReceiver);
         }
-
     }
 }
-

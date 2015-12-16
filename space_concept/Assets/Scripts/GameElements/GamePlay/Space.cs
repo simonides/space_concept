@@ -128,4 +128,9 @@ public class Space : MonoBehaviour {
      public Vector2 GetCenter() {
         return bounds.center;
     }
+
+     public SpaceData GetData()
+     {
+         return spaceData;
+     }
 }

@@ -7,8 +7,9 @@ using Custom.Base;
 public class SettingsController : SingletonBase<SettingsController> {
     public SettingsData dataFile;
     public PlayerData playerFile;
-    public SpaceData map = null;
+    public CollectedMapData map = null;
     public bool loadMap = false;
+    public string mapName = "";
 
 
     override protected void Awake() {
@@ -38,9 +39,24 @@ public class SettingsController : SingletonBase<SettingsController> {
         SaveFileSerializer.XMLSave<SettingsData>(dataFile, "Settings", "Settings.xml");
         SaveFileSerializer.XMLSave<PlayerData>(playerFile, "Settings", "Player.xml");
     }
-     
+
+    public void SaveGame<T>(T file, string directory, string filename)
+         where T : class, new()
+    {
+        if (directory == "")
+        {
+            SaveFileSerializer.XMLSave<T>(file, filename + ".xml");
+        }
+        else {
+            SaveFileSerializer.XMLSave<T>(file, directory, filename + ".xml");
+        }
+        
+        SaveFileSerializer.XMLSave<PlayerData>(playerFile, "Settings", "Player.xml");
+    }
+
     public bool LoadMap(string name) {
-        if ((map = SaveFileSerializer.XMLLoad<SpaceData>("SaveGames", name + ".xml")) != null)
+        Debug.Log("Now Loading: "+name);
+        if ((map = SaveFileSerializer.XMLLoad<CollectedMapData>("SaveGames", name + ".xml")) != null)
         {
             loadMap = true;
             return true;

@@ -6,6 +6,7 @@ using System.Collections;
  *  Contains all information about a single troop movement from one planet to another.
  *  Can be serialised / deserialised to a file.
  */
+[System.Serializable]
 public class TroopData {
 
     // ****    CONFIGURATION    **** //

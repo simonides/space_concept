@@ -24,6 +24,7 @@ namespace Custom
             public static bool FileExists(string directory, string fileName)
             { 
                 string f_path = DALSaveGame.GetFilePath(directory, fileName);
+                Debug.Log("File Exists: "+f_path);
                 if (File.Exists(f_path))
                 {
                     return true;
@@ -400,6 +401,25 @@ namespace Custom
 
                 return myFile;
             }
-        }
+
+            public static void DeleteFile(string directory, string fileName)
+            {
+                //path to file
+                string tempPath = DALSaveGame.GetFilePath(directory, fileName);
+                if (File.Exists(tempPath))
+                {
+                    File.Delete(tempPath);
+                }
+            }
+            public static void DeleteFile(string fileName)
+            {
+                //path to file
+                string tempPath = DALSaveGame.GetFilePath(fileName);
+                if (File.Exists(tempPath))
+                {
+                    File.Delete(tempPath);
+                }
+            }
+        }//ende class
     }
 }

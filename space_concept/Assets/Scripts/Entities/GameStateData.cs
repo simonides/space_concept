@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using System;
 
+[System.Serializable]
 public class GameStateData {
 
     public int CurrentDay { get; private set; }     // Current day, starting at 1

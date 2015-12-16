@@ -19,6 +19,9 @@ public class PlanetData {
 
     public Vector2 Position { get; set; }
 
+    public string TextureName { get; set; }
+    public string TextureFXName { get; set; }
+
     float _diameter;
     public float Diameter {
         get { return _diameter; }
@@ -73,6 +76,8 @@ public class PlanetData {
         this.HangarSize = hangarSize;
         this.FactorySpeed = factorySpeed;
         this.IsStartPlanet = isStartPlanet;
+        this.TextureName = "";
+        this.TextureFXName = "";
     }
 
 
@@ -129,7 +134,8 @@ public class PlanetData {
                                                                     "Miknaitis", "Namba", "Orchiston", "Pandion", "Penttila", "Quero", "Radmall", "Ruetsch", "Serra", "Shustov", "Siurana", "Smaklosa", "Szalay",
                                                                     "Tenmu", "Tietjen", "Trombka", "Tytgat", "Velichko", "Vulpius", "Wupatki", "Xanthus", "Yarilo", "Zajonc", "Zeissia", "Zykina" };
 
-    string GetRandomPlanetName() {
+    string GetRandomPlanetName()
+    {
         return predefinedPlanetNames[UnityEngine.Random.Range(0, predefinedPlanetNames.Count)];
     }
 
