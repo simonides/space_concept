@@ -29,7 +29,7 @@ public class SendShipMenuFiller : MonoBehaviour {
 
         //slider.minValue = 0;
         slider.maxValue =  planetOne.planetData.Ships;
-        slider.value = (int)planetOne.planetData.Ships / 4;
+        slider.value = (int)planetOne.planetData.Ships * 0.5f;
         PlanetNameOne.text = planetOne.planetData.Name;
         PlanetNameTwo.text = planetTwo.planetData.Name;
         TotalShips.text = planetOne.planetData.Ships.ToString();

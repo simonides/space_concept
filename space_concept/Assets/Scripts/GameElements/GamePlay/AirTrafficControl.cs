@@ -128,11 +128,11 @@ public class AirTrafficControl : MonoBehaviour {
         troopObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, toDirection.normalized);
 
 
-        //troopData.
-
         Vector3 TempMoveToPosition = Vector3.MoveTowards(startPlanet.Position, targetPlanet.Position,
         (toDirection.magnitude / troopData.ArrivalTime) * 0.5f);
+        TempMoveToPosition.z = -10;
         troopObject.transform.localPosition = TempMoveToPosition;
+
 
         troopObject.SetActive(true);
         troops.Add(troopObject);
