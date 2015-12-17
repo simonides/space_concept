@@ -20,10 +20,9 @@ public class Planet : MonoBehaviour
     public Material glowMatOwned;
     public Material glowMatEnemy;
 
-    public enum PlanetStatusGlow
-    {
-        NEUTRAL, SELECTED, OWNED, ENEMY
-    }
+    private Material _usualGlow;
+
+
 
 
     // ****    CONFIGURATION    **** //    
@@ -114,24 +113,16 @@ public class Planet : MonoBehaviour
 
     }
 
-    public void SetGlow(PlanetStatusGlow status){
-        switch (status){
-            case  PlanetStatusGlow.NEUTRAL:
-                glow.material = glowMatNeutral;
-                break;
-            case PlanetStatusGlow.SELECTED:
-                glow.material = glowMatSelected;
-                break;
-            case PlanetStatusGlow.OWNED:
-                glow.material = glowMatOwned;
-                break;
-            case PlanetStatusGlow.ENEMY:
-                glow.material = glowMatEnemy;
-                break;
-            default:
-                glow.material = glowMatNeutral;
-                break;
-        }
+
+    public void RemoveGlow()
+    {
+        glow.material = glowMatNeutral;
+        //glow.material = _usualGlow;
+    }
+
+    public void SetGlow(){
+        //_usualGlow = glow.material; //TODO this should not be set here this should be set when a event changes this state
+        glow.material = glowMatSelected;
     }
 
     public void SingleTouchClick(){

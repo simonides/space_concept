@@ -12,9 +12,7 @@ public class ButtonListenerForDebuging : MonoBehaviour {
     public void SendSomeShips()
     {
         Planet[] planets = space.GetComponentsInChildren<Planet>();
-        //TODO: This is a test method. Remove it when it is not needed anymore!
         MessageHub.Publish(new NewTroopMovementEvent(this, planets[0], planets[1], 42));
-
     }
 
     public void ShowEventList()

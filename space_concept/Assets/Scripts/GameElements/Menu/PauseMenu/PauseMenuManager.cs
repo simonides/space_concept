@@ -24,25 +24,27 @@ public class PauseMenuManager : AbstractMenuManager
 
     public void ShowOptionsMenu(ShowPauseMenuEvent event_)
     {
+        isMenuActive = true;
         MessageHub.Publish(new AutoSaveGameEvent(this));
         SwitchMenu(PauseMenu);
     }
 
     public void HideOptionsMenu(HidePauseMenuEvent event_)
     {
+        isMenuActive = false;
         SwitchMenu(null);
     }
 
     private void ESCKeyPressed(ESCKeyPressedEvent event_)
     {
-        isMenuActive = !isMenuActive;
+        //isMenuActive = !isMenuActive;
         if (isMenuActive)
         {
-            ShowOptionsMenu(null);
+            HideOptionsMenu(null);
         }
         else
         {
-            HideOptionsMenu(null);
+            ShowOptionsMenu(null);
         }
     }
 }

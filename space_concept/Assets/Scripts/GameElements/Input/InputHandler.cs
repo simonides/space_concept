@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
+using System;
 
 public
 class InputHandler : MonoBehaviour, IEventSystemHandler
 {
-    public
-      GameObject[] SingleTouchReceiver; // one finger
+    //public
+      //GameObject[] SingleTouchReceiver; // one finger
 
     public
       delegate void ZoomEvent(float normalisedMagnitudeDiff); // To tell listeners
@@ -28,6 +29,24 @@ class InputHandler : MonoBehaviour, IEventSystemHandler
 
     // use to deactivate the mapmovement when the menu is active
     private bool _menuActive = false;
+    //private bool _pauseMenuActive = false;
+
+
+    public void Awake()
+    {
+        Input.simulateMouseWithTouches = false;
+        MessageHub.Subscribe<MenuActiveEvent>(MapMovement);
+        //MessageHub.Subscribe<ShowPauseMenuEvent>(ShowPauseMenu);
+        //MessageHub.Subscribe<HidePauseMenuEvent>(HidePauseMenu);
+    }
+
+    //private void HidePauseMenu(HidePauseMenuEvent obj){
+    //    _pauseMenuActive = false;
+    //}
+
+    //private void ShowPauseMenu(ShowPauseMenuEvent obj){
+    //    _pauseMenuActive = true;
+    //}
 
     private void Zoom(float magnitudeDiff)
     { // Debug.Log("Zoom, send to subscribers: " +
@@ -46,15 +65,11 @@ class InputHandler : MonoBehaviour, IEventSystemHandler
         }
     }
 
-    public void Awake()
-    {
-        Input.simulateMouseWithTouches = false;
-        MessageHub.Subscribe<MenuActiveEvent>(MapMovement);
-    }
 
     private void MapMovement(MenuActiveEvent mapEvent)
     {
         _menuActive = mapEvent.Content;
+
         Debug.Log("MenuActive event: " + mapEvent.Content);
     }
 

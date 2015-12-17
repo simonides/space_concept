@@ -8,8 +8,7 @@ public class SendShipButtons : MonoBehaviour
         MessageHub.Publish(new CancelSendShipsEvent(this));
     }
 
-    public void SendShips()
-    {
-        //MessageHub.Publish(new SendShipsEvent(this));
+    public void SendShips(){
+        MessageHub.Publish(new SendShipsEvent(this));
     }
 }

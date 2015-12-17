@@ -94,7 +94,7 @@ public class MapInput : MonoBehaviour
             throw new MissingComponentException("Unable to find space script. This component should be attached to the Space GameObject.");
         }
 
-        _cameraOrthoSizeTo = Camera.main.orthographicSize; // needed?
+        
 
         _cameraWidthHalf = Camera.main.orthographicSize * Camera.main.aspect;
         _cameraHeightHalf = Camera.main.orthographicSize;
@@ -108,6 +108,7 @@ public class MapInput : MonoBehaviour
         Camera.main.orthographicSize = cameraInitOrthoSize;
         _moveToPosition = _map.transform.position;
 
+        _cameraOrthoSizeTo = Camera.main.orthographicSize; // needed? yes otherwise the first scroll is using zero as startpoint
         //_moveToPosition = FindHomePlanet();
     }
 

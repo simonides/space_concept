@@ -47,6 +47,7 @@ public class PlanetMenuManager : AbstractMenuManager
     {
         Debug.Assert(_activeMenu == 3);
         _activeMenu = 2;
+        planetTwo.RemoveGlow();
         ShowChoosePlanetMenu();
     }
 
@@ -67,7 +68,7 @@ public class PlanetMenuManager : AbstractMenuManager
     private void CancelPlanetMenu(CancelPlanetMenuEvent event_)
     {
         _activeMenu = 0;
-        planetOne.SetGlow(Planet.PlanetStatusGlow.NEUTRAL);//TODO this has to be corrected to the previous glow!!!!!
+        planetOne.RemoveGlow();
         SwitchMenu(null);
     }
 
@@ -86,6 +87,10 @@ public class PlanetMenuManager : AbstractMenuManager
                 Debug.Log("Error in PlanetMenuManager: Planet clicked when it should not be possible.");
                 throw new Exception("Planets should not be clickable when the planet menu is active.");
             case 2:
+                if(planetOne == event_.Content){
+                    Debug.Log("Choose an other planet, this is the planet you try to send ships from");
+                    return;
+                }
                 planetTwo = event_.Content;
                 ShowSendShipsMenu();
                 break;
@@ -101,7 +106,7 @@ public class PlanetMenuManager : AbstractMenuManager
     private void ShowPlanetMenu()
     {
         Debug.Assert(planetOne != null);
-        planetOne.SetGlow(Planet.PlanetStatusGlow.SELECTED);
+        planetOne.SetGlow();
         _planetMenuFiller.Fill2B(planetOne.planetData);
         SwitchMenu(PlanetMenu);
     }
@@ -113,12 +118,11 @@ public class PlanetMenuManager : AbstractMenuManager
     }
     private void ShowSendShipsMenu()
     {
+        Debug.Assert(planetOne != planetTwo);
+        planetTwo.SetGlow();
         //_sendShipMenuFiller.
         SwitchMenu(SendShipsMenu);
     }
-
-
-
 
     // close the current menu
     public void SetPlanetMenuInVisible()
