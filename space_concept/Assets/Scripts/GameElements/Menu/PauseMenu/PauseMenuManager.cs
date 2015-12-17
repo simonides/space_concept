@@ -5,8 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
-
+using System;
 
 public class PauseMenuManager : AbstractMenuManager
 {
@@ -21,6 +20,8 @@ public class PauseMenuManager : AbstractMenuManager
         MessageHub.Subscribe<ESCKeyPressedEvent>(ESCKeyPressed);
 
     }
+
+
 
     public void ShowOptionsMenu(ShowPauseMenuEvent event_)
     {

@@ -207,13 +207,13 @@ class InputHandler : MonoBehaviour, IEventSystemHandler
         foreach (RaycastHit2D hit in hits)
         {
             GameObject recipient = hit.transform.gameObject;
-            if (hits.Count() > 1 &&
-                recipient.CompareTag(
-                    "Menu"))
-            { // should go throug and fire to planet only
-                Debug.Log("menu active");
-                continue;
-            }
+            //if (hits.Count() > 1 &&
+            //    recipient.CompareTag(
+            //        "Menu"))
+            //{ // should go throug and fire to planet only
+            //    Debug.Log("menu active");
+            //    continue;
+            //}
             recipient.SendMessage("SingleTouchClick",
                                   SendMessageOptions.DontRequireReceiver);
         }

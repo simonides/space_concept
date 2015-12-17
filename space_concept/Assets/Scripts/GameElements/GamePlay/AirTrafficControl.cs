@@ -101,8 +101,7 @@ public class AirTrafficControl : MonoBehaviour {
 
     private void NewTroopMovement(NewTroopMovementEvent evt) {
         TroopData troopData = troopDataPool.Get();
-        troopData.Init(null, null, evt.ShipCount, gameStateData.CurrentDay);
-        //troopData.Init(evt.StartPlanet.planetData, evt.TargetPlanet.planetData, evt.ShipCount, gameStateData.CurrentDay);
+        troopData.Init(evt.StartPlanet.planetData, evt.TargetPlanet.planetData, evt.ShipCount, gameStateData.CurrentDay);
         airTrafficData.AddTroopMovement(troopData);
 
         InitGraphicalTroopMovement(troopData);
@@ -120,10 +119,22 @@ public class AirTrafficControl : MonoBehaviour {
 
         troopObject.transform.SetParent(space.transform);
         troop.Init(troopData);
-        troopObject.SetActive(true);
-        
-        //TODO: initialise graphical representation correctly
 
+        PlanetData startPlanet = troopData.StartPlanet;
+        PlanetData targetPlanet = troopData.TargetPlanet;
+
+        Vector3 toDirection = (targetPlanet.Position - startPlanet.Position);
+
+        troopObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, toDirection.normalized);
+
+
+        //troopData.
+
+        Vector3 TempMoveToPosition = Vector3.MoveTowards(startPlanet.Position, targetPlanet.Position,
+        (toDirection.magnitude / troopData.ArrivalTime) * 0.5f);
+        troopObject.transform.localPosition = TempMoveToPosition;
+
+        troopObject.SetActive(true);
         troops.Add(troopObject);
     }
 

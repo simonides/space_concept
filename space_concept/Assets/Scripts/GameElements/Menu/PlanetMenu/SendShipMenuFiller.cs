@@ -10,6 +10,7 @@ public class SendShipMenuFiller : MonoBehaviour {
     public Text ToShips;
     public Slider slider;
     public Text PlanetNameTwo;
+    public Text TravelDistance;
 
     private Planet planetOne;
     private Planet planetTwo;
@@ -23,6 +24,9 @@ public class SendShipMenuFiller : MonoBehaviour {
     {
        this.planetOne = planetOne;
        this.planetTwo = planetTwo;
+
+        TravelDistance.text = ""+ ((int)planetOne.planetData.GetSurfaceDistance(planetTwo.planetData));
+
         //slider.minValue = 0;
         slider.maxValue =  planetOne.planetData.Ships;
         slider.value = (int)planetOne.planetData.Ships / 4;
