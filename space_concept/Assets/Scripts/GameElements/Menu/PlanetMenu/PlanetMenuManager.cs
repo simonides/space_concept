@@ -107,7 +107,7 @@ public class PlanetMenuManager : AbstractMenuManager
     {
         Debug.Assert(planetOne != null);
         planetOne.SetGlow();
-        _planetMenuFiller.Fill2B(planetOne.planetData);
+        _planetMenuFiller.UpdateInfo(planetOne.planetData);
         SwitchMenu(PlanetMenu);
     }
 

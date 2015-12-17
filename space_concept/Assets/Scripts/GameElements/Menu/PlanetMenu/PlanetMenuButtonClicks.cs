@@ -6,12 +6,12 @@ public class PlanetMenuButtonClicks : MonoBehaviour {
 
     public void UpgradeFactory()
     {
-
+        MessageHub.Publish(new UpgradeFactoryEvent(this));
     }
 
     public void UpgradeHangar()
     {
-
+        MessageHub.Publish(new UpgradeHangarEvent(this));
     }
 
     public void SendShips()

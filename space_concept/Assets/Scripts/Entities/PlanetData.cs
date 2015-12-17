@@ -105,26 +105,28 @@ public class PlanetData {
         return next;
     }
 
-    public void UpgradeFactory() {
+    public bool UpgradeFactory() {
         int costs = GetFactoryUpgradeCosts();
         if( costs > Ships) {
             Debug.LogError("Unable to upgrade Factory - Can't afford expenses");
-            return;
+            return false;
         }
         Ships -= costs;
         FactorySpeed = GetNextFactoryUpgrade();
         Debug.Log("Upgraded Factory of planet " + Name);
+        return true;
     }
 
-    public void UpgradeHangar() {
+    public bool UpgradeHangar() {
         int costs = GetHangarUpgradeCosts();
         if (costs > Ships) {
             Debug.LogError("Unable to upgrade Hangar - Can't afford expenses");
-            return;
+            return false;
         }
         Ships -= costs;
         HangarSize = GetNextHangarUpgrade();
         Debug.Log("Upgraded Hangar of planet " + Name);
+        return true;
     }
 
 

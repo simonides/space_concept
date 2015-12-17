@@ -37,7 +37,6 @@ public class PauseMenuManager : AbstractMenuManager
 
     private void ESCKeyPressed(ESCKeyPressedEvent event_)
     {
-        //isMenuActive = !isMenuActive;
         if (isMenuActive)
         {
             HideOptionsMenu(null);
