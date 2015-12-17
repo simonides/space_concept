@@ -20,6 +20,12 @@ public class Planet : MonoBehaviour
     public Material glowMatOwned;
     public Material glowMatEnemy;
 
+    public enum PlanetStatusGlow
+    {
+        NEUTRAL, SELECTED, OWNED, ENEMY
+    }
+
+
     // ****    CONFIGURATION    **** //    
 
     // ****  ATTACHED OBJECTS   **** //
@@ -108,11 +114,29 @@ public class Planet : MonoBehaviour
 
     }
 
-    public void SingleTouchClick()
-    {
+    public void SetGlow(PlanetStatusGlow status){
+        switch (status){
+            case  PlanetStatusGlow.NEUTRAL:
+                glow.material = glowMatNeutral;
+                break;
+            case PlanetStatusGlow.SELECTED:
+                glow.material = glowMatSelected;
+                break;
+            case PlanetStatusGlow.OWNED:
+                glow.material = glowMatOwned;
+                break;
+            case PlanetStatusGlow.ENEMY:
+                glow.material = glowMatEnemy;
+                break;
+            default:
+                glow.material = glowMatNeutral;
+                break;
+        }
+    }
+
+    public void SingleTouchClick(){
         Debug.Log("planet clicked ");
-        UIManager.instance.PlanetClicked(this);
-        glow.material = glowMatSelected;
+        MessageHub.Publish(new PlanetClickedEvent(this,this));
     }
 
     //public Vector2 position {                           // The position of this planet in the cosmos

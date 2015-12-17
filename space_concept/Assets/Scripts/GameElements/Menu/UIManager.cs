@@ -26,23 +26,11 @@ public class UIManager : MonoBehaviour
         if (_planetMenuManager == null) {
             throw new MissingComponentException("Unable to find PlanetMenuManager.");
         }
-
-        MessageHub.Subscribe<CancelSendShipsEvent>(CancelSendShips);
-
+      
     }
 
-    private void CancelSendShips(CancelSendShipsEvent obj)
-    {
-        //todo!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        _planetMenuManager.SwitchToFirstLevel();
-    }
 
-    public void PlanetClicked(Planet planet)
-    {
-        MessageHub.Publish(new MenuActiveEvent(this, true));// todo remove
-        _planetMenuManager.ActivePlanet = planet.planetData;
-        _planetMenuManager.SwitchToFirstLevel();
-    }
+
 
 
     public void HidePlanetMenus()

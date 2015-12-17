@@ -1,50 +1,123 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class PlanetMenuManager : AbstractMenuManager
 {
 
-    public PlanetData ActivePlanet { get; set; }
+    //public PlanetData ActivePlanet { get; set; }
 
     public Menu PlanetMenu;
-    public Menu PlanetMenu_2ndLevel;
-    public Menu InGameOptionsMenu;
+    public Menu SendShipsMenu;
+    public Menu ChoosePlanetMenu;
+
+    enum MenuState
+    {
+        NONE, PLANET, CHOOSE, SEND 
+    }
+
+    int _activeMenu = 0;
+    private Planet planetOne;
+    private Planet planetTwo;
 
     private PlanetMenuFiller _planetMenuFiller;
-    private PlanetMenuFiller_2ndLevel _planetMenuFiller_2ndLevel;
+    private SendShipMenuFiller _sendShipMenuFiller;
 
     void Awake()
     {
         _planetMenuFiller = GetComponentInChildren<PlanetMenuFiller>();
-        if (_planetMenuFiller == null)
-        {
+        if (_planetMenuFiller == null) {
             throw new MissingComponentException("Unable to find PlanetMenuFiller.");
         }
-        _planetMenuFiller_2ndLevel = GetComponentInChildren<PlanetMenuFiller_2ndLevel>();
-        if (_planetMenuFiller_2ndLevel == null)
-        {
-            throw new MissingComponentException("Unable to find _planetMenuFiller_2ndLevel.");
+
+        _sendShipMenuFiller = GetComponentInChildren<SendShipMenuFiller>();
+        if (_sendShipMenuFiller == null){
+            throw new MissingComponentException("Unable to find _sendShipMenuFiller.");
         }
-        MessageHub.Subscribe<ToggleInGameMenuEvent>(MapMovement);
+
+        MessageHub.Subscribe<PlanetClickedEvent>(PlanetClicked);
+        MessageHub.Subscribe<CancelPlanetMenuEvent>(CancelPlanetMenu);
+        MessageHub.Subscribe<ChooseOtherPlanetEvent>(ChooseOtherPlanet);
+        MessageHub.Subscribe<CancelChooseOtherPlanetEvent>(CancelChooseOtherPlanet);
+        MessageHub.Subscribe<CancelSendShipsEvent>(CancelSendShips);
     }
 
-    private void MapMovement(ToggleInGameMenuEvent toggleEvent)
+    private void CancelSendShips(CancelSendShipsEvent event_)
     {
-        SwitchMenu(InGameOptionsMenu);
+        Debug.Assert(_activeMenu == 3);
+        _activeMenu = 2;
+        ShowChoosePlanetMenu();
     }
 
-    public void SwitchToFirstLevel()
+    private void CancelChooseOtherPlanet(CancelChooseOtherPlanetEvent event_)
     {
-        _planetMenuFiller.Fill2B(ActivePlanet);
+        Debug.Assert(_activeMenu == 2);
+        _activeMenu = 1;
+        ShowPlanetMenu();
+    }
+
+    private void ChooseOtherPlanet(ChooseOtherPlanetEvent event_)
+    {
+        Debug.Assert(_activeMenu == 1);
+        _activeMenu = 2;
+        ShowChoosePlanetMenu();
+    }
+
+    private void CancelPlanetMenu(CancelPlanetMenuEvent event_)
+    {
+        _activeMenu = 0;
+        planetOne.SetGlow(Planet.PlanetStatusGlow.NEUTRAL);//TODO this has to be corrected to the previous glow!!!!!
+        SwitchMenu(null);
+    }
+
+    private void PlanetClicked(PlanetClickedEvent event_)
+    {
+        Debug.Assert(_activeMenu == 0 || _activeMenu == 2);
+
+        switch (_activeMenu)
+        {
+            case 0:
+
+                planetOne = event_.Content;
+                ShowPlanetMenu();
+                break;
+            case 1:
+                Debug.Log("Error in PlanetMenuManager: Planet clicked when it should not be possible.");
+                throw new Exception("Planets should not be clickable when the planet menu is active.");
+            case 2:
+                planetTwo = event_.Content;
+                ShowSendShipsMenu();
+                break;
+
+            default:
+                break;
+        }
+        ++_activeMenu;
+
+    }
+
+
+    private void ShowPlanetMenu()
+    {
+        Debug.Assert(planetOne != null);
+        planetOne.SetGlow(Planet.PlanetStatusGlow.SELECTED);
+        _planetMenuFiller.Fill2B(planetOne.planetData);
         SwitchMenu(PlanetMenu);
     }
 
-    public void SwitchTo2ndLevel()
+    private void ShowChoosePlanetMenu()
     {
-        _planetMenuFiller_2ndLevel.Fill2B(ActivePlanet);
-        SwitchMenu(PlanetMenu_2ndLevel);
+        SwitchMenu(ChoosePlanetMenu);
+        MessageHub.Publish(new MenuActiveEvent(this, false)); // reenable UI interaction
     }
+    private void ShowSendShipsMenu()
+    {
+        //_sendShipMenuFiller.
+        SwitchMenu(SendShipsMenu);
+    }
+
+
 
 
     // close the current menu
