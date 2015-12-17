@@ -20,6 +20,13 @@ public class PlanetMenuFiller : MonoBehaviour
     {
         MessageHub.Subscribe<UpgradeFactoryEvent>(UpgradeFactory);
         MessageHub.Subscribe<UpgradeHangarEvent>(UpgradeHangar);
+        MessageHub.Subscribe<NextDayRequestEvent>(NextDayRequest);
+    }
+
+    private void NextDayRequest(NextDayRequestEvent obj)
+    {
+        UpgradeHangarUpdate();
+        UpgradeFactoryUpdate();
     }
 
     private void UpgradeHangar(UpgradeHangarEvent event_){
@@ -38,26 +45,23 @@ public class PlanetMenuFiller : MonoBehaviour
         }
     }
 
-    public void UpdateInfo(PlanetData planet)
-    {
+    public void UpdateInfo(PlanetData planet){
         activePlanet = planet;
         Header.text = planet.Name;
         UpgradeFactoryUpdate();
         UpgradeHangarUpdate();
     }
 
-    public void UpgradeFactoryUpdate()
-    {
+    public void UpgradeFactoryUpdate(){
         FactoryActualIncreaseSpeed.text = "+" + activePlanet.FactorySpeed;
         FactoryUpgradeCost.text = "" + activePlanet.GetFactoryUpgradeCosts();
-        FactoryIncreaseAmount.text = "" + (activePlanet.GetNextFactoryUpgrade() - activePlanet.FactorySpeed);
+        FactoryIncreaseAmount.text = "" + activePlanet.GetNextFactoryUpgrade();
     }
 
-    public void UpgradeHangarUpdate()
-    {
+    public void UpgradeHangarUpdate(){
         HangarSizeAndFillsize.text = activePlanet.Ships + "/" + activePlanet.HangarSize;
         HangarUpgradeCost.text = "" + activePlanet.GetHangarUpgradeCosts();
-        HangarIncreaseAmount.text = "" + (activePlanet.GetNextHangarUpgrade() - activePlanet.HangarSize);
+        HangarIncreaseAmount.text = "" + activePlanet.GetNextHangarUpgrade();
     }
 
 

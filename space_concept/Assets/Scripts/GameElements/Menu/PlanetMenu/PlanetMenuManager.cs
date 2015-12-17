@@ -120,7 +120,7 @@ public class PlanetMenuManager : AbstractMenuManager
     {
         Debug.Assert(planetOne != planetTwo);
         planetTwo.SetGlow();
-        //_sendShipMenuFiller.
+        _sendShipMenuFiller.UpdateUI(planetOne, planetTwo);
         SwitchMenu(SendShipsMenu);
     }
 

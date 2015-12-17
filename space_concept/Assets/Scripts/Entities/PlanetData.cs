@@ -108,7 +108,7 @@ public class PlanetData {
     public bool UpgradeFactory() {
         int costs = GetFactoryUpgradeCosts();
         if( costs > Ships) {
-            Debug.LogError("Unable to upgrade Factory - Can't afford expenses");
+            Debug.Log("Unable to upgrade Factory - Can't afford expenses");
             return false;
         }
         Ships -= costs;
@@ -120,7 +120,7 @@ public class PlanetData {
     public bool UpgradeHangar() {
         int costs = GetHangarUpgradeCosts();
         if (costs > Ships) {
-            Debug.LogError("Unable to upgrade Hangar - Can't afford expenses");
+            Debug.Log("Unable to upgrade Hangar - Can't afford expenses");
             return false;
         }
         Ships -= costs;
