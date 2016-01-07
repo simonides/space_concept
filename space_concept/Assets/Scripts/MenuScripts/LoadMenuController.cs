@@ -61,7 +61,10 @@ public class LoadMenuController : MonoBehaviour {
 
     public void Button_DeleteSaveGame(UnityEngine.UI.Button delButton)
     {
+        Debug.Log(delButton.name);
         Transform parent = delButton.transform.parent;//the panel
+        Debug.Log(parent.name);
+        Debug.Log(buttonObj.name);
         UnityEngine.UI.Button namedButton = parent.Find(buttonObj.name).GetComponent<UnityEngine.UI.Button>();//find the button who holds the name of the file to be deleted
 
         //get string to delete
