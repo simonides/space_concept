@@ -13,7 +13,7 @@ public class Space : MonoBehaviour {
     // ****    CONFIGURATION    **** //
     public const float BORDER_WIDTH = 8;            //Additional border on each side of the map which is added to the bounds. In this area are no planets
     public GameObject planetPrefab;
-    public Texture2D backgroundTexture;            
+    public Texture2D backgroundTexture;
 
     // ****  ATTACHED OBJECTS   **** //
     SpriteRenderer backgroundRenderer;
@@ -24,11 +24,11 @@ public class Space : MonoBehaviour {
 
 
     Transform background;
-    
+
     SpaceData spaceData;        // entity
     List<Planet> planets;       // planet objects
 
-    
+
     public Rect bounds { get; private set; }     // Size/bounds of the cosmos
 
     void Awake() {
@@ -38,12 +38,12 @@ public class Space : MonoBehaviour {
         if (background == null) {
             throw new MissingComponentException("Unable to find Background. Game Component should be child object of Space Object.");
         }
-        
+
         backgroundRenderer = background.GetComponent<SpriteRenderer>();
         if (backgroundRenderer == null) {
             throw new MissingComponentException("Unable to find SpriteRenderer on Background. The game object (child of space) should have a sprite renderer for the background texture.");
         }
-        
+
         Sprite sprite = Sprite.Create(backgroundTexture, new Rect(0, 0, backgroundTexture.width, backgroundTexture.height), new Vector2(0, 0), 1f);    // default sprite to have something visible. origin (pivot) = corner
         backgroundRenderer.sprite = sprite;
     }
@@ -62,21 +62,21 @@ public class Space : MonoBehaviour {
         bounds.yMin -= BORDER_WIDTH;
         bounds.xMax += BORDER_WIDTH;
         bounds.yMax += BORDER_WIDTH;
-        
+
         //Debug.Log(bounds);
         this.bounds = bounds;
 
         foreach (PlanetData planet in spaceData.planets) {
             CreatePlanet(planet);
         }
-        
+
 
         // Initialise the background texture:
         background.transform.localPosition = new Vector3(bounds.xMin, bounds.yMin, 10);
         Vector2 scaling = new Vector2(bounds.width / backgroundTexture.width, bounds.height / backgroundTexture.height);    //scaling of the background to be as big as the map
-        
+
         //Update the textureRect according to the aspect ratio:
-        float mapRatio = scaling.x / scaling.y;  
+        float mapRatio = scaling.x / scaling.y;
         float backgroundRatio = backgroundTexture.width / backgroundTexture.height;
 
         Rect textureRect;
@@ -94,12 +94,12 @@ public class Space : MonoBehaviour {
 
         Sprite sprite = Sprite.Create(backgroundTexture, textureRect, new Vector2(0, 0), 1);    //origin (pivot) = corner
         backgroundRenderer.sprite = sprite;
-       
+
         //translate the whole Space gameobject so that it's origin is the map's center:
         Vector2 center = bounds.center;
         transform.localPosition = new Vector3(-center.x, -center.y, 0);
     }
-    
+
 
     // Creates a planet object (GameObject) of the given planet using the prefab and adds it to the space game object.
     void CreatePlanet(PlanetData planet) {
@@ -111,13 +111,13 @@ public class Space : MonoBehaviour {
 
         Planet planetScript = planetObject.GetComponent<Planet>();
         planetScript.Init(planet);
-        
+
         planets.Add(planetScript);
     }
 
     private void NextDay(NextDayEvent evt) {
         int totalShipsProduced = 0;
-        foreach(Planet p in planets) {
+        foreach (Planet p in planets) {
             totalShipsProduced += p.planetData.ProduceShips();
         }
         Debug.Log(totalShipsProduced + " ships have been produced in total on all planets.");
@@ -126,16 +126,25 @@ public class Space : MonoBehaviour {
 
     // Returns the size of the map
     public Vector2 GetSize() {
-        return bounds.size;        
+        return bounds.size;
+    }
+
+    // Returns the planet that belongs to the given planetData
+    public Planet getPlanet(PlanetData planetData) {
+        foreach (Planet p in planets) {
+            if(p.planetData == planetData) {
+                return p;
+            }
+        }
+        return null;
     }
 
     //returns the center of the bounds rect in local space from the origin that does not have to be the bottom left corner.. it can be everywhere -> depends on the map file
-     public Vector2 GetCenter() {
+    public Vector2 GetCenter() {
         return bounds.center;
     }
 
-     public SpaceData GetData()
-     {
-         return spaceData;
-     }
+    public SpaceData GetData() {
+        return spaceData;
+    }
 }

@@ -10,7 +10,7 @@ using System.Collections;
 public class TroopData {
 
     // ****    CONFIGURATION    **** //
-    public int TravelSpeed = 10;
+    public int TravelSpeed = 100;        // Zur berechnung der Travel time
     // ****                     **** //
 
 
@@ -20,7 +20,8 @@ public class TroopData {
     public int ShipCount { get; private set; }
     public PlayerData Owner { get; private set; }
 
-    public int ArrivalTime { get; private set; }
+    public int TravelTime { get; private set; }     // Anzahl der Tage
+    public int ArrivalTime { get; private set; }    // Datum (=Tag)
 
 
     public TroopData() {
@@ -41,6 +42,7 @@ public class TroopData {
         } else {
             Owner = start.Owner;
             ArrivalTime = (int)System.Math.Round(currentDay + start.GetSurfaceDistance(target) / TravelSpeed);
+            TravelTime = ArrivalTime - currentDay;
         }
     }
 

@@ -116,24 +116,30 @@ public class AirTrafficControl : MonoBehaviour {
             throw new MissingComponentException("A pooled Troop-GameObect doesn't have a Troop-Component. Each Troop-GO should have a Troop Script attached.");
         }
 
-
-        troopObject.transform.SetParent(space.transform);
         troop.Init(troopData);
 
         PlanetData startPlanet = troopData.StartPlanet;
         PlanetData targetPlanet = troopData.TargetPlanet;
 
-        Vector3 toDirection = (targetPlanet.Position - startPlanet.Position);
+        Vector2 direction = (targetPlanet.Position - startPlanet.Position);
+        direction.Normalize();
 
-        troopObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, toDirection.normalized);
+        troopObject.transform.SetParent(space.transform);
+        troopObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+        troopObject.transform.localScale = new Vector3(15, 15, 1);
 
+        Vector3 initialPosition = startPlanet.Position;
+        initialPosition.z = -15;   // In front of planets
+        troopObject.transform.localPosition = initialPosition;
 
-        Vector3 TempMoveToPosition = Vector3.MoveTowards(startPlanet.Position, targetPlanet.Position,
-        (toDirection.magnitude / troopData.ArrivalTime) * 0.5f);
-        TempMoveToPosition.z = -10;
-        troopObject.transform.localPosition = TempMoveToPosition;
+        Vector2 startPosition = initialPosition;
+        startPosition += direction* startPlanet.Diameter / 2;
+        troop.StartPosition = startPosition;
 
-
+        Vector2 targetPosition = targetPlanet.Position;
+        targetPosition -= direction * targetPlanet.Diameter / 2;
+        troop.TargetPosition = targetPosition;
+        
         troopObject.SetActive(true);
         troops.Add(troopObject);
     }
@@ -142,6 +148,14 @@ public class AirTrafficControl : MonoBehaviour {
 
     private void EvaluateAttacks(EvaluationRequestEvent evt) {
         int currentDay = evt.GetCurrentDay();
+
+        // 1. Move troops:
+        foreach (GameObject troopGO in troops) {
+            Troop troop = troopGO.GetComponent<Troop>();
+            troop.UpdatePosition(currentDay);
+        }
+
+        // 2. Avaluate troops:
         List<Troop> todaysTroops = GetTroopsForDay(currentDay);
         Debug.Log("Day " + currentDay + ": " + todaysTroops.Count() + " troops arrived.");
 

@@ -20,11 +20,12 @@ public class PlanetMenuFiller : MonoBehaviour
     {
         MessageHub.Subscribe<UpgradeFactoryEvent>(UpgradeFactory);
         MessageHub.Subscribe<UpgradeHangarEvent>(UpgradeHangar);
-        MessageHub.Subscribe<NextDayRequestEvent>(NextDayRequest);
+        MessageHub.Subscribe<NextDayEvent>(NextDay);
     }
 
-    private void NextDayRequest(NextDayRequestEvent obj)
+    private void NextDay(NextDayEvent obj)
     {
+        if (activePlanet == null) { return; }
         UpgradeHangarUpdate();
         UpgradeFactoryUpdate();
     }

@@ -60,6 +60,18 @@ public class BigBang : MonoBehaviour {
     }
 
 
+    void InitialiseNewGame(){
+        Debug.Log("Generating new game...");
+        GameStateData gameStateData = new GameStateData();
+        gameState.Init(gameStateData);
+
+        AirTrafficData airTrafficData = new AirTrafficData();
+        airTrafficControl.Init(airTrafficData);
+
+        SpaceData spaceData = GenerateRandomMap();// GenerateDefaultMap();
+        space.Init(spaceData);
+    }
+
     void InitialiseGameFromSaveGame() {
         Debug.Log("Loading save game...");
 
@@ -77,17 +89,6 @@ public class BigBang : MonoBehaviour {
         
     }
 
-    void InitialiseNewGame() {
-        Debug.Log("Generating new game...");
-        GameStateData gameStateData = new GameStateData();
-        gameState.Init(gameStateData);
-
-        AirTrafficData airTrafficData = new AirTrafficData();
-        airTrafficControl.Init(airTrafficData);
-
-        SpaceData spaceData = GenerateRandomMap();// GenerateDefaultMap();
-        space.Init(spaceData);
-    }
 
 
     SpaceData GenerateDefaultMap() {
