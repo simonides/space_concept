@@ -2227,7 +2227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815e9e0f05ee3f545a6aa0f7473d51a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlanetName: {fileID: 0}
 --- !u!114 &687109763
 MonoBehaviour:
   m_ObjectHideFlags: 0
