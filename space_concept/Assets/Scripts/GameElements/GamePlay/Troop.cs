@@ -17,11 +17,12 @@ public class Troop : MonoBehaviour {
 
     float Progress;
 
-    public void Init(TroopData troop) {
+    public void Init(int currentDay, TroopData troop) {
         troopData = troop;
         StartPosition.Set(0, 0);
         TargetPosition.Set(0, 0);
         Progress = 0;
+        UpdatePosition(currentDay);   // sets the target progress
 
         this.name = GetNameForTroopGameObject(troopData);
     }

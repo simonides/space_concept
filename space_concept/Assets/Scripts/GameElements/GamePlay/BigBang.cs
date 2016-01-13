@@ -66,7 +66,7 @@ public class BigBang : MonoBehaviour {
         gameState.Init(gameStateData);
 
         AirTrafficData airTrafficData = new AirTrafficData();
-        airTrafficControl.Init(airTrafficData);
+        airTrafficControl.Init(gameStateData.CurrentDay, airTrafficData);
 
         SpaceData spaceData = GenerateRandomMap();// GenerateDefaultMap();
         space.Init(spaceData);
@@ -82,7 +82,7 @@ public class BigBang : MonoBehaviour {
         gameState.Init(gameStateData);
 
         AirTrafficData airTrafficData = saving.map.airTrafficData;
-        airTrafficControl.Init(airTrafficData);
+        airTrafficControl.Init(gameStateData.CurrentDay, airTrafficData);
 
         SpaceData spaceData = saving.map.spaceData;
         space.Init(spaceData);

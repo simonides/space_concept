@@ -22,6 +22,10 @@ public class AirTrafficControl : MonoBehaviour {
     AirTrafficData airTrafficData;        // entity
     List<GameObject> troops;              // troop objects (with attached Troop script)
 
+    // Troop deletion:
+    float deleteDelay;              // Number of seconds when the troopsToDelete will finally be deleted
+    List<Troop> troopsToDelete;
+
 
     void Awake() {    
         pooledGameObjectHolder = GameObject.Find("PooledGameObjects");
@@ -32,7 +36,7 @@ public class AirTrafficControl : MonoBehaviour {
         space = GameObject.Find("Space").GetComponent<Space>();
         if (space == null) {
             throw new MissingComponentException("Unable to find Space. The 'Space' game object also needs to be added to the level and have the space script attached.");
-        }
+        }        
     }
 
     void Start() {
@@ -67,11 +71,17 @@ public class AirTrafficControl : MonoBehaviour {
         InitEventSubscriptions();
     }
 
+    void Update() {
+        deleteDelay -= Time.deltaTime;
+        if(deleteDelay < 0 && troopsToDelete != null) {
+            DisposeOfTroops(troopsToDelete);
+        }
+    }
 
-    public void Init(AirTrafficData airTrafficData) {
+    public void Init(int currentDay, AirTrafficData airTrafficData) {
         this.airTrafficData = airTrafficData;
         foreach(TroopData troopData  in airTrafficData.airTraffic) {
-            InitGraphicalTroopMovement(troopData);
+            InitGraphicalTroopMovement(currentDay, troopData);
         }
     }
     
@@ -104,19 +114,19 @@ public class AirTrafficControl : MonoBehaviour {
         troopData.Init(evt.StartPlanet.planetData, evt.TargetPlanet.planetData, evt.ShipCount, gameStateData.CurrentDay);
         airTrafficData.AddTroopMovement(troopData);
 
-        InitGraphicalTroopMovement(troopData);
+        InitGraphicalTroopMovement(gameStateData.CurrentDay, troopData);
 
         Debug.Log("New troop movement confirmed: " + troopData.ToString());
     }
 
-    private void InitGraphicalTroopMovement(TroopData troopData) {
+    private void InitGraphicalTroopMovement(int currentDay, TroopData troopData) {
         GameObject troopObject = troopPool.Get();
         Troop troop = troopObject.GetComponent<Troop>();
         if (troop == null) {
             throw new MissingComponentException("A pooled Troop-GameObect doesn't have a Troop-Component. Each Troop-GO should have a Troop Script attached.");
         }
 
-        troop.Init(troopData);
+        troop.Init(currentDay, troopData);
 
         PlanetData startPlanet = troopData.StartPlanet;
         PlanetData targetPlanet = troopData.TargetPlanet;
@@ -137,7 +147,7 @@ public class AirTrafficControl : MonoBehaviour {
         troop.StartPosition = startPosition;
 
         Vector2 targetPosition = targetPlanet.Position;
-        targetPosition -= direction * targetPlanet.Diameter / 2;
+        //targetPosition -= direction * targetPlanet.Diameter / 2;
         troop.TargetPosition = targetPosition;
         
         troopObject.SetActive(true);
@@ -150,24 +160,27 @@ public class AirTrafficControl : MonoBehaviour {
         int currentDay = evt.GetCurrentDay();
 
         // 1. Move troops:
-        foreach (GameObject troopGO in troops) {
-            Troop troop = troopGO.GetComponent<Troop>();
-            troop.UpdatePosition(currentDay);
-        }
+        AnimateTroopObjects(currentDay);
 
         // 2. Avaluate troops:
         List<Troop> todaysTroops = GetTroopsForDay(currentDay);
         Debug.Log("Day " + currentDay + ": " + todaysTroops.Count() + " troops arrived.");
 
-        AnimateTroopObjects(todaysTroops, currentDay);
 
         var evaluation = PerformTroopEvaluation(todaysTroops);
         PublishTroopEvaluation(evaluation);
-        DisposeOfTodaysTroops(todaysTroops);
+
+        foreach (Troop troop in todaysTroops) {
+            troops.Remove(troop.gameObject);
+        }
+        MarkForDeletion(todaysTroops);        
     }
 
-    private void AnimateTroopObjects(List<Troop> todaysTroops, int CurrentDay) {
-
+    private void AnimateTroopObjects(int currentDay) {
+        foreach (GameObject troopGO in troops) {
+            Troop troop = troopGO.GetComponent<Troop>();
+            troop.UpdatePosition(currentDay);
+        }
     }
 
     private List<AttackEvaluation> PerformTroopEvaluation(List<Troop> todaysTroops) {
@@ -187,12 +200,24 @@ public class AirTrafficControl : MonoBehaviour {
         MessageHub.Publish<TroopEvaluationResultEvent>(evt);
     }
 
-    private void DisposeOfTodaysTroops(List<Troop> todaysTroops) {
-        // TODO: put troops and troopData back into pool allocator
+    private void MarkForDeletion(List<Troop> troopsForDeletion) {
+        if (troopsToDelete != null) {
+            DisposeOfTroops(troopsToDelete);
+        }
+        troopsToDelete = troopsForDeletion;
+        deleteDelay = 5; // delete in 5 seconds
     }
 
-    public AirTrafficData GetData()
-    {
+    private void DisposeOfTroops(List<Troop> troopsToDelete) {
+        foreach (Troop troop in troopsToDelete) {
+            troop.gameObject.SetActive(false);
+            troopDataPool.PutBack(troop.troopData);
+            troopPool.PutBack(troop.gameObject);
+        }
+        troopsToDelete.Clear();
+    }
+
+    public AirTrafficData GetData() {
         return airTrafficData;
     }
 }
