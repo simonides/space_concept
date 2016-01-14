@@ -131,11 +131,11 @@ public class BigBang : MonoBehaviour {
         SpaceData spaceData = new SpaceData();
         List<PlanetData> planets = new List<PlanetData>();//hold the list of planets to check if they are correctly disributed
         PlanetData planet;
-        int numberOfPlantes = Random.Range(7, 20);//get random number of planets
-        float minMapSizeX = 500f;
-        float minMapSizeY = 500f;
-        float maxMapSizeX = 2000f;
-        float maxMapSizeY = 2000f;
+        int numberOfPlantes = Random.Range(10, 30);//get random number of planets
+        float minMapSizeX = -1200f;
+        float minMapSizeY = -700f;
+        float maxMapSizeX = 1200f;
+        float maxMapSizeY = 700f;
 
         float minPlanetDistance = 200f;
         Vector2 newPosition = new Vector2();
@@ -173,7 +173,7 @@ public class BigBang : MonoBehaviour {
             {
                 Debug.Log("Actually generated Planet");
 
-                planet = new PlanetData(new Vector2(newPosition.x, newPosition.y), Random.Range(20f, 100f), 50, 10000, 100, true);
+                planet = new PlanetData(new Vector2(newPosition.x, newPosition.y), Random.Range(30f, 100f), 50, 10000, 100, true);
                 planets.Add(planet);
             }
         }
