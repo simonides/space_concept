@@ -13,7 +13,7 @@ public class PlayerManager: MonoBehaviour {
 
 
     public void InitMapWithPlayers(int playerCount) {
-
+        Debug.Log("Placing all Players on the map...");
     }
 
 
@@ -21,4 +21,9 @@ public class PlayerManager: MonoBehaviour {
         MessageHub.Subscribe<NextDayEvent>((NextDayEvent evt) => { PerformAiMovements(); });
     }
     
+    void PerformAiMovements() {
+        foreach(AiPlayer ai in AiPlayers) {
+            ai.PerformNextMovement();
+        }
+    }
 }

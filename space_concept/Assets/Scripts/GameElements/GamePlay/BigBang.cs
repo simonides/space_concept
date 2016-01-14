@@ -9,6 +9,7 @@ public class BigBang : MonoBehaviour {
     Space space;
     AirTrafficControl airTrafficControl;
     GameState gameState;
+    PlayerManager playerManager;
     // ****                     **** //
 
 
