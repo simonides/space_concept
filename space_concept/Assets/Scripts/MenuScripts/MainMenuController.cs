@@ -13,7 +13,7 @@ public class MainMenuController : MonoBehaviour {
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(f_sceneName);
         if (f_sceneName == "Game")
         {
-            AnimatedBackgroundDontDestroy.GetInstance().DestroyThis();
+            //AnimatedBackgroundDontDestroy.GetInstance().DestroyThis();
         }
     }
     public void Button_LoadScene(int f_sceneIndex){

@@ -45,6 +45,9 @@ public class BigBang : MonoBehaviour {
 
 
     void InitialiseGame() {
+        //Clean up from the menu
+        AnimatedBackgroundDontDestroy.TryDestroySingleton();
+
         Debug.Log("Initialising game...");
         try {
             if (SettingsController.GetInstance().loadMap == false) {

@@ -26,6 +26,15 @@ namespace Custom
                 return instance;
             }
 
+            public static bool InstanceExists()
+            {
+                if (instance == null)
+                {
+                    return false;
+                }
+                return true;
+            }
+
             protected virtual void Awake()
             {
                 Debug.Log("Singleton Awake");
