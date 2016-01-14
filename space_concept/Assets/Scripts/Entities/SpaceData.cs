@@ -48,16 +48,16 @@ public class SpaceData {
         Vector2 position = planet.Position;
         float diameter = planet.Diameter;
 
-        if (position.x - diameter / 2 < bounds.xMin) {
+        if (position.x - diameter / 2 < bounds.xMin || planets.Count == 1) {
             newMapBounds.xMin = position.x - diameter / 2;
         }
-        if (position.y - diameter / 2 < bounds.yMin) {
+        if (position.y - diameter / 2 < bounds.yMin || planets.Count == 1) {
             newMapBounds.yMin = position.y - diameter / 2;
         }
-        if (position.x + diameter / 2 > bounds.xMax) {
+        if (position.x + diameter / 2 > bounds.xMax || planets.Count == 1) {
             newMapBounds.xMax = position.x + diameter / 2;
         }
-        if (position.y + diameter / 2 > bounds.yMax) {
+        if (position.y + diameter / 2 > bounds.yMax || planets.Count == 1) {
             newMapBounds.yMax = position.y + diameter / 2;
         }
         bounds = newMapBounds;

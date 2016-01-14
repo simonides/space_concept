@@ -36,10 +36,12 @@ public class AirTrafficControl : MonoBehaviour {
         space = GameObject.Find("Space").GetComponent<Space>();
         if (space == null) {
             throw new MissingComponentException("Unable to find Space. The 'Space' game object also needs to be added to the level and have the space script attached.");
-        }        
+        }
+
+
     }
 
-    void Start() {
+    void Start(){ 
         GameState gameState = Camera.main.GetComponent<GameState>();
         if (gameState == null) {
             throw new MissingComponentException("Unable to find GameState. The 'GameState' script needs to be attached to the main Camera.");
@@ -49,6 +51,12 @@ public class AirTrafficControl : MonoBehaviour {
             throw new MissingReferenceException("The gameStateData has not been initialised yet.");
         }
 
+        //PreparePools();
+
+        InitEventSubscriptions();
+    }
+
+    void PreparePools() {
         troops = new List<GameObject>();
 
         troopDataPool = new PoolAllocator<TroopData>(
@@ -67,8 +75,6 @@ public class AirTrafficControl : MonoBehaviour {
                 gObj.transform.SetParent(pooledGameObjectHolder.transform, false);
             }
         );
-
-        InitEventSubscriptions();
     }
 
     void Update() {
@@ -79,6 +85,8 @@ public class AirTrafficControl : MonoBehaviour {
     }
 
     public void Init(int currentDay, AirTrafficData airTrafficData) {
+        PreparePools();
+
         this.airTrafficData = airTrafficData;
         foreach(TroopData troopData  in airTrafficData.airTraffic) {
             InitGraphicalTroopMovement(currentDay, troopData);
