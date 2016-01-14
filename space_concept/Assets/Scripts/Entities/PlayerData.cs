@@ -12,7 +12,7 @@ public class PlayerData {
 
     public PlayerData() {
         Name = "";
-        Color = Color.white;
+        Color = Color.blue;
         IsHumanPlayer = true;
     }
     public string Name { get; set; } 
