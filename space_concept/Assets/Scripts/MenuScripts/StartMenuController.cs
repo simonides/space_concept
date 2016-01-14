@@ -6,6 +6,8 @@ public class StartMenuController : MonoBehaviour {
     public Color playerColor;
     public UnityEngine.UI.Button colorButton;
     public UnityEngine.UI.InputField name;
+    public UnityEngine.UI.Text kiCount;
+
     void Awake() {
         playerColor = SettingsController.GetInstance().playerFile.Color;
         fieldNameInput = SettingsController.GetInstance().playerFile.Name;
@@ -48,6 +50,15 @@ public class StartMenuController : MonoBehaviour {
         SettingsController.GetInstance().playerFile.Color = playerColor;//wirte color into playerData --- not nice at the moment this way
     }
 
+    public void Slider_OnChange(UnityEngine.UI.Slider slider)
+    {
+        kiCount.text = slider.value.ToString();
+    }
+    public void Slider_OnChange(int count)
+    {
+        kiCount.text = count.ToString();
+        
+    }
     private void SaveChanges() {
         SettingsController.GetInstance().SaveData();
     }
