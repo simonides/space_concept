@@ -10,48 +10,39 @@ using System.Xml.Serialization;
 using Custom.Utility.DAL;
 //using Custom.Utility;
 using System.Runtime.Serialization;
-namespace Custom
-{
-    namespace Utility
-    {
-        public class SaveFileSerializer
-        {
+namespace Custom {
+    namespace Utility {
+        public class SaveFileSerializer {
 
 
             public SaveFileSerializer() { }
 
 
-            public static bool FileExists(string directory, string fileName)
-            { 
+            public static bool FileExists(string directory, string fileName) {
                 string f_path = DALSaveGame.GetFilePath(directory, fileName);
-                Debug.Log("File Exists: "+f_path);
-                if (File.Exists(f_path))
-                {
+                Debug.Log("File Exists: " + f_path);
+                if (File.Exists(f_path)) {
                     return true;
                 }
 
                 return false;
             }
-            public static bool FileExists(string fileName)
-            {
+            public static bool FileExists(string fileName) {
                 string f_path = DALSaveGame.GetFilePath(fileName);
-                if (File.Exists(f_path))
-                {
+                if (File.Exists(f_path)) {
                     return true;
                 }
 
                 return false;
             }
-            public static List<string> GetFileNames(string directory)
-            {
+            public static List<string> GetFileNames(string directory) {
                 string f_path = DALSaveGame.GetFilePath(directory);
                 List<string> listFiles = new List<string>();
-                if (Directory.Exists(f_path))
-                {
+                if (Directory.Exists(f_path)) {
                     listFiles = new List<string>(Directory.GetFiles(f_path));
                     for (int i = 0; i < listFiles.Count; i++) {
-                        int charPos =  listFiles[i].LastIndexOf('\\')+1;
-                        listFiles[i] = listFiles[i].Substring(charPos, listFiles[i].Length-charPos);
+                        int charPos = listFiles[i].LastIndexOf('\\') + 1;
+                        listFiles[i] = listFiles[i].Substring(charPos, listFiles[i].Length - charPos);
                         charPos = listFiles[i].LastIndexOf('.');
                         listFiles[i] = listFiles[i].Substring(0, charPos);
                     }
@@ -66,14 +57,11 @@ namespace Custom
             /// <param name="fileName">name of the file</param>
             /// <param name="directory">name of the file</param>
             /// <returns>returns True if no exception occured</returns>
-            public static bool Save<T>(T dataClass, string directory, string fileName)
-            {
+            public static bool Save<T>(T dataClass, string directory, string fileName) {
 
-                try
-                {
-                    
-                    using (FileStream fs = File.Create(DALSaveGame.GetFilePath(directory, fileName)))
-                    {
+                try {
+
+                    using (FileStream fs = File.Create(DALSaveGame.GetFilePath(directory, fileName))) {
                         BinaryFormatter bf = new BinaryFormatter();
                         SurrogateSelector ss = new SurrogateSelector();
                         StreamingContext sc = new StreamingContext(StreamingContextStates.All);
@@ -82,18 +70,12 @@ namespace Custom
                         bf.SurrogateSelector = ss;
                         bf.Serialize(fs, dataClass);
                     }
-                }
-                catch (IOException e)
-                {
+                } catch (IOException e) {
                     Debug.LogError(e.ToString());
-                }
-                catch (SerializationException e)
-                {
+                } catch (SerializationException e) {
                     Debug.LogError(e.ToString());
 
-                }
-                finally
-                {
+                } finally {
 
                 }
                 return true;
@@ -106,14 +88,11 @@ namespace Custom
             /// <param name="dataClass">object to save</param>
             /// <param name="fileName">name of the file</param>
             /// <returns>returns True if no exception occured</returns>
-            public static bool Save<T>(T dataClass, string fileName)
-            {
+            public static bool Save<T>(T dataClass, string fileName) {
 
-                try
-                {
+                try {
 
-                    using (FileStream fs = File.Create(DALSaveGame.GetFilePath(fileName)))
-                    {
+                    using (FileStream fs = File.Create(DALSaveGame.GetFilePath(fileName))) {
                         BinaryFormatter bf = new BinaryFormatter();
                         SurrogateSelector ss = new SurrogateSelector();
                         StreamingContext sc = new StreamingContext(StreamingContextStates.All);
@@ -122,18 +101,12 @@ namespace Custom
                         bf.SurrogateSelector = ss;
                         bf.Serialize(fs, dataClass);
                     }
-                }
-                catch (IOException e)
-                {
+                } catch (IOException e) {
                     Debug.LogError(e.ToString());
-                }
-                catch (SerializationException e)
-                {
+                } catch (SerializationException e) {
                     Debug.LogError(e.ToString());
 
-                }
-                finally
-                {
+                } finally {
 
                 }
                 return true;
@@ -148,15 +121,11 @@ namespace Custom
             /// OR returns null if there was an error or file does not exist
             /// </returns>
             public static T Load<T>(string fileName)
-            where T : class, new()
-            {
+            where T : class, new() {
                 T myFile = null;
-                try
-                {
-                    if (File.Exists(DALSaveGame.GetFilePath(fileName)))
-                    {
-                        using (FileStream fs = File.OpenRead(DALSaveGame.GetFilePath(fileName)))
-                        {
+                try {
+                    if (File.Exists(DALSaveGame.GetFilePath(fileName))) {
+                        using (FileStream fs = File.OpenRead(DALSaveGame.GetFilePath(fileName))) {
                             BinaryFormatter bf = new BinaryFormatter();
                             SurrogateSelector ss = new SurrogateSelector();
                             StreamingContext sc = new StreamingContext(StreamingContextStates.All);
@@ -165,23 +134,16 @@ namespace Custom
                             bf.SurrogateSelector = ss;
                             myFile = (T)bf.Deserialize(fs);
                         }
-                    }
-                    else
-                    {
+                    } else {
                         return null;
                     }
-                }
-                catch (FileNotFoundException e)
-                {
-                    return null;
-                }
-                catch (IOException e)
-                {
+                } catch (FileNotFoundException e) {
                     Debug.LogError(e.ToString());
                     return null;
-                }
-                catch (SerializationException e)
-                {
+                } catch (IOException e) {
+                    Debug.LogError(e.ToString());
+                    return null;
+                } catch (SerializationException e) {
                     Debug.LogError(e.ToString());
                     return null;
                 }
@@ -198,15 +160,11 @@ namespace Custom
             /// OR returns null if there was an error or file does not exist
             /// </returns>
             public static T Load<T>(string directory, string fileName)
-            where T : class, new()
-            {
+            where T : class, new() {
                 T myFile = null;
-                try
-                {
-                    if (File.Exists(DALSaveGame.GetFilePath(directory, fileName)))
-                    {
-                        using (FileStream fs = File.OpenRead(DALSaveGame.GetFilePath(directory,fileName)))
-                        {
+                try {
+                    if (File.Exists(DALSaveGame.GetFilePath(directory, fileName))) {
+                        using (FileStream fs = File.OpenRead(DALSaveGame.GetFilePath(directory, fileName))) {
                             BinaryFormatter bf = new BinaryFormatter();
                             SurrogateSelector ss = new SurrogateSelector();
                             StreamingContext sc = new StreamingContext(StreamingContextStates.All);
@@ -215,23 +173,15 @@ namespace Custom
                             bf.SurrogateSelector = ss;
                             myFile = (T)bf.Deserialize(fs);
                         }
-                    }
-                    else
-                    {
+                    } else {
                         return null;
                     }
-                }
-                catch (FileNotFoundException e)
-                {
+                } catch (FileNotFoundException e) {
                     return null;
-                }
-                catch (IOException e)
-                {
+                } catch (IOException e) {
                     Debug.LogError(e.ToString());
                     return null;
-                }
-                catch (SerializationException e)
-                {
+                } catch (SerializationException e) {
                     Debug.LogError(e.ToString());
                     return null;
                 }
@@ -250,26 +200,20 @@ namespace Custom
             /// <param name="directory">name of the file</param>
             /// <returns>returns True if no exception occured</returns>
             public static bool XMLSave<T>(T dataClass, string directory, string fileName)
-                 where T : class, new()
-            {
+                 where T : class, new() {
                 XmlSerializer xmls = new XmlSerializer(typeof(T));
                 StringWriter sw = new StringWriter();
                 string xml = null;
-                try
-                {
-                    using (FileStream fs = File.Create(DALSaveGame.GetFilePath(directory, fileName)))
-                    {
+                try {
+                    using (FileStream fs = File.Create(DALSaveGame.GetFilePath(directory, fileName))) {
                         xmls.Serialize(sw, dataClass);
                         xml = sw.ToString();
-                      
-                        using (StreamWriter writer = new StreamWriter(fs))
-                        {
+
+                        using (StreamWriter writer = new StreamWriter(fs)) {
                             writer.Write(xml);
                         }
                     }
-                }
-                catch (IOException e)
-                {
+                } catch (IOException e) {
                     Debug.LogError(e.ToString());
                 }
                 return true;
@@ -282,27 +226,21 @@ namespace Custom
             /// <param name="dataClass">object to save</param>
             /// <param name="fileName">name of the file</param>
             /// <returns>returns True if no exception occured</returns>
-            public static bool XMLSave<T>(T dataClass, string fileName)
-            {
+            public static bool XMLSave<T>(T dataClass, string fileName) {
 
                 XmlSerializer xmls = new XmlSerializer(typeof(T));
                 StringWriter sw = new StringWriter();
                 string xml = null;
-                try
-                {
-                    using (FileStream fs = File.Create(DALSaveGame.GetFilePath(fileName)))
-                    {
+                try {
+                    using (FileStream fs = File.Create(DALSaveGame.GetFilePath(fileName))) {
                         xmls.Serialize(sw, dataClass);
                         xml = sw.ToString();
 
-                        using (StreamWriter writer = new StreamWriter(fs))
-                        {
+                        using (StreamWriter writer = new StreamWriter(fs)) {
                             writer.Write(xml);
                         }
                     }
-                }
-                catch (IOException e)
-                {
+                } catch (IOException e) {
                     Debug.LogError(e.ToString());
                 }
                 return true;
@@ -317,37 +255,26 @@ namespace Custom
             /// OR returns null if there was an error or file does not exist
             /// </returns>
             public static T XMLLoad<T>(string fileName)
-            where T : class, new()
-            {
+            where T : class, new() {
                 T myFile = null;
                 XmlSerializer xmls = new XmlSerializer(typeof(T));
                 StringWriter sw = new StringWriter();
                 string xml = null;
                 string tempPath = DALSaveGame.GetFilePath(fileName);
-                try
-                {
-                    if (File.Exists(tempPath))
-                    {
+                try {
+                    if (File.Exists(tempPath)) {
 
                         xml = File.ReadAllText(tempPath);
                         myFile = xmls.Deserialize(new StringReader(xml)) as T;
-                    }
-                    else
-                    {
+                    } else {
                         return null;
                     }
-                }
-                catch (FileNotFoundException e)
-                {
+                } catch (FileNotFoundException e) {
                     return null;
-                }
-                catch (IOException e)
-                {
+                } catch (IOException e) {
                     Debug.LogError(e.ToString());
                     return null;
-                }
-                catch (SerializationException e)
-                {
+                } catch (SerializationException e) {
                     Debug.LogError(e.ToString());
                     return null;
                 }
@@ -364,37 +291,26 @@ namespace Custom
             /// OR returns null if there was an error or file does not exist
             /// </returns>
             public static T XMLLoad<T>(string directory, string fileName)
-            where T : class, new()
-            {
+            where T : class, new() {
                 T myFile = null;
                 XmlSerializer xmls = new XmlSerializer(typeof(T));
                 StringWriter sw = new StringWriter();
                 string xml = null;
                 string tempPath = DALSaveGame.GetFilePath(directory, fileName);
-                try
-                {
-                    if (File.Exists(tempPath))
-                    {
+                try {
+                    if (File.Exists(tempPath)) {
 
                         xml = File.ReadAllText(tempPath);
                         myFile = xmls.Deserialize(new StringReader(xml)) as T;
-                    }
-                    else
-                    {
+                    } else {
                         return null;
                     }
-                }
-                catch (FileNotFoundException e)
-                {
+                } catch (FileNotFoundException e) {
                     return null;
-                }
-                catch (IOException e)
-                {
+                } catch (IOException e) {
                     Debug.LogError(e.ToString());
                     return null;
-                }
-                catch (SerializationException e)
-                {
+                } catch (SerializationException e) {
                     Debug.LogError(e.ToString());
                     return null;
                 }
@@ -402,21 +318,17 @@ namespace Custom
                 return myFile;
             }
 
-            public static void DeleteFile(string directory, string fileName)
-            {
+            public static void DeleteFile(string directory, string fileName) {
                 //path to file
                 string tempPath = DALSaveGame.GetFilePath(directory, fileName);
-                if (File.Exists(tempPath))
-                {
+                if (File.Exists(tempPath)) {
                     File.Delete(tempPath);
                 }
             }
-            public static void DeleteFile(string fileName)
-            {
+            public static void DeleteFile(string fileName) {
                 //path to file
                 string tempPath = DALSaveGame.GetFilePath(fileName);
-                if (File.Exists(tempPath))
-                {
+                if (File.Exists(tempPath)) {
                     File.Delete(tempPath);
                 }
             }
