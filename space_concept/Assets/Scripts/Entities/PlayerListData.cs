@@ -6,19 +6,25 @@ public class PlayerListData {
     public PlayerData HumanPlayer { get; private set; }
     public List<AiPlayer> AiPlayers { get; private set; }
 
-    public PlayerListData() {
-        HumanPlayer = new PlayerData();
-        AiPlayers = new List<AiPlayer>();
-    }
-
-
+    //public PlayerListData() {
+    //    HumanPlayer = new PlayerData();
+    //    AiPlayers = new List<AiPlayer>();
+    //}
+    
     public PlayerListData(PlayerData humanPlayer, int aiCount) {
-        Debug.Log("Placing all Players on the map...");
-        // TODO: implement
+        var aiPlayers = new List<AiPlayer>();
+        for(int i=0; i< aiCount; ++i) {
+            AiPlayer player = new BasicAI();
+            player.Name = PlayerData.GetRandomPlayerName();
+            player.Color = Color.blue;  //TODO: predefined list of colors
+            aiPlayers.Add(player);
+        }
+        this.HumanPlayer = humanPlayer;
+        this.AiPlayers = aiPlayers;
     }
 
     public PlayerListData(PlayerData humanPlayer, List<AiPlayer> aiPlayers) {
-        Debug.Log("Placing all Players on the map...");
+        this.HumanPlayer = humanPlayer;
         this.AiPlayers = aiPlayers;
     }
 }

@@ -24,10 +24,10 @@ public class PlayerData {
                                                                     "Junior", "Klee", "Laser", "Legolas", "London", "Magic", "Pepsi-Carola", "Phoenix", "Popo", "Precious", "Pumuckl", "Schneewittchen",
                                                                     "Schokominza", "Siebenstern", "Sioux", "Smudo", "Sonne", "Sultan", "Tarzan", "Topas", "Viktualia", "Wasa" };
 
-    string GetRandomPlayerName() {
+    public static string GetRandomPlayerName() {
         return predefinedPlayerNames[UnityEngine.Random.Range(0, predefinedPlayerNames.Count)];
     }
-    
+
     public override string ToString() {
         return "Player \"" + Name + "\", color " + Color.ToString();
     }

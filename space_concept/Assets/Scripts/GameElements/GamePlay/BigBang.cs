@@ -82,12 +82,26 @@ public class BigBang : MonoBehaviour {
         space.Init(spaceData);
 
         // Handling players...
-        PlayerData humanPlayer = new PlayerData();
-        humanPlayer.Name = "Human Player";
-        humanPlayer.Color = Color.red;
+        PlaceNewPlayersOnMap("Human Player", Color.red, 7); //TODO: use the settings from the pre-start-screen
+    }
 
-        int aiCount = 7;
-        PlayerListData playerListData = new PlayerListData(humanPlayer, aiCount);
+
+
+    void PlaceNewPlayersOnMap(string humanPlayerName, Color humanPlayerColor, int aiCount) {
+        PlayerData humanPlayer = new PlayerData();
+        humanPlayer.Name = humanPlayerName;
+        humanPlayer.Color = humanPlayerColor;
+
+        var aiPlayers = new List<AiPlayer>();
+        for (int i = 0; i < aiCount; ++i) {
+            AiPlayer player = new BasicAI();
+            player.Name = PlayerData.GetRandomPlayerName();
+            player.Color = Color.blue;  //TODO: predefined list of colors
+            aiPlayers.Add(player);
+            //TODO: select start planet and set owner
+        }
+
+        PlayerListData playerListData = new PlayerListData(humanPlayer, aiPlayers);
         playerManager.Init(playerListData);
     }
 
@@ -106,18 +120,17 @@ public class BigBang : MonoBehaviour {
         space.Init(spaceData);
 
         // Handling players...
-        PlayerListData playerListData = new PlayerListData(new PlayerData(), 1);    // Todo: load from save game
+        PlayerListData playerListData = new PlayerListData(new PlayerData(), new List<AiPlayer>());    // Todo: load from save game
+        PlaceExistingPlayersOnMap(playerListData);
+    }
+
+
+    void PlaceExistingPlayersOnMap(PlayerListData playerListData) {
         playerManager.Init(playerListData);
     }
 
 
-    void PlaceNewPlayersOnMap() {
 
-    }
-
-    void PlaceSavedPlayersOnMap() {
-
-    }
 
 
 
