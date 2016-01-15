@@ -37,8 +37,6 @@ public class AirTrafficControl : MonoBehaviour {
         if (space == null) {
             throw new MissingComponentException("Unable to find Space. The 'Space' game object also needs to be added to the level and have the space script attached.");
         }
-
-
     }
 
     void Start(){ 

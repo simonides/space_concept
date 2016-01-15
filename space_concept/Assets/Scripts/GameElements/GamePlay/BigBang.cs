@@ -23,7 +23,7 @@ public class BigBang : MonoBehaviour {
         }
 
         airTrafficControl = GameObject.Find("AirTrafficControl").GetComponent<AirTrafficControl>();
-        if (space == null) {
+        if (airTrafficControl == null) {
             throw new MissingComponentException("Unable to find AirTrafficControl. There can't be any troops flying around without an global AirTrafficControl GameObject that has an AirTrafficControl Script attached.");
         }
 
@@ -31,6 +31,12 @@ public class BigBang : MonoBehaviour {
         if (gameState == null) {
             throw new MissingComponentException("Unable to find GameState. The 'GameState' script needs to be attached to the same Gameobject as the BigBang.");
         }
+
+        playerManager = GameObject.Find("PlayerManagement").GetComponent<PlayerManager>();
+        if (playerManager == null) {
+            throw new MissingComponentException("Unable to find PlayerManager. This script has to be attached to the global PlayerManagement game object.");
+        }
+
         InitialiseGame();
     }
 
@@ -74,12 +80,20 @@ public class BigBang : MonoBehaviour {
 
         SpaceData spaceData = GenerateRandomMap();// GenerateDefaultMap();
         space.Init(spaceData);
+
+        // Handling players...
+        PlayerData humanPlayer = new PlayerData();
+        humanPlayer.Name = "Human Player";
+        humanPlayer.Color = Color.red;
+
+        int aiCount = 7;
+        PlayerListData playerListData = new PlayerListData(humanPlayer, aiCount);
+        playerManager.Init(playerListData);
     }
 
     void InitialiseGameFromSaveGame() {
         Debug.Log("Loading save game...");
-
-        //TODO: load GameStateData too...
+                //TODO: load GameStateData too...
         var saving = SettingsController.GetInstance();
 
         GameStateData gameStateData = saving.map.gameStateData;
@@ -90,7 +104,19 @@ public class BigBang : MonoBehaviour {
 
         SpaceData spaceData = saving.map.spaceData;
         space.Init(spaceData);
-        
+
+        // Handling players...
+        PlayerListData playerListData = new PlayerListData(new PlayerData(), 1);    // Todo: load from save game
+        playerManager.Init(playerListData);
+    }
+
+
+    void PlaceNewPlayersOnMap() {
+
+    }
+
+    void PlaceSavedPlayersOnMap() {
+
     }
 
 
