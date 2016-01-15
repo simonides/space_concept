@@ -3,17 +3,11 @@ using System.Collections;
 
 public class AlwaysOnButtons : MonoBehaviour {
 
-    public void NextDay()
-    {
+    public void NextDay() {
         MessageHub.Publish(new NextDayRequestEvent(this));
     }
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    public void ShowEventList(){
+        MessageHub.Publish(new ShowEventListEvent(this));
     }
 }

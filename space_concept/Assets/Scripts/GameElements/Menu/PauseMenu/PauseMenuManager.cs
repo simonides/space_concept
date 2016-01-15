@@ -18,7 +18,6 @@ public class PauseMenuManager : AbstractMenuManager
         MessageHub.Subscribe<ShowPauseMenuEvent>(ShowOptionsMenu);
         MessageHub.Subscribe<HidePauseMenuEvent>(HideOptionsMenu);
         MessageHub.Subscribe<ESCKeyPressedEvent>(ESCKeyPressed);
-
     }
 
 
