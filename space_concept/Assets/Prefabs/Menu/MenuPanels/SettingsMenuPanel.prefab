@@ -893,6 +893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67f8551fd6e9ec40844683d14a8df9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fogOfWarToggle: {fileID: 11442128}
   masterSlider: {fileID: 11492678}
   musicSlider: {fileID: 11463118}
   sfxslider: {fileID: 11479988}
