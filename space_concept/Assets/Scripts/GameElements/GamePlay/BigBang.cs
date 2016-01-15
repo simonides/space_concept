@@ -43,13 +43,6 @@ public class BigBang : MonoBehaviour {
 
 
     
-
-
-    // Use this for initialization
-    void Start() {
-    }
-
-
     void InitialiseGame() {
         //Clean up from the menu
         AnimatedBackgroundDontDestroy.TryDestroySingleton();
