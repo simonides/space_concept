@@ -90,6 +90,7 @@ public class StartMenuController : MonoBehaviour {
     public void Slider_OnChange(UnityEngine.UI.Slider slider)
     {
         kiCount.text = slider.value.ToString();
+        SettingsController.GetInstance().kiCount = (int)slider.value;
     }
     public void Slider_OnChange(int count)
     {
