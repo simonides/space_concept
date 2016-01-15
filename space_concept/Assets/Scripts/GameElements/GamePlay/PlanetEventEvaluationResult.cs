@@ -114,7 +114,7 @@ public class AttackEvaluation {
         evaluation.Planet = troop.TargetPlanet;
         evaluation.OriginalOwner = oldOwner;
 
-        Debug.Log("An attack of " + evaluation.IncomingShips + " ships reached planet " + evaluation.Planet.Name + " - Losses:  owner = " + lostShipsByOwner + ", attacker = " + (lostShipsByAttacker+lostShipsByLanding) + "; New owner: " + newOwner == null ? "neutral" : newOwner.Name + "");
+        Debug.Log("An attack of " + evaluation.IncomingShips + " ships reached planet " + evaluation.Planet.Name + " - Losses:  owner = " + lostShipsByOwner + ", attacker = " + (lostShipsByAttacker + lostShipsByLanding) + "; New owner: " + (newOwner == null ? "neutral" : newOwner.Name) + "");
         return evaluation;
     }
 }
