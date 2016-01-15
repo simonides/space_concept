@@ -43,13 +43,6 @@ public class BigBang : MonoBehaviour {
 
 
     
-
-
-    // Use this for initialization
-    void Start() {
-    }
-
-
     void InitialiseGame() {
         //Clean up from the menu
         AnimatedBackgroundDontDestroy.TryDestroySingleton();
@@ -91,14 +84,25 @@ public class BigBang : MonoBehaviour {
         PlayerData humanPlayer = new PlayerData();
         humanPlayer.Name = humanPlayerName;
         humanPlayer.Color = humanPlayerColor;
+        Planet home = space.getRandomEmptyStartPlanet();
+        if(home == null) {
+            Debug.LogError("Failed to set home planet for human player. There are no start planets on the map");
+        }
+        home.planetData.Owner = humanPlayer;
 
         var aiPlayers = new List<AiPlayer>();
         for (int i = 0; i < aiCount; ++i) {
             AiPlayer player = new BasicAI();
             player.Name = PlayerData.GetRandomPlayerName();
             player.Color = Color.blue;  //TODO: predefined list of colors
+            
+            home = space.getRandomEmptyStartPlanet();
+            if (home == null) {
+                Debug.LogError("Failed to set home planet for ai. There are no start planets on the map");
+                break;
+            }
             aiPlayers.Add(player);
-            //TODO: select start planet and set owner
+            home.planetData.Owner = player;
         }
 
         PlayerListData playerListData = new PlayerListData(humanPlayer, aiPlayers);

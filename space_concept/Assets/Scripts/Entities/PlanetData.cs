@@ -100,7 +100,7 @@ public class PlanetData {
     }
     public int GetNextFactoryUpgrade() {
         int next = Mathf.CeilToInt(FactorySpeed * UPGRADE_FACTOR);
-        next += UPGRADE_STEP - (next % UPGRADE_STEP);
+        next += (UPGRADE_STEP - (next % UPGRADE_STEP)) % UPGRADE_STEP;
         return next;
     }
     public int GetHangarUpgradeCosts() {
@@ -109,7 +109,7 @@ public class PlanetData {
     }
     public int GetNextHangarUpgrade() {
         int next = Mathf.CeilToInt(HangarSize * UPGRADE_FACTOR);
-        next += UPGRADE_STEP - (next % UPGRADE_STEP);
+        next += (UPGRADE_STEP - (next % UPGRADE_STEP)) % UPGRADE_STEP;
         return next;
     }
 
