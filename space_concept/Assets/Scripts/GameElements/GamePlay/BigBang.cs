@@ -89,7 +89,7 @@ public class BigBang : MonoBehaviour {
         if (home == null) {
             Debug.LogError("Failed to set home planet for human player. There are no start planets on the map");
         }
-        home.planetData.Owner = humanPlayer;
+        home.planetData.SetOwner(humanPlayer);
 
         var aiPlayers = new List<AiPlayer>();
         for (int i = 0; i < aiCount; ++i) {
@@ -103,7 +103,7 @@ public class BigBang : MonoBehaviour {
                 break;
             }
             aiPlayers.Add(player);
-            home.planetData.Owner = player;
+            home.planetData.SetOwner(player);
         }
 
         PlayerListData playerListData = new PlayerListData(humanPlayer, aiPlayers);

@@ -16,7 +16,7 @@ public class PlanetData {
     public const int HANGAR_UPGRADE_COSTS = 1;      //The number of ships that are required to increase the hangar by 1.
 
 
-    public PlayerData Owner { get; set; }               // The player who owns this planet
+    public PlayerData Owner { get; private set; }               // The player who owns this planet
 
     public string Name { get; set; }                // Name of the planet
 
@@ -70,7 +70,17 @@ public class PlanetData {
             _factorySpeed = value;
         }
     }
-
+    
+    public void SetOwner(PlayerData owner) {
+        PlayerData oldOwner = this.Owner;
+        this.Owner = owner;
+        if (oldOwner != null) {
+            oldOwner.RemovePlanetFromOwnership(this);
+        }
+        if(this.Owner != null) {
+            this.Owner.AddPlanetToOwnership(this);
+        }
+    }
 
     public PlanetData() {
         Name = GetRandomPlanetName();
@@ -217,7 +227,7 @@ public class PlanetData {
 
         // Perform actions:
         if (gotCaptured) {
-            Owner = newOwner;
+            SetOwner(newOwner);
             Ships = troop.ShipCount - lostShipsByAttacker - lostShipsByLanding;
         } else {
             Ships -= lostShipsByOwner;
