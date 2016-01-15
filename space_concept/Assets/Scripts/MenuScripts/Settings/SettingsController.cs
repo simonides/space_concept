@@ -11,6 +11,8 @@ public class SettingsController : SingletonBase<SettingsController> {
     public bool loadMap = false;
     public string mapName = "";
 
+    public int kiCount = 1;
+
 
     override protected void Awake() {
         base.Awake(this);
@@ -32,6 +34,7 @@ public class SettingsController : SingletonBase<SettingsController> {
             SaveFileSerializer.XMLSave<PlayerData>(playerFile, "Settings", "Player.xml");
             Debug.Log("Player.xml file did not exist, so it was created");
         }
+        
     }
 
 	

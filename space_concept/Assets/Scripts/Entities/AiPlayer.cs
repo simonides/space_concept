@@ -6,7 +6,11 @@ using System;
 public class AiPlayer {
     PlayerData playerData;
 
-    
+    //seralization needs a default public constructor
+    public AiPlayer()
+    {
+
+    }
     public AiPlayer(PlayerData playerData) {
         this.playerData = playerData;
         playerData.IsHumanPlayer = false;

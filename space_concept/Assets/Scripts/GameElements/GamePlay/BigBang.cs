@@ -73,7 +73,7 @@ public class BigBang : MonoBehaviour {
         space.Init(spaceData);
 
         // Handling players...
-        PlaceNewPlayersOnMap("Human Player", Color.red, 7); //TODO: use the settings from the pre-start-screen
+        PlaceNewPlayersOnMap("Human Player", Color.red, SettingsController.GetInstance().kiCount); 
         MessageHub.Publish<PlanetUpdateEvent>(new PlanetUpdateEvent(this));     // Update graphical planet representations
     }
 
@@ -123,7 +123,8 @@ public class BigBang : MonoBehaviour {
         space.Init(spaceData);
 
         // Handling players...
-        PlayerListData playerListData = new PlayerListData(new PlayerData(), new List<AiPlayer>());    // Todo: load from save game
+        //PlayerListData playerListData = new PlayerListData(new PlayerData(), new List<AiPlayer>());    // Todo: load from save game
+        PlayerListData playerListData = saving.map.playerListData;
         PlaceExistingPlayersOnMap(playerListData);
     }
 
