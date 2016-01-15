@@ -68,8 +68,7 @@ public class Space : MonoBehaviour {
 
         foreach (PlanetData planet in spaceData.planets) {
             CreatePlanet(planet);
-        }
-
+        } 
 
         // Initialise the background texture:
         background.transform.localPosition = new Vector3(bounds.xMin, bounds.yMin, 10);
@@ -138,6 +137,22 @@ public class Space : MonoBehaviour {
         }
         return null;
     }
+
+    // Returns a startPlanet that has no owner and can be used for a new player
+    public Planet getRandomEmptyStartPlanet() {
+        foreach (Planet p in planets) {
+            PlanetData data = p.planetData;
+            if(data.Owner != null) {
+                continue;
+            }
+            if(data.IsStartPlanet) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+
 
     //returns the center of the bounds rect in local space from the origin that does not have to be the bottom left corner.. it can be everywhere -> depends on the map file
     public Vector2 GetCenter() {

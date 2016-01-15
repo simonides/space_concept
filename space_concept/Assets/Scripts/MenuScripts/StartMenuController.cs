@@ -5,7 +5,7 @@ public class StartMenuController : MonoBehaviour {
     public string fieldNameInput = "";
     public Color playerColor;
     public UnityEngine.UI.Button colorButton;
-    public UnityEngine.UI.InputField name;
+    public UnityEngine.UI.InputField playerName;
     public UnityEngine.UI.Text kiCount;
     public UnityEngine.RectTransform colorPickerPanel;
     private bool loadingScene;
@@ -22,7 +22,7 @@ public class StartMenuController : MonoBehaviour {
         colorButton.colors = cb;
 
         //set name
-        name.text = fieldNameInput;
+        playerName.text = fieldNameInput;
 
         loadingScene = false;
     }

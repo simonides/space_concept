@@ -10,17 +10,16 @@ using System.Collections;
  * Contains display properties and is attached to a planet object in the game.
  */
 [RequireComponent(typeof(SpriteRenderer))]
-public class Planet : MonoBehaviour
-{
+public class Planet : MonoBehaviour {
     public Sprite[] planetSprites;
     public Sprite[] planetFX;
     public SpriteRenderer glow;
-    public Material glowMatNeutral;
-    public Material glowMatSelected;
-    public Material glowMatOwned;
-    public Material glowMatEnemy;
+    public Material glowMaterial;
+    //public Material glowMatNeutral;
+    //public Material glowMatOwned;
+    //public Material glowMatEnemy;
 
-    private Material _usualGlow;
+    //private Material _usualGlow;
 
 
 
@@ -38,96 +37,83 @@ public class Planet : MonoBehaviour
 
 
 
-    void Awake()
-    {
+    void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null)
-        {
+        if (spriteRenderer == null) {
             throw new MissingComponentException("Unable to find SpriteRenderer on Planet. The planet game object should have a sprite renderer for the planet texture.");
         }
         spriteCollider = GetComponent<CircleCollider2D>();
-        if (spriteCollider == null)
-        {
+        if (spriteCollider == null) {
             throw new MissingComponentException("Unable to find SpriteCopllider on Planet. The planet game object should have a sprite renderer for the planet texture.");
         }
     }
 
 
-    public void Init(PlanetData planet)
-    {
+    void Start() {
+        MessageHub.Subscribe<PlanetUpdateEvent>((PlanetUpdateEvent evt) => UpdateGraphicalRepresentation());
+    }
+
+
+    public void Init(PlanetData planet) {
         planetData = planet;
         this.name = "Planet '" + planet.Name + "'";
         this.transform.position = planet.Position;
-        
+
         //load planet sprite
-        if (planet.TextureName == "")
-        {
-            int index = Random.Range(0, planetSprites.Length-1);
+        if (planet.TextureName == "") {
+            int index = Random.Range(0, planetSprites.Length - 1);
             spriteRenderer.sprite = planetSprites[index];
             planet.TextureName = spriteRenderer.sprite.name;
-        }
-        else
-        {
-            foreach (Sprite s in planetSprites)
-            {
-                if (s.name == planet.TextureName)
-                {
+        } else {
+            foreach (Sprite s in planetSprites) {
+                if (s.name == planet.TextureName) {
                     spriteRenderer.sprite = s;
                 }
             }
         }
-        if (planet.TextureFXName == "")
-        {
+        if (planet.TextureFXName == "") {
             glow.sprite = planetFX[0];
             planet.TextureFXName = planetFX[0].name;
-        }
-        else {
-            foreach (Sprite s in planetFX)
-            {
-                if (s.name == planet.TextureFXName)
-                {
+        } else {
+            foreach (Sprite s in planetFX) {
+                if (s.name == planet.TextureFXName) {
                     glow.sprite = s;
                 }
             }
         }
-
         Vector2 spriteSize = spriteRenderer.sprite.rect.size;
-        if (spriteSize.x != spriteSize.y)
-        {
+        if (spriteSize.x != spriteSize.y) {
             Debug.LogWarning("The used planet sprite is not rectangular and therefore distorted");
         }
         this.transform.localScale = new Vector3(planet.Diameter / spriteSize.x, planet.Diameter / spriteSize.y, 1);
-        spriteCollider.radius = spriteSize.x*0.5f;
+        spriteCollider.radius = spriteSize.x * 0.5f;
 
-        
+
         spriteSize = glow.sprite.rect.size;
-        if (spriteSize.x != spriteSize.y)
-        {
+        if (spriteSize.x != spriteSize.y) {
             Debug.LogWarning("The used planet sprite for glow is not rectangular and therefore distorted");
         }
-        glow.gameObject.transform.localScale = new Vector3(1.2f ,1.2f ,1.2f);//new Vector3(planet.Diameter / spriteSize.x, planet.Diameter / spriteSize.y, 1);
-        glow.material = glowMatNeutral;
+        glow.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);//new Vector3(planet.Diameter / spriteSize.x, planet.Diameter / spriteSize.y, 1);
 
-
-        //TODO: set background sprite of planet here
-
+        UpdateGraphicalRepresentation();
     }
 
 
-    public void RemoveGlow()
-    {
-        glow.material = glowMatNeutral;
-        //glow.material = _usualGlow;
+
+
+    private void UpdateGraphicalRepresentation() {
+        glow.material = glowMaterial;
+        glow.material.color = Color.red;
     }
 
-    public void SetGlow(){
-        //_usualGlow = glow.material; //TODO this should not be set here this should be set when a event changes this state
-        glow.material = glowMatSelected;
+    public void setSelected(bool selected) {
+        //TODO: implement
     }
 
-    public void SingleTouchClick(){
+
+    public void SingleTouchClick() {
         Debug.Log("planet clicked ");
-        MessageHub.Publish(new PlanetClickedEvent(this,this));
+        MessageHub.Publish(new PlanetClickedEvent(this, this));
     }
 
     //public Vector2 position {                           // The position of this planet in the cosmos

@@ -49,7 +49,7 @@ public class PlanetMenuManager : AbstractMenuManager
     {
         Debug.Assert(_activeMenu == 3);
         _activeMenu = 1;
-        planetTwo.RemoveGlow();
+        planetTwo.setSelected(false);
         ShowPlanetMenu();
     }
 
@@ -57,7 +57,7 @@ public class PlanetMenuManager : AbstractMenuManager
     {
         Debug.Assert(_activeMenu == 3);
         _activeMenu = 2;
-        planetTwo.RemoveGlow();
+        planetTwo.setSelected(false);
         ShowChoosePlanetMenu();
     }
 
@@ -78,7 +78,7 @@ public class PlanetMenuManager : AbstractMenuManager
     private void CancelPlanetMenu(CancelPlanetMenuEvent event_)
     {
         _activeMenu = 0;
-        planetOne.RemoveGlow();
+        planetOne.setSelected(false);
         SwitchMenu(null);
     }
 
@@ -116,7 +116,7 @@ public class PlanetMenuManager : AbstractMenuManager
     private void ShowPlanetMenu()
     {
         Debug.Assert(planetOne != null);
-        planetOne.SetGlow();
+        planetOne.setSelected(true);
         _planetMenuFiller.UpdateInfo(planetOne.planetData);
         SwitchMenu(PlanetMenu);
     }
@@ -129,7 +129,7 @@ public class PlanetMenuManager : AbstractMenuManager
     private void ShowSendShipsMenu()
     {
         Debug.Assert(planetOne != planetTwo);
-        planetTwo.SetGlow();
+        planetTwo.setSelected(true);
         _sendShipMenuFiller.UpdateUI(planetOne, planetTwo);
         SwitchMenu(SendShipsMenu);
     }

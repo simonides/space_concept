@@ -204,6 +204,7 @@ public class AirTrafficControl : MonoBehaviour {
     private void PublishTroopEvaluation(List<AttackEvaluation> evaluations) {
         TroopEvaluationResultEvent evt = new TroopEvaluationResultEvent(this, evaluations);
         MessageHub.Publish<TroopEvaluationResultEvent>(evt);
+        MessageHub.Publish<PlanetUpdateEvent>(new PlanetUpdateEvent(this));     // Update graphical planet representations
     }
 
     private void MarkForDeletion(List<Troop> troopsForDeletion) {

@@ -107,10 +107,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8180a6ce16ec0a44a83eeac9aeb4e034, type: 3}
   - {fileID: 21300000, guid: 8d809951dcb0ad148a091c8384033c1b, type: 3}
   glow: {fileID: 21291134}
-  glowMatNeutral: {fileID: 2100000, guid: 1b0b64d1e72aba24ba7ed1c7d2846a06, type: 2}
-  glowMatSelected: {fileID: 2100000, guid: 41896c98e4e08624caf743259001e7d8, type: 2}
-  glowMatOwned: {fileID: 2100000, guid: 6d69960cb1d780d48aca092da180ed07, type: 2}
-  glowMatEnemy: {fileID: 2100000, guid: 408c8bcaa5b34fd4a9139efa7892e686, type: 2}
+  glowMaterial: {fileID: 2100000, guid: 41896c98e4e08624caf743259001e7d8, type: 2}
 --- !u!212 &21271108
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -387,6 +384,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: ebf78fc410dc36347a18f5f184cf65a0,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: glowMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 41896c98e4e08624caf743259001e7d8, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 124314}
