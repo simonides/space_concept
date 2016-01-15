@@ -40,7 +40,7 @@ public class EventListManager : AbstractMenuManager {
 
     public void ShowEventList(ShowEventListEvent event_)
     {
-        _eventListFiller.Fill(activeEventlist);
+        //_eventListFiller.Fill(activeEventlist);
         SwitchMenu(eventListMenu);
     }
 
