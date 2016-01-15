@@ -463,6 +463,10 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 21.450012
       objectReference: {fileID: 0}
+    - target: {fileID: 11406816, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
+      propertyPath: playerName
+      value: 
+      objectReference: {fileID: 1777848562}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
   m_IsPrefabParent: 0
@@ -740,6 +744,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c4cfe7a6fc13284a8369b85787866ff, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1777848562 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11411078, guid: 6ac7a356d25e188429dd54e662280751,
+    type: 2}
+  m_PrefabInternal: {fileID: 394151125}
+  m_Script: {fileID: 575553740, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &1840859444
 Prefab:
   m_ObjectHideFlags: 0
