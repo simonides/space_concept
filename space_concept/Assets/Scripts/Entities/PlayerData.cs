@@ -14,11 +14,24 @@ public class PlayerData {
         Name = "";
         Color = Color.blue;
         IsHumanPlayer = true;
-        OwnedPlanets = new List<PlanetData>();
+        ownedPlanets = new List<PlanetData>();
     }
     public string Name { get; set; } 
     public Color Color { get; set; }
-    public List<PlanetData> OwnedPlanets { get; private set; }  // This list is dynamically updated from outside
+
+
+    //public List<PlanetData> OwnedPlanets { get; private set; }  // This list is dynamically updated from outside
+   [System.NonSerialized]
+    private List<PlanetData> ownedPlanets;
+
+    public List<PlanetData> GetOwnedPlanets()
+    {
+        return ownedPlanets;
+    }
+    public void SetOwnedPlanets(List<PlanetData> pd)
+    {
+        ownedPlanets = pd;
+    }
 
     public bool IsHumanPlayer { get; set; }     // True: this is the player who plays the game; false: AI (=enemy)
 
@@ -30,14 +43,14 @@ public class PlayerData {
         if (planet.Owner != this) {
             Debug.LogError("Error: A planet can't be added to the ownership-list of the player, if the player actually doesn't own the planet.");
         }
-        OwnedPlanets.Add(planet);
+        ownedPlanets.Add(planet);
     }
 
     public void RemovePlanetFromOwnership(PlanetData planet) {
         if (planet.Owner == this) {
             Debug.LogError("Error: A planet can't be removed from the ownership-list of the player, if it is still owned by the player.");
         }
-        OwnedPlanets.Remove(planet);
+        ownedPlanets.Remove(planet);
     }
 
     public static string GetRandomPlayerName() {
