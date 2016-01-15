@@ -38,7 +38,9 @@ public class BigBang : MonoBehaviour {
         InitialiseGame();
     }
 
-
+    void Start() {
+        MessageHub.Publish<PlanetUpdateEvent>(new PlanetUpdateEvent(this));     // Update graphical planet representations
+    }
 
 
     void InitialiseGame() {
@@ -74,7 +76,6 @@ public class BigBang : MonoBehaviour {
 
         // Handling players...
         PlaceNewPlayersOnMap("Human Player", Color.red, SettingsController.GetInstance().kiCount); 
-        MessageHub.Publish<PlanetUpdateEvent>(new PlanetUpdateEvent(this));     // Update graphical planet representations
     }
 
 

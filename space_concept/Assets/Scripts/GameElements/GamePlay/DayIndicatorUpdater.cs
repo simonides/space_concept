@@ -25,7 +25,6 @@ public class DayIndicatorUpdater : MonoBehaviour {
     }
 
     public void UpdateText(int currentDay) {
-        Debug.LogError("Updating text with " + currentDay);
         currentDayText.text = ""+currentDay;
     }
 
