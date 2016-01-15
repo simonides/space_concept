@@ -93,17 +93,18 @@ public class BigBang : MonoBehaviour {
 
         var aiPlayers = new List<AiPlayer>();
         for (int i = 0; i < aiCount; ++i) {
-            AiPlayer player = new BasicAI();
-            player.Name = PlayerData.GetRandomPlayerName();
-            player.Color = Color.blue;  //TODO: predefined list of colors
-
+            PlayerData aiData = new PlayerData();
+            aiData.Name = PlayerData.GetRandomPlayerName();
+            aiData.Color = Color.blue;  //TODO: predefined list of colors
+            AiPlayer player = new AiPlayer(aiData);
+          
             home = space.getRandomEmptyStartPlanet();
             if (home == null) {
                 Debug.LogError("Failed to set home planet for ai. There are no start planets on the map");
                 break;
             }
             aiPlayers.Add(player);
-            home.planetData.SetOwner(player);
+            home.planetData.SetOwner(aiData);
         }
 
         PlayerListData playerListData = new PlayerListData(humanPlayer, aiPlayers);

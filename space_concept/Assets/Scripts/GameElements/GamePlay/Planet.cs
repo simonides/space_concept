@@ -130,7 +130,6 @@ public class Planet : MonoBehaviour {
     }
 
     public void Update() {
-
         // play pulse-animation
         float change = Time.deltaTime * GlowPulseSpeed;
         float alpha;
