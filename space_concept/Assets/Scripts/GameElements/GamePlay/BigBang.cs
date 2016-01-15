@@ -107,7 +107,6 @@ public class BigBang : MonoBehaviour {
 
     void InitialiseGameFromSaveGame() {
         Debug.Log("Loading save game...");
-                //TODO: load GameStateData too...
         var saving = SettingsController.GetInstance();
 
         GameStateData gameStateData = saving.map.gameStateData;

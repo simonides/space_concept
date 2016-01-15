@@ -11,18 +11,6 @@ public class PlayerListData {
     //    AiPlayers = new List<AiPlayer>();
     //}
     
-    public PlayerListData(PlayerData humanPlayer, int aiCount) {
-        var aiPlayers = new List<AiPlayer>();
-        for(int i=0; i< aiCount; ++i) {
-            AiPlayer player = new BasicAI();
-            player.Name = PlayerData.GetRandomPlayerName();
-            player.Color = Color.blue;  //TODO: predefined list of colors
-            aiPlayers.Add(player);
-        }
-        this.HumanPlayer = humanPlayer;
-        this.AiPlayers = aiPlayers;
-    }
-
     public PlayerListData(PlayerData humanPlayer, List<AiPlayer> aiPlayers) {
         this.HumanPlayer = humanPlayer;
         this.AiPlayers = aiPlayers;
