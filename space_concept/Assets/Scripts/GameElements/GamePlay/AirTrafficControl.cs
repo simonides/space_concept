@@ -184,6 +184,7 @@ public class AirTrafficControl : MonoBehaviour {
 
     private void AnimateTroopObjects(int currentDay) {
         foreach (GameObject troopGO in troops) {
+            Debug.Assert(troopGO != null);
             Troop troop = troopGO.GetComponent<Troop>();
             troop.UpdatePosition(currentDay);
         }

@@ -108,6 +108,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8d809951dcb0ad148a091c8384033c1b, type: 3}
   glow: {fileID: 21291134}
   glowMaterial: {fileID: 2100000, guid: 41896c98e4e08624caf743259001e7d8, type: 2}
+  MinGlowScale: 1.2
+  MaxGlowScale: 1.5
+  GlowPulseSpeed: 1.5
+  CurrentGlowScale: 0
+  GlowIsGrowing: 0
 --- !u!212 &21271108
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -388,6 +393,14 @@ Prefab:
       propertyPath: glowMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 41896c98e4e08624caf743259001e7d8, type: 2}
+    - target: {fileID: 0}
+      propertyPath: GlowPulseSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: MaxGlowScale
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 124314}

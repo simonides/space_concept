@@ -28,36 +28,44 @@ public class PlanetData {
     public string TextureFXName { get; set; }
 
     float _diameter;
-    public float Diameter {
+    public float Diameter
+    {
         get { return _diameter; }
-        set {
+        set
+        {
             if (Diameter < 0) { throw new UnityException("Invalid diameter: Must be greater than zero"); }
             _diameter = value;
         }
     }
 
     int _ships;
-    public int Ships {
+    public int Ships
+    {
         get { return _ships; }
-        set {
+        set
+        {
             if (Ships < 0) { throw new UnityException("Invalid ship amount: Must not be negative"); }
             _ships = value;
         }
     }
 
     int _hangarSize;
-    public int HangarSize {
+    public int HangarSize
+    {
         get { return _hangarSize; }
-        set {
+        set
+        {
             if (HangarSize < 0) { throw new UnityException("Invalid hangar size: Must not be negative"); }
             _hangarSize = value;
         }
     }
 
     int _factorySpeed;
-    public int FactorySpeed {
+    public int FactorySpeed
+    {
         get { return _factorySpeed; }
-        set {
+        set
+        {
             if (FactorySpeed < 0) { throw new UnityException("Invalid factory speed: Must not be negative"); }
             _factorySpeed = value;
         }
@@ -66,7 +74,7 @@ public class PlanetData {
 
     public PlanetData() {
         Name = GetRandomPlanetName();
-        Position.Set(0,0);
+        Position.Set(0, 0);
         Diameter = 10;
         Ships = 10;
         HangarSize = 100;
@@ -107,7 +115,7 @@ public class PlanetData {
 
     public bool UpgradeFactory() {
         int costs = GetFactoryUpgradeCosts();
-        if( costs > Ships) {
+        if (costs > Ships) {
             Debug.Log("Unable to upgrade Factory - Can't afford expenses");
             return false;
         }
@@ -132,8 +140,8 @@ public class PlanetData {
 
     public int ProduceShips() {
         int empty = HangarSize - Ships;
-        if(empty < 0) { empty = 0; }
-        if(empty > FactorySpeed) {
+        if (empty < 0) { empty = 0; }
+        if (empty > FactorySpeed) {
             Ships += FactorySpeed;
             return FactorySpeed;
         } else {
@@ -145,11 +153,11 @@ public class PlanetData {
 
 
     public AttackEvaluation EvaluateIncomingTroop(TroopData troop) {
-        if(troop.TargetPlanet != this) {
+        if (troop.TargetPlanet != this) {
             throw new ArgumentException("Unable to evaluate incoming troop: The troop is not arriving at this planet. Me: " + Name + ", Troop: " + troop.ToString());
         }
-        
-        if(troop.Owner == Owner) {
+
+        if (troop.Owner == Owner) {
             return EvaluateIncommingSupply(troop);
         }
 
@@ -176,7 +184,7 @@ public class PlanetData {
         } else {
             Ships += troop.ShipCount;
         }
-        
+
         AttackEvaluation evaluation = AttackEvaluation.Supply(troop, Ships, lostShips);
         return evaluation;
     }
@@ -186,10 +194,10 @@ public class PlanetData {
         Debug.Assert(troop.Owner != Owner, "Invalid call");
 
         bool gotCaptured = (Ships <= troop.ShipCount);
-        if(Owner == null && Ships == troop.ShipCount) { // Planet was neutral and stayed neutral. But there are no more ships on this planet anymore.
+        if (Owner == null && Ships == troop.ShipCount) { // Planet was neutral and stayed neutral. But there are no more ships on this planet anymore.
             gotCaptured = false;
         }
-        
+
         PlayerData oldOwner = Owner;
         PlayerData newOwner = (gotCaptured ? troop.Owner : oldOwner);
 
@@ -197,7 +205,7 @@ public class PlanetData {
         int lostShipsByAttacker = 0;
         int lostShipsByLanding = 0;
 
-        if(Ships <= troop.ShipCount) {
+        if (Ships <= troop.ShipCount) {
             lostShipsByOwner = Ships;
             lostShipsByAttacker -= Ships;
             // check for landing - maybe the attacker won, but not all ships have space to land:
@@ -206,9 +214,9 @@ public class PlanetData {
             lostShipsByOwner = Ships - troop.ShipCount;
             lostShipsByAttacker = troop.ShipCount;
         }
-                
+
         // Perform actions:
-        if(gotCaptured) {
+        if (gotCaptured) {
             Owner = newOwner;
             Ships = troop.ShipCount - lostShipsByAttacker - lostShipsByLanding;
         } else {
@@ -243,14 +251,13 @@ public class PlanetData {
                                                                     "Miknaitis", "Namba", "Orchiston", "Pandion", "Penttila", "Quero", "Radmall", "Ruetsch", "Serra", "Shustov", "Siurana", "Smaklosa", "Szalay",
                                                                     "Tenmu", "Tietjen", "Trombka", "Tytgat", "Velichko", "Vulpius", "Wupatki", "Xanthus", "Yarilo", "Zajonc", "Zeissia", "Zykina" };
 
-    string GetRandomPlanetName()
-    {
+    string GetRandomPlanetName() {
         return predefinedPlanetNames[UnityEngine.Random.Range(0, predefinedPlanetNames.Count)];
     }
 
-    
+
     public override string ToString() {
-        return "Planet \"" + Name + "\"" + (IsStartPlanet ? "(startPlanet) " : "" )+ "at " + Position.ToString() + " belongs to " + ((Owner == null) ? "noone" : Owner.Name) + " , diameter = " + Diameter + " has: " + Ships + " (+" + FactorySpeed + " á turn) ships, with hangar size " + HangarSize;
+        return "Planet \"" + Name + "\"" + (IsStartPlanet ? "(startPlanet) " : "") + "at " + Position.ToString() + " belongs to " + ((Owner == null) ? "noone" : Owner.Name) + " , diameter = " + Diameter + " has: " + Ships + " (+" + FactorySpeed + " á turn) ships, with hangar size " + HangarSize;
     }
-       
+
 }

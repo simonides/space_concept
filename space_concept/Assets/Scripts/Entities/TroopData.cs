@@ -10,7 +10,7 @@ using System.Collections;
 public class TroopData {
 
     // ****    CONFIGURATION    **** //
-    public int TravelSpeed = 100;        // Zur berechnung der Travel time
+    public static int TravelSpeed = 100;        // Zur berechnung der Travel time
     // ****                     **** //
 
 
@@ -28,6 +28,7 @@ public class TroopData {
         Init(null, null, 0, 0);
     }
 
+
     public TroopData(PlanetData start, PlanetData target, int shipCount, int currentDay) {
         Init(start, target, shipCount, currentDay);
     }
@@ -42,8 +43,13 @@ public class TroopData {
         } else {
             Owner = start.Owner;
             ArrivalTime = (int)System.Math.Round(currentDay + start.GetSurfaceDistance(target) / TravelSpeed);
-            TravelTime = ArrivalTime - currentDay;
+            TravelTime = GetTravelTime(start, target);
+            ArrivalTime = TravelTime + currentDay;
         }
+    }
+
+    public static int GetTravelTime(PlanetData start, PlanetData target) {
+        return (int)System.Math.Round(start.GetSurfaceDistance(target) / TravelSpeed);
     }
 
     public override string ToString() {

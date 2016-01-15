@@ -11,29 +11,31 @@ using System.Collections;
  */
 [RequireComponent(typeof(SpriteRenderer))]
 public class Planet : MonoBehaviour {
+
+    // ****    CONFIGURATION    **** // 
     public Sprite[] planetSprites;
     public Sprite[] planetFX;
     public SpriteRenderer glow;
     public Material glowMaterial;
-    //public Material glowMatNeutral;
-    //public Material glowMatOwned;
-    //public Material glowMatEnemy;
 
-    //private Material _usualGlow;
-
-
-
-
-    // ****    CONFIGURATION    **** //    
+    public float MinGlowScale = 1.2f;
+    public float MaxGlowScale = 1.5f;
+    public float GlowPulseSpeed = 1.5f;
 
     // ****  ATTACHED OBJECTS   **** //
     SpriteRenderer spriteRenderer;
     CircleCollider2D spriteCollider;
+    Transform glowTransform;
 
     // ****                     **** //
     public PlanetData planetData { get; private set; }
+    private bool isSelected = false;
+    public float CurrentGlowScale;  // In percent [0..1]
+    public bool GlowIsGrowing;
 
     // ****                     **** //
+
+
 
 
 
@@ -46,6 +48,16 @@ public class Planet : MonoBehaviour {
         if (spriteCollider == null) {
             throw new MissingComponentException("Unable to find SpriteCopllider on Planet. The planet game object should have a sprite renderer for the planet texture.");
         }
+
+        glowTransform = this.transform.FindChild("Glow");
+        if (glowTransform == null) {
+            throw new MissingComponentException("Unable to find glow gameobject on Planet. The planet game object should have a child game object called 'Glow'");
+        }
+
+        spriteRenderer.transform.localScale = new Vector3(100, 100, 0);
+
+        CurrentGlowScale = 0;
+        GlowIsGrowing = true;
     }
 
 
@@ -97,17 +109,18 @@ public class Planet : MonoBehaviour {
 
         UpdateGraphicalRepresentation();
     }
-
-
-
-
+    
     private void UpdateGraphicalRepresentation() {
         glow.material = glowMaterial;
-        glow.material.color = Color.red;
+        if(planetData.Owner == null) {  // no owner
+            glow.material.color = Color.gray;
+        } else {
+            glow.material.color = planetData.Owner.Color;
+        }
     }
 
     public void setSelected(bool selected) {
-        //TODO: implement
+        this.isSelected = selected;
     }
 
 
@@ -116,8 +129,36 @@ public class Planet : MonoBehaviour {
         MessageHub.Publish(new PlanetClickedEvent(this, this));
     }
 
-    //public Vector2 position {                           // The position of this planet in the cosmos
-    //    get { return transform.localPosition; }
-    //    set { transform.localPosition = value; }
-    //}
+    public void Update() {
+
+        // play pulse-animation
+        float change = Time.deltaTime * GlowPulseSpeed;
+        float alpha;
+
+        if (isSelected) {
+            if(!GlowIsGrowing) { change = -change; }
+            CurrentGlowScale += change;
+            alpha = 0.5f + 0.5f * Mathf.Sin(CurrentGlowScale * Mathf.PI);
+        } else {
+            CurrentGlowScale -= Time.deltaTime * GlowPulseSpeed;
+            alpha = 1;
+        }
+        
+        if (CurrentGlowScale > 1) {
+            CurrentGlowScale = 1;
+            GlowIsGrowing = false;
+        } else if (CurrentGlowScale < 0) {
+            CurrentGlowScale = 0;
+            GlowIsGrowing = true;
+        }
+        Debug.Assert(CurrentGlowScale >= 0 && CurrentGlowScale <= 1);
+
+        float Scale = MinGlowScale + (MaxGlowScale - MinGlowScale) * Mathf.Sin(CurrentGlowScale * Mathf.PI);
+        
+
+        glowTransform.localScale = new Vector3(Scale, Scale, 1);
+        Color clr = glow.material.color;
+        clr.a = alpha;
+        glow.material.SetColor("_Color", clr);
+    }
 }
