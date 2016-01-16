@@ -10,7 +10,9 @@ public class SettingsController : SingletonBase<SettingsController> {
     public CollectedMapData map = null;
     public bool loadMap = false;
     public string mapName = "";
+    public bool generateRandomMap = false;
 
+    public int planetCount = 5;
     public int kiCount = 1;
 
 

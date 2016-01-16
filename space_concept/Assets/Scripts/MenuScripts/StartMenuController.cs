@@ -8,6 +8,9 @@ public class StartMenuController : MonoBehaviour {
     public UnityEngine.UI.InputField playerName;
     public UnityEngine.UI.Text kiCount;
     public UnityEngine.RectTransform colorPickerPanel;
+    public UnityEngine.UI.Toggle randomMap;
+    public UnityEngine.UI.Slider planetSlider;
+    public UnityEngine.UI.Text planetCounter;
     private bool loadingScene;
     void Start() {
         playerColor = SettingsController.GetInstance().playerFile.Color;
@@ -23,7 +26,7 @@ public class StartMenuController : MonoBehaviour {
 
         //set name
         playerName.text = fieldNameInput;
-
+        Toggle_DisableDependElement(planetSlider);
         loadingScene = false;
     }
 
@@ -32,6 +35,7 @@ public class StartMenuController : MonoBehaviour {
         if (!loadingScene)
         {
             loadingScene = true;
+            SettingsController.GetInstance().generateRandomMap = randomMap.isOn;
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(f_sceneName);
             SaveChanges();//save changes when leaving this menu scene
         }
@@ -41,6 +45,7 @@ public class StartMenuController : MonoBehaviour {
         if (!loadingScene)
         {
             loadingScene = true;
+            SettingsController.GetInstance().generateRandomMap = randomMap.isOn;
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(f_sceneIndex);
             SaveChanges(); //save changes when leaving this menu scene
         }
@@ -92,11 +97,30 @@ public class StartMenuController : MonoBehaviour {
         kiCount.text = slider.value.ToString();
         SettingsController.GetInstance().kiCount = (int)slider.value;
     }
+
+    public void Slider_OnChangePlanets(UnityEngine.UI.Slider slider)
+    {
+        planetCounter.text = slider.value.ToString();
+        SettingsController.GetInstance().planetCount = (int)slider.value;
+    }
     public void Slider_OnChange(int count)
     {
         kiCount.text = count.ToString();
         
     }
+
+    public void Toggle_DisableDependElement(UnityEngine.UI.Selectable t)
+    {
+        if (randomMap.isOn)
+        {
+            t.interactable = true;
+        }
+        else
+        {
+            t.interactable = false;
+        }
+    }
+
     private void SaveChanges() {
         SettingsController.GetInstance().SaveData();
     }
