@@ -196,15 +196,14 @@ public class AirTrafficControl : MonoBehaviour {
     }
 
     private List<AttackEvaluation> PerformTroopEvaluation(List<Troop> todaysTroops) {
-        Dictionary<PlanetData, AttackEvaluation> evaluation = new Dictionary<PlanetData, AttackEvaluation>();   // Order by planet, so that they are grouped
-
-        foreach(Troop troop in todaysTroops) {
+        List<AttackEvaluation> evaluation = new List<AttackEvaluation>();
+        foreach (Troop troop in todaysTroops) {
             TroopData data = troop.troopData;
             AttackEvaluation eval = data.TargetPlanet.EvaluateIncomingTroop(data);
-            evaluation.Add(data.TargetPlanet, eval);
+            evaluation.Add(eval);
         }
 
-        return evaluation.Values.ToList();
+        return evaluation;
     }
 
     private void PublishTroopEvaluation(List<AttackEvaluation> evaluations) {
