@@ -191,18 +191,18 @@ public class EventListFiller : MonoBehaviour
         // detach them from the content panel
         contentPanel.transform.DetachChildren();
 
-        AttackEvaluation atev = new AttackEvaluation();
-        atev.Outcome = EvaluationOutcome.Lost;
+        //AttackEvaluation atev = new AttackEvaluation();
+        //atev.Outcome = EvaluationOutcome.Lost;
 
-        AttackEvaluation atev1 = new AttackEvaluation();
-        atev1.Outcome = EvaluationOutcome.Neutral;
+        //AttackEvaluation atev1 = new AttackEvaluation();
+        //atev1.Outcome = EvaluationOutcome.Neutral;
 
-        AttackEvaluation atev2 = new AttackEvaluation();
-        atev2.Outcome = EvaluationOutcome.Success;
+        //AttackEvaluation atev2 = new AttackEvaluation();
+        //atev2.Outcome = EvaluationOutcome.Success;
 
-        itemList.Add(atev);
-        itemList.Add(atev1);
-        itemList.Add(atev2);
+        //itemList.Add(atev);
+        //itemList.Add(atev1);
+        //itemList.Add(atev2);
 
 
 
@@ -242,7 +242,7 @@ public class EventListFiller : MonoBehaviour
                 case EvaluationOutcome.Success:
                     {
                         eventBtn.typeColor.color = new Color32(0, 119, 0, 255);
-                        eventBtn.typeText.text = "S   U   C   C   E   S   S";
+                        eventBtn.typeText.text = "S  U  C  C  E  S  S";
                         eventBtn.typeText.color = new Color32(0, 36, 0, 255);
                         //eventBtn.typeText.color = new Color(0, 36, 0, 255);
                     }
@@ -260,8 +260,7 @@ public class EventListFiller : MonoBehaviour
                     {
                         eventBtn.line1.text = "You received " + item.IncomingShips + " ships";
                         eventBtn.line2.text = item.ShipsOnPlanetAfterEvent + " ships now available on planet";
-                        if (item.LostShips > 0)
-                        {
+                        if (item.LostShips > 0){
                             eventBtn.line3.text = item.LostShips + " ships were lost due to full hangar";
                         }
                         else

@@ -41,11 +41,11 @@ public class PlanetMenuManager : AbstractMenuManager
         MessageHub.Subscribe<ChooseOtherPlanetEvent>(ChooseOtherPlanet);
         MessageHub.Subscribe<CancelChooseOtherPlanetEvent>(CancelChooseOtherPlanet);
         MessageHub.Subscribe<CancelSendShipsEvent>(CancelSendShips);
-        MessageHub.Subscribe<NewTroopMovementEvent>(ShipsSent);
+        MessageHub.Subscribe<ShipsSentEvent>(ShipsSent);
 
     }
 
-    private void ShipsSent(NewTroopMovementEvent obj)
+    private void ShipsSent(ShipsSentEvent obj)
     {
         Debug.Assert(_activeMenu == 3);
         _activeMenu = 1;
