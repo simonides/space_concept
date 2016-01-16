@@ -226,7 +226,7 @@ public class PlanetData {
             lostShipsByOwner = Ships;
             lostShipsByAttacker = Ships;
             // check for landing - maybe the attacker won, but not all ships have space to land:
-            lostShipsByLanding = Mathf.RoundToInt((troop.ShipCount - Ships - HangarSize) * 0.5f);     //50% of all ships that hadn't enough space lost
+            lostShipsByLanding = Math.Max((int)(Mathf.RoundToInt((troop.ShipCount - Ships - HangarSize) * 0.5f)), 0);     //50% of all ships that hadn't enough space lost
         } else {
             lostShipsByOwner = troop.ShipCount;
             lostShipsByAttacker = troop.ShipCount;
