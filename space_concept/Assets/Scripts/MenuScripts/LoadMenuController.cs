@@ -51,9 +51,11 @@ public class LoadMenuController : MonoBehaviour {
             saveGameAvailable = true;
             SettingsController.GetInstance().mapName = mapName;//set the selected mapname in the settings controller
             Debug.Log("Selected SaveGame: " +mapName);
+            Button_LoadMap("Game");
         }
         else
         {
+            Debug.LogError("No savegame found.");
             saveGameAvailable = false;
         }
        
