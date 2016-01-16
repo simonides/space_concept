@@ -83,7 +83,7 @@ public class PlanetData {
     }
 
     public PlanetData() {
-        Name = GetRandomPlanetName();
+        Name = "";
         Position.Set(0, 0);
         Diameter = 10;
         Ships = 10;
@@ -92,7 +92,7 @@ public class PlanetData {
     }
 
     public PlanetData(Vector2 position, float diameter, int ships, int hangarSize, int factorySpeed, bool isStartPlanet) {
-        this.Name = GetRandomPlanetName();
+        this.Name = "";
         this.Position = position;
         this.Diameter = diameter;
         this.Ships = ships;
@@ -263,16 +263,7 @@ public class PlanetData {
     }
 
 
-    static List<string> predefinedPlanetNames = new List<string> {  "Aarseth", "Abdulla", "Adriana", "Asphaug", "Balaton", "Behaim", "Briggs", "Byrd", "Chaubal", "Cipolla", "Cyrus", "Decatur", "Dimpna", "Dumont",
-                                                                    "Echnaton", "Elbrus", "Elisa", "Erminia", "Fanynka", "Figneria", "Frobel", "Galinskij", "Ganguly", "Giocasilli", "Granule", "Hanakusa", "Harada",
-                                                                    "Hjorter", "Humecronyn", "Iglika", "Ikaunieks", "Isoda", "Jansky", "Kabtamu", "Kalinin", "Koikeda", "Landoni", "Lebedev", "Licitra", "Lyubov",
-                                                                    "Miknaitis", "Namba", "Orchiston", "Pandion", "Penttila", "Quero", "Radmall", "Ruetsch", "Serra", "Shustov", "Siurana", "Smaklosa", "Szalay",
-                                                                    "Tenmu", "Tietjen", "Trombka", "Tytgat", "Velichko", "Vulpius", "Wupatki", "Xanthus", "Yarilo", "Zajonc", "Zeissia", "Zykina" };
-
-    string GetRandomPlanetName() {
-        return predefinedPlanetNames[UnityEngine.Random.Range(0, predefinedPlanetNames.Count)];
-    }
-
+    
 
     public override string ToString() {
         return "Planet \"" + Name + "\"" + (IsStartPlanet ? "(startPlanet) " : "") + "at " + Position.ToString() + " belongs to " + ((Owner == null) ? "noone" : Owner.Name) + " , diameter = " + Diameter + " has: " + Ships + " (+" + FactorySpeed + " á turn) ships, with hangar size " + HangarSize;

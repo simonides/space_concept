@@ -64,7 +64,8 @@ public class TactileBackground : MonoBehaviour {
     void AddTactileBackgroundSnippet(Vector2 position) {
         var bgSnippet = GameObject.Instantiate(tactileBackgroundPrefab) as GameObject;
         bgSnippet.transform.SetParent(backgroundHolder.transform);
-        bgSnippet.transform.localPosition = position;
+        bgSnippet.transform.localPosition = position - bounds.center;
+        
     }
     // Use this for initialization
     void Start() {
