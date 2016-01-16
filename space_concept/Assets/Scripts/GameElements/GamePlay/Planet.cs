@@ -99,7 +99,7 @@ public class Planet : MonoBehaviour {
             Debug.LogWarning("The used planet sprite is not rectangular and therefore distorted");
         }
         this.transform.localScale = new Vector3(planet.Diameter / spriteSize.x, planet.Diameter / spriteSize.y, 1);
-        spriteCollider.radius = spriteSize.x * 0.5f;
+        spriteCollider.radius = spriteSize.x; 
 
         //Smaller planets need a larger outline (in comparison with the planet), to let it appear as thick as for big planets:
         glowUpscaling = (planetData.Diameter + 10) / planetData.Diameter;
