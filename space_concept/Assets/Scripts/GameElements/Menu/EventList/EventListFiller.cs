@@ -17,17 +17,6 @@ Nur, Wenn der Hangar voll is:                       EvaluationEventOutcome = Los
 Immer sichtbar:
  250 ships available                            shipsOnPlanet
 
-
-
-
-
-
-
-
-
-
-
-
 Wenn man selber jemand anderen angegriffen hat:          evaluationEventType = AttackedPlanet
      You attacked
       playername                                otherPlayer.  Wenn null, dann den Text "a neutral planet" ausgeben
@@ -45,14 +34,6 @@ The planet is now neutral
 Wenn der Planet erobert wurde:                  evaluationEventOutcome = success
         Victory!
    80 ships survived.                         shipsOnPlanet
-
-
-
-
-
-
-
-
 
 
 
@@ -120,6 +101,7 @@ public class EventListFiller : MonoBehaviour
 
     // ****                     **** //
     public GameObject Space;
+    private Space space;
 
     public EventButton prefab;
 
@@ -132,6 +114,7 @@ public class EventListFiller : MonoBehaviour
 
     public Transform contentPanel;
 
+    public Sprite planetSpriteAtlas;
 
     private string[] itemsEmptyTexts =
     {
@@ -148,6 +131,11 @@ public class EventListFiller : MonoBehaviour
 
     void Awake()
     {
+        space = Space.GetComponent<Space>();
+        if (space == null)
+        {
+            throw new MissingComponentException("Unable to find Space.");
+        }
         pooledGameObjectHolder = GameObject.Find("PooledGameObjects");
         if (pooledGameObjectHolder == null)
         {
@@ -327,9 +315,12 @@ public class EventListFiller : MonoBehaviour
 
             }
 
-            //var space = Space.GetComponent<Space>();
-            //space.getPlanet(item.Planet).
+            //space.getPlanet(item.Planet);
+            //item.Planet.TextureName
 
+
+           // item.Planet
+          //  eventBtn.planetSprite.
 
             //eventBtn.name = item.planetName;
             //eventBtn.icon.sprite = item.icon;

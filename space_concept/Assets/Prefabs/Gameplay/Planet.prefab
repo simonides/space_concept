@@ -85,27 +85,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetSprites:
-  - {fileID: 21300000, guid: 1b8abff5772eb0b4b8d9627f11a581fa, type: 3}
-  - {fileID: 21300000, guid: de3e5291352028e4aa20a592ca845ee2, type: 3}
-  - {fileID: 21300000, guid: a58dd8afa12953c458b533d492aa258a, type: 3}
-  - {fileID: 21300000, guid: c6fea67e97ee2a84baed37674108b752, type: 3}
-  - {fileID: 21300000, guid: f963b5db98154d440831420a21ae942b, type: 3}
-  - {fileID: 21300000, guid: a2b03eeb2194bfe4d83162de060957b0, type: 3}
-  - {fileID: 21300000, guid: 129e183da15b7774f981c1e842737cef, type: 3}
-  - {fileID: 21300000, guid: c22d4d1b23db19148b12105cdc500301, type: 3}
-  - {fileID: 21300000, guid: 1ac6a9b76c56cc149a30f8c52bf943da, type: 3}
-  - {fileID: 21300000, guid: 90d809e291c689349883d2b751b5c499, type: 3}
-  - {fileID: 21300000, guid: ea1d4dc42b6c7bb46a92e99fdda96fc8, type: 3}
-  - {fileID: 21300000, guid: 9c0311484e0f07f43a7e29e2c87b4a78, type: 3}
-  - {fileID: 21300000, guid: cf435889bdeed844c947d4f2fed692af, type: 3}
-  - {fileID: 21300000, guid: 48e6bcd8b3f14144fa3e8ad1b81e6dd3, type: 3}
-  - {fileID: 21300000, guid: b2885ef6d184c84498f1e061bab5f0d1, type: 3}
-  - {fileID: 21300000, guid: 6ff819b3550ba514aaf3a9d104f201a7, type: 3}
-  - {fileID: 21300000, guid: ebf78fc410dc36347a18f5f184cf65a0, type: 3}
+  - {fileID: 21300000, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300002, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300004, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300006, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300008, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300010, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300012, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300014, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300016, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300018, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300020, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300022, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300024, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300026, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300028, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300030, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
+  - {fileID: 21300032, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
   planetFX:
-  - {fileID: 21300000, guid: 3263fe31cde1234438513acd123637d1, type: 3}
-  - {fileID: 21300000, guid: 8180a6ce16ec0a44a83eeac9aeb4e034, type: 3}
-  - {fileID: 21300000, guid: 8d809951dcb0ad148a091c8384033c1b, type: 3}
+  - {fileID: 21300034, guid: a82a1a936ff63834bb2a92582452b90b, type: 3}
   glow: {fileID: 21291134}
   glowMaterial: {fileID: 2100000, guid: 41896c98e4e08624caf743259001e7d8, type: 2}
   MinGlowScale: 1.2
@@ -186,7 +184,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: planetFX.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: planetTex.Array.size
@@ -268,7 +266,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: planetFX.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 3263fe31cde1234438513acd123637d1,
+      objectReference: {fileID: 21300034, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetFX.Array.data[1]
@@ -283,22 +281,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 1b8abff5772eb0b4b8d9627f11a581fa,
+      objectReference: {fileID: 21300000, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: de3e5291352028e4aa20a592ca845ee2,
+      objectReference: {fileID: 21300002, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: a58dd8afa12953c458b533d492aa258a,
+      objectReference: {fileID: 21300004, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: c6fea67e97ee2a84baed37674108b752,
+      objectReference: {fileID: 21300006, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_Name
@@ -327,67 +325,67 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[4]
       value: 
-      objectReference: {fileID: 21300000, guid: f963b5db98154d440831420a21ae942b,
+      objectReference: {fileID: 21300008, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[5]
       value: 
-      objectReference: {fileID: 21300000, guid: a2b03eeb2194bfe4d83162de060957b0,
+      objectReference: {fileID: 21300010, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[6]
       value: 
-      objectReference: {fileID: 21300000, guid: 129e183da15b7774f981c1e842737cef,
+      objectReference: {fileID: 21300012, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[7]
       value: 
-      objectReference: {fileID: 21300000, guid: c22d4d1b23db19148b12105cdc500301,
+      objectReference: {fileID: 21300014, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[8]
       value: 
-      objectReference: {fileID: 21300000, guid: 1ac6a9b76c56cc149a30f8c52bf943da,
+      objectReference: {fileID: 21300016, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[9]
       value: 
-      objectReference: {fileID: 21300000, guid: 90d809e291c689349883d2b751b5c499,
+      objectReference: {fileID: 21300018, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[10]
       value: 
-      objectReference: {fileID: 21300000, guid: ea1d4dc42b6c7bb46a92e99fdda96fc8,
+      objectReference: {fileID: 21300020, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[11]
       value: 
-      objectReference: {fileID: 21300000, guid: 9c0311484e0f07f43a7e29e2c87b4a78,
+      objectReference: {fileID: 21300022, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[12]
       value: 
-      objectReference: {fileID: 21300000, guid: cf435889bdeed844c947d4f2fed692af,
+      objectReference: {fileID: 21300024, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[13]
       value: 
-      objectReference: {fileID: 21300000, guid: 48e6bcd8b3f14144fa3e8ad1b81e6dd3,
+      objectReference: {fileID: 21300026, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[14]
       value: 
-      objectReference: {fileID: 21300000, guid: b2885ef6d184c84498f1e061bab5f0d1,
+      objectReference: {fileID: 21300028, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[15]
       value: 
-      objectReference: {fileID: 21300000, guid: 6ff819b3550ba514aaf3a9d104f201a7,
+      objectReference: {fileID: 21300030, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: planetSprites.Array.data[16]
       value: 
-      objectReference: {fileID: 21300000, guid: ebf78fc410dc36347a18f5f184cf65a0,
+      objectReference: {fileID: 21300032, guid: a82a1a936ff63834bb2a92582452b90b,
         type: 3}
     - target: {fileID: 0}
       propertyPath: glowMaterial

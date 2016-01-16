@@ -1,9 +1,27 @@
 fileFormatVersion: 2
 guid: a82a1a936ff63834bb2a92582452b90b
-timeCreated: 1452942866
+timeCreated: 1452969669
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Planet_Atlas_0
+    21300002: Planet_Atlas_1
+    21300004: Planet_Atlas_2
+    21300006: Planet_Atlas_3
+    21300008: Planet_Atlas_4
+    21300010: Planet_Atlas_5
+    21300012: Planet_Atlas_6
+    21300014: Planet_Atlas_7
+    21300016: Planet_Atlas_8
+    21300018: Planet_Atlas_9
+    21300020: Planet_Atlas_10
+    21300022: Planet_Atlas_11
+    21300024: Planet_Atlas_12
+    21300026: Planet_Atlas_13
+    21300028: Planet_Atlas_14
+    21300030: Planet_Atlas_15
+    21300032: Planet_Atlas_16
+    21300034: Planet_Atlas_Glow
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +48,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,18 +56,591 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 1
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Planet_Atlas_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: -128}
+        - {x: 4, y: -125}
+        - {x: -4, y: -125}
+        - {x: -5, y: -128}
+      - - {x: 124, y: -32}
+        - {x: 124, y: 37}
+        - {x: 123, y: 48}
+        - {x: 102, y: 78}
+        - {x: 68, y: 109}
+        - {x: 44, y: 123}
+        - {x: 24, y: 125}
+        - {x: -32, y: 125}
+        - {x: -46, y: 120}
+        - {x: -82, y: 97}
+        - {x: -98, y: 78}
+        - {x: -120, y: 53}
+        - {x: -124, y: 24}
+        - {x: -124, y: -31}
+        - {x: -110, y: -69}
+        - {x: -63, y: -112}
+        - {x: -33, y: -124}
+        - {x: -21, y: -125}
+        - {x: 21, y: -125}
+        - {x: 63, y: -114}
+        - {x: 105, y: -76}
+        - {x: 122, y: -38}
+    - name: Planet_Atlas_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 124, y: 24}
+        - {x: 121, y: 48}
+        - {x: 104, y: 72}
+        - {x: 76, y: 102}
+        - {x: 46, y: 118}
+        - {x: 18, y: 124}
+        - {x: -27, y: 124}
+        - {x: -70, y: 106}
+        - {x: -96, y: 83}
+        - {x: -123, y: 41}
+        - {x: -124, y: 32}
+        - {x: -124, y: -28}
+        - {x: -107, y: -73}
+        - {x: -78, y: -99}
+        - {x: -60, y: -111}
+        - {x: -43, y: -122}
+        - {x: -22, y: -124}
+        - {x: 36, y: -124}
+        - {x: 52, y: -121}
+        - {x: 106, y: -81}
+        - {x: 124, y: -39}
+    - name: Planet_Atlas_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 125, y: -26}
+        - {x: 125, y: 32}
+        - {x: 124, y: 36}
+        - {x: 107, y: 73}
+        - {x: 83, y: 101}
+        - {x: 46, y: 124}
+        - {x: -33, y: 124}
+        - {x: -44, y: 123}
+        - {x: -47, y: 117}
+        - {x: -64, y: 109}
+        - {x: -82, y: 99}
+        - {x: -113, y: 63}
+        - {x: -124, y: 29}
+        - {x: -124, y: -39}
+        - {x: -104, y: -78}
+        - {x: -67, y: -111}
+        - {x: -30, y: -125}
+        - {x: 35, y: -125}
+        - {x: 81, y: -103}
+        - {x: 105, y: -76}
+        - {x: 124, y: -40}
+    - name: Planet_Atlas_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 123, y: -35}
+        - {x: 124, y: -14}
+        - {x: 124, y: 26}
+        - {x: 122, y: 38}
+        - {x: 100, y: 81}
+        - {x: 74, y: 102}
+        - {x: 41, y: 121}
+        - {x: 17, y: 124}
+        - {x: -33, y: 124}
+        - {x: -73, y: 107}
+        - {x: -99, y: 82}
+        - {x: -124, y: 36}
+        - {x: -124, y: -40}
+        - {x: -98, y: -92}
+        - {x: -31, y: -124}
+        - {x: 24, y: -124}
+        - {x: 57, y: -114}
+        - {x: 75, y: -103}
+        - {x: 110, y: -67}
+      - - {x: 124, y: -18}
+        - {x: 127, y: -19}
+        - {x: 128, y: -19}
+        - {x: 128, y: 19}
+        - {x: 124, y: 19}
+    - name: Planet_Atlas_4
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -30}
+        - {x: 128, y: 28}
+        - {x: 123, y: 50}
+        - {x: 107, y: 78}
+        - {x: 81, y: 106}
+        - {x: 51, y: 122}
+        - {x: 34, y: 128}
+        - {x: -42, y: 128}
+        - {x: -71, y: 118}
+        - {x: -119, y: 70}
+        - {x: -128, y: 39}
+        - {x: -128, y: -38}
+        - {x: -115, y: -73}
+        - {x: -88, y: -101}
+        - {x: -56, y: -122}
+        - {x: -35, y: -128}
+        - {x: 34, y: -128}
+        - {x: 59, y: -120}
+        - {x: 98, y: -92}
+        - {x: 119, y: -60}
+    - name: Planet_Atlas_5
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 124, y: 30}
+        - {x: 123, y: 37}
+        - {x: 100, y: 80}
+        - {x: 63, y: 110}
+        - {x: 37, y: 123}
+        - {x: 23, y: 124}
+        - {x: -27, y: 124}
+        - {x: -46, y: 117}
+        - {x: -73, y: 103}
+        - {x: -98, y: 81}
+        - {x: -119, y: 44}
+        - {x: -124, y: 30}
+        - {x: -124, y: -25}
+        - {x: -121, y: -49}
+        - {x: -100, y: -84}
+        - {x: -48, y: -122}
+        - {x: -36, y: -125}
+        - {x: 36, y: -125}
+        - {x: 80, y: -101}
+        - {x: 109, y: -70}
+        - {x: 124, y: -26}
+    - name: Planet_Atlas_6
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 122, y: -40}
+        - {x: 126, y: -29}
+        - {x: 126, y: 38}
+        - {x: 98, y: 81}
+        - {x: 74, y: 104}
+        - {x: 44, y: 120}
+        - {x: 22, y: 126}
+        - {x: -31, y: 126}
+        - {x: -71, y: 112}
+        - {x: -116, y: 62}
+        - {x: -126, y: 33}
+        - {x: -126, y: -36}
+        - {x: -125, y: -44}
+        - {x: -98, y: -86}
+        - {x: -72, y: -108}
+        - {x: -33, y: -126}
+        - {x: 26, y: -126}
+        - {x: 57, y: -116}
+        - {x: 82, y: -98}
+        - {x: 104, y: -77}
+    - name: Planet_Atlas_7
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 123, y: -23}
+        - {x: 123, y: 31}
+        - {x: 115, y: 53}
+        - {x: 102, y: 78}
+        - {x: 63, y: 111}
+        - {x: 34, y: 123}
+        - {x: 28, y: 124}
+        - {x: -33, y: 124}
+        - {x: -60, y: 115}
+        - {x: -108, y: 77}
+        - {x: -124, y: 27}
+        - {x: -124, y: -23}
+        - {x: -117, y: -50}
+        - {x: -108, y: -72}
+        - {x: -62, y: -115}
+        - {x: -29, y: -124}
+        - {x: 26, y: -124}
+        - {x: 60, y: -112}
+        - {x: 97, y: -82}
+        - {x: 120, y: -48}
+    - name: Planet_Atlas_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: 32}
+        - {x: 121, y: 55}
+        - {x: 112, y: 73}
+        - {x: 86, y: 104}
+        - {x: 51, y: 124}
+        - {x: 32, y: 128}
+        - {x: -33, y: 128}
+        - {x: -51, y: 124}
+        - {x: -87, y: 104}
+        - {x: -116, y: 73}
+        - {x: -128, y: 36}
+        - {x: -128, y: -30}
+        - {x: -122, y: -52}
+        - {x: -116, y: -72}
+        - {x: -73, y: -116}
+        - {x: -40, y: -128}
+        - {x: 44, y: -128}
+        - {x: 88, y: -105}
+        - {x: 116, y: -67}
+        - {x: 128, y: -37}
+    - name: Planet_Atlas_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 124, y: -46}
+        - {x: 125, y: -1}
+        - {x: 125, y: 10}
+        - {x: 123, y: 33}
+        - {x: 104, y: 77}
+        - {x: 67, y: 111}
+        - {x: 29, y: 125}
+        - {x: -17, y: 125}
+        - {x: -32, y: 124}
+        - {x: -60, y: 112}
+        - {x: -87, y: 96}
+        - {x: -116, y: 58}
+        - {x: -125, y: 26}
+        - {x: -125, y: -25}
+        - {x: -115, y: -62}
+        - {x: -71, y: -111}
+        - {x: -57, y: -128}
+        - {x: 57, y: -128}
+        - {x: 56, y: -125}
+        - {x: 47, y: -122}
+        - {x: 84, y: -101}
+    - name: Planet_Atlas_10
+      rect:
+        serializedVersion: 2
+        x: 1015
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 129, y: 35}
+        - {x: 109, y: 74}
+        - {x: 84, y: 101}
+        - {x: 41, y: 123}
+        - {x: 21, y: 124}
+        - {x: -23, y: 124}
+        - {x: -28, y: 123}
+        - {x: -75, y: 103}
+        - {x: -106, y: 63}
+        - {x: -119, y: 26}
+        - {x: -119, y: -22}
+        - {x: -116, y: -46}
+        - {x: -84, y: -95}
+        - {x: -37, y: -123}
+        - {x: -18, y: -124}
+        - {x: 26, y: -124}
+        - {x: 57, y: -118}
+        - {x: 106, y: -82}
+        - {x: 129, y: -37}
+    - name: Planet_Atlas_11
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 124, y: -30}
+        - {x: 124, y: 28}
+        - {x: 109, y: 66}
+        - {x: 96, y: 90}
+        - {x: 41, y: 124}
+        - {x: -27, y: 124}
+        - {x: -49, y: 121}
+        - {x: -100, y: 84}
+        - {x: -113, y: 57}
+        - {x: -124, y: 31}
+        - {x: -124, y: -37}
+        - {x: -101, y: -80}
+        - {x: -66, y: -109}
+        - {x: -33, y: -124}
+        - {x: 29, y: -124}
+        - {x: 62, y: -111}
+        - {x: 82, y: -96}
+        - {x: 108, y: -67}
+    - name: Planet_Atlas_12
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 124, y: -30}
+        - {x: 124, y: 28}
+        - {x: 109, y: 66}
+        - {x: 96, y: 90}
+        - {x: 41, y: 124}
+        - {x: -27, y: 124}
+        - {x: -49, y: 121}
+        - {x: -100, y: 84}
+        - {x: -113, y: 57}
+        - {x: -124, y: 31}
+        - {x: -124, y: -37}
+        - {x: -101, y: -80}
+        - {x: -66, y: -109}
+        - {x: -33, y: -124}
+        - {x: 29, y: -124}
+        - {x: 62, y: -111}
+        - {x: 82, y: -96}
+        - {x: 108, y: -67}
+      - - {x: -17, y: 128}
+        - {x: -16, y: 125}
+        - {x: 13, y: 125}
+        - {x: 15, y: 127}
+        - {x: 15, y: 128}
+    - name: Planet_Atlas_13
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 124, y: -30}
+        - {x: 124, y: 23}
+        - {x: 123, y: 38}
+        - {x: 109, y: 65}
+        - {x: 90, y: 88}
+        - {x: 64, y: 111}
+        - {x: 30, y: 125}
+        - {x: -30, y: 125}
+        - {x: -48, y: 121}
+        - {x: -98, y: 87}
+        - {x: -123, y: 49}
+        - {x: -125, y: 31}
+        - {x: -125, y: -32}
+        - {x: -112, y: -64}
+        - {x: -83, y: -101}
+        - {x: -36, y: -124}
+        - {x: 28, y: -124}
+        - {x: 69, y: -110}
+        - {x: 98, y: -82}
+        - {x: 120, y: -43}
+    - name: Planet_Atlas_14
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 124, y: -38}
+        - {x: 124, y: 51}
+        - {x: 80, y: 106}
+        - {x: 26, y: 125}
+        - {x: -21, y: 125}
+        - {x: -51, y: 117}
+        - {x: -77, y: 102}
+        - {x: -109, y: 67}
+        - {x: -125, y: 31}
+        - {x: -125, y: -19}
+        - {x: -123, y: -34}
+        - {x: -103, y: -77}
+        - {x: -68, y: -111}
+        - {x: -26, y: -125}
+        - {x: 22, y: -125}
+        - {x: 66, y: -112}
+        - {x: 101, y: -79}
+        - {x: 111, y: -60}
+    - name: Planet_Atlas_15
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 124, y: 44}
+        - {x: 84, y: 105}
+        - {x: 45, y: 122}
+        - {x: 30, y: 125}
+        - {x: -32, y: 125}
+        - {x: -66, y: 111}
+        - {x: -92, y: 85}
+        - {x: -104, y: 71}
+        - {x: -119, y: 52}
+        - {x: -124, y: 27}
+        - {x: -124, y: -35}
+        - {x: -110, y: -68}
+        - {x: -102, y: -76}
+        - {x: -66, y: -111}
+        - {x: -33, y: -123}
+        - {x: 26, y: -123}
+        - {x: 52, y: -119}
+        - {x: 83, y: -95}
+        - {x: 105, y: -73}
+        - {x: 124, y: -31}
+    - name: Planet_Atlas_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2560
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -58}
+        - {x: 128, y: 55}
+        - {x: 126, y: 56}
+        - {x: 120, y: 49}
+        - {x: 79, y: 103}
+        - {x: 51, y: 119}
+        - {x: 25, y: 124}
+        - {x: -36, y: 124}
+        - {x: -74, y: 107}
+        - {x: -101, y: 83}
+        - {x: -125, y: 32}
+        - {x: -125, y: -22}
+        - {x: -119, y: -47}
+        - {x: -96, y: -86}
+        - {x: -67, y: -112}
+        - {x: -25, y: -125}
+        - {x: 30, y: -125}
+        - {x: 77, y: -104}
+        - {x: 102, y: -77}
+        - {x: 126, y: -59}
+    - name: Planet_Atlas_Glow
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2560
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 121, y: -77}
+        - {x: 128, y: -62}
+        - {x: 128, y: 61}
+        - {x: 117, y: 83}
+        - {x: 96, y: 106}
+        - {x: 89, y: 111}
+        - {x: 70, y: 124}
+        - {x: 62, y: 128}
+        - {x: -61, y: 128}
+        - {x: -70, y: 124}
+        - {x: -82, y: 118}
+        - {x: -112, y: 89}
+        - {x: -122, y: 73}
+        - {x: -128, y: 60}
+        - {x: -128, y: -64}
+        - {x: -124, y: -74}
+        - {x: -102, y: -104}
+        - {x: -85, y: -118}
+        - {x: -68, y: -128}
+        - {x: 67, y: -128}
+        - {x: 73, y: -125}
+        - {x: 90, y: -113}
+        - {x: 109, y: -94}
     outline: []
   spritePackingTag: 
   userData: 
