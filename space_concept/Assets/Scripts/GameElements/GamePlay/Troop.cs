@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-[RequireComponent(typeof(SpriteRenderer))]
+//[RequireComponent(typeof(SpriteRenderer))]
 public class Troop : MonoBehaviour {
     
     public TroopData troopData { get; private set; }

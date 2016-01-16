@@ -10,7 +10,7 @@ using System.Collections;
 public class TroopData {
 
     // ****    CONFIGURATION    **** //
-    public static int TravelSpeed = 200;        // Zur berechnung der Travel time
+    public static int TravelSpeed = 135;        // Zur berechnung der Travel time
     // ****                     **** //
 
 
