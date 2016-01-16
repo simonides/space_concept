@@ -69,8 +69,6 @@ class InputHandler : MonoBehaviour, IEventSystemHandler
     private void MapMovement(MenuActiveEvent mapEvent)
     {
         _menuActive = mapEvent.Content;
-
-        Debug.Log("MenuActive event: " + mapEvent.Content);
     }
 
     void FixedUpdate()
@@ -78,7 +76,6 @@ class InputHandler : MonoBehaviour, IEventSystemHandler
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("ESC pressed");
             MessageHub.Publish(new ESCKeyPressedEvent(this));
         }
         if (_menuActive)

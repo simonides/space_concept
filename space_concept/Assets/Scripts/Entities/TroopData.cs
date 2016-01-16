@@ -49,7 +49,7 @@ public class TroopData {
     }
 
     public static int GetTravelTime(PlanetData start, PlanetData target) {
-        return (int)System.Math.Round(start.GetSurfaceDistance(target) / TravelSpeed);
+        return System.Math.Min((int)System.Math.Round(start.GetSurfaceDistance(target) / TravelSpeed), 1);
     }
 
     public override string ToString() {

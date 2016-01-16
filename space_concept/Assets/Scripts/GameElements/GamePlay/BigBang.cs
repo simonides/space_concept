@@ -94,7 +94,7 @@ public class BigBang : MonoBehaviour {
             PlayerData aiData = new PlayerData();
             aiData.Name = PlayerData.GetRandomPlayerName();
             aiData.Color = Color.blue;  //TODO: predefined list of colors
-            AiPlayer player = new AiPlayer(aiData);
+            AiPlayer player = new AiPlayer(aiData, space);
           
             home = space.getRandomEmptyStartPlanet();
             if (home == null) {

@@ -24,7 +24,7 @@ public class Space : MonoBehaviour {
     TactileBackground tactileBackground;
 
 
-    SpaceData spaceData;        // entity
+    public SpaceData spaceData { get; private set; }        // entity
     List<Planet> planets;       // planet objects
 
 
@@ -155,7 +155,7 @@ public class Space : MonoBehaviour {
         return null;
     }
 
-
+    
 
     //returns the center of the bounds rect in local space from the origin that does not have to be the bottom left corner.. it can be everywhere -> depends on the map file
     public Vector2 GetCenter() {
