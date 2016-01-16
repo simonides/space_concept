@@ -59,11 +59,11 @@ public class Planet : MonoBehaviour {
 
         CurrentGlowScale = 0;
         GlowIsGrowing = true;
+        MessageHub.Subscribe<PlanetUpdateEvent>((PlanetUpdateEvent evt) => UpdateGraphicalRepresentation());
     }
 
 
     void Start() {
-        MessageHub.Subscribe<PlanetUpdateEvent>((PlanetUpdateEvent evt) => UpdateGraphicalRepresentation());
     }
 
 
@@ -102,7 +102,7 @@ public class Planet : MonoBehaviour {
         spriteCollider.radius = spriteSize.x * 0.5f;
 
         //Smaller planets need a larger outline (in comparison with the planet), to let it appear as thick as for big planets:
-        glowUpscaling = (planetData.Diameter + 1) / planetData.Diameter;
+        glowUpscaling = (planetData.Diameter + 10) / planetData.Diameter;
 
         spriteSize = glow.sprite.rect.size;
         if (spriteSize.x != spriteSize.y) {

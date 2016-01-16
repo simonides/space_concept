@@ -58,7 +58,6 @@ public class BigBang : MonoBehaviour {
             Debug.LogWarning("Failed to communicate with SettingsController. \n" + e.ToString());
             InitialiseNewGame();
         }
-        
         Debug.Log("The Big Bang happened guys!");
     }
 
