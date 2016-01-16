@@ -42,8 +42,9 @@ public class PlanetMenuManager : AbstractMenuManager
         MessageHub.Subscribe<CancelChooseOtherPlanetEvent>(CancelChooseOtherPlanet);
         MessageHub.Subscribe<CancelSendShipsEvent>(CancelSendShips);
         MessageHub.Subscribe<ShipsSentEvent>(ShipsSent);
-
+       
     }
+
 
     private void ShipsSent(ShipsSentEvent obj)
     {
@@ -60,6 +61,7 @@ public class PlanetMenuManager : AbstractMenuManager
         _activeMenu = 2;
         planetTwo.setSelected(false);
         ShowChoosePlanetMenu();
+
     }
 
     private void CancelChooseOtherPlanet(CancelChooseOtherPlanetEvent event_)
@@ -82,10 +84,13 @@ public class PlanetMenuManager : AbstractMenuManager
         _activeMenu = 0;
         planetOne.setSelected(false);
         SwitchMenu(null);
+        MessageHub.Publish(new ToggleNextDayButtonEvent(this, true));
     }
 
     private void PlanetClicked(PlanetClickedEvent event_)
     {
+        MessageHub.Publish(new ToggleNextDayButtonEvent(this, false));
+
         Debug.Assert(_activeMenu == 0 || _activeMenu == 2);
 
         switch (_activeMenu)
