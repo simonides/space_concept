@@ -52,19 +52,19 @@ public class BigBang : MonoBehaviour {
         Debug.Log("Initialising game...");
         try {
             if (SettingsController.GetInstance().loadMap == false) {
-                InitialiseNewGame();
+                InitialiseNewGame(SettingsController.GetInstance().generateRandomMap);                
             } else {
                 InitialiseGameFromSaveGame();
             }
         } catch (MissingComponentException e) {
             Debug.LogWarning("Failed to communicate with SettingsController. \n" + e.ToString());
-            InitialiseNewGame();
+            InitialiseNewGame(true);
         }
         Debug.Log("The Big Bang happened guys!");
     }
 
 
-    void InitialiseNewGame() {
+    void InitialiseNewGame(bool generateRandomMap) {
         Debug.Log("Generating new game...");
         GameStateData gameStateData = new GameStateData();
         gameState.Init(gameStateData);
@@ -72,7 +72,12 @@ public class BigBang : MonoBehaviour {
         AirTrafficData airTrafficData = new AirTrafficData();
         airTrafficControl.Init(gameStateData.CurrentDay, airTrafficData);
 
-        SpaceData spaceData = GenerateRandomMap();// GenerateDefaultMap();
+        SpaceData spaceData;
+        if (generateRandomMap) {
+            spaceData = GenerateRandomMap();
+        } else {
+            spaceData = MapGenerator.GenerateDefaultMap();
+        }
         space.Init(spaceData);
 
         // Handling players...
@@ -138,40 +143,6 @@ public class BigBang : MonoBehaviour {
 
 
 
-
-
-    //SpaceData GenerateDefaultMap() {
-    //    SpaceData spaceData = new SpaceData();
-    //    PlanetData planet = new PlanetData(new Vector2(0, 0), 50, 50, 10000, 100, true);
-    //    planet.Name = "first";
-    //    spaceData.AddPlanet(planet);
-
-    //    planet = new PlanetData(new Vector2(400, -40), 120, 50, 10000, 100, true);
-    //    planet.Name = "second";
-    //    spaceData.AddPlanet(planet);
-
-    //    planet = new PlanetData(new Vector2(-200, 480), 90, 50, 10000, 100, true);
-    //    planet.Name = "third";
-    //    spaceData.AddPlanet(planet);
-
-    //    planet = new PlanetData(new Vector2(-500, 1000), 90, 50, 10000, 100, true);
-    //    planet.Name = "four";
-    //    spaceData.AddPlanet(planet);
-
-    //    planet = new PlanetData(new Vector2(500, -1000), 90, 50, 10000, 100, true);
-    //    planet.Name = "five";
-    //    spaceData.AddPlanet(planet);
-
-    //    planet = new PlanetData(new Vector2(3000, 150), 90, 50, 10000, 100, true);
-    //    planet.Name = "six";
-    //    spaceData.AddPlanet(planet);
-
-    //    planet = new PlanetData(new Vector2(-1000, 800), 90, 50, 10000, 100, true);
-    //    planet.Name = "seven";
-    //    spaceData.AddPlanet(planet);
-
-    //    return spaceData;
-    //}
 
 
 

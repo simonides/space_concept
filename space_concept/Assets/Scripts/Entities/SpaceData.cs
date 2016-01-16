@@ -15,13 +15,25 @@ public class SpaceData {
     public Rect bounds { get; private set; }     // Size/bounds of the cosmos
     public int MaxPlayerCount { get; private set; }     // The maximum number of players on this map. Defined by the number of start planets in this map.
 
+    static List<string> predefinedPlanetNames;
+
+    static public string GetUniqueRandomPlanetName() {
+        int idx = Random.Range(0, predefinedPlanetNames.Count);
+        string name = predefinedPlanetNames[idx];
+        predefinedPlanetNames.RemoveAt(idx);
+        return name;
+    }
 
     public SpaceData() {
         planets = new List<PlanetData>();
         bounds = new Rect(0, 0, 0, 0);
         MaxPlayerCount = 0;
+        predefinedPlanetNames = new List<string> {  "Aarseth", "Abdulla", "Adriana", "Asphaug", "Balaton", "Behaim", "Briggs", "Byrd", "Chaubal", "Cipolla", "Cyrus", "Decatur", "Dimpna", "Dumont",
+                                                                    "Echnaton", "Elbrus", "Elisa", "Erminia", "Fanynka", "Figneria", "Frobel", "Galinskij", "Ganguly", "Giocasilli", "Granule", "Hanakusa", "Harada",
+                                                                    "Hjorter", "Humecronyn", "Iglika", "Ikaunieks", "Isoda", "Jansky", "Kabtamu", "Kalinin", "Koikeda", "Landoni", "Lebedev", "Licitra", "Lyubov",
+                                                                    "Miknaitis", "Namba", "Orchiston", "Pandion", "Penttila", "Quero", "Radmall", "Ruetsch", "Serra", "Shustov", "Siurana", "Smaklosa", "Szalay",
+                                                                    "Tenmu", "Tietjen", "Trombka", "Tytgat", "Velichko", "Vulpius", "Wupatki", "Xanthus", "Yarilo", "Zajonc", "Zeissia", "Zykina" };
     }
-
 
     // Size of the whole map, starting at the most left/top planet to the most right/bottom planet inclusive their diameter.
     public Vector2 GetSize() {
@@ -29,7 +41,11 @@ public class SpaceData {
     }
 
 
+
     public void AddPlanet(PlanetData planet) {
+        if(planet.Name == "") {
+            planet.Name = GetUniqueRandomPlanetName();
+        }
         foreach (PlanetData otherPlanet in planets) {
             if (otherPlanet.Name.Equals(planet.Name)) {          //ID's must be unique
                 throw new UnityException("Unable to create planet. There is already a planet with the name " + planet.Name);
