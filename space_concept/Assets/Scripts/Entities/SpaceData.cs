@@ -58,22 +58,33 @@ public class SpaceData {
             ++MaxPlayerCount;
         }
 
-        //Update mapBounds:
+        UpdateBoundsWithNewPlanet(planet, planets.Count == 1);      
+    }
+
+    public void ForceBoundRecalculation() {
+        bool first = true;
+        foreach (PlanetData planet in planets) {
+            UpdateBoundsWithNewPlanet(planet, first);
+            first = false;
+        }
+    }
+
+    void UpdateBoundsWithNewPlanet(PlanetData planet, bool isFirstPlanet) {
         Rect newMapBounds = bounds;
 
         Vector2 position = planet.Position;
         float diameter = planet.Diameter;
 
-        if (position.x - diameter / 2 < bounds.xMin || planets.Count == 1) {
+        if (position.x - diameter / 2 < bounds.xMin || isFirstPlanet) {
             newMapBounds.xMin = position.x - diameter / 2;
         }
-        if (position.y - diameter / 2 < bounds.yMin || planets.Count == 1) {
+        if (position.y - diameter / 2 < bounds.yMin || isFirstPlanet) {
             newMapBounds.yMin = position.y - diameter / 2;
         }
-        if (position.x + diameter / 2 > bounds.xMax || planets.Count == 1) {
+        if (position.x + diameter / 2 > bounds.xMax || isFirstPlanet) {
             newMapBounds.xMax = position.x + diameter / 2;
         }
-        if (position.y + diameter / 2 > bounds.yMax || planets.Count == 1) {
+        if (position.y + diameter / 2 > bounds.yMax || isFirstPlanet) {
             newMapBounds.yMax = position.y + diameter / 2;
         }
         bounds = newMapBounds;

@@ -74,7 +74,7 @@ public class BigBang : MonoBehaviour {
 
         SpaceData spaceData;
         if (generateRandomMap) {
-            spaceData = GenerateRandomMap();
+            spaceData = MapGenerator.GenerateRandomMap(SettingsController.GetInstance().planetCount);
         } else {
             spaceData = MapGenerator.GenerateDefaultMap();
         }
@@ -173,114 +173,5 @@ public class BigBang : MonoBehaviour {
         }
         return new WinnerData(currentDay, playerList);    // No AI survived
     }
-
-
-
-
-
-    SpaceData GenerateRandomMap() {
-        SpaceData spaceData = new SpaceData();
-        List<PlanetData> planets = new List<PlanetData>();//hold the list of planets to check if they are correctly disributed
-        PlanetData planet;
-        int numberOfPlantes = Random.Range(10, 30);//get random number of planets
-        float minMapSizeX = -1200f;
-        float minMapSizeY = -700f;
-        float maxMapSizeX = 1200f;
-        float maxMapSizeY = 700f;
-
-        float minPlanetDistance = 200f;
-        Vector2 newPosition = new Vector2();
-        bool SizeXSatisfied = false, SizeYSatisfied = false;
-        bool canPositionPlanet = true;
-
-        Debug.Log("Planets to gen " + numberOfPlantes);
-        int loopCounter = 0;
-        for (int i = 0; i < numberOfPlantes; i++) {
-            if (loopCounter >= 10) {
-
-                numberOfPlantes--;
-                loopCounter = 0;
-            }
-            Debug.Log("I is : " + i);
-            loopCounter++;
-            canPositionPlanet = true;
-            newPosition.x = Random.Range(minMapSizeX, maxMapSizeX);
-            newPosition.y = Random.Range(minMapSizeY, maxMapSizeY);
-            Debug.Log("Run the Pos gen");
-            foreach (PlanetData p in planets) {
-                if (Vector2.Distance(newPosition, p.Position) < minPlanetDistance) {
-                    canPositionPlanet = false;
-                    break;
-                }
-            }
-            if (!canPositionPlanet) {
-                Debug.Log("Reducing i");
-                i--;
-                loopCounter++;
-            } else {
-                Debug.Log("Actually generated Planet");
-
-                planet = new PlanetData(new Vector2(newPosition.x, newPosition.y), Random.Range(30f, 100f), 50, 10000, 100, true);
-                planets.Add(planet);
-            }
-        }
-        Debug.Log("looped: " + loopCounter);
-        PlanetData top = planets[0], bottom = planets[0], left = planets[0], right = planets[0];
-
-        foreach (PlanetData p in planets) {
-            if (top.Position.y < p.Position.y) {
-                top = p;
-            }
-            if (bottom.Position.y > p.Position.y) {
-                bottom = p;
-            }
-            if (left.Position.x > p.Position.x) {
-                left = p;
-            }
-            if (right.Position.x < p.Position.x) {
-                right = p;
-            }
-        }
-        if (Mathf.Abs(top.Position.y - bottom.Position.y) >= minMapSizeY) {
-            SizeYSatisfied = true;
-        }
-        if (Mathf.Abs(right.Position.y - left.Position.y) >= minMapSizeX) {
-            SizeXSatisfied = true;
-        }
-
-
-        if (!SizeYSatisfied) {
-            float restNeededDistance = minMapSizeY - Mathf.Abs(top.Position.y - bottom.Position.y) / 2;
-            int index = planets.IndexOf(top);//.Position.y + restNeededDistance;
-            top.Position = new Vector2(top.Position.x, top.Position.y + restNeededDistance);
-            planets[index] = top;
-
-            index = planets.IndexOf(bottom);//.Position.y + restNeededDistance;
-            bottom.Position = new Vector2(bottom.Position.x, bottom.Position.y - restNeededDistance);
-            planets[index] = bottom;
-        }
-
-        if (!SizeXSatisfied) {
-            float restNeededDistance = minMapSizeY - Mathf.Abs(right.Position.x - left.Position.x) / 2;
-            int index = planets.IndexOf(right);//.Position.y + restNeededDistance;
-            right.Position = new Vector2(right.Position.x + restNeededDistance, right.Position.y);
-            planets[index] = right;
-
-            index = planets.IndexOf(left);//.Position.y + restNeededDistance;
-            left.Position = new Vector2(left.Position.x - restNeededDistance, left.Position.y);
-            planets[index] = left;
-        }
-        int planetNum = 1;
-        foreach (PlanetData p in planets) {
-            p.Name = "Planet: " + planetNum;
-            spaceData.AddPlanet(p);
-            planetNum++;
-        }
-        Debug.Log("PLANEtS GENERATED: " + planetNum);
-        return spaceData;
-    }
-
-
-
-
+    
 }
