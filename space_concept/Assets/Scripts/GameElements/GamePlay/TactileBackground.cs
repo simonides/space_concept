@@ -6,55 +6,56 @@ public class TactileBackground : MonoBehaviour {
     // ****    CONFIGURATION    **** //
     public GameObject tactileBackgroundPrefab;
     public float tactileBackgroundWith;
+    public UnityEngine.UI.Text targetPlanetText;
 
-    public float maxAlpha = 0.7f;
-    public float fadeSpeed = 2f;
+    public float maxAlpha;
+    public float fadeSpeed;
     // ****                     **** //
 
-    //public bool should
-    public GameObject backgroundHolder;
+    GameObject backgroundHolder;
+    bool shouldBeVisible;
+    float currentProgress;
 
-    public Rect bounds { get; private set; }     // Size/bounds of the cosmos
+    Rect bounds;     
 
 
     public void Awake() {
+        Debug.Assert(targetPlanetText != null);
         Debug.Assert(tactileBackgroundPrefab != null);
         Debug.Assert(tactileBackgroundWith > 0);
     }
     public void Init(Rect bounds) {
+        shouldBeVisible = false;
+        currentProgress = 0;
+
         DestroyChildren();
         this.bounds = bounds;
         SetupTactileBakground();
-        
+
     }
 
     void DestroyChildren() {
-        Destroy(backgroundHolder);
-        //var children = new List<GameObject>();
-        //foreach (Transform child in transform) {
-        //    children.Add(child.gameObject);
-        //}
-        //children.ForEach(child => Destroy(child));
+        Destroy(backgroundHolder);        
     }
 
     void SetupTactileBakground() {
         backgroundHolder = new GameObject();
         backgroundHolder.name = "BackgroundHolder";
         backgroundHolder.transform.SetParent(this.transform);
-        Vector2 pos = new Vector2(0,0);
-        for (pos.x = -tactileBackgroundWith; pos.x > bounds.xMin- tactileBackgroundWith; pos.x -= tactileBackgroundWith) {
+        Vector2 pos = new Vector2(0, 0);
+        for (pos.x = -tactileBackgroundWith; pos.x > bounds.xMin - tactileBackgroundWith; pos.x -= tactileBackgroundWith) {
             SetupTactileBakgroundColumn(pos);
         }
-        for (pos.x = 0; pos.x < bounds.xMax+ tactileBackgroundWith; pos.x += tactileBackgroundWith) {
+        for (pos.x = 0; pos.x < bounds.xMax + tactileBackgroundWith; pos.x += tactileBackgroundWith) {
             SetupTactileBakgroundColumn(pos);
         }
-        
+
     }
     void SetupTactileBakgroundColumn(Vector2 pos) {
-        for (pos.y = -tactileBackgroundWith; pos.y > bounds.yMin-tactileBackgroundWith; pos.y -= tactileBackgroundWith) {
+        for (pos.y = -tactileBackgroundWith; pos.y > bounds.yMin - tactileBackgroundWith; pos.y -= tactileBackgroundWith) {
             AddTactileBackgroundSnippet(pos);
         }
-        for (pos.y = 0; pos.y < bounds.yMax+ tactileBackgroundWith; pos.y += tactileBackgroundWith) {
+        for (pos.y = 0; pos.y < bounds.yMax + tactileBackgroundWith; pos.y += tactileBackgroundWith) {
             AddTactileBackgroundSnippet(pos);
         }
     }
@@ -65,14 +66,40 @@ public class TactileBackground : MonoBehaviour {
         bgSnippet.transform.SetParent(backgroundHolder.transform);
         bgSnippet.transform.localPosition = position;
     }
-                                                 // Use this for initialization
-    void Start () {
-        //MessageHub.Subscribe<TactileBackgroundStateEvent>()
-	}
-	
+    // Use this for initialization
+    void Start() {
+        MessageHub.Subscribe<TactileBackgroundStateEvent>((TactileBackgroundStateEvent evt) => { this.shouldBeVisible = evt.Content; });
+    }
+
+
 
     void Update() {
-        //this.gameObject.SetActive(true);
+        float change = Time.deltaTime * fadeSpeed;
+        if (!shouldBeVisible) {
+            if (currentProgress <= 0) {
+                targetPlanetText.gameObject.SetActive(false);
+                backgroundHolder.SetActive(false);
+                return;
+            }
+            change = -change;            
+        } else {
+            targetPlanetText.gameObject.SetActive(true);
+            backgroundHolder.SetActive(true);
+        }
+        currentProgress += change;
+        currentProgress = Mathf.Clamp(currentProgress, 0, maxAlpha);
+
+        float alpha = Mathf.Sin(currentProgress * Mathf.PI / 2);
+        
+        foreach (Transform child in backgroundHolder.transform) {
+            var renderer = child.GetComponent<SpriteRenderer>();
+            var color = renderer.color;
+            color.a = alpha;
+            renderer.color = color;
+            color = targetPlanetText.color;
+            color.a = alpha;
+            targetPlanetText.color = color;
+        }
     }
 
 }
