@@ -19,7 +19,7 @@ public class AirTrafficControl : MonoBehaviour {
 
     // ****                     **** //
 
-    AirTrafficData airTrafficData;        // entity
+    public AirTrafficData airTrafficData { get; private set; }        // entity
     List<GameObject> troops;              // troop objects (with attached Troop script)
 
     // Troop deletion:

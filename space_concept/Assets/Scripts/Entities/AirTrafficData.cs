@@ -13,9 +13,7 @@ public class AirTrafficData {
 
 
     public void AddTroopMovement(TroopData troopData) {
-        //if (troopData.ArrivalTime <= CurrentDay) {
-        //    Debug.LogError("Added troopMovement whose arrivel time is in the past or the current day (" + troopData.ArrivalTime + ")");
-        //}
+        //Debug.Assert(troopData.ArrivalTime > CurrentDay);
         airTraffic.Add(troopData);
     }
 
@@ -33,4 +31,14 @@ public class AirTrafficData {
     public void RemoveOldTroopMovements(int dayToRemove) {
         airTraffic.RemoveAll(troop => troop.ArrivalTime <= dayToRemove);
     }
+
+    public bool DoesPlayerHaveSomeFlyingTroops(PlayerData player) {
+        foreach (TroopData troop in airTraffic) {
+            if (troop.Owner == player) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

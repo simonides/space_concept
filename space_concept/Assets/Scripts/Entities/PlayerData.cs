@@ -53,6 +53,10 @@ public class PlayerData {
         ownedPlanets.Remove(planet);
     }
 
+    public int GetNumberOfOwnedPlanets() {
+        return ownedPlanets.Count;
+    }
+
     public static string GetRandomPlayerName() {
         return predefinedPlayerNames[UnityEngine.Random.Range(0, predefinedPlayerNames.Count)];
     }

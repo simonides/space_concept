@@ -40,6 +40,8 @@ public class BigBang : MonoBehaviour {
 
     void Start() {
         MessageHub.Publish<PlanetUpdateEvent>(new PlanetUpdateEvent(this));     // Update graphical planet representations
+        CheckForGameEnd();
+        MessageHub.Subscribe<TroopEvaluationResultEvent>((TroopEvaluationResultEvent evt) => CheckForGameEnd());     // Check for game end
     }
 
 
@@ -138,38 +140,73 @@ public class BigBang : MonoBehaviour {
 
 
 
-    SpaceData GenerateDefaultMap() {
-        SpaceData spaceData = new SpaceData();
-        PlanetData planet = new PlanetData(new Vector2(0, 0), 50, 50, 10000, 100, true);
-        planet.Name = "first";
-        spaceData.AddPlanet(planet);
+    //SpaceData GenerateDefaultMap() {
+    //    SpaceData spaceData = new SpaceData();
+    //    PlanetData planet = new PlanetData(new Vector2(0, 0), 50, 50, 10000, 100, true);
+    //    planet.Name = "first";
+    //    spaceData.AddPlanet(planet);
 
-        planet = new PlanetData(new Vector2(400, -40), 120, 50, 10000, 100, true);
-        planet.Name = "second";
-        spaceData.AddPlanet(planet);
+    //    planet = new PlanetData(new Vector2(400, -40), 120, 50, 10000, 100, true);
+    //    planet.Name = "second";
+    //    spaceData.AddPlanet(planet);
 
-        planet = new PlanetData(new Vector2(-200, 480), 90, 50, 10000, 100, true);
-        planet.Name = "third";
-        spaceData.AddPlanet(planet);
+    //    planet = new PlanetData(new Vector2(-200, 480), 90, 50, 10000, 100, true);
+    //    planet.Name = "third";
+    //    spaceData.AddPlanet(planet);
 
-        planet = new PlanetData(new Vector2(-500, 1000), 90, 50, 10000, 100, true);
-        planet.Name = "four";
-        spaceData.AddPlanet(planet);
+    //    planet = new PlanetData(new Vector2(-500, 1000), 90, 50, 10000, 100, true);
+    //    planet.Name = "four";
+    //    spaceData.AddPlanet(planet);
 
-        planet = new PlanetData(new Vector2(500, -1000), 90, 50, 10000, 100, true);
-        planet.Name = "five";
-        spaceData.AddPlanet(planet);
+    //    planet = new PlanetData(new Vector2(500, -1000), 90, 50, 10000, 100, true);
+    //    planet.Name = "five";
+    //    spaceData.AddPlanet(planet);
 
-        planet = new PlanetData(new Vector2(3000, 150), 90, 50, 10000, 100, true);
-        planet.Name = "six";
-        spaceData.AddPlanet(planet);
+    //    planet = new PlanetData(new Vector2(3000, 150), 90, 50, 10000, 100, true);
+    //    planet.Name = "six";
+    //    spaceData.AddPlanet(planet);
 
-        planet = new PlanetData(new Vector2(-1000, 800), 90, 50, 10000, 100, true);
-        planet.Name = "seven";
-        spaceData.AddPlanet(planet);
+    //    planet = new PlanetData(new Vector2(-1000, 800), 90, 50, 10000, 100, true);
+    //    planet.Name = "seven";
+    //    spaceData.AddPlanet(planet);
 
-        return spaceData;
+    //    return spaceData;
+    //}
+
+
+
+    // checks if the game has been finished
+    public void CheckForGameEnd() {
+        WinnerData winnerData = CheckForGameEnd(gameState.gameStateData.CurrentDay);
+        if (winnerData == null) {
+            return;
+        }
+        MessageHub.Publish<GameFinishedEvent>(new GameFinishedEvent(this, winnerData));
     }
+
+    WinnerData CheckForGameEnd(int currentDay) {
+        var playerList = playerManager.PlayerListData;
+
+        if (playerList.HumanPlayer.GetNumberOfOwnedPlanets() == 0) {
+            if (!airTrafficControl.airTrafficData.DoesPlayerHaveSomeFlyingTroops(playerList.HumanPlayer)) {
+                return new WinnerData(currentDay, playerList);    // Player died
+            }
+        }
+        foreach (AiPlayer ai in playerList.AiPlayers) {
+            if (ai.playerData.GetNumberOfOwnedPlanets() > 0) {
+                return null;
+            }
+            if (airTrafficControl.airTrafficData.DoesPlayerHaveSomeFlyingTroops(ai.playerData)) {
+                return null;
+            }
+        }
+        return new WinnerData(currentDay, playerList);    // No AI survived
+    }
+
+
+
+
+
     SpaceData GenerateRandomMap() {
         SpaceData spaceData = new SpaceData();
         List<PlanetData> planets = new List<PlanetData>();//hold the list of planets to check if they are correctly disributed
@@ -271,5 +308,8 @@ public class BigBang : MonoBehaviour {
         Debug.Log("PLANEtS GENERATED: " + planetNum);
         return spaceData;
     }
+
+
+
 
 }
