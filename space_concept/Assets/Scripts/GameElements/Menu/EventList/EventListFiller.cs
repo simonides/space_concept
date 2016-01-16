@@ -4,7 +4,109 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+/*
 
+Wenn man verstärkung bekommt (von sich selbst):     EvaluationEventType = Supply
+    You received
+     +134 ships                                 usedShips-lostShips
+
+Nur, Wenn der Hangar voll is:                       EvaluationEventOutcome = Lost
+    Hangar Full!
+    6 ships lost                                lostShips
+
+Immer sichtbar:
+ 250 ships available                            shipsOnPlanet
+
+
+
+
+
+
+
+
+
+
+
+
+Wenn man selber jemand anderen angegriffen hat:          evaluationEventType = AttackedPlanet
+     You attacked
+      playername                                otherPlayer.  Wenn null, dann den Text "a neutral planet" ausgeben
+         with
+       150 ships                                usedShips
+
+Wenn man verloren hat ODER ein neutraler planet neutral bleibt:         EvaluationEventOutcome = Lost
+         Lost!
+There are no survivors.
+
+Wenn der Planet neutral wurde:                    EvaluationEventOutcome = Neutral
+         Lost!
+The planet is now neutral
+
+Wenn der Planet erobert wurde:                  evaluationEventOutcome = success
+        Victory!
+   80 ships survived.                         shipsOnPlanet
+
+
+
+
+
+
+
+
+
+
+
+Wenn man angefriffen wird und überlebt hat:     evaluationEventType = GotAttacked, EvaluationEventOutcome = Success
+      playername                             otherPlayer
+     attacked with
+       200 ships                              usedShips
+
+       Survived!
+  12 ships remaining                          shipsOnPlanet
+
+
+
+
+
+
+
+
+Wenn man angefriffen wird und der Planet neutral wurde:       evaluationEventType = GotAttacked, EvaluationEventOutcome = Neutral
+      playername                              otherPlayer
+     attacked with
+       200 ships                              usedShips
+
+         Lost!
+The planet is now neutral.
+
+
+
+Wenn man angegriffen wird, und der Planet jetzt dem Gegner gehört:      evaluationEventType = GotAttacked, evaluationEventOutcome = Lost
+      playername                            otherPlayer
+       attacked
+
+        Lost!
+There are no survivors.
+
+
+
+
+Wenn ein anderer Spieler einen anderen Planeten angegriffen hat, und gewonnen hat:              evaluationEventType = AttackViewer, evaluationEventOutcome = Lost
+  playername                              otherPlayer
+   attacked
+  playername                              otherAttackedPlayer  (Wenn null: den string "neutral planet" ausgeben)
+   and won.
+
+
+Wenn ein anderer Spieler einen anderen Planeten angegriffen hat, und der jetzt neutral ist:      evaluationEventType = AttackViewer, evaluationEventOutcome = Neutral;
+  playername                              otherPlayer
+   attacked
+  playername                            otherAttackedPlayer
+
+The planet is now neutral.
+
+
+*/
 public class EventListFiller : MonoBehaviour
 {
     // ****    CONFIGURATION    **** //
@@ -12,11 +114,12 @@ public class EventListFiller : MonoBehaviour
     // ****  ATTACHED OBJECTS   **** //
     GameObject pooledGameObjectHolder;
 
+
     // ****     ALLOCATORS      **** //
     PoolAllocator<GameObject> eventButtonPool;
 
     // ****                     **** //
-
+    public GameObject Space;
 
     public EventButton prefab;
 
@@ -88,18 +191,18 @@ public class EventListFiller : MonoBehaviour
         // detach them from the content panel
         contentPanel.transform.DetachChildren();
 
-        AttackEvaluation atev = new AttackEvaluation();
-        atev.Outcome = EvaluationOutcome.Lost;
+        //AttackEvaluation atev = new AttackEvaluation();
+        //atev.Outcome = EvaluationOutcome.Lost;
 
-        AttackEvaluation atev1 = new AttackEvaluation();
-        atev1.Outcome = EvaluationOutcome.Neutral;
+        //AttackEvaluation atev1 = new AttackEvaluation();
+        //atev1.Outcome = EvaluationOutcome.Neutral;
 
-        AttackEvaluation atev2 = new AttackEvaluation();
-        atev2.Outcome = EvaluationOutcome.Success;
+        //AttackEvaluation atev2 = new AttackEvaluation();
+        //atev2.Outcome = EvaluationOutcome.Success;
 
-        itemList.Add(atev);
-        itemList.Add(atev1);
-        itemList.Add(atev2);
+        //itemList.Add(atev);
+        //itemList.Add(atev1);
+        //itemList.Add(atev2);
 
 
 
@@ -122,21 +225,26 @@ public class EventListFiller : MonoBehaviour
                     {
                         eventBtn.typeColor.color = new Color(144, 0, 0, 255);
                         eventBtn.typeText.text = "D   A   N   G   E   R";
-                        eventBtn.typeText.color = new Color(56, 0, 0, 255);
+                        eventBtn.typeText.color = new Color(0, 0, 0, 255);
+                        //eventBtn.typeText.color = new Color(56, 0, 0, 255);
                     }
                     break;
+
                 case EvaluationOutcome.Neutral:
                     {
                         eventBtn.typeColor.color = new Color(0, 119, 237, 255);
-                        eventBtn.typeText.text = "N   E   U   T   R   A   L";
-                        eventBtn.typeText.color = new Color(56, 0, 120, 255);
+                        eventBtn.typeText.text = "I    N    F    O";
+                        eventBtn.typeText.color = new Color(0, 0, 0, 255);
+                        //eventBtn.typeText.color = new Color(56, 0, 120, 255);
                     }
                     break;
+
                 case EvaluationOutcome.Success:
                     {
                         eventBtn.typeColor.color = new Color(0, 119, 0, 255);
                         eventBtn.typeText.text = "S   U   C   C   E   S   S";
-                        eventBtn.typeText.color = new Color(0, 36, 0, 255);
+                        eventBtn.typeText.color = new Color(0, 0, 0, 255);
+                        //eventBtn.typeText.color = new Color(0, 36, 0, 255);
                     }
                     break;
 
@@ -150,45 +258,83 @@ public class EventListFiller : MonoBehaviour
 
                 case EvaluationType.Supply:           //A planet received supply ships
                     {
-                        eventBtn.line1.text = "You recieved";
-                        eventBtn.line2.text = "+" + item.IncomingShips + " ships";
-                        eventBtn.line3.text = "";
-
+                        eventBtn.line1.text = "You received " + item.IncomingShips + " ships";
+                        eventBtn.line2.text = item.ShipsOnPlanetAfterEvent + " ships now available on planet";
+                        if (item.LostShips > 0)
+                        {
+                            eventBtn.line3.text = item.LostShips + " ships were lost due to full hangar";
+                        }
+                        else
+                        {
+                            eventBtn.line3.text = "";
+                        }
                     }
                     break;
-                case EvaluationType.AttackedPlanet: //The player attacked another planet
-                    {
-                        eventBtn.line1.text = "You recieved";
-                        eventBtn.line2.text = "+" + item.IncomingShips + " ships";
-                        eventBtn.line3.text = "";
+                case EvaluationType.AttackedPlanet:
+                    { //The player attacked another planet
+                        string originalPlayerName = (item.OriginalOwner == null ? "Neutral" : item.OriginalOwner.Name);
+                        eventBtn.line1.text = "You attacked " + originalPlayerName;
+                        eventBtn.line2.text = "with " + item.IncomingShips + " ships";
+                        switch (item.Outcome)
+                        {
+                            case EvaluationOutcome.Lost: { eventBtn.line3.text = "There are no survivors."; } break;
+                            case EvaluationOutcome.Neutral: { eventBtn.line3.text = "The planet is now neutral."; } break;
+                            case EvaluationOutcome.Success: { eventBtn.line3.text = item.ShipsOnPlanetAfterEvent + " ships survived."; } break;
+                            default: break;
+                        }
                     }
                     break;
                 case EvaluationType.GotAttacked: //A planet of the player got attacked by another planet
                     {
-                        eventBtn.line1.text = "You recieved";
-                        eventBtn.line2.text = "+" + item.IncomingShips + " ships";
-                        eventBtn.line3.text = "";
+                        string playerAttacked = item.ShipOwner.Name + " attacked";
+                        string attackedWith = " with " + item.IncomingShips + " ships";
+
+                        eventBtn.line2.text = "Lost!";
+
+                        switch (item.Outcome){
+                            case EvaluationOutcome.Lost:{
+                                    attackedWith = ".";
+                                    eventBtn.line3.text = "There are no survivors.";
+                                }
+                                break;
+                            case EvaluationOutcome.Neutral:{
+                                    eventBtn.line3.text = "The planet is now neutral.";
+                                }
+                                break;
+                            case EvaluationOutcome.Success:{
+                                    eventBtn.line2.text = "Survived!";
+                                    eventBtn.line3.text = item.ShipsOnPlanetAfterEvent + " ships survived.";
+                                }
+                                break;
+                            default: break;
+                        }
+                        eventBtn.line1.text = playerAttacked + attackedWith;
                     }
                     break;
-                case EvaluationType.CaptureViewer: //Another player attacked another planet and won - the ownership changed.
-                    {
-                        eventBtn.line1.text = "You recieved";
-                        eventBtn.line2.text = "+" + item.IncomingShips + " ships";
-                        eventBtn.line3.text = "";
-                    }
-                    break;
+                case EvaluationType.CaptureViewer:
+                    { //Another player attacked another planet and won - the ownership changed.
+                        var otherAttackedPlayer = item.PlanetOwner == null ? "a neutral planet" : item.PlanetOwner.Name;
+
+                        eventBtn.line1.text = item.ShipOwner.Name + " attacked";
+                        eventBtn.line2.text = otherAttackedPlayer;
+                        eventBtn.line3.text = "and won";
+                    } break;
                 case EvaluationType.AttackViewer:
                     {
-                        eventBtn.line1.text = "You recieved";
-                        eventBtn.line2.text = "+" + item.IncomingShips + " ships";
-                        eventBtn.line3.text = "";
+                        eventBtn.line1.text = item.ShipOwner.Name + " attacked";
+                        eventBtn.line2.text = " " + item.PlanetOwner;
+                        eventBtn.line3.text = "The planet is now neutral.";
                     }
                     break;
                 default:
                     break;
 
             }
-            //item.Planet.
+
+            //var space = Space.GetComponent<Space>();
+            //space.getPlanet(item.Planet).
+
+
             //eventBtn.name = item.planetName;
             //eventBtn.icon.sprite = item.icon;
             //eventBtn.button.onClick = item.thingToDo;
