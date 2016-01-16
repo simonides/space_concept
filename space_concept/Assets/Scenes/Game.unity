@@ -5895,11 +5895,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22432196, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22434656, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22497086, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_LocalScale.x
@@ -5919,15 +5919,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22432196, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 22434656, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 22434656, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 11491640, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_Value
@@ -9380,8 +9380,8 @@ ParticleSystem:
     radius: 1
     angle: 25
     length: 5
-    boxX: 2170.7544
-    boxY: 1265.6636
+    boxX: 1
+    boxY: 1
     boxZ: 10
     arc: 360
     placementMode: 0
