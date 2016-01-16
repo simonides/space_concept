@@ -61,7 +61,11 @@ public class AttackEvaluation {
         evaluation.LostShips = lostShips;
         evaluation.Planet = troop.TargetPlanet;
         evaluation.OriginalOwner = troop.Owner;
-        Debug.Log("A supply of " + evaluation.IncomingShips + " reached planet " + evaluation.Planet.Name + " - " + lostShips + " ships were lost due to full hangar");
+        Debug.Log("A supply of " 
+            + evaluation.IncomingShips 
+            + " reached planet "
+            + evaluation.Planet.Name + " - " + lostShips 
+            + " ships were lost due to full hangar");
         return evaluation;
     }
 
@@ -114,7 +118,12 @@ public class AttackEvaluation {
         evaluation.Planet = troop.TargetPlanet;
         evaluation.OriginalOwner = oldOwner;
 
-        Debug.Log("An attack of " + evaluation.IncomingShips + " ships reached planet " + evaluation.Planet.Name + " - Losses:  owner = " + lostShipsByOwner + ", attacker = " + (lostShipsByAttacker + lostShipsByLanding) + "; New owner: " + (newOwner == null ? "neutral" : newOwner.Name) + "");
+        Debug.Log("An attack of " + evaluation.IncomingShips 
+            + " ships reached planet " + evaluation.Planet.Name 
+            + " - Losses:  owner = " + lostShipsByOwner 
+            + ", attacker = " + (lostShipsByAttacker + lostShipsByLanding) 
+            + "; New owner: " + (newOwner == null ? "neutral" : newOwner.Name) 
+            + "");
         return evaluation;
     }
 }
