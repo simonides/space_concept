@@ -14,9 +14,7 @@ public class BigBang : MonoBehaviour {
 
 
 
-
     void Awake() {
-
         space = GameObject.Find("Space").GetComponent<Space>();
         if (space == null) {
             throw new MissingComponentException("Unable to find Space. The big bang doesn't have enough space to happen. The 'Space' game object also needs to be added to the level and have the space script attached.");
@@ -40,7 +38,9 @@ public class BigBang : MonoBehaviour {
         InitialiseGame();
     }
 
-
+    void Start() {
+        MessageHub.Publish<PlanetUpdateEvent>(new PlanetUpdateEvent(this));     // Update graphical planet representations
+    }
 
 
     void InitialiseGame() {
@@ -58,7 +58,7 @@ public class BigBang : MonoBehaviour {
             Debug.LogWarning("Failed to communicate with SettingsController. \n" + e.ToString());
             InitialiseNewGame();
         }
-
+        
         Debug.Log("The Big Bang happened guys!");
     }
 
@@ -76,7 +76,6 @@ public class BigBang : MonoBehaviour {
 
         // Handling players...
         PlaceNewPlayersOnMap("Human Player", Color.red, SettingsController.GetInstance().kiCount); 
-        MessageHub.Publish<PlanetUpdateEvent>(new PlanetUpdateEvent(this));     // Update graphical planet representations
     }
 
 

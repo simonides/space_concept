@@ -6,18 +6,22 @@ using Custom.Base;
 
 public class SettingMenuController : MonoBehaviour {
 
+    public UnityEngine.UI.Toggle fogOfWarToggle;
     public UnityEngine.UI.Slider masterSlider;
     public UnityEngine.UI.Slider musicSlider;
     public UnityEngine.UI.Slider sfxslider;
 
+    private SettingsController manager;
     void Start() {
         
     }
     void Awake()
     {
-        masterSlider.value = SettingsController.GetInstance().dataFile.masterVolume;
-        musicSlider.value = SettingsController.GetInstance().dataFile.musicVolume;
-        sfxslider.value = SettingsController.GetInstance().dataFile.sfxVolume;
+        manager = SettingsController.GetInstance();
+        fogOfWarToggle.isOn = manager.dataFile.fogOfWar;
+        masterSlider.value = manager.dataFile.masterVolume;
+        musicSlider.value = manager.dataFile.musicVolume;
+        sfxslider.value = manager.dataFile.sfxVolume;
     }
 
     public void Button_LoadScene(string f_sceneName)
@@ -34,10 +38,11 @@ public class SettingMenuController : MonoBehaviour {
 
     public void SaveSettings()
     {
-        SettingsController.GetInstance().dataFile.masterVolume = masterSlider.value;
-        SettingsController.GetInstance().dataFile.musicVolume = musicSlider.value;
-        SettingsController.GetInstance().dataFile.sfxVolume = sfxslider.value;
-        SettingsController.GetInstance().SaveData();
+        manager.dataFile.fogOfWar = fogOfWarToggle.isOn;
+        manager.dataFile.masterVolume = masterSlider.value;
+        manager.dataFile.musicVolume = musicSlider.value;
+        manager.dataFile.sfxVolume = sfxslider.value;
+        manager.SaveData();
     }
 
 }

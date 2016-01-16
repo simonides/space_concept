@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class DayIndicatorUpdater : MonoBehaviour {
 
     UnityEngine.UI.Text currentDayText;
+    //int currentlyDisplayedDay
+
     
     void Awake() {
         //playerManager = this.game1
@@ -14,11 +16,15 @@ public class DayIndicatorUpdater : MonoBehaviour {
         }
     }
     void Start() {
-        MessageHub.Subscribe<NextDayEvent>((NextDayEvent evt) => UpdateText(evt.GetCurrentDay()));
+        GameState gameState = GameObject.Find("2D_MainCam").GetComponent<GameState>();
+        if (gameState == null) {
+            throw new MissingComponentException("Unable to find the GameState. It should be part of the '2D_MainCam'.");
+        }
+        currentDayText.text = "" + gameState.gameStateData.CurrentDay;
+        MessageHub.Subscribe<NextDayEvent>((NextDayEvent evt) => UpdateText(evt.GetCurrentDay()));       
     }
 
     public void UpdateText(int currentDay) {
-
         currentDayText.text = ""+currentDay;
     }
 

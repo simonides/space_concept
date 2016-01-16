@@ -32,6 +32,7 @@ public class Planet : MonoBehaviour {
     private bool isSelected = false;
     public float CurrentGlowScale;  // In percent [0..1]
     public bool GlowIsGrowing;
+    private float glowUpscaling = 1f;   // Upscaling factor of the glow depending on the planet size
 
     // ****                     **** //
 
@@ -100,13 +101,13 @@ public class Planet : MonoBehaviour {
         this.transform.localScale = new Vector3(planet.Diameter / spriteSize.x, planet.Diameter / spriteSize.y, 1);
         spriteCollider.radius = spriteSize.x * 0.5f;
 
+        //Smaller planets need a larger outline (in comparison with the planet), to let it appear as thick as for big planets:
+        glowUpscaling = (planetData.Diameter + 1) / planetData.Diameter;
 
         spriteSize = glow.sprite.rect.size;
         if (spriteSize.x != spriteSize.y) {
             Debug.LogWarning("The used planet sprite for glow is not rectangular and therefore distorted");
         }
-        glow.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);//new Vector3(planet.Diameter / spriteSize.x, planet.Diameter / spriteSize.y, 1);
-
         UpdateGraphicalRepresentation();
     }
     
@@ -152,7 +153,7 @@ public class Planet : MonoBehaviour {
         }
         Debug.Assert(CurrentGlowScale >= 0 && CurrentGlowScale <= 1);
 
-        float Scale = MinGlowScale + (MaxGlowScale - MinGlowScale) * Mathf.Sin(CurrentGlowScale * Mathf.PI);
+        float Scale = (MinGlowScale + (MaxGlowScale - MinGlowScale) * Mathf.Sin(CurrentGlowScale * Mathf.PI)) * glowUpscaling;
         
 
         glowTransform.localScale = new Vector3(Scale, Scale, 1);

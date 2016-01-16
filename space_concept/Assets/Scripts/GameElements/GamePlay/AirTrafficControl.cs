@@ -116,9 +116,14 @@ public class AirTrafficControl : MonoBehaviour {
 
 
     private void NewTroopMovement(NewTroopMovementEvent evt) {
+        if(evt.StartPlanet.planetData.Ships < evt.ShipCount) {
+            Debug.LogError("Unable to send ships from planet " + evt.StartPlanet.ToString() + ": There are not enough ships.");
+            return;
+        }
         TroopData troopData = troopDataPool.Get();
         troopData.Init(evt.StartPlanet.planetData, evt.TargetPlanet.planetData, evt.ShipCount, gameStateData.CurrentDay);
         airTrafficData.AddTroopMovement(troopData);
+        evt.StartPlanet.planetData.Ships -= evt.ShipCount;
 
         InitGraphicalTroopMovement(gameStateData.CurrentDay, troopData);
 
