@@ -17,13 +17,12 @@ public class Space : MonoBehaviour {
 
     // ****  ATTACHED OBJECTS   **** //
     SpriteRenderer backgroundRenderer;
-
     // ****                     **** //
-
-
-
+    
 
     Transform background;
+    TactileBackground tactileBackground;
+
 
     SpaceData spaceData;        // entity
     List<Planet> planets;       // planet objects
@@ -46,6 +45,11 @@ public class Space : MonoBehaviour {
 
         Sprite sprite = Sprite.Create(backgroundTexture, new Rect(0, 0, backgroundTexture.width, backgroundTexture.height), new Vector2(0, 0), 1f);    // default sprite to have something visible. origin (pivot) = corner
         backgroundRenderer.sprite = sprite;
+
+        tactileBackground = transform.Find("TactileBackground").GetComponent<TactileBackground>();
+        if (tactileBackground == null) {
+            throw new MissingComponentException("Unable to find TactileBackground. The game object 'TactileBackground' (child of space) should have the TactileBackground-Script attached.");
+        }
     }
 
     void Start() {
@@ -61,9 +65,7 @@ public class Space : MonoBehaviour {
         bounds.xMin -= BORDER_WIDTH;
         bounds.yMin -= BORDER_WIDTH;
         bounds.xMax += BORDER_WIDTH;
-        bounds.yMax += BORDER_WIDTH;
-
-        //Debug.Log(bounds);
+        bounds.yMax += BORDER_WIDTH;        
         this.bounds = bounds;
 
         foreach (PlanetData planet in spaceData.planets) {
@@ -97,6 +99,7 @@ public class Space : MonoBehaviour {
         //translate the whole Space gameobject so that it's origin is the map's center:
         Vector2 center = bounds.center;
         transform.localPosition = new Vector3(-center.x, -center.y, 0);
+        tactileBackground.Init(bounds);
     }
 
 
