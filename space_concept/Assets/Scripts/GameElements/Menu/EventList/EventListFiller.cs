@@ -114,7 +114,8 @@ public class EventListFiller : MonoBehaviour
 
     public Transform contentPanel;
 
-    public Sprite planetSpriteAtlas;
+    private SpriteAtlasAccesser planetAtlas;
+
 
     private string[] itemsEmptyTexts =
     {
@@ -141,6 +142,12 @@ public class EventListFiller : MonoBehaviour
         {
             throw new MissingComponentException("Unable to find PooledGameObjects There should be an empty game object that holds the pooled data.");
         }
+        planetAtlas = gameObject.GetComponent<SpriteAtlasAccesser>();
+        if (planetAtlas == null)
+        {
+            throw new MissingComponentException("Unable to find SpriteAtlasAccesser component.");
+        }
+
     }
 
 
@@ -316,7 +323,8 @@ public class EventListFiller : MonoBehaviour
 
 
            // item.Planet
-          //  eventBtn.planetSprite.
+
+            eventBtn.planetSprite.sprite = planetAtlas.GetSprite(item.Planet.TextureName);
 
             //eventBtn.name = item.planetName;
             //eventBtn.icon.sprite = item.icon;
