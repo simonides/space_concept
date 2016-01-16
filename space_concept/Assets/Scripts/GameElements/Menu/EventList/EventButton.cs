@@ -5,13 +5,12 @@ using System.Collections;
 
 public class EventButton : MonoBehaviour {
 
-    public Button button;
-    public Text nameLabel;
-    public Image icon;
-    public Text typeLabel;
-    public Text rarityLabel;
-    public GameObject championIcon;
+    public GameObject self_ref;
+    public Text line1;
+    public Text line2;
+    public Text line3;
 
-
-
+    public Text typeText;
+    public Image typeColor;
+    public Image planetSprite;
 }

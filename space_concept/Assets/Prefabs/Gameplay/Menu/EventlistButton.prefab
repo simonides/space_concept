@@ -310,12 +310,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cd1d0f1af517f4597e5565ba2687e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 11483326}
-  nameLabel: {fileID: 11433688}
-  icon: {fileID: 11499080}
-  typeLabel: {fileID: 11401832}
-  rarityLabel: {fileID: 11430140}
-  championIcon: {fileID: 0}
+  self_ref: {fileID: 154094}
+  line1: {fileID: 11430140}
+  line2: {fileID: 11433688}
+  line3: {fileID: 11401832}
+  typeText: {fileID: 11403910}
+  typeColor: {fileID: 11499080}
+  planetSprite: {fileID: 11425116}
 --- !u!114 &11448780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -584,7 +585,39 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 154094}
+    - target: {fileID: 0}
+      propertyPath: line1
+      value: 
+      objectReference: {fileID: 11430140}
+    - target: {fileID: 0}
+      propertyPath: line2
+      value: 
+      objectReference: {fileID: 11433688}
+    - target: {fileID: 0}
+      propertyPath: line3
+      value: 
+      objectReference: {fileID: 11401832}
+    - target: {fileID: 0}
+      propertyPath: typeColor
+      value: 
+      objectReference: {fileID: 11499080}
+    - target: {fileID: 0}
+      propertyPath: typeText
+      value: 
+      objectReference: {fileID: 11403910}
+    - target: {fileID: 0}
+      propertyPath: planetSprite
+      value: 
+      objectReference: {fileID: 11425116}
+    - target: {fileID: 0}
+      propertyPath: self_ref
+      value: 
+      objectReference: {fileID: 154094}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 154094}

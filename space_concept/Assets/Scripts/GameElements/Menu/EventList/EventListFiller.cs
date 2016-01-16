@@ -68,36 +68,49 @@ public class EventListFiller : MonoBehaviour
                 gObj.name = "Pooled EventButton";
                 gObj.transform.SetParent(pooledGameObjectHolder.transform, false);
             }
-        );
+        ,1,2);
     }
 
     private void PopulateList()
     {
         SetNothingHappenedText();
-       
+        if (itemList == null) { return; }
+        Debug.Log("Listitems size: " + itemList.Count);
 
-        //foreach (var item in itemList)
-        //{
-        //    GameObject newButton = eventButtonPool.Get();
-        //    newButton.SetActive(true);
-        //    EventButton eventBtn = newButton.GetComponent<EventButton>();
-        //    if (eventBtn == null)
-        //    {
-        //        Debug.Log("eventbutton was null");
-        //        newButton.transform.SetParent(contentPanel, false);
-        //        continue;
-        //    }
-        //    //eventBtn.name = item.planetName;
-        //    //eventBtn.icon.sprite = item.icon;
-        //    //eventBtn.typeLabel.text = item.planetName;
-        //    //eventBtn.rarityLabel.text = item.rarity;
-        //    //eventBtn.championIcon.SetActive(item.isChampion);
+        // get items from the content panel
+        var eventlistitems = contentPanel.GetComponentsInChildren<EventButton>();
+        
+        // put them back into the pool
+        foreach (var item in eventlistitems){
+            eventButtonPool.PutBack(item.self_ref);
+        }
+        // detach them from the content panel
+        contentPanel.transform.DetachChildren();
 
-        //    //eventBtn.button.onClick = item.thingToDo;
-        //    //eventBtn.gameObject.transform.parent.transform.SetParent(contentPanel, false);
-        //    newButton.transform.SetParent(contentPanel, false);
-        //    //newButton.transform.DetachChildren()
-        //}
+        // add new objects
+        foreach (var item in itemList)
+        {
+            GameObject listItem = eventButtonPool.Get();
+            listItem.SetActive(true);
+            EventButton eventBtn = listItem.GetComponent<EventButton>();
+            if (eventBtn == null)
+            {
+                Debug.Log("eventbutton was null");
+                listItem.transform.SetParent(contentPanel, false);
+                continue;
+            }
+            //eventBtn.name = item.planetName;
+            //eventBtn.icon.sprite = item.icon;
+            //eventBtn.typeLabel.text = item.planetName;
+            //eventBtn.rarityLabel.text = item.rarity;
+            //eventBtn.championIcon.SetActive(item.isChampion);
+
+            //eventBtn.button.onClick = item.thingToDo;
+            //eventBtn.gameObject.transform.parent.transform.SetParent(contentPanel, false);
+
+            listItem.transform.SetParent(contentPanel, false);
+            
+        }
     }
 
     public void Fill(List<AttackEvaluation> events)
