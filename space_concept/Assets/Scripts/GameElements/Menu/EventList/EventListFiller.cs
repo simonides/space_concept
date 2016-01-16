@@ -219,26 +219,22 @@ public class EventListFiller : MonoBehaviour
                 continue;
             }
 
-            switch (item.Outcome)
-            {
-                case EvaluationOutcome.Lost:
-                    {
+            switch (item.Outcome){
+                case EvaluationOutcome.Lost: {
                         eventBtn.typeColor.color = new Color32(144, 0, 0, 255);
                         eventBtn.typeText.text = "D   A   N   G   E   R";
                         eventBtn.typeText.color = new Color32(56, 0, 0, 255);
                     }
                     break;
 
-                case EvaluationOutcome.Neutral:
-                    {
+                case EvaluationOutcome.Neutral:{
                         eventBtn.typeColor.color = new Color32(0, 119, 237, 255);
                         eventBtn.typeText.text = "I    N    F    O";
                         eventBtn.typeText.color = new Color32(56, 0, 120, 255);
                     }
                     break;
 
-                case EvaluationOutcome.Success:
-                    {
+                case EvaluationOutcome.Success:{
                         eventBtn.typeColor.color = new Color32(0, 119, 0, 255);
                         eventBtn.typeText.text = "S  U  C  C  E  S  S";
                         eventBtn.typeText.color = new Color32(0, 36, 0, 255);
