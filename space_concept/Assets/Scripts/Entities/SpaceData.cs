@@ -83,9 +83,6 @@ public class SpaceData {
 
         foreach (PlanetData planet in planets) {
             if (planet == origin) { continue; }
-            if (planet.Owner == null) {
-                neutral.Add(new TactilePlanet(planet, TroopData.GetTravelTime(origin, planet)));
-            } else
             if (planet.Owner == origin.Owner) {
                 friends.Add(new TactilePlanet(planet, TroopData.GetTravelTime(origin, planet)));
             } else {
@@ -95,6 +92,6 @@ public class SpaceData {
         //enemies.Sort((TactilePlanet a, TactilePlanet b) => { return a.distance - b.distance; });
         //friends.Sort((TactilePlanet a, TactilePlanet b) => { return a.distance - b.distance; });
         //neutral.Sort((TactilePlanet a, TactilePlanet b) => { return a.distance - b.distance; });
-        return new TactileInformation(origin, enemies, friends, neutral);
+        return new TactileInformation(origin, enemies, friends);
     }
 }

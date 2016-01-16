@@ -147,13 +147,20 @@ public class PlanetData {
         return true;
     }
 
+    public int GetActualFactorySpeed() {
+        if (Owner == null) {
+            return FactorySpeed / 2;
+        }
+        return FactorySpeed;
+    }
 
     public int ProduceShips() {
+        int speed = GetActualFactorySpeed();
         int empty = HangarSize - Ships;
         if (empty < 0) { empty = 0; }
-        if (empty > FactorySpeed) {
-            Ships += FactorySpeed;
-            return FactorySpeed;
+        if (empty > speed) {
+            Ships += speed;
+            return speed;
         } else {
             Ships += empty;
             Debug.Log("Hangar full, factory can't produce at full speed");

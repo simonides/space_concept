@@ -47,12 +47,13 @@ public class AiPlayer {
             return false;
         }
         // Get points for doing nothing...
-        float shouldWaitForProductionPoints = getShouldWaitForProductionPoints(planetInfo.origin);
+        float shouldWaitForProductionPoints = getShouldWaitForProductionPoints(planetInfo.origin) -200;
 
         // Get highest attack points...
         float shouldAttackPoints = 0;
         TactilePlanet shouldAttackPlanet = null;
         foreach (TactilePlanet enemy in planetInfo.enemies) {
+            Debug.Assert(planetInfo.origin.Owner == playerData);
             float points = getAttackPoints(planetInfo.origin, enemy.planetData, enemy.distance);
             if(shouldAttackPlanet == null || shouldAttackPoints < points) {
                 shouldAttackPoints = points;
@@ -92,6 +93,7 @@ public class AiPlayer {
 
 
     float getAttackPoints(PlanetData origin, PlanetData target, int distanceInDays) {        // = ~ <difference of ships between planets
+        Debug.Assert(origin.Owner != null);
         int shipsOnPlanetAtArrivalday = getEstimatedShipsOnPlanet(target, distanceInDays);
         float certanyFactor = 1f - (distanceInDays * distanceInDays * 0.02f);   // exp. curve
         certanyFactor = Math.Min(certanyFactor, 0); // [0..1]   1 day: 0.98, 2 days: 0.92, 3 days: 0.82 ... 7 days: 0.02; 8 days: 0
@@ -117,7 +119,7 @@ public class AiPlayer {
 
 
     int getEstimatedShipsOnPlanet(PlanetData planetData, int futureInDays) {
-        int shipsOnPlanetAtArrivalday = Math.Max(planetData.Ships + planetData.FactorySpeed * futureInDays, planetData.HangarSize);
+        int shipsOnPlanetAtArrivalday = Math.Min(planetData.Ships + planetData.GetActualFactorySpeed() * futureInDays, planetData.HangarSize);
         //shipsOnPlanetAtArrivalday is the maximum number of ships that can be expected if the planet does not receive additional supplies
         return shipsOnPlanetAtArrivalday;
     }
@@ -130,8 +132,9 @@ public class AiPlayer {
     }
 
     float getThreatFactor(PlanetData planet, TactileInformation info) { // = Ship difference enemy and this planet if an enemy attacks
-        float threat = -1000;
+        float threat = -10000;
         foreach(TactilePlanet enemy in info.enemies) {
+            if(enemy.planetData.Owner == null) { continue; }
             threat = Math.Max(threat, getAttackPoints(enemy.planetData, planet, enemy.distance));
         }
         return threat;
