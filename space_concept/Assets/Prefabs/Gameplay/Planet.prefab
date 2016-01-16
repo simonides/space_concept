@@ -110,7 +110,7 @@ MonoBehaviour:
   glowMaterial: {fileID: 2100000, guid: 41896c98e4e08624caf743259001e7d8, type: 2}
   MinGlowScale: 1.2
   MaxGlowScale: 1.5
-  GlowPulseSpeed: 1.5
+  GlowPulseSpeed: 1.1
   CurrentGlowScale: 0
   GlowIsGrowing: 0
 --- !u!212 &21271108
@@ -395,7 +395,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 41896c98e4e08624caf743259001e7d8, type: 2}
     - target: {fileID: 0}
       propertyPath: GlowPulseSpeed
-      value: 1.5
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: MaxGlowScale

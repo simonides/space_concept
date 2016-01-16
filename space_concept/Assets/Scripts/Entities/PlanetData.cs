@@ -222,13 +222,13 @@ public class PlanetData {
         int lostShipsByAttacker = 0;
         int lostShipsByLanding = 0;
 
-        if (Ships <= troop.ShipCount) {
+        if (Ships <= troop.ShipCount) { // planet is lost
             lostShipsByOwner = Ships;
-            lostShipsByAttacker -= Ships;
+            lostShipsByAttacker = Ships;
             // check for landing - maybe the attacker won, but not all ships have space to land:
-            lostShipsByLanding = Mathf.RoundToInt((troop.ShipCount - Ships - HangarSize) * 0.5f);     //50% of all ships that hadn't enough space lost
+            lostShipsByLanding = Math.Max((int)(Mathf.RoundToInt((troop.ShipCount - Ships - HangarSize) * 0.5f)), 0);     //50% of all ships that hadn't enough space lost
         } else {
-            lostShipsByOwner = Ships - troop.ShipCount;
+            lostShipsByOwner = troop.ShipCount;
             lostShipsByAttacker = troop.ShipCount;
         }
 
@@ -240,6 +240,7 @@ public class PlanetData {
             Ships -= lostShipsByOwner;
         }
 
+        Debug.Assert(lostShipsByAttacker + lostShipsByLanding <= troop.ShipCount);
         AttackEvaluation evaluation = AttackEvaluation.Attack(troop, oldOwner, newOwner, Ships, lostShipsByOwner, lostShipsByAttacker, lostShipsByLanding);
         return evaluation;
     }

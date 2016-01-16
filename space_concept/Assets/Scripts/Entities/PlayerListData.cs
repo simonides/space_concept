@@ -13,12 +13,13 @@ public class PlayerListData {
     //}
 
     //seralization needs an empty constructor
-    public PlayerListData()
-    {
-
+    public PlayerListData() {
     }
+
     public PlayerListData(PlayerData humanPlayer, List<AiPlayer> aiPlayers) {
         this.HumanPlayer = humanPlayer;
         this.AiPlayers = aiPlayers;
     }
+
 }
+

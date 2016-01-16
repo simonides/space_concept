@@ -41,16 +41,17 @@ public class PlanetMenuManager : AbstractMenuManager
         MessageHub.Subscribe<ChooseOtherPlanetEvent>(ChooseOtherPlanet);
         MessageHub.Subscribe<CancelChooseOtherPlanetEvent>(CancelChooseOtherPlanet);
         MessageHub.Subscribe<CancelSendShipsEvent>(CancelSendShips);
-        MessageHub.Subscribe<NewTroopMovementEvent>(ShipsSent);
+        MessageHub.Subscribe<ShipsSentEvent>(ShipsSent);
 
     }
 
-    private void ShipsSent(NewTroopMovementEvent obj)
+    private void ShipsSent(ShipsSentEvent obj)
     {
         Debug.Assert(_activeMenu == 3);
         _activeMenu = 1;
         planetTwo.setSelected(false);
-        ShowPlanetMenu();
+        //ShowPlanetMenu();
+        CancelPlanetMenu(null);
     }
 
     private void CancelSendShips(CancelSendShipsEvent event_)
@@ -90,7 +91,11 @@ public class PlanetMenuManager : AbstractMenuManager
         switch (_activeMenu)
         {
             case 0:
-
+                if(event_.Content.planetData.Owner == null || 
+                    !event_.Content.planetData.Owner.IsHumanPlayer) {
+                    MessageHub.Publish(new ClickedOnForeignPlanetEvent(this, event_.Content));
+                    //return; //TODO !!! uncomment this is just to debug so every planet can be used to send ships from
+                }
                 planetOne = event_.Content;
                 ShowPlanetMenu();
 

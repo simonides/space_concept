@@ -245,11 +245,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22458268, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430114, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22464470, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
       propertyPath: m_AnchoredPosition.x

@@ -52,6 +52,7 @@ public class SendShipMenuFiller : MonoBehaviour {
     {
         if (slider.value > 0){
             MessageHub.Publish(new NewTroopMovementEvent(this, planetOne, planetTwo, (int)slider.value));
+            MessageHub.Publish(new ShipsSentEvent(this));
         }
         else{
             Debug.Log("Not enough ships to send!");

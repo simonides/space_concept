@@ -4,7 +4,7 @@ using System;
 
 [System.Serializable]
 public class AiPlayer {
-    PlayerData playerData;
+    public PlayerData playerData { get; private set; }
     Space space;
     //SpaceData spaceData;
 
@@ -84,11 +84,13 @@ public class AiPlayer {
         if(shouldAttackPoints > shouldSupportPoints && shouldAttackPlanet != null) {
             float shipsForAttack = Mathf.Max(shouldAttackPoints * 1.2f, planetInfo.origin.Ships);            
             MessageHub.Publish(new NewTroopMovementEvent(this, space.getPlanet(planetInfo.origin), space.getPlanet(shouldAttackPlanet.planetData), (int)shipsForAttack));
-        } else {
+            return true;    // Make another movement if possible
+        } else if(shouldSupportPlanet != null) {
             float shipsForSupport = Mathf.Max(shouldSupportPoints * 2.2f, planetInfo.origin.Ships);
             MessageHub.Publish(new NewTroopMovementEvent(this, space.getPlanet(planetInfo.origin), space.getPlanet(shouldSupportPlanet), (int)shipsForSupport));
+            return true;    // Make another movement if possible
         }
-        return true;    // Make another movement if possible
+        return false;
     }
 
 
