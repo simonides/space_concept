@@ -17,6 +17,7 @@ public class Space : MonoBehaviour {
 
     // ****  ATTACHED OBJECTS   **** //
     SpriteRenderer backgroundRenderer;
+    ParticleSystem particleSystem;
     // ****                     **** //
     
 
@@ -49,6 +50,11 @@ public class Space : MonoBehaviour {
         tactileBackground = transform.Find("TactileBackground").GetComponent<TactileBackground>();
         if (tactileBackground == null) {
             throw new MissingComponentException("Unable to find TactileBackground. The game object 'TactileBackground' (child of space) should have the TactileBackground-Script attached.");
+        }
+
+        particleSystem = transform.Find("Particle System").GetComponent<ParticleSystem>();
+        if (particleSystem == null) {
+            throw new MissingComponentException("Unable to find Particle System. The game object 'Particle System' should be attached to the space.");
         }
     }
 
@@ -100,6 +106,10 @@ public class Space : MonoBehaviour {
         Vector2 center = bounds.center;
         transform.localPosition = new Vector3(-center.x, -center.y, 0);
         tactileBackground.Init(bounds);
+
+        // set 
+        particleSystem.transform.localPosition = new Vector3(center.x, center.y, 0);
+        particleSystem.transform.localScale = new Vector3(bounds.size.x, bounds.size.y, 1);
     }
 
 

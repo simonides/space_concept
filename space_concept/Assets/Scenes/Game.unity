@@ -5695,6 +5695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c64cd1ed04d185041b3604146c33796f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NextDayButton: {fileID: 423288390}
 --- !u!114 &1150372157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10550,8 +10551,8 @@ ParticleSystemRenderer:
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
-  m_MinParticleSize: 0
-  m_MaxParticleSize: 0.5
+  m_MinParticleSize: 0.006
+  m_MaxParticleSize: 0.05
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
@@ -10570,7 +10571,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2132384116}
   serializedVersion: 2
-  lengthInSec: 7
+  lengthInSec: 10
   startDelay:
     scalar: 0
     maxCurve:
@@ -10617,7 +10618,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 50
+      scalar: 20
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10652,7 +10653,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     startSpeed:
-      scalar: 7
+      scalar: 20
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10778,7 +10779,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4291414473
+        rgba: 4294942366
       minMaxState: 0
     startSize:
       scalar: 5
@@ -10922,7 +10923,7 @@ ParticleSystem:
       minMaxState: 0
     randomizeRotationDirection: 0
     gravityModifier: 0
-    maxNumParticles: 1000
+    maxNumParticles: 100
     rotation3D: 0
   ShapeModule:
     serializedVersion: 2
@@ -10931,8 +10932,8 @@ ParticleSystem:
     radius: 1
     angle: 25
     length: 5
-    boxX: 0
-    boxY: 1200
+    boxX: 1
+    boxY: 1
     boxZ: 10
     arc: 360
     placementMode: 0
@@ -10997,7 +10998,7 @@ ParticleSystem:
     time3: 0
     m_BurstCount: 0
   SizeModule:
-    enabled: 1
+    enabled: 0
     curve:
       scalar: 1
       maxCurve:
@@ -11389,7 +11390,7 @@ ParticleSystem:
       minMaxState: 0
     inWorldSpace: 0
   InheritVelocityModule:
-    enabled: 1
+    enabled: 0
     m_Mode: 0
     m_Curve:
       scalar: 100
@@ -11427,7 +11428,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
   ForceModule:
-    enabled: 1
+    enabled: 0
     x:
       scalar: 10
       maxCurve:
@@ -11536,7 +11537,7 @@ ParticleSystem:
     inWorldSpace: 1
     randomizePerFrame: 0
   ExternalForcesModule:
-    enabled: 1
+    enabled: 0
     multiplier: 4.85
   ClampVelocityModule:
     enabled: 0
@@ -12069,8 +12070,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2132384116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -684, y: -5.3, z: 0}
-  m_LocalScale: {x: 0.3058104, y: 0.3058104, z: 0.3058104}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22659476}
   m_RootOrder: 2
