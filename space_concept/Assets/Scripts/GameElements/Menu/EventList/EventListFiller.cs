@@ -68,7 +68,7 @@ public class EventListFiller : MonoBehaviour
                 gObj.name = "Pooled EventButton";
                 gObj.transform.SetParent(pooledGameObjectHolder.transform, false);
             }
-        ,1,2);
+            );
     }
 
     private void PopulateList()
@@ -79,13 +79,29 @@ public class EventListFiller : MonoBehaviour
 
         // get items from the content panel
         var eventlistitems = contentPanel.GetComponentsInChildren<EventButton>();
-        
+
         // put them back into the pool
-        foreach (var item in eventlistitems){
+        foreach (var item in eventlistitems)
+        {
             eventButtonPool.PutBack(item.self_ref);
         }
         // detach them from the content panel
         contentPanel.transform.DetachChildren();
+
+        AttackEvaluation atev = new AttackEvaluation();
+        atev.Outcome = EvaluationOutcome.Lost;
+
+        AttackEvaluation atev1 = new AttackEvaluation();
+        atev1.Outcome = EvaluationOutcome.Neutral;
+
+        AttackEvaluation atev2 = new AttackEvaluation();
+        atev2.Outcome = EvaluationOutcome.Success;
+
+        itemList.Add(atev);
+        itemList.Add(atev1);
+        itemList.Add(atev2);
+
+
 
         // add new objects
         foreach (var item in itemList)
@@ -99,17 +115,86 @@ public class EventListFiller : MonoBehaviour
                 listItem.transform.SetParent(contentPanel, false);
                 continue;
             }
+
+            switch (item.Outcome)
+            {
+                case EvaluationOutcome.Lost:
+                    {
+                        eventBtn.typeColor.color = new Color(144, 0, 0, 255);
+                        eventBtn.typeText.text = "D   A   N   G   E   R";
+                        eventBtn.typeText.color = new Color(56, 0, 0, 255);
+                    }
+                    break;
+                case EvaluationOutcome.Neutral:
+                    {
+                        eventBtn.typeColor.color = new Color(0, 119, 237, 255);
+                        eventBtn.typeText.text = "N   E   U   T   R   A   L";
+                        eventBtn.typeText.color = new Color(56, 0, 120, 255);
+                    }
+                    break;
+                case EvaluationOutcome.Success:
+                    {
+                        eventBtn.typeColor.color = new Color(0, 119, 0, 255);
+                        eventBtn.typeText.text = "S   U   C   C   E   S   S";
+                        eventBtn.typeText.color = new Color(0, 36, 0, 255);
+                    }
+                    break;
+
+                default:
+                    break;
+
+            }
+
+            switch (item.Type)
+            {
+
+                case EvaluationType.Supply:           //A planet received supply ships
+                    {
+                        eventBtn.line1.text = "You recieved";
+                        eventBtn.line2.text = "+" + item.IncomingShips + " ships";
+                        eventBtn.line3.text = "";
+
+                    }
+                    break;
+                case EvaluationType.AttackedPlanet: //The player attacked another planet
+                    {
+                        eventBtn.line1.text = "You recieved";
+                        eventBtn.line2.text = "+" + item.IncomingShips + " ships";
+                        eventBtn.line3.text = "";
+                    }
+                    break;
+                case EvaluationType.GotAttacked: //A planet of the player got attacked by another planet
+                    {
+                        eventBtn.line1.text = "You recieved";
+                        eventBtn.line2.text = "+" + item.IncomingShips + " ships";
+                        eventBtn.line3.text = "";
+                    }
+                    break;
+                case EvaluationType.CaptureViewer: //Another player attacked another planet and won - the ownership changed.
+                    {
+                        eventBtn.line1.text = "You recieved";
+                        eventBtn.line2.text = "+" + item.IncomingShips + " ships";
+                        eventBtn.line3.text = "";
+                    }
+                    break;
+                case EvaluationType.AttackViewer:
+                    {
+                        eventBtn.line1.text = "You recieved";
+                        eventBtn.line2.text = "+" + item.IncomingShips + " ships";
+                        eventBtn.line3.text = "";
+                    }
+                    break;
+                default:
+                    break;
+
+            }
+            //item.Planet.
             //eventBtn.name = item.planetName;
             //eventBtn.icon.sprite = item.icon;
-            //eventBtn.typeLabel.text = item.planetName;
-            //eventBtn.rarityLabel.text = item.rarity;
-            //eventBtn.championIcon.SetActive(item.isChampion);
-
             //eventBtn.button.onClick = item.thingToDo;
-            //eventBtn.gameObject.transform.parent.transform.SetParent(contentPanel, false);
 
             listItem.transform.SetParent(contentPanel, false);
-            
+
         }
     }
 
@@ -126,7 +211,8 @@ public class EventListFiller : MonoBehaviour
 
     private void SetNothingHappenedText()
     {
-        if (itemList == null || itemList.Count == 0) {
+        if (itemList == null || itemList.Count == 0)
+        {
             int index = Random.Range(0, itemsEmptyTexts.GetLength(0) - 1);
             if (lastRandom == index)
             {

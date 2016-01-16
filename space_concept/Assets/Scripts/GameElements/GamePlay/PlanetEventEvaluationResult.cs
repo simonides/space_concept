@@ -25,7 +25,7 @@ public enum EvaluationOutcome {
 
 public class AttackEvaluation {
     public EvaluationType Type { get; private set; }
-    public EvaluationOutcome Outcome { get; private set; }
+    public EvaluationOutcome Outcome { get; /*private*/ set; } // temporal for testing the setter is enabled
 
 
     public PlayerData ShipOwner { get; private set; }
