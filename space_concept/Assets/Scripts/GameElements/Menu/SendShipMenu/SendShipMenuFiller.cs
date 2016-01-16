@@ -42,8 +42,7 @@ public class SendShipMenuFiller : MonoBehaviour {
         OnSliderValueChanged();
     }
 
-    public void OnSliderValueChanged()
-    {
+    public void OnSliderValueChanged() {
         FromShips.text = (planetOne.planetData.Ships - slider.value).ToString();
         ToShips.text = slider.value.ToString();
     }

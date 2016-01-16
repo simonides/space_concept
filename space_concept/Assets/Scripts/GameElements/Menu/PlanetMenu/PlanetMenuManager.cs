@@ -65,6 +65,7 @@ public class PlanetMenuManager : AbstractMenuManager
     {
         Debug.Assert(_activeMenu == 2);
         _activeMenu = 1;
+        MessageHub.Publish(new TactileBackgroundStateEvent(this, false));
         ShowPlanetMenu();
     }
 
@@ -92,6 +93,7 @@ public class PlanetMenuManager : AbstractMenuManager
 
                 planetOne = event_.Content;
                 ShowPlanetMenu();
+
                 break;
             case 1:
                 Debug.Log("Error in PlanetMenuManager: Planet clicked when it should not be possible.");
@@ -123,12 +125,14 @@ public class PlanetMenuManager : AbstractMenuManager
 
     private void ShowChoosePlanetMenu()
     {
+        MessageHub.Publish(new TactileBackgroundStateEvent(this, true));
         SwitchMenu(ChoosePlanetMenu);
         MessageHub.Publish(new MenuActiveEvent(this, false)); // reenable UI interaction
     }
     private void ShowSendShipsMenu()
     {
         Debug.Assert(planetOne != planetTwo);
+        MessageHub.Publish(new TactileBackgroundStateEvent(this, false));
         planetTwo.setSelected(true);
         _sendShipMenuFiller.UpdateUI(planetOne, planetTwo);
         SwitchMenu(SendShipsMenu);
