@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class SpriteAtlasAccesser : MonoBehaviour {
 
-    public Sprite atlas;
+    public Sprite [] sprites;
 
     public Dictionary<string, Sprite> atlasSprites;
 
@@ -14,11 +14,17 @@ public class SpriteAtlasAccesser : MonoBehaviour {
 
 
 	void Start () {
-        Sprite[] sprites = Resources.LoadAll<Sprite>("Planet_Atlas");
-        //Sprite[] sprites = atlas;
+        Debug.Log("LOADING: planet sprite atlas");
+        //Sprite[] sprites = Resources.LoadAll<Sprite>("Planet_Atlas");
 
         foreach (Sprite s in sprites){
+            Debug.Log("ADDING SPRITE TO DICTORNARY: " + s.name);
             atlasSprites.Add(s.name, s);
+        }
+        int size = sprites.Length;
+        for (int i = 0; i < size; i++)
+        {
+            sprites[i] = null;
         }
 	}
 

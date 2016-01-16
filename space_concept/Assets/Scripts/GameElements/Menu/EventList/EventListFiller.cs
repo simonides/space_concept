@@ -323,9 +323,10 @@ public class EventListFiller : MonoBehaviour
 
 
            // item.Planet
-
+            Debug.Log(item.Planet.TextureName);
+            Debug.Log(planetAtlas.GetSprite(item.Planet.TextureName).name);
             eventBtn.planetSprite.sprite = planetAtlas.GetSprite(item.Planet.TextureName);
-
+            Debug.Log(eventBtn.planetSprite.sprite.name);
             //eventBtn.name = item.planetName;
             //eventBtn.icon.sprite = item.icon;
             //eventBtn.button.onClick = item.thingToDo;
