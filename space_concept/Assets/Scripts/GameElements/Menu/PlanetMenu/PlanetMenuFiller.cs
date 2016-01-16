@@ -25,7 +25,7 @@ public class PlanetMenuFiller : MonoBehaviour
 
     private void NextDay(NextDayEvent obj)
     {
-        if (HangarSizeAndFillsize == null) { return; }
+        if (activePlanet == null /*|| HangarSizeAndFillsize == null*/) { return; }
         UpgradeHangarUpdate();
         UpgradeFactoryUpdate();
     }

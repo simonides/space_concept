@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class SendShipMenuFiller : MonoBehaviour {
 
     public Text PlanetNameOne;
-    public Text TotalShips;
     public Text FromShips;
     public Text ToShips;
     public Slider slider;
@@ -15,22 +14,31 @@ public class SendShipMenuFiller : MonoBehaviour {
     private Planet planetOne;
     private Planet planetTwo;
 
+    private GameState gameState;
+
     void Awake()
     {
         MessageHub.Subscribe<SendShipsEvent>(SendShips);
+
+        gameState = GameObject.Find("2D_MainCam").GetComponent<GameState>();
+        if (gameState == null){
+            throw new MissingComponentException("Unable to find the GameState. It should be part of the '2D_MainCam'.");
+        }
+
     }
 
     public void UpdateUI(Planet planetOne, Planet planetTwo)
     {
        this.planetOne = planetOne;
        this.planetTwo = planetTwo;
-        
-        TravelDistance.text = ""+ TroopData.GetTravelTime(planetOne.planetData, planetTwo.planetData);
+        var travelTime = TroopData.GetTravelTime(planetOne.planetData, planetTwo.planetData);
+        TravelDistance.text = ""+ travelTime
+            + " Ship arrives on day: " + (gameState.gameStateData.CurrentDay + travelTime);
+
         slider.maxValue =  planetOne.planetData.Ships;
         slider.value = (int)planetOne.planetData.Ships * 0.5f;
         PlanetNameOne.text = planetOne.planetData.Name;
         PlanetNameTwo.text = planetTwo.planetData.Name;
-        TotalShips.text = planetOne.planetData.Ships.ToString();
         OnSliderValueChanged();
     }
 
@@ -43,12 +51,10 @@ public class SendShipMenuFiller : MonoBehaviour {
 
     private void SendShips(SendShipsEvent event_)
     {
-        if (slider.value > 0)
-        {
+        if (slider.value > 0){
             MessageHub.Publish(new NewTroopMovementEvent(this, planetOne, planetTwo, (int)slider.value));
         }
-        else
-        {
+        else{
             Debug.Log("Not enough ships to send!");
         }
     }
