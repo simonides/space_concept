@@ -20,7 +20,7 @@ public class Planet : MonoBehaviour {
 
     public float MinGlowScale = 1.2f;
     public float MaxGlowScale = 1.5f;
-    public float GlowPulseSpeed = 1.5f;
+    public float GlowPulseSpeed = 1.1f;
 
     // ****  ATTACHED OBJECTS   **** //
     SpriteRenderer spriteRenderer;
@@ -114,7 +114,7 @@ public class Planet : MonoBehaviour {
     private void UpdateGraphicalRepresentation() {
         glow.material = glowMaterial;
         if(planetData.Owner == null) {  // no owner
-            glow.material.color = Color.gray;
+            glow.material.color = Color.white;
         } else {
             glow.material.color = planetData.Owner.Color;
         }
