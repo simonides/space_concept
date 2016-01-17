@@ -90,7 +90,8 @@ public class BigBang : MonoBehaviour {
         space.Init(spaceData);
 
         // Handling players...
-        PlaceNewPlayersOnMap(SettingsController.GetInstance().playerFile, SettingsController.GetInstance().kiCount); 
+        PlaceNewPlayersOnMap(SettingsController.GetInstance().playerFile, SettingsController.GetInstance().kiCount);
+        SettingsController.GetInstance().map.playerListData = playerManager.PlayerListData;
     }
 
 
