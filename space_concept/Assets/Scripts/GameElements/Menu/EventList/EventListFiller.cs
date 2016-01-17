@@ -309,9 +309,15 @@ public class EventListFiller : MonoBehaviour
                         if (item.ShipOwner != null) {
                             shipOwner = item.ShipOwner.Name;
                         }
-                        eventBtn.line1.text = shipOwner + " attacked";
-                        eventBtn.line2.text = "" + (item.OriginalOwner == null ? "a neutral planet" : item.PlanetOwner.Name) + ".";
-                        eventBtn.line3.text = "";
+                        if (item.ShipOwner == item.OriginalOwner) {
+                            eventBtn.line1.text = shipOwner + " sent support ships";
+                            eventBtn.line2.text = "to a planet.";
+                            eventBtn.line3.text = "";
+                        } else {
+                            eventBtn.line1.text = shipOwner + " attacked";
+                            eventBtn.line2.text = "" + (item.OriginalOwner == null ? "a neutral planet" : item.OriginalOwner.Name) + ".";
+                            eventBtn.line3.text = "";
+                        }
                     }
                     break;
                 default:

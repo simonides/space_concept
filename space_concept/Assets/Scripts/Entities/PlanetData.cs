@@ -174,7 +174,7 @@ public class PlanetData {
             throw new ArgumentException("Unable to evaluate incoming troop: The troop is not arriving at this planet. Me: " + Name + ", Troop: " + troop.ToString());
         }
 
-        if (troop.Owner == Owner) {
+        if (troop.Owner == Owner && troop.Owner.IsHumanPlayer) {
             return EvaluateIncommingSupply(troop);
         }
 

@@ -48,7 +48,7 @@ public class AiPlayer {
             return false;
         }
         // Get points for doing nothing...
-        float shouldWaitForProductionPoints = getShouldWaitForProductionPoints(planetInfo.origin) -200;
+        float shouldWaitForProductionPoints = getShouldWaitForProductionPoints(planetInfo.origin);
 
         // Get highest attack points...
         float shouldAttackPoints = NO_POINTS;
@@ -83,11 +83,18 @@ public class AiPlayer {
         }
 
         if(shouldAttackPoints >= shouldSupportPoints && shouldAttackPlanet != null) {
-            float shipsForAttack = Mathf.Max(shouldAttackPoints * 1.2f, planetInfo.origin.Ships);            
+            float shipsForAttack = planetInfo.origin.Ships;
+            if (shouldAttackPoints >= 10) { // Don't send all ships
+                shipsForAttack = shouldAttackPoints * 1.4f;
+                shipsForAttack = Mathf.Min(shipsForAttack, planetInfo.origin.Ships);
+            }
+            if(shipsForAttack <= 0) { return false; }          
             MessageHub.Publish(new NewTroopMovementEvent(this, space.getPlanet(planetInfo.origin), space.getPlanet(shouldAttackPlanet.planetData), (int)shipsForAttack));
             return true;    // Make another movement if possible
         } else if(shouldSupportPlanet != null) {
-            float shipsForSupport = Mathf.Max(shouldSupportPoints * 2.2f, planetInfo.origin.Ships);
+            float shipsForSupport = shouldSupportPoints + Math.Abs(shouldAttackPoints * 1.2f);
+            shipsForSupport = Mathf.Min(shipsForSupport, planetInfo.origin.Ships);
+            if (shipsForSupport <= 0) { return false; }
             MessageHub.Publish(new NewTroopMovementEvent(this, space.getPlanet(planetInfo.origin), space.getPlanet(shouldSupportPlanet), (int)shipsForSupport));
             return true;    // Make another movement if possible
         }
@@ -98,15 +105,13 @@ public class AiPlayer {
     float getAttackPoints(PlanetData origin, PlanetData target, int distanceInDays) {        // = ~ <difference of ships between planets
         Debug.Assert(origin.Owner != null);
         int shipsOnPlanetAtArrivalday = getEstimatedShipsOnPlanet(target, distanceInDays);
-        float certanyFactor = 1f - (distanceInDays * distanceInDays * 0.02f);   // exp. curve
-        certanyFactor = Math.Min(certanyFactor, 0); // [0..1]   1 day: 0.98, 2 days: 0.92, 3 days: 0.82 ... 7 days: 0.02; 8 days: 0
-
-        float points = origin.Ships - shipsOnPlanetAtArrivalday;
-        if (points > 0) {    // reduce points
-            points *= certanyFactor;
-        } else {
-            points *= (2 - certanyFactor);
+        float certanyFactor = 0;
+        if (distanceInDays >= 2) {
+            certanyFactor = (distanceInDays * distanceInDays * 0.015f);   // exp. curve
+            certanyFactor = Math.Max(certanyFactor, 1); // [0..1]   1 day: 0.015,  ... 5 days: 0.375, 6 days: 0.54; 7 days: 0.738; 8 days: 96; 9 days: 1
         }
+        float points = origin.Ships - shipsOnPlanetAtArrivalday;
+        points -= certanyFactor * 300;
         return points;
     }
 
@@ -122,7 +127,7 @@ public class AiPlayer {
 
 
     int getEstimatedShipsOnPlanet(PlanetData planetData, int futureInDays) {
-        int shipsOnPlanetAtArrivalday = Math.Min(planetData.Ships + planetData.GetActualFactorySpeed() * futureInDays, planetData.HangarSize);
+        int shipsOnPlanetAtArrivalday = Math.Min(planetData.Ships + planetData.GetActualFactorySpeed() * futureInDays, Math.Max(planetData.Ships, planetData.HangarSize));
         //shipsOnPlanetAtArrivalday is the maximum number of ships that can be expected if the planet does not receive additional supplies
         return shipsOnPlanetAtArrivalday;
     }
@@ -130,8 +135,8 @@ public class AiPlayer {
 
     float getShouldWaitForProductionPoints(PlanetData planet) {        // = [-50 .. +50] .. the less ships the planet has, the more points it has
         float fillGrade = planet.Ships / planet.HangarSize; // [0..1]
-        float points = (1 - fillGrade) - 0.5f;      // [0.5 ... -0.5f]
-        return points * 50;        
+        float points = (1 - fillGrade) - 0.3f;      // [0.7 ... -0.3f]
+        return points * 40;     // [28 ... -12]    
     }
 
     float getThreatFactor(PlanetData planet, TactileInformation info) { // = Ship difference enemy and this planet if an enemy attacks
