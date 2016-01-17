@@ -22,6 +22,7 @@ public class AirTrafficControl : MonoBehaviour {
 
     public AirTrafficData airTrafficData { get; private set; }        // entity
     List<GameObject> troops;              // troop objects (with attached Troop script)
+    int fogOfWar;
 
     // Troop deletion:
     float deleteDelay;              // Number of seconds when the troopsToDelete will finally be deleted
@@ -38,6 +39,9 @@ public class AirTrafficControl : MonoBehaviour {
         if (space == null) {
             throw new MissingComponentException("Unable to find Space. The 'Space' game object also needs to be added to the level and have the space script attached.");
         }
+
+        PreparePools();
+        fogOfWar = 0;
     }
 
     void Start(){ 
@@ -50,7 +54,6 @@ public class AirTrafficControl : MonoBehaviour {
             throw new MissingReferenceException("The gameStateData has not been initialised yet.");
         }
 
-        //PreparePools();
 
         InitEventSubscriptions();
     }
@@ -83,9 +86,11 @@ public class AirTrafficControl : MonoBehaviour {
         }
     }
 
-    public void Init(int currentDay, AirTrafficData airTrafficData) {
-        PreparePools();
-
+    public void Init(int currentDay, int fogOfWar, AirTrafficData airTrafficData) {
+        this.fogOfWar = fogOfWar;
+        if(troopPool == null) {
+            PreparePools();
+        }
         this.airTrafficData = airTrafficData;
         foreach(TroopData troopData  in airTrafficData.airTraffic) {
             InitGraphicalTroopMovement(currentDay, troopData);
@@ -165,8 +170,14 @@ public class AirTrafficControl : MonoBehaviour {
         Vector2 targetPosition = targetPlanet.Position;
         //targetPosition -= direction * targetPlanet.Diameter / 2;
         troop.TargetPosition = targetPosition;
-        
-        troopObject.SetActive(true);
+            
+        if (troopData.Owner != null && troopData.Owner.IsHumanPlayer) {     // Belongs to human
+            troopObject.SetActive(true);
+        } else if(troopData.TargetPlanet.Owner != null && troopData.TargetPlanet.Owner.IsHumanPlayer) { // Attacks human
+            if(troopData.TravelTime <= fogOfWar) {                          // Can already be seen
+                troopObject.SetActive(true);
+            }
+        }
         troops.Add(troopObject);
     }
 
@@ -195,6 +206,20 @@ public class AirTrafficControl : MonoBehaviour {
     private void AnimateTroopObjects(int currentDay) {
         foreach (GameObject troopGO in troops) {
             Debug.Assert(troopGO != null);
+            var troopData = troopGO.GetComponent<Troop>().troopData;
+            if (!troopGO.activeSelf) {   // Inactive
+                if(troopData.ArrivalTime - currentDay <= fogOfWar
+                    && troopData.TargetPlanet.Owner != null && troopData.TargetPlanet.Owner.IsHumanPlayer) {
+                    troopGO.SetActive(true);
+                } else {
+                    continue;
+                }
+            } else if(!troopData.Owner.IsHumanPlayer) { // Not my ships
+                if (troopData.TargetPlanet.Owner == null || !troopData.TargetPlanet.Owner.IsHumanPlayer) { // Not my planet (anymore)
+                   troopGO.SetActive(false);
+                    continue;
+                }
+            }
             Troop troop = troopGO.GetComponent<Troop>();
             troop.UpdatePosition(currentDay);
         }

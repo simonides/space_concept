@@ -19,7 +19,7 @@ public class PlayerManager: MonoBehaviour {
 
     void InitEventSubscriptions() {
         Debug.Assert(NextDayEventToken == null);
-        MessageHub.Subscribe<NextDayEvent>((NextDayEvent evt) => { PerformAiMovements(); });
+        NextDayEventToken = MessageHub.Subscribe<NextDayEvent>((NextDayEvent evt) => { PerformAiMovements(); });
     }
     
     void PerformAiMovements() {

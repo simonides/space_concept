@@ -104,7 +104,7 @@ public class Planet : MonoBehaviour {
         spriteCollider.radius = spriteSize.x; 
 
         //Smaller planets need a larger outline (in comparison with the planet), to let it appear as thick as for big planets:
-        glowUpscaling = (planetData.Diameter + 3) / planetData.Diameter;
+        glowUpscaling = (planetData.Diameter + 5) / planetData.Diameter;
 
         spriteSize = glow.sprite.rect.size;
         if (spriteSize.x != spriteSize.y) {
