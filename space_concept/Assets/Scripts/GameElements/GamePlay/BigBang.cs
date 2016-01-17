@@ -50,7 +50,9 @@ public class BigBang : MonoBehaviour {
 
    
     void OnDestroy() {
-        MessageHub.Unsubscribe<TroopEvaluationResultEvent>(EvaluationResultEventSubscription);
+        if(EvaluationResultEventSubscription != null) {
+            MessageHub.Unsubscribe<TroopEvaluationResultEvent>(EvaluationResultEventSubscription);
+        }
     }
 
     void InitialiseGame() {
