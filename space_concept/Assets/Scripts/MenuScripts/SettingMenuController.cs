@@ -6,18 +6,21 @@ using Custom.Base;
 
 public class SettingMenuController : MonoBehaviour {
 
-    public UnityEngine.UI.Toggle fogOfWarToggle;
+    public UnityEngine.UI.Slider fogOfWarSlider;
     public UnityEngine.UI.Slider masterSlider;
     public UnityEngine.UI.Slider musicSlider;
     public UnityEngine.UI.Slider sfxslider;
 
+    public UnityEngine.UI.Text fogDist;
+
     private SettingsController manager;
     void Start() {
         manager = SettingsController.GetInstance();
-        fogOfWarToggle.isOn = manager.dataFile.fogOfWar;
         masterSlider.value = manager.dataFile.masterVolume;
         musicSlider.value = manager.dataFile.musicVolume;
         sfxslider.value = manager.dataFile.sfxVolume;
+
+        fogOfWarSlider.value = manager.dataFile.fogDist;
     }
     void Awake()
     {
@@ -40,11 +43,17 @@ public class SettingMenuController : MonoBehaviour {
 
     public void SaveSettings()
     {
-        manager.dataFile.fogOfWar = fogOfWarToggle.isOn;
+        
         manager.dataFile.masterVolume = masterSlider.value;
         manager.dataFile.musicVolume = musicSlider.value;
         manager.dataFile.sfxVolume = sfxslider.value;
         manager.SaveData();
+    }
+
+    public void Slider_OnChange(UnityEngine.UI.Slider slider)
+    {
+        fogDist.text = slider.value.ToString();
+        SettingsController.GetInstance().dataFile.fogDist = (int)slider.value;
     }
 
 }

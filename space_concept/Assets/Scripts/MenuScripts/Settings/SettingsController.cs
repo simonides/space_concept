@@ -15,7 +15,6 @@ public class SettingsController : SingletonBase<SettingsController> {
     public int planetCount = 5;
     public int kiCount = 1;
 
-
     override protected void Awake() {
         base.Awake(this);
         //at awake, check if settings.dat exists, if not, create it with default values
@@ -48,6 +47,7 @@ public class SettingsController : SingletonBase<SettingsController> {
     public void SaveGame<T>(T file, string directory, string filename)
          where T : class, new()
     {
+        Debug.Log("Saving game: "  +filename);
         if (directory == "")
         {
             SaveFileSerializer.XMLSave<T>(file, filename + ".xml");

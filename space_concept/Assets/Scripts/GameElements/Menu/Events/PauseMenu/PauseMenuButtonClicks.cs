@@ -6,7 +6,7 @@ public class PauseMenuButtonClicks : MonoBehaviour {
 
     public void SaveGame()
     {
-        MessageHub.Publish(new SaveGameEvent(this, "test"));
+        MessageHub.Publish(new SaveGameEvent(this, "Last save"));
     }
 
     public void QuitGame()

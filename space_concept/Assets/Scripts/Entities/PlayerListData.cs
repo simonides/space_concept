@@ -59,6 +59,17 @@ public class PlayerListData {
         }
     }
 
+    public PlayerData GetPlayerByName(string playerName) {
+        if (HumanPlayer.Name.Equals(playerName)) {
+            return HumanPlayer;
+        }
+        foreach (AiPlayer ai in AiPlayers) {
+            if (ai.playerData.Name.Equals(playerName)) {
+                return ai.playerData;
+            }
+        }
+        return null;
+    }
 
 
     static List<Color> predefinedPlayerColors;

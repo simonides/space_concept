@@ -48,16 +48,15 @@ public class PlanetMenuManager : AbstractMenuManager
             && CancelPlanetMenuEventToken == null 
             && ChooseOtherPlanetEventToken == null 
             && CancelChooseOtherPlanetEventToken == null 
-            &&  CancelSendShipsEventToken == null 
+            && CancelSendShipsEventToken == null 
             && ShipsSentEventToken == null);
 
-        MessageHub.Subscribe<PlanetClickedEvent>(PlanetClicked);
-        MessageHub.Subscribe<CancelPlanetMenuEvent>(CancelPlanetMenu);
-        MessageHub.Subscribe<ChooseOtherPlanetEvent>(ChooseOtherPlanet);
-        MessageHub.Subscribe<CancelChooseOtherPlanetEvent>(CancelChooseOtherPlanet);
-        MessageHub.Subscribe<CancelSendShipsEvent>(CancelSendShips);
-        MessageHub.Subscribe<ShipsSentEvent>(ShipsSent);
-       
+        PlanetClickedEventToken = MessageHub.Subscribe<PlanetClickedEvent>(PlanetClicked);
+        CancelPlanetMenuEventToken = MessageHub.Subscribe<CancelPlanetMenuEvent>(CancelPlanetMenu);
+        ChooseOtherPlanetEventToken = MessageHub.Subscribe<ChooseOtherPlanetEvent>(ChooseOtherPlanet);
+        CancelChooseOtherPlanetEventToken = MessageHub.Subscribe<CancelChooseOtherPlanetEvent>(CancelChooseOtherPlanet);
+        CancelSendShipsEventToken = MessageHub.Subscribe<CancelSendShipsEvent>(CancelSendShips);
+        ShipsSentEventToken = MessageHub.Subscribe<ShipsSentEvent>(ShipsSent);       
     }
 
 

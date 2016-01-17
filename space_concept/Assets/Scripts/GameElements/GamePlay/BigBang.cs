@@ -12,6 +12,7 @@ public class BigBang : MonoBehaviour {
     AirTrafficControl airTrafficControl;
     GameState gameState;
     PlayerManager playerManager;
+    public GameObject eventListMenu; // set via unity
     // ****                     **** //
 
 
@@ -49,7 +50,9 @@ public class BigBang : MonoBehaviour {
 
    
     void OnDestroy() {
-        MessageHub.Unsubscribe<TroopEvaluationResultEvent>(EvaluationResultEventSubscription);
+        if(EvaluationResultEventSubscription != null) {
+            MessageHub.Unsubscribe<TroopEvaluationResultEvent>(EvaluationResultEventSubscription);
+        }
     }
 
     void InitialiseGame() {
@@ -57,29 +60,31 @@ public class BigBang : MonoBehaviour {
         AnimatedBackgroundDontDestroy.TryDestroySingleton();
 
         Debug.Log("Initialising game...");
+        int fogOfWar = SettingsController.GetInstance().dataFile.fogDist;
         try {
             if (SettingsController.GetInstance().loadMap == false) {
-                InitialiseNewGame(SettingsController.GetInstance().generateRandomMap);                
+                InitialiseNewGame(SettingsController.GetInstance().generateRandomMap, fogOfWar);                
             } else {
-                InitialiseGameFromSaveGame();
+                InitialiseGameFromSaveGame(fogOfWar);
             }
         } catch (MissingComponentException e) {
             Debug.LogWarning("Failed to communicate with SettingsController. \n" + e.ToString());
-            InitialiseNewGame(true);
+            InitialiseNewGame(true, fogOfWar);
         }
+        eventListMenu.GetComponent<EventListFiller>().fogOfWar = (fogOfWar != 0);
         MessageHub.Publish<PlanetUpdateEvent>(new PlanetUpdateEvent(this));     // Update graphical planet representations
         Debug.Log("Player name: '" + playerManager.PlayerListData.HumanPlayer.Name + "', color: '" + playerManager.PlayerListData.HumanPlayer.Color.ToString() + "'");
         Debug.Log("The Big Bang happened guys!");
     }
 
 
-    void InitialiseNewGame(bool generateRandomMap) {
+    void InitialiseNewGame(bool generateRandomMap, int fogOfWar) {
         Debug.Log("Generating new game...");
         GameStateData gameStateData = new GameStateData();
         gameState.Init(gameStateData);
 
         AirTrafficData airTrafficData = new AirTrafficData();
-        airTrafficControl.Init(gameStateData.CurrentDay, airTrafficData);
+        airTrafficControl.Init(gameStateData.CurrentDay, fogOfWar, airTrafficData);
 
         SpaceData spaceData;
         if (generateRandomMap) {
@@ -90,7 +95,8 @@ public class BigBang : MonoBehaviour {
         space.Init(spaceData);
 
         // Handling players...
-        PlaceNewPlayersOnMap(SettingsController.GetInstance().playerFile, SettingsController.GetInstance().kiCount); 
+        PlaceNewPlayersOnMap(SettingsController.GetInstance().playerFile, SettingsController.GetInstance().kiCount);
+        SettingsController.GetInstance().map.playerListData = playerManager.PlayerListData;
     }
 
 
@@ -106,7 +112,7 @@ public class BigBang : MonoBehaviour {
         for (int i = 0; i < aiCount; ++i) {
             PlayerData aiData = new PlayerData();
             AiPlayer player = new AiPlayer(aiData, space);
-          
+
             home = space.getRandomEmptyStartPlanet();
             if (home == null) {
                 Debug.LogError("Failed to set home planet for ai. There are no start planets on the map");
@@ -120,7 +126,7 @@ public class BigBang : MonoBehaviour {
         playerManager.Init(playerListData);
     }
 
-    void InitialiseGameFromSaveGame() {
+    void InitialiseGameFromSaveGame(int fogOfWar) {
         Debug.Log("Loading save game...");
         var saving = SettingsController.GetInstance();
 
@@ -128,19 +134,30 @@ public class BigBang : MonoBehaviour {
         gameState.Init(gameStateData);
 
         AirTrafficData airTrafficData = saving.map.airTrafficData;
-        airTrafficControl.Init(gameStateData.CurrentDay, airTrafficData);
+        airTrafficControl.Init(gameStateData.CurrentDay, fogOfWar, airTrafficData);
 
         SpaceData spaceData = saving.map.spaceData;
         space.Init(spaceData);
 
         // Handling players...
         PlayerListData playerListData = saving.map.playerListData;
-        PlaceExistingPlayersOnMap(playerListData);
+        Debug.Assert(playerListData != null);
+        foreach(AiPlayer ai in playerListData.AiPlayers) {
+            ai.Init(space);
+        }
+        PlaceExistingPlayersOnMap(playerListData, spaceData);
     }
 
 
-    void PlaceExistingPlayersOnMap(PlayerListData playerListData) {
+    void PlaceExistingPlayersOnMap(PlayerListData playerListData, SpaceData spaceData) {
         playerManager.Init(playerListData);
+        foreach (PlanetData planet in spaceData.planets) {
+            if (planet.Owner != null) {
+                PlayerData correctPlayerObject = playerListData.GetPlayerByName(planet.Owner.Name);
+                planet.Owner = correctPlayerObject;
+                planet.Owner.AddPlanetToOwnership(planet);
+            }
+        }
     }
 
 
