@@ -51,7 +51,7 @@ public class AttackEvaluation {
             evaluation.Outcome = EvaluationOutcome.Lost;
             evaluation.Importance = Mathf.Lerp(50, 100, Mathf.Min(1, lostShips / 500));
         } else {
-            evaluation.Outcome = EvaluationOutcome.Success;
+            evaluation.Outcome = EvaluationOutcome.Neutral;
             evaluation.Importance = 40;
         }
         evaluation.ShipOwner = troop.Owner;
@@ -61,10 +61,10 @@ public class AttackEvaluation {
         evaluation.LostShips = lostShips;
         evaluation.Planet = troop.TargetPlanet;
         evaluation.OriginalOwner = troop.Owner;
-        Debug.Log("A supply of " 
-            + evaluation.IncomingShips 
+        Debug.Log("A supply of "
+            + evaluation.IncomingShips
             + " reached planet "
-            + evaluation.Planet.Name + " - " + lostShips 
+            + evaluation.Planet.Name + " - " + lostShips
             + " ships were lost due to full hangar");
         return evaluation;
     }
@@ -84,6 +84,9 @@ public class AttackEvaluation {
                     evaluation.Outcome = EvaluationOutcome.Success;
                 }
                 evaluation.Importance = 80;
+            } else if (newOwner == null) {
+                evaluation.Outcome = EvaluationOutcome.Neutral;
+                evaluation.Importance = 75;
             } else {
                 evaluation.Outcome = EvaluationOutcome.Lost;
                 evaluation.Importance = 55;
@@ -98,7 +101,7 @@ public class AttackEvaluation {
                 evaluation.Outcome = EvaluationOutcome.Success;
                 evaluation.Importance = 60;
             }
-       } else {
+        } else {
             if (oldOwner != newOwner) {
                 evaluation.Type = EvaluationType.CaptureViewer;
                 evaluation.Importance = 15;
@@ -109,20 +112,20 @@ public class AttackEvaluation {
             evaluation.LostShips = lostShipsByOwner + lostShipsByAttacker + lostShipsByLanding;     // A viewer is only intersted in the total number of ships destroyed
             evaluation.Outcome = EvaluationOutcome.Neutral;
         }
-                
+
         evaluation.ShipOwner = troop.Owner;
         evaluation.PlanetOwner = newOwner;
         evaluation.IncomingShips = troop.ShipCount;
         evaluation.ShipsOnPlanetAfterEvent = shipsOnPlanetAfterEvent;
-                
+
         evaluation.Planet = troop.TargetPlanet;
         evaluation.OriginalOwner = oldOwner;
 
-        Debug.Log("An attack of " + evaluation.IncomingShips 
-            + " ships reached planet " + evaluation.Planet.Name 
-            + " - Losses:  owner = " + lostShipsByOwner 
-            + ", attacker = " + (lostShipsByAttacker + lostShipsByLanding) 
-            + "; New owner: " + (newOwner == null ? "neutral" : newOwner.Name) 
+        Debug.Log("An attack of " + evaluation.IncomingShips
+            + " ships reached planet " + evaluation.Planet.Name
+            + " - Losses:  owner = " + lostShipsByOwner
+            + ", attacker = " + (lostShipsByAttacker + lostShipsByLanding)
+            + "; New owner: " + (newOwner == null ? "neutral" : newOwner.Name)
             + "");
         return evaluation;
     }

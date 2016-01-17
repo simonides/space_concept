@@ -217,6 +217,9 @@ public class PlanetData {
 
         PlayerData oldOwner = Owner;
         PlayerData newOwner = (gotCaptured ? troop.Owner : oldOwner);
+        if(Ships == troop.ShipCount) {
+            newOwner = null;
+        }
 
         int lostShipsByOwner = 0;
         int lostShipsByAttacker = 0;
