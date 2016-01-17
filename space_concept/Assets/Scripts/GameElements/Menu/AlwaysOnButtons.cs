@@ -2,13 +2,15 @@
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using TinyMessenger;
 
 public class AlwaysOnButtons : MonoBehaviour {
 
     public Button NextDayButton;
-
+    private TinyMessageSubscriptionToken ToggleNextDayButtonEventToken;
     void Awake(){
-        MessageHub.Subscribe<ToggleNextDayButtonEvent>(ToggleNextDayButton);
+        Debug.Assert(ToggleNextDayButtonEventToken == null);
+        ToggleNextDayButtonEventToken = MessageHub.Subscribe<ToggleNextDayButtonEvent>(ToggleNextDayButton);
     }
 
     private void ToggleNextDayButton(ToggleNextDayButtonEvent obj){
@@ -22,5 +24,10 @@ public class AlwaysOnButtons : MonoBehaviour {
 
     public void ShowEventList(){
         MessageHub.Publish(new ShowEventListEvent(this));
+    }
+
+    void OnDestroy()
+    {
+        MessageHub.Unsubscribe < ToggleNextDayButtonEvent>(ToggleNextDayButtonEventToken);
     }
 }

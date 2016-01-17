@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using TinyMessenger;
 
 public class PlanetMenuManager : AbstractMenuManager
 {
@@ -24,6 +25,13 @@ public class PlanetMenuManager : AbstractMenuManager
     private PlanetMenuFiller _planetMenuFiller;
     private SendShipMenuFiller _sendShipMenuFiller;
 
+    private TinyMessageSubscriptionToken PlanetClickedEventToken;
+    private TinyMessageSubscriptionToken CancelPlanetMenuEventToken;
+    private TinyMessageSubscriptionToken ChooseOtherPlanetEventToken;
+    private TinyMessageSubscriptionToken CancelChooseOtherPlanetEventToken;
+    private TinyMessageSubscriptionToken CancelSendShipsEventToken;
+    private TinyMessageSubscriptionToken ShipsSentEventToken;
+
     void Awake()
     {
         _planetMenuFiller = GetComponentInChildren<PlanetMenuFiller>();
@@ -35,6 +43,13 @@ public class PlanetMenuManager : AbstractMenuManager
         if (_sendShipMenuFiller == null){
             throw new MissingComponentException("Unable to find _sendShipMenuFiller.");
         }
+        Debug.Assert(
+            PlanetClickedEventToken == null
+            && CancelPlanetMenuEventToken == null 
+            && ChooseOtherPlanetEventToken == null 
+            && CancelChooseOtherPlanetEventToken == null 
+            &&  CancelSendShipsEventToken == null 
+            && ShipsSentEventToken == null);
 
         MessageHub.Subscribe<PlanetClickedEvent>(PlanetClicked);
         MessageHub.Subscribe<CancelPlanetMenuEvent>(CancelPlanetMenu);
@@ -153,4 +168,18 @@ public class PlanetMenuManager : AbstractMenuManager
     {
         SwitchMenu(null);
     }
+
+
+    void OnDestroy()
+    {
+        MessageHub.Unsubscribe<PlanetClickedEvent>(PlanetClickedEventToken);
+        MessageHub.Unsubscribe<CancelPlanetMenuEvent>(CancelPlanetMenuEventToken);
+        MessageHub.Unsubscribe<ChooseOtherPlanetEvent>(ChooseOtherPlanetEventToken);
+        MessageHub.Unsubscribe<CancelChooseOtherPlanetEvent>(CancelChooseOtherPlanetEventToken);
+        MessageHub.Unsubscribe<CancelSendShipsEvent>(CancelSendShipsEventToken);
+        MessageHub.Unsubscribe<ShipsSentEvent>(ShipsSentEventToken);
+    }
+
+
+
 }

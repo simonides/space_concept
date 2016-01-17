@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using TinyMessenger;
 
 public class PlayerManager: MonoBehaviour {
 
     public PlayerListData PlayerListData { get; private set; }
+    private TinyMessageSubscriptionToken NextDayEventToken;
 
     void Start() {
         InitEventSubscriptions();
@@ -16,6 +18,7 @@ public class PlayerManager: MonoBehaviour {
     
 
     void InitEventSubscriptions() {
+        Debug.Assert(NextDayEventToken == null);
         MessageHub.Subscribe<NextDayEvent>((NextDayEvent evt) => { PerformAiMovements(); });
     }
     
@@ -25,5 +28,9 @@ public class PlayerManager: MonoBehaviour {
         foreach (AiPlayer ai in aiPlayers) {
             ai.PerformNextMovement();
         }
+    }
+
+    void OnDestroy(){
+        MessageHub.Unsubscribe<NextDayEvent>(NextDayEventToken);
     }
 }

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using TinyMessenger;
 
 public class PlanetMenuFiller : MonoBehaviour
 {
@@ -16,11 +17,18 @@ public class PlanetMenuFiller : MonoBehaviour
 
     PlanetData activePlanet;
 
+    private TinyMessageSubscriptionToken UpgradeFactoryEventToken;
+    private TinyMessageSubscriptionToken UpgradeHangarEventToken;
+    private TinyMessageSubscriptionToken NextDayEventToken;
+
     void Awake()
     {
-        MessageHub.Subscribe<UpgradeFactoryEvent>(UpgradeFactory);
-        MessageHub.Subscribe<UpgradeHangarEvent>(UpgradeHangar);
-        MessageHub.Subscribe<NextDayEvent>(NextDay);
+        Debug.Assert(UpgradeFactoryEventToken == null 
+            && UpgradeHangarEventToken == null 
+            && NextDayEventToken == null);
+        UpgradeFactoryEventToken = MessageHub.Subscribe<UpgradeFactoryEvent>(UpgradeFactory);
+        UpgradeHangarEventToken = MessageHub.Subscribe<UpgradeHangarEvent>(UpgradeHangar);
+        NextDayEventToken = MessageHub.Subscribe<NextDayEvent>(NextDay);
     }
 
     private void NextDay(NextDayEvent obj)
@@ -65,5 +73,10 @@ public class PlanetMenuFiller : MonoBehaviour
         HangarIncreaseAmount.text = "" + activePlanet.GetNextHangarUpgrade();
     }
 
-
+    void OnDestroy()
+    {
+        MessageHub.Unsubscribe<UpgradeFactoryEvent>( UpgradeFactoryEventToken);
+        MessageHub.Unsubscribe<UpgradeHangarEvent>( UpgradeHangarEventToken);
+        MessageHub.Unsubscribe<NextDayEvent>(NextDayEventToken);
+    }
 }
