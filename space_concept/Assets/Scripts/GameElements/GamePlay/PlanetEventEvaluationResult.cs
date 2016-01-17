@@ -84,12 +84,9 @@ public class AttackEvaluation {
                     evaluation.Outcome = EvaluationOutcome.Success;
                 }
                 evaluation.Importance = 80;
-            } else if (newOwner == null) {
-                evaluation.Outcome = EvaluationOutcome.Neutral;
-                evaluation.Importance = 75;
             } else {
                 evaluation.Outcome = EvaluationOutcome.Lost;
-                evaluation.Importance = 55;
+                evaluation.Importance = 75;
             }
         } else if (oldOwner != null && oldOwner.IsHumanPlayer) {
             evaluation.Type = EvaluationType.GotAttacked;

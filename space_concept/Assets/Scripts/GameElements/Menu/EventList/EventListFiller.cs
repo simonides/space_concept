@@ -259,14 +259,14 @@ public class EventListFiller : MonoBehaviour
                     break;
                 case EvaluationType.AttackedPlanet:
                     { //The player attacked another planet
-                        string originalPlayerName = (item.OriginalOwner == null ? "Neutral" : item.OriginalOwner.Name);
+                        string originalPlayerName = (item.OriginalOwner == null ? "a neutral planet" : item.OriginalOwner.Name);
                         eventBtn.line1.text = "You attacked " + originalPlayerName;
-                        eventBtn.line2.text = "with " + item.IncomingShips + " ships";
+                        eventBtn.line2.text = "with " + item.IncomingShips + " ships.";
                         switch (item.Outcome)
                         {
                             case EvaluationOutcome.Lost: { eventBtn.line3.text = "There are no survivors."; } break;
                             case EvaluationOutcome.Neutral: { eventBtn.line3.text = "The planet is now neutral."; } break;
-                            case EvaluationOutcome.Success: { eventBtn.line3.text = item.ShipsOnPlanetAfterEvent + " ships survived."; } break;
+                            case EvaluationOutcome.Success: { eventBtn.line3.text = "Captured! " + item.ShipsOnPlanetAfterEvent + " ships survived."; } break;
                             default: break;
                         }
                     }
