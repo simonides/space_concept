@@ -90,18 +90,12 @@ public class BigBang : MonoBehaviour {
         space.Init(spaceData);
 
         // Handling players...
-        //TODO: use color and name from start szene
-        string playerName = "Human Player";
-        Color playerColor = Color.black;
-        PlaceNewPlayersOnMap(playerName, playerColor, SettingsController.GetInstance().kiCount); 
+        PlaceNewPlayersOnMap(SettingsController.GetInstance().playerFile, SettingsController.GetInstance().kiCount); 
     }
 
 
 
-    void PlaceNewPlayersOnMap(string humanPlayerName, Color humanPlayerColor, int aiCount) {
-        PlayerData humanPlayer = new PlayerData();
-        humanPlayer.Name = humanPlayerName;
-        humanPlayer.Color = humanPlayerColor;
+    void PlaceNewPlayersOnMap(PlayerData humanPlayer, int aiCount) {
         Planet home = space.getRandomEmptyStartPlanet();
         if (home == null) {
             Debug.LogError("Failed to set home planet for human player. There are no start planets on the map");

@@ -86,7 +86,7 @@ public class LoadMenuController : MonoBehaviour {
         List<string> foundFiles = new List<string>();
         UnityEngine.UI.Button newButton;
         RectTransform newPanel;
-         foundFiles = SaveFileSerializer.GetFileNames("SaveGames");
+        foundFiles = SaveFileSerializer.GetFileNames("SaveGames");
         for (int i = 0; i < foundFiles.Count; i++) {
             //add new panel
             newPanel = Instantiate(saveGamePanel);

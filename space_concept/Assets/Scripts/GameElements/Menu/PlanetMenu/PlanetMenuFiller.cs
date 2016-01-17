@@ -64,7 +64,7 @@ public class PlanetMenuFiller : MonoBehaviour
     public void UpgradeFactoryUpdate(){
         FactoryActualIncreaseSpeed.text = "+" + activePlanet.FactorySpeed;
         FactoryUpgradeCost.text = "" + activePlanet.GetFactoryUpgradeCosts();
-        FactoryIncreaseAmount.text = "" + activePlanet.GetNextFactoryUpgrade();
+        FactoryIncreaseAmount.text = "+" + activePlanet.GetNextFactoryUpgrade();
     }
 
     public void UpgradeHangarUpdate(){

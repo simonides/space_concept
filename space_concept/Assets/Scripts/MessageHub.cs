@@ -44,11 +44,13 @@ public class MessageHub : MonoBehaviour {
    
     public static void Publish<TMessage>(TMessage message)
         where TMessage : class, ITinyMessage {
+        if (applicationIsShuttingDown) { return; }
         instance.hub.Publish(message);
     }
 
     public static void Unsubscribe<TMessage>(TinyMessageSubscriptionToken token)
         where TMessage : class, ITinyMessage {
+        if(applicationIsShuttingDown) { return; }
         instance.hub.Unsubscribe<TMessage>(token);
     }
 
