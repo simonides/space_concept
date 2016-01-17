@@ -136,6 +136,9 @@ public class AudioController : SingletonBase<AudioController> {
         AudioSource s = null;
         sounds.TryGetValue(code, out s);
         sources[i] = s;
-        sources[i].Play();
+        if (!sources[i].isPlaying)
+        {
+            sources[i].Play();
+        }
     }
 }
