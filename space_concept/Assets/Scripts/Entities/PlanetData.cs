@@ -16,7 +16,7 @@ public class PlanetData {
     public const int HANGAR_UPGRADE_COSTS = 1;      //The number of ships that are required to increase the hangar by 1.
 
 
-    public PlayerData Owner { get; private set; }               // The player who owns this planet
+    public PlayerData Owner;               // The player who owns this planet
 
     public string Name { get; set; }                // Name of the planet
 
