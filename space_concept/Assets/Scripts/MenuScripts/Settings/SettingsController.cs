@@ -14,7 +14,7 @@ public class SettingsController : SingletonBase<SettingsController> {
 
     public int planetCount = 5;
     public int kiCount = 1;
-
+    public int fogDistance = 0;
 
     override protected void Awake() {
         base.Awake(this);
