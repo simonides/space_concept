@@ -60,6 +60,7 @@ public class BigBang : MonoBehaviour {
             Debug.LogWarning("Failed to communicate with SettingsController. \n" + e.ToString());
             InitialiseNewGame(true);
         }
+        Debug.Log("Player name: '" + playerManager.PlayerListData.HumanPlayer.Name + "', color: '" + playerManager.PlayerListData.HumanPlayer.Color.ToString() + "'");
         Debug.Log("The Big Bang happened guys!");
     }
 
@@ -81,7 +82,10 @@ public class BigBang : MonoBehaviour {
         space.Init(spaceData);
 
         // Handling players...
-        PlaceNewPlayersOnMap("Human Player", Color.red, SettingsController.GetInstance().kiCount); 
+        //TODO: use color and name from start szene
+        string playerName = "Human Player";
+        Color playerColor = Color.black;
+        PlaceNewPlayersOnMap(playerName, playerColor, SettingsController.GetInstance().kiCount); 
     }
 
 
@@ -99,8 +103,6 @@ public class BigBang : MonoBehaviour {
         var aiPlayers = new List<AiPlayer>();
         for (int i = 0; i < aiCount; ++i) {
             PlayerData aiData = new PlayerData();
-            aiData.Name = PlayerData.GetRandomPlayerName();
-            aiData.Color = Color.blue;  //TODO: predefined list of colors
             AiPlayer player = new AiPlayer(aiData, space);
           
             home = space.getRandomEmptyStartPlanet();
@@ -130,7 +132,6 @@ public class BigBang : MonoBehaviour {
         space.Init(spaceData);
 
         // Handling players...
-        //PlayerListData playerListData = new PlayerListData(new PlayerData(), new List<AiPlayer>());    // Todo: load from save game
         PlayerListData playerListData = saving.map.playerListData;
         PlaceExistingPlayersOnMap(playerListData);
     }

@@ -6,6 +6,10 @@ public class MapGenerator {
         return Random.Range(min, max);
     }
 
+    static int rnd(int min, int max, int mod) {
+        int val = Random.Range(min, max);
+        return val - (val % mod);
+    }
 
     static public SpaceData GenerateDefaultMap() {
         SpaceData spaceData = new SpaceData();
@@ -17,31 +21,31 @@ public class MapGenerator {
         spaceData.AddPlanet(new PlanetData(new Vector2(1500, 0), 18, 100, 150, 15, true));
         spaceData.AddPlanet(new PlanetData(new Vector2(0, 1000), 18, 100, 150, 15, true));
         
-        spaceData.AddPlanet(new PlanetData(new Vector2(600, 420), 66, 2200, rnd(250, 380), rnd(150, 250), false));
-        spaceData.AddPlanet(new PlanetData(new Vector2(900, 580), 66, 2200, rnd(250, 380), rnd(150, 250), false));
-        spaceData.AddPlanet(new PlanetData(new Vector2(750, 500), 15, 0, rnd(15, 25), rnd(5, 15), false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(600, 420), 66, 2200, rnd(250, 380, 10), rnd(150, 250, 10), false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(900, 580), 66, 2200, rnd(250, 380, 10), rnd(150, 250, 10), false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(750, 500), 15, 0, rnd(15, 25, 5), rnd(5, 15, 5), false));
 
-        spaceData.AddPlanet(new PlanetData(new Vector2(640, 550), 12, rnd(1500, 2500), rnd(10, 40), 0, false));
-        spaceData.AddPlanet(new PlanetData(new Vector2(860, 450), 12, rnd(1500, 2500), rnd(10, 40), 0, false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(640, 550), 12, rnd(1500, 2500, 100), rnd(10, 40, 5), 0, false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(860, 450), 12, rnd(1500, 2500, 100), rnd(10, 40, 5), 0, false));
 
-        spaceData.AddPlanet(new PlanetData(new Vector2(80, 200), 24, rnd(40, 60), rnd(110, 140), rnd(15, 20), false));
-        spaceData.AddPlanet(new PlanetData(new Vector2(300, 80), 30, rnd(40, 60), rnd(170, 200), rnd(10, 15), false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(80, 200), 24, rnd(40, 60, 10), rnd(110, 140, 10), rnd(15, 20, 5), false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(300, 80), 30, rnd(40, 60, 10), rnd(170, 200, 10), rnd(10, 15, 5), false));
 
-        spaceData.AddPlanet(new PlanetData(new Vector2(80, 800), 24, rnd(40, 60), rnd(110, 140), rnd(15, 20), false));
-        spaceData.AddPlanet(new PlanetData(new Vector2(300, 920), 30, rnd(40, 60), rnd(170, 200), rnd(10, 15), false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(80, 800), 24, rnd(40, 60, 10), rnd(110, 140, 10), rnd(15, 20, 5), false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(300, 920), 30, rnd(40, 60, 10), rnd(170, 200, 10), rnd(10, 15, 5), false));
 
-        spaceData.AddPlanet(new PlanetData(new Vector2(1420, 200), 24, rnd(40, 60), rnd(110, 140), rnd(15, 20), false));
-        spaceData.AddPlanet(new PlanetData(new Vector2(1200, 80), 30, rnd(40, 60), rnd(170, 200), rnd(10, 15), false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(1420, 200), 24, rnd(40, 60, 10), rnd(110, 140, 10), rnd(15, 20, 5), false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(1200, 80), 30, rnd(40, 60, 10), rnd(170, 200, 10), rnd(10, 15, 5), false));
 
-        spaceData.AddPlanet(new PlanetData(new Vector2(1420, 800), 24, rnd(40, 60), rnd(110, 140), rnd(15, 20), false));
-        spaceData.AddPlanet(new PlanetData(new Vector2(1200, 902), 30, rnd(40, 60), rnd(170, 200), rnd(10, 15), false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(1420, 800), 24, rnd(40, 60, 10), rnd(110, 140, 10), rnd(15, 20, 5), false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(1200, 902), 30, rnd(40, 60, 10), rnd(170, 200, 10), rnd(10, 15, 5), false));
 
 
-        spaceData.AddPlanet(new PlanetData(new Vector2(250, 500), 36, rnd(180, 250), 180, 45, false));
-        spaceData.AddPlanet(new PlanetData(new Vector2(1250, 500), 36, rnd(180, 250), 180, 45, false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(250, 500), 36, rnd(180, 250, 10), 180, 45, false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(1250, 500), 36, rnd(180, 250, 10), 180, 45, false));
 
-        spaceData.AddPlanet(new PlanetData(new Vector2(750, 50), 42, rnd(200, 350), 250, 65, false));
-        spaceData.AddPlanet(new PlanetData(new Vector2(750, 950), 42, rnd(200, 350), 250, 65, false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(750, 50), 42, rnd(200, 350, 10), 250, 65, false));
+        spaceData.AddPlanet(new PlanetData(new Vector2(750, 950), 42, rnd(200, 350, 10), 250, 65, false));
         
         return spaceData;
     }

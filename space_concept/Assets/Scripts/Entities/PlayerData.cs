@@ -12,7 +12,7 @@ public class PlayerData {
 
     public PlayerData() {
         Name = "";
-        Color = Color.blue;
+        Color = Color.black;
         IsHumanPlayer = true;
         ownedPlanets = new List<PlanetData>();
     }
@@ -34,11 +34,7 @@ public class PlayerData {
     }
 
     public bool IsHumanPlayer { get; set; }     // True: this is the player who plays the game; false: AI (=enemy)
-
-    static List<string> predefinedPlayerNames = new List<string> { "Adriatik", "Alemmania", "Apple", "Papa Schlumpf", "Aladin", "Dimitridis", "Bluna", "Champagna", "Emilia-Extra", "Godpower", "Hope",
-                                                                    "Junior", "Klee", "Laser", "Legolas", "London", "Magic", "Pepsi-Carola", "Phoenix", "Popo", "Precious", "Pumuckl", "Schneewittchen",
-                                                                    "Schokominza", "Siebenstern", "Sioux", "Smudo", "Sonne", "Sultan", "Tarzan", "Topas", "Viktualia", "Wasa" };
-
+        
     public void AddPlanetToOwnership(PlanetData planet) {
         if (planet.Owner != this) {
             Debug.LogError("Error: A planet can't be added to the ownership-list of the player, if the player actually doesn't own the planet.");
@@ -56,11 +52,7 @@ public class PlayerData {
     public int GetNumberOfOwnedPlanets() {
         return ownedPlanets.Count;
     }
-
-    public static string GetRandomPlayerName() {
-        return predefinedPlayerNames[UnityEngine.Random.Range(0, predefinedPlayerNames.Count)];
-    }
-
+    
     public override string ToString() {
         return "Player \"" + Name + "\", color " + Color.ToString();
     }
