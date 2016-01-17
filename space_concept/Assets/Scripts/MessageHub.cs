@@ -11,10 +11,11 @@ public class MessageHub : MonoBehaviour {
 
     private TinyMessengerHub hub;
     private static MessageHub instance_ = null;
+    private static bool applicationIsShuttingDown = false;
 
     private static MessageHub instance {
         get {
-            if (instance_ == null) {
+            if (instance_ == null && !applicationIsShuttingDown) {
                 var obj = GameObject.Find(messageHubGameObjectName);
                 if (obj == null)
                     obj = new GameObject(messageHubGameObjectName);
@@ -53,5 +54,7 @@ public class MessageHub : MonoBehaviour {
 
     private void OnApplicationQuit() {
         UnityEngine.Object.DestroyImmediate(this.gameObject);
+        applicationIsShuttingDown = true;
     }
+
 }
