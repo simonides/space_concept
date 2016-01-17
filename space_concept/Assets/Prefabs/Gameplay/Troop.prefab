@@ -26,7 +26,6 @@ GameObject:
   - 4: {fileID: 493238}
   - 23: {fileID: 2360078}
   - 102: {fileID: 10259014}
-  - 114: {fileID: 11481702}
   m_Layer: 0
   m_Name: TextHolder
   m_TagString: Untagged
@@ -43,6 +42,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 420062}
   - 212: {fileID: 21250084}
+  - 95: {fileID: 9505196}
   m_Layer: 0
   m_Name: SpriteHolder
   m_TagString: Untagged
@@ -143,6 +143,23 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 6
+--- !u!95 &9505196
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164712}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a73b8b9b64770404b8a4fec895e01032, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!102 &10259014
 TextMesh:
   serializedVersion: 3
@@ -175,21 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcd7eef3bfd6a74bb71b0f7e3f7c44e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FlyAnimationSpeed: 50
-  StartPosition: {x: 0, y: 0}
-  TargetPosition: {x: 0, y: 0}
-  TargetProgress: 0
---- !u!114 &11481702
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdcd7eef3bfd6a74bb71b0f7e3f7c44e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  animator: {fileID: 9505196}
   FlyAnimationSpeed: 50
   StartPosition: {x: 0, y: 0}
   TargetPosition: {x: 0, y: 0}
@@ -250,7 +253,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 2a64028500585a84ba38b19b5e623668, type: 3}
+  m_Sprite: {fileID: 21300010, guid: dbe7e99f5d842d34ea7e0015be2ab7eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

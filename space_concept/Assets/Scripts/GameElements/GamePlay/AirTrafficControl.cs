@@ -167,6 +167,8 @@ public class AirTrafficControl : MonoBehaviour {
         troop.TargetPosition = targetPosition;
         
         troopObject.SetActive(true);
+        troop.SetSprite();
+
         troops.Add(troopObject);
     }
 

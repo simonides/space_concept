@@ -11,6 +11,7 @@ public class Troop : MonoBehaviour {
     TextMesh shipcountText;
     // ****                     **** //
 
+    public Animator animator;
 
     public TroopData troopData { get; private set; }
     public float FlyAnimationSpeed = 50;
@@ -43,8 +44,22 @@ public class Troop : MonoBehaviour {
         }
     }
 
+    // Set me after the object has been enabled!
+    public void SetSprite()
+    {
+        if (troopData.ShipCount > 50)
+        {
+            animator.SetInteger("ShipType", 1);
+            Debug.Log("Ship type: " + animator.GetInteger("ShipType"));
+        }
+        else
+        {
+            animator.SetInteger("ShipType", 0);
+        }
+    }
 
     public void Init(int currentDay, TroopData troop) {
+
         troopData = troop;
         StartPosition.Set(0, 0);
         TargetPosition.Set(0, 0);
@@ -67,6 +82,7 @@ public class Troop : MonoBehaviour {
     }
 
     public void Update() {
+
         Progress += Time.deltaTime * FlyAnimationSpeed;
         if(Progress > TargetProgress) {
             Progress = TargetProgress;
