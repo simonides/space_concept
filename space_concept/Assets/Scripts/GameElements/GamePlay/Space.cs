@@ -27,12 +27,13 @@ public class Space : MonoBehaviour {
 
     public SpaceData spaceData { get; private set; }        // entity
     List<Planet> planets;       // planet objects
-
+    private Dictionary<PlanetData, Planet> planetDict;
 
     public Rect bounds { get; private set; }     // Size/bounds of the cosmos
 
     void Awake() {
         planets = new List<Planet>();
+        planetDict = new Dictionary<PlanetData, Planet>();
 
         background = transform.Find("Background");
         if (background == null) {
@@ -116,6 +117,12 @@ public class Space : MonoBehaviour {
         // set 
         particleSystem.transform.localPosition = new Vector3(center.x, center.y, 0);
         particleSystem.transform.localScale = new Vector3(bounds.size.x, bounds.size.y, 1);
+
+        //add planets into the dictionary
+        foreach (Planet p in planets)
+        {
+            planetDict.Add(p.planetData, p);
+        }
     }
 
 
@@ -148,13 +155,21 @@ public class Space : MonoBehaviour {
     }
 
     // Returns the planet that belongs to the given planetData
-    public Planet getPlanet(PlanetData planetData) {
-        foreach (Planet p in planets) {
-            if(p.planetData == planetData) {
-                return p;
-            }
-        }
-        return null;
+    //public Planet getPlanet(PlanetData planetData) {
+    //    foreach (Planet p in planets) {
+    //        if(p.planetData == planetData) {
+    //            return p;
+    //        }
+    //    }
+    //    return null;
+    //}
+
+    public Planet getPlanet(PlanetData pData) {
+        Planet p = null;
+        planetDict.TryGetValue(pData, out p);
+        Debug.Log("Searched and Found Planet: " + p.name);
+        return p;
+        //return null;
     }
 
     // Returns a startPlanet that has no owner and can be used for a new player
