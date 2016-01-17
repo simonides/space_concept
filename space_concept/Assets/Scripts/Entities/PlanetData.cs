@@ -24,6 +24,7 @@ public class PlanetData {
 
     public Vector2 Position { get; set; }
 
+
     public string TextureName { get; set; }
     public string TextureFXName { get; set; }
 
@@ -70,7 +71,14 @@ public class PlanetData {
             _factorySpeed = value;
         }
     }
-    
+
+    public int FactoryLevel { get; private set; }
+    public int HangarLevel { get; private set; }
+
+    public int MaxFactoryLevel { get; private set; }
+    public int MaxHangarLevel { get; private set; }
+
+
     public void SetOwner(PlayerData owner) {
         PlayerData oldOwner = this.Owner;
         this.Owner = owner;
@@ -89,6 +97,10 @@ public class PlanetData {
         Ships = 10;
         HangarSize = 100;
         FactorySpeed = 10;
+        FactoryLevel = 1;
+        HangarLevel = 1;
+        MaxFactoryLevel = 8;
+        MaxHangarLevel = 8;
     }
 
     public PlanetData(Vector2 position, float diameter, int ships, int hangarSize, int factorySpeed, bool isStartPlanet) {
@@ -124,6 +136,10 @@ public class PlanetData {
     }
 
     public bool UpgradeFactory() {
+        if(FactoryLevel >= MaxFactoryLevel) {
+            Debug.Log("Unable to upgrade Factory - Already maxed.");
+            return false;
+        }
         int costs = GetFactoryUpgradeCosts();
         if (costs > Ships) {
             Debug.Log("Unable to upgrade Factory - Can't afford expenses");
@@ -131,11 +147,16 @@ public class PlanetData {
         }
         Ships -= costs;
         FactorySpeed = GetNextFactoryUpgrade();
+        ++FactoryLevel;
         Debug.Log("Upgraded Factory of planet " + Name);
         return true;
     }
 
     public bool UpgradeHangar() {
+        if (HangarLevel >= MaxHangarLevel) {
+            Debug.Log("Unable to upgrade Hangar - Already maxed.");
+            return false;
+        }
         int costs = GetHangarUpgradeCosts();
         if (costs > Ships) {
             Debug.Log("Unable to upgrade Hangar - Can't afford expenses");
@@ -143,6 +164,7 @@ public class PlanetData {
         }
         Ships -= costs;
         HangarSize = GetNextHangarUpgrade();
+        ++HangarLevel;
         Debug.Log("Upgraded Hangar of planet " + Name);
         return true;
     }

@@ -124,7 +124,7 @@ public class AiPlayer {
             certanyFactor = Math.Min(certanyFactor, 1); // [0..1]   1 day: 0.015,  ... 5 days: 0.375, 6 days: 0.54; 7 days: 0.738; 8 days: 96; 9 days: 1
         }
         float points = origin.Ships - shipsOnPlanetAtArrivalday;
-        points -= certanyFactor * 200;        
+        points -= certanyFactor * 200;      
         return points;
     }
     
