@@ -23,7 +23,7 @@ public class MapGenerator {
         
         spaceData.AddPlanet(new PlanetData(new Vector2(600, 420), 66, 2200, rnd(250, 380, 10), rnd(150, 250, 10), false));
         spaceData.AddPlanet(new PlanetData(new Vector2(900, 580), 66, 2200, rnd(250, 380, 10), rnd(150, 250, 10), false));
-        spaceData.AddPlanet(new PlanetData(new Vector2(750, 500), 15, 0, rnd(15, 25, 5), rnd(5, 15, 5), false));
+        //spaceData.AddPlanet(new PlanetData(new Vector2(750, 500), 15, 0, rnd(15, 25, 5), rnd(5, 15, 5), false));
 
         spaceData.AddPlanet(new PlanetData(new Vector2(640, 550), 12, rnd(1500, 2500, 100), rnd(10, 40, 5), 0, false));
         spaceData.AddPlanet(new PlanetData(new Vector2(860, 450), 12, rnd(1500, 2500, 100), rnd(10, 40, 5), 0, false));

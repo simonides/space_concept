@@ -130,7 +130,7 @@ public class AiPlayer {
     
     float getFactoryUpgradePoints(PlanetData planet) {        // = ~[-10..90]
         Debug.Assert(planet.Owner != null);
-        if(planet.Ships < planet.GetFactoryUpgradeCosts()) {
+        if(planet.Ships < planet.GetFactoryUpgradeCosts() || planet.FactoryLevel >= planet.MaxFactoryLevel) {
             return NO_POINTS;
         }
         float fillGrade = (float)planet.Ships / (float)planet.HangarSize; // [0..1]
@@ -146,7 +146,7 @@ public class AiPlayer {
 
     float getHangarUpgradePoints(PlanetData planet) {        //
         Debug.Assert(planet.Owner != null);
-        if (planet.Ships < planet.GetHangarUpgradeCosts()) {
+        if (planet.Ships < planet.GetHangarUpgradeCosts() || planet.HangarLevel >= planet.MaxHangarLevel) {
             return NO_POINTS;
         }
         float fillGrade = (float)planet.Ships / (float)planet.HangarSize; // [0..1]

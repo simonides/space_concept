@@ -113,6 +113,10 @@ public class PlanetData {
         this.IsStartPlanet = isStartPlanet;
         this.TextureName = "";
         this.TextureFXName = "";
+        FactoryLevel = 1;
+        HangarLevel = 1;
+        MaxFactoryLevel = 8;
+        MaxHangarLevel = 8;
     }
 
     //Upgrading costs and steps:
