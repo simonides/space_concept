@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 using System.Linq;
 using System;
+using TinyMessenger;
 
 public
 class InputHandler : MonoBehaviour, IEventSystemHandler
@@ -31,22 +32,15 @@ class InputHandler : MonoBehaviour, IEventSystemHandler
     private bool _menuActive = false;
     //private bool _pauseMenuActive = false;
 
+    private TinyMessageSubscriptionToken MenuActiveEventToken;
 
     public void Awake()
     {
         Input.simulateMouseWithTouches = false;
-        MessageHub.Subscribe<MenuActiveEvent>(MapMovement);
-        //MessageHub.Subscribe<ShowPauseMenuEvent>(ShowPauseMenu);
-        //MessageHub.Subscribe<HidePauseMenuEvent>(HidePauseMenu);
+        Debug.Assert(MenuActiveEventToken == null);
+        MenuActiveEventToken = MessageHub.Subscribe<MenuActiveEvent>(MapMovement);
     }
 
-    //private void HidePauseMenu(HidePauseMenuEvent obj){
-    //    _pauseMenuActive = false;
-    //}
-
-    //private void ShowPauseMenu(ShowPauseMenuEvent obj){
-    //    _pauseMenuActive = true;
-    //}
 
     private void Zoom(float magnitudeDiff)
     { // Debug.Log("Zoom, send to subscribers: " +
@@ -215,4 +209,12 @@ class InputHandler : MonoBehaviour, IEventSystemHandler
                                   SendMessageOptions.DontRequireReceiver);
         }
     }
+
+
+
+
+    void OnDestroy(){
+        MessageHub.Unsubscribe<MenuActiveEvent>(MenuActiveEventToken);
+    }
+
 }

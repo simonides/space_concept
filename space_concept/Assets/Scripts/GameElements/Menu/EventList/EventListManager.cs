@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System;
-
+using TinyMessenger;
 
 
 public class EventListManager : AbstractMenuManager {
@@ -12,18 +12,22 @@ public class EventListManager : AbstractMenuManager {
     public Menu eventListMenu;
     private EventListFiller _eventListFiller;
     public List<AttackEvaluation> activeEventlist;
-    
 
-    void Awake()
-    {
+    private TinyMessageSubscriptionToken ShowEventListEventToken;
+    private TinyMessageSubscriptionToken HideEventListEventToken;
+    private TinyMessageSubscriptionToken TroopEvaluationResultEventToken;
+
+    void Awake(){
         _eventListFiller = GetComponentInChildren<EventListFiller>();
-        MessageHub.Subscribe<ShowEventListEvent>(ShowEventList);
-        MessageHub.Subscribe<HideEventListEvent>(HideEventList);
-        MessageHub.Subscribe<TroopEvaluationResultEvent>(OnTroopEvalDone);
+        Debug.Assert(ShowEventListEventToken == null && 
+            HideEventListEventToken == null && 
+            TroopEvaluationResultEventToken == null);
+        ShowEventListEventToken = MessageHub.Subscribe<ShowEventListEvent>(ShowEventList);
+        HideEventListEventToken = MessageHub.Subscribe<HideEventListEvent>(HideEventList);
+        TroopEvaluationResultEventToken = MessageHub.Subscribe<TroopEvaluationResultEvent>(OnTroopEvalDone);
     }
 
-    private void OnTroopEvalDone(TroopEvaluationResultEvent event_)
-    {
+    private void OnTroopEvalDone(TroopEvaluationResultEvent event_){
         activeEventlist = event_.EvaluationData;
         ShowEventList(null);
     }
@@ -34,10 +38,14 @@ public class EventListManager : AbstractMenuManager {
         SwitchMenu(eventListMenu);
     }
 
-    //public void ShowEventList()
-
     public void HideEventList(HideEventListEvent event_)
     {
         SwitchMenu(null);
+    }
+
+    void OnDestroy(){
+        MessageHub.Unsubscribe <ShowEventListEvent>(ShowEventListEventToken);
+        MessageHub.Unsubscribe <HideEventListEvent>(HideEventListEventToken);
+        MessageHub.Unsubscribe <TroopEvaluationResultEvent>(TroopEvaluationResultEventToken);
     }
 }

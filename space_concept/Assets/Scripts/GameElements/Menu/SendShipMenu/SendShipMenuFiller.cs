@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TinyMessenger;
 
-public class SendShipMenuFiller : MonoBehaviour {
+public class SendShipMenuFiller : MonoBehaviour
+{
 
     public Text PlanetNameOne;
     public Text FromShips;
@@ -15,13 +17,17 @@ public class SendShipMenuFiller : MonoBehaviour {
     private Planet planetTwo;
 
     private GameState gameState;
-
+    private TinyMessageSubscriptionToken SendShipsEventToken;
     void Awake()
     {
-        MessageHub.Subscribe<SendShipsEvent>(SendShips);
+        Debug.Assert(SendShipsEventToken == null);
+        SendShipsEventToken = MessageHub.Subscribe<SendShipsEvent>(SendShips);
 
         gameState = GameObject.Find("2D_MainCam").GetComponent<GameState>();
-        if (gameState == null){
+
+
+        if (gameState == null)
+        {
             throw new MissingComponentException("Unable to find the GameState. It should be part of the '2D_MainCam'.");
         }
 
@@ -29,20 +35,21 @@ public class SendShipMenuFiller : MonoBehaviour {
 
     public void UpdateUI(Planet planetOne, Planet planetTwo)
     {
-       this.planetOne = planetOne;
-       this.planetTwo = planetTwo;
+        this.planetOne = planetOne;
+        this.planetTwo = planetTwo;
         var travelTime = TroopData.GetTravelTime(planetOne.planetData, planetTwo.planetData);
-        TravelDistance.text = ""+ travelTime
+        TravelDistance.text = "" + travelTime
             + " Ship arrives on day: " + (gameState.gameStateData.CurrentDay + travelTime);
 
-        slider.maxValue =  planetOne.planetData.Ships;
+        slider.maxValue = planetOne.planetData.Ships;
         slider.value = (int)planetOne.planetData.Ships * 0.5f;
         PlanetNameOne.text = planetOne.planetData.Name;
         PlanetNameTwo.text = planetTwo.planetData.Name;
         OnSliderValueChanged();
     }
 
-    public void OnSliderValueChanged() {
+    public void OnSliderValueChanged()
+    {
         FromShips.text = (planetOne.planetData.Ships - slider.value).ToString();
         ToShips.text = slider.value.ToString();
     }
@@ -50,13 +57,17 @@ public class SendShipMenuFiller : MonoBehaviour {
 
     private void SendShips(SendShipsEvent event_)
     {
-        if (slider.value > 0){
+        if (slider.value > 0)
+        {
             MessageHub.Publish(new NewTroopMovementEvent(this, planetOne, planetTwo, (int)slider.value));
             MessageHub.Publish(new ShipsSentEvent(this));
         }
-        else{
+        else
+        {
             Debug.Log("Not enough ships to send!");
         }
     }
-
+    void OnDestroy(){
+        MessageHub.Unsubscribe<SendShipsEvent>(SendShipsEventToken);
     }
+}
