@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using TinyMessenger;
 
 /**
  * Space Object.
@@ -58,8 +58,14 @@ public class Space : MonoBehaviour {
         }
     }
 
+    TinyMessageSubscriptionToken NextDayEventSubscription;
     void Start() {
-        MessageHub.Subscribe<NextDayEvent>(NextDay);
+        Debug.Assert(NextDayEventSubscription == null);
+        NextDayEventSubscription =  MessageHub.Subscribe<NextDayEvent>(NextDay);
+    }
+
+    void OnDestroy() {
+        MessageHub.Unsubscribe<NextDayEvent>(NextDayEventSubscription);
     }
 
 

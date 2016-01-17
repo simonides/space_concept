@@ -26,9 +26,13 @@ public class GameState : MonoBehaviour {
         gameStateData = gameState;
     }
 
-
+    TinyMessageSubscriptionToken NextDayRequestEventSubscription;
     void InitEventSubscriptions() {
-        MessageHub.Subscribe<NextDayRequestEvent>(NextDayRequest);
+        Debug.Assert(NextDayRequestEventSubscription == null);
+        NextDayRequestEventSubscription = MessageHub.Subscribe<NextDayRequestEvent>(NextDayRequest);
+    }
+    void OnDestroy() {
+        MessageHub.Unsubscribe<NextDayRequestEvent>(NextDayRequestEventSubscription);
     }
 
     void NextDayRequest(NextDayRequestEvent evt) {

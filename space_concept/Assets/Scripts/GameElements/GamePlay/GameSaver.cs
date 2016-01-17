@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using TinyMessenger;
 
 public class GameSaver : MonoBehaviour {
     Space space;
@@ -8,10 +9,12 @@ public class GameSaver : MonoBehaviour {
     GameState gameState;
     CollectedMapData mapData;
 
-	// Use this for initialization
-	void Awake () {
-        MessageHub.Subscribe<SaveGameEvent>(SaveGame);	
-        MessageHub.Subscribe<AutoSaveGameEvent>(AutoSaveGame);
+    TinyMessageSubscriptionToken SaveGameEventSubscription, AutoSaveGameEventSubscription;
+    // Use this for initialization
+    void Awake () {
+        Debug.Assert(SaveGameEventSubscription == null && AutoSaveGameEventSubscription == null);
+        SaveGameEventSubscription= MessageHub.Subscribe<SaveGameEvent>(SaveGame);
+        AutoSaveGameEventSubscription = MessageHub.Subscribe<AutoSaveGameEvent>(AutoSaveGame);
 
         mapData = new CollectedMapData();
 
@@ -33,6 +36,11 @@ public class GameSaver : MonoBehaviour {
             throw new MissingComponentException("Unable to find GameState. The 'GameState' script needs to be attached to the same Gameobject as the BigBang.");
         }
 	}
+
+    void OnDestroy() {
+        MessageHub.Unsubscribe<SaveGameEvent>(SaveGameEventSubscription);
+        MessageHub.Unsubscribe<AutoSaveGameEvent>(AutoSaveGameEventSubscription);
+    }
 
     public void SaveGame(SaveGameEvent event_)
     {

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TinyMessenger;
 
 public class DayIndicatorUpdater : MonoBehaviour {
 
@@ -15,13 +16,20 @@ public class DayIndicatorUpdater : MonoBehaviour {
             throw new MissingComponentException("Unable to find currentDayText. This ui-text component must be attached to the 'CurrentDayText' GameObject in the canvas.");
         }
     }
+
+    TinyMessageSubscriptionToken NextDayEventSubscription;
     void Start() {
         GameState gameState = GameObject.Find("2D_MainCam").GetComponent<GameState>();
         if (gameState == null) {
             throw new MissingComponentException("Unable to find the GameState. It should be part of the '2D_MainCam'.");
         }
         currentDayText.text = "" + gameState.gameStateData.CurrentDay;
-        MessageHub.Subscribe<NextDayEvent>((NextDayEvent evt) => UpdateText(evt.GetCurrentDay()));       
+        Debug.Assert(NextDayEventSubscription == null);
+        NextDayEventSubscription = MessageHub.Subscribe<NextDayEvent>((NextDayEvent evt) => UpdateText(evt.GetCurrentDay()));       
+    }
+
+    void OnDestroy() {
+        MessageHub.Unsubscribe<NextDayEvent>(NextDayEventSubscription);
     }
 
     public void UpdateText(int currentDay) {

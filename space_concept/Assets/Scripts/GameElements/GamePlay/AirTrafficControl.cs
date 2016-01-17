@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using TinyMessenger;
 
 public class AirTrafficControl : MonoBehaviour {
 
@@ -90,11 +91,17 @@ public class AirTrafficControl : MonoBehaviour {
             InitGraphicalTroopMovement(currentDay, troopData);
         }
     }
-    
 
+    TinyMessageSubscriptionToken NewMovementSubscription, EvaluationRequestSubscription;
     void InitEventSubscriptions() {
-        MessageHub.Subscribe<NewTroopMovementEvent>(NewTroopMovement);
-        MessageHub.Subscribe<EvaluationRequestEvent>(EvaluateAttacks);
+        Debug.Assert(NewMovementSubscription == null && EvaluationRequestSubscription == null);
+        NewMovementSubscription = MessageHub.Subscribe<NewTroopMovementEvent>(NewTroopMovement);
+        EvaluationRequestSubscription = MessageHub.Subscribe<EvaluationRequestEvent>(EvaluateAttacks);
+    }
+
+    void OnDestroy() {
+        MessageHub.Unsubscribe<NewTroopMovementEvent>(NewMovementSubscription);
+        MessageHub.Unsubscribe<EvaluationRequestEvent>(EvaluationRequestSubscription);
     }
 
 

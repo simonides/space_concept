@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Custom.Utility;
+using TinyMessenger;
+
 public class BigBang : MonoBehaviour {
     // ****    CONFIGURATION    **** //
 
@@ -37,12 +39,18 @@ public class BigBang : MonoBehaviour {
 
     }
 
+    TinyMessageSubscriptionToken EvaluationResultEventSubscription;
     void Start() {
         InitialiseGame();
         CheckForGameEnd();
-        MessageHub.Subscribe<TroopEvaluationResultEvent>((TroopEvaluationResultEvent evt) => CheckForGameEnd());     // Check for game end
+        Debug.Assert(EvaluationResultEventSubscription == null);
+        EvaluationResultEventSubscription = MessageHub.Subscribe<TroopEvaluationResultEvent>((TroopEvaluationResultEvent evt) => CheckForGameEnd());     // Check for game end
     }
 
+   
+    void OnDestroy() {
+        MessageHub.Unsubscribe<TroopEvaluationResultEvent>(EvaluationResultEventSubscription);
+    }
 
     void InitialiseGame() {
         //Clean up from the menu

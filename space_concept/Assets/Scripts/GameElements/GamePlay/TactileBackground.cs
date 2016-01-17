@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using TinyMessenger;
 
 public class TactileBackground : MonoBehaviour {
 
@@ -67,11 +68,15 @@ public class TactileBackground : MonoBehaviour {
         bgSnippet.transform.localPosition = position - bounds.center;
         
     }
-    // Use this for initialization
-    void Start() {
-        MessageHub.Subscribe<TactileBackgroundStateEvent>((TactileBackgroundStateEvent evt) => { this.shouldBeVisible = evt.Content; });
-    }
 
+    TinyMessageSubscriptionToken TactileBackgroundStateEventSubscription;
+    void Start() {
+        Debug.Assert(TactileBackgroundStateEventSubscription == null);
+        TactileBackgroundStateEventSubscription = MessageHub.Subscribe<TactileBackgroundStateEvent>((TactileBackgroundStateEvent evt) => { this.shouldBeVisible = evt.Content; });
+    }
+    void OnDestroy() {
+        MessageHub.Unsubscribe<TactileBackgroundStateEvent>(TactileBackgroundStateEventSubscription);
+    }
 
 
     void Update() {
