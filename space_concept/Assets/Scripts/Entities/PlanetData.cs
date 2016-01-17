@@ -208,9 +208,14 @@ public class PlanetData {
 
     // Attacking ships from other planet
     private AttackEvaluation EvaluateIncommingAttack(TroopData troop) {
-        Debug.Assert(troop.Owner != Owner, "Invalid call");
+        if(troop.TargetPlanet != this) {
+            Debug.LogError("Invalid Call!");
+        }
 
         bool gotCaptured = (Ships <= troop.ShipCount);
+        if(Owner == troop.Owner) {  // Supply
+            gotCaptured = false;
+        }
         if (Owner == null && Ships == troop.ShipCount) { // Planet was neutral and stayed neutral. But there are no more ships on this planet anymore.
             gotCaptured = false;
         }

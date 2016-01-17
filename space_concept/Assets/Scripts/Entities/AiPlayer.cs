@@ -69,23 +69,36 @@ public class AiPlayer {
             if (friend == planetInfo) { continue; }
             float points = getSupportPoints(planetInfo, friend, TroopData.GetTravelTime(planetInfo.origin, friend.origin));
             if (shouldSupportPlanet == null || shouldSupportPoints < points) {
-                shouldAttackPoints = points;
+                shouldSupportPoints = points;
                 shouldSupportPlanet = friend.origin;
             }
         }
 
-        // TODO: upgrade-points
-
-        if(shouldWaitForProductionPoints > shouldAttackPoints 
-            && shouldWaitForProductionPoints > shouldSupportPoints) {   //Wait for production
+        float factoryUpgradePoints = getFactoryUpgradePoints(planetInfo.origin);
+        float hangarUpgradePoints = getHangarUpgradePoints(planetInfo.origin);
+        float upgradePoints = Math.Max(factoryUpgradePoints, hangarUpgradePoints);
+      
+        if (shouldWaitForProductionPoints > shouldAttackPoints 
+            && shouldWaitForProductionPoints > shouldSupportPoints
+            && shouldWaitForProductionPoints > upgradePoints) {   //Wait for production
             Debug.Log("AI '" + playerData.Name + "', Planet '" + planetInfo.origin.Name + "':  Doing nothing.");
             return false;
         }
 
-        if(shouldAttackPoints >= shouldSupportPoints && shouldAttackPlanet != null) {
+        if (upgradePoints > shouldAttackPoints
+            && upgradePoints > shouldSupportPoints) {   //Upgrade
+            if(factoryUpgradePoints >= hangarUpgradePoints) {
+                Debug.Log("AI '" + playerData.Name + "', Planet '" + planetInfo.origin.Name + "':  Upgrading Factory.");
+                return planetInfo.origin.UpgradeFactory();
+            }
+            Debug.Log("AI '" + playerData.Name + "', Planet '" + planetInfo.origin.Name + "':  Upgrading Hangar.");
+            return planetInfo.origin.UpgradeHangar();
+        }
+
+        if (shouldAttackPoints >= shouldSupportPoints && shouldAttackPlanet != null) {
             float shipsForAttack = planetInfo.origin.Ships;
-            if (shouldAttackPoints >= 10) { // Don't send all ships
-                shipsForAttack = shouldAttackPoints * 1.4f;
+            if (shouldAttackPoints >= 25) { // Don't send all ships
+                shipsForAttack = shouldAttackPoints * 1.2f;
                 shipsForAttack = Mathf.Min(shipsForAttack, planetInfo.origin.Ships);
             }
             if(shipsForAttack <= 0) { return false; }          
@@ -108,19 +121,56 @@ public class AiPlayer {
         float certanyFactor = 0;
         if (distanceInDays >= 2) {
             certanyFactor = (distanceInDays * distanceInDays * 0.015f);   // exp. curve
-            certanyFactor = Math.Max(certanyFactor, 1); // [0..1]   1 day: 0.015,  ... 5 days: 0.375, 6 days: 0.54; 7 days: 0.738; 8 days: 96; 9 days: 1
+            certanyFactor = Math.Min(certanyFactor, 1); // [0..1]   1 day: 0.015,  ... 5 days: 0.375, 6 days: 0.54; 7 days: 0.738; 8 days: 96; 9 days: 1
         }
         float points = origin.Ships - shipsOnPlanetAtArrivalday;
-        points -= certanyFactor * 300;
+        points -= certanyFactor * 200;        
         return points;
     }
+    
+    float getFactoryUpgradePoints(PlanetData planet) {        // = ~[-10..90]
+        Debug.Assert(planet.Owner != null);
+        if(planet.Ships < planet.GetFactoryUpgradeCosts()) {
+            return NO_POINTS;
+        }
+        float fillGrade = (float)planet.Ships / (float)planet.HangarSize; // [0..1]
+        if(fillGrade < 0.7f) {
+            return NO_POINTS;
+        }
+        float points = fillGrade * fillGrade * 100; // exp. [0 .. 100]
+        points += Math.Min((planet.GetNextFactoryUpgrade() - planet.FactorySpeed) * 0.5f, 150);   // factory speedup / 2
+        points *= 0.6f;
+        // points [0..50] + improvement/4 =   ~[0..200]
+        return (points-20f) * 0.5f;
+    }
+
+    float getHangarUpgradePoints(PlanetData planet) {        //
+        Debug.Assert(planet.Owner != null);
+        if (planet.Ships < planet.GetHangarUpgradeCosts()) {
+            return NO_POINTS;
+        }
+        float fillGrade = (float)planet.Ships / (float)planet.HangarSize; // [0..1]
+        if (fillGrade < 0.6f) {
+            return NO_POINTS;
+        }
+        float points = fillGrade * fillGrade * 100; // exp. [0 .. 100]
+        points += Math.Min((planet.GetNextHangarUpgrade() - planet.HangarSize) * 0.1f, 50);   // hangar improvement / 2
+        if (fillGrade >= 0.95) { points += 10; }
+        points *= 0.6f;
+        return (points - 30f) * 0.5f;
+    }
+
+
 
     float getSupportPoints(TactileInformation origin, TactileInformation friend, int distanceInDays) {
+        if(friend.threatFactor - origin.threatFactor < distanceInDays * 30) {
+            return NO_POINTS;
+        }
         float points = friend.threatFactor - origin.threatFactor;
         float helpfulFactor = 1f - (distanceInDays * distanceInDays * 0.02f);   // exp. curve
         helpfulFactor = Math.Min(helpfulFactor, 0); // [0..1]   1 day: 0.98, 2 days: 0.92, 3 days: 0.82 ... 7 days: 0.02; 8 days: 0
         points = points * helpfulFactor;
-        //TODO: only help planet if it makes sense!
+        //TODO: only help planet if it makes sense! (Give up if there is no hope)
         return points;
     }
 
@@ -133,10 +183,10 @@ public class AiPlayer {
     }
 
 
-    float getShouldWaitForProductionPoints(PlanetData planet) {        // = [-50 .. +50] .. the less ships the planet has, the more points it has
-        float fillGrade = planet.Ships / planet.HangarSize; // [0..1]
+    float getShouldWaitForProductionPoints(PlanetData planet) {        // = .. the less ships the planet has, the more points it has
+        float fillGrade = (float)planet.Ships / (float)planet.HangarSize; // [0..1]
         float points = (1 - fillGrade) - 0.3f;      // [0.7 ... -0.3f]
-        return points * 40;     // [28 ... -12]    
+        return (points * 30) * 0.5f;     // [10.5 ... -4.5]    
     }
 
     float getThreatFactor(PlanetData planet, TactileInformation info) { // = Ship difference enemy and this planet if an enemy attacks

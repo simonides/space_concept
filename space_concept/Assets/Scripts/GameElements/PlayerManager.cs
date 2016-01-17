@@ -23,7 +23,7 @@ public class PlayerManager: MonoBehaviour {
     }
     
     void PerformAiMovements() {
-        Debug.Log("Perfoming AI movements...");
+        //Debug.Log("Perfoming AI movements...");
         var aiPlayers = PlayerListData.AiPlayers;
         foreach (AiPlayer ai in aiPlayers) {
             ai.PerformNextMovement();

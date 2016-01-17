@@ -173,7 +173,7 @@ public class EventListFiller : MonoBehaviour
     {
         SetNothingHappenedText();
         if (itemList == null) { return; }
-        Debug.Log("Listitems size: " + itemList.Count);
+        //Debug.Log("Listitems size: " + itemList.Count);
 
         // get items from the content panel
         var eventlistitems = contentPanel.GetComponentsInChildren<EventButton>();
