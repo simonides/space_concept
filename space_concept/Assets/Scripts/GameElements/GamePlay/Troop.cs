@@ -4,7 +4,14 @@ using System;
 
 //[RequireComponent(typeof(SpriteRenderer))]
 public class Troop : MonoBehaviour {
-    
+
+    // ****  ATTACHED OBJECTS   **** //
+    Transform spaceshipTextureTransform;
+    SpriteRenderer spaceshipRenderer;
+    TextMesh shipcountText;
+    // ****                     **** //
+
+
     public TroopData troopData { get; private set; }
     public float FlyAnimationSpeed = 50;
 
@@ -17,14 +24,37 @@ public class Troop : MonoBehaviour {
 
     float Progress;
 
+
+    public void Awake() {
+        if(spaceshipTextureTransform != null || this.transform.childCount == 0) {
+            return;
+        }
+        spaceshipTextureTransform = this.transform.FindChild("SpriteHolder");
+        if (spaceshipTextureTransform == null) {
+            throw new MissingComponentException("Unable to find child of name SpriteHolder on Troop.");
+        }
+        spaceshipRenderer = spaceshipTextureTransform.gameObject.GetComponent<SpriteRenderer>();
+        if (spaceshipRenderer == null) {
+            throw new MissingComponentException("Unable to find SpriteRenderer on Troop. The game object 'SpriteHolder' should have a sprite renderer attached.");
+        }
+        shipcountText = GetComponentInChildren<TextMesh>();
+        if (shipcountText == null) {
+            throw new MissingComponentException("Unable to find TextMesh on Troop to print ship count.");
+        }
+    }
+
+
     public void Init(int currentDay, TroopData troop) {
         troopData = troop;
         StartPosition.Set(0, 0);
         TargetPosition.Set(0, 0);
         Progress = 0;
         UpdatePosition(currentDay);   // sets the target progress
-
         this.name = GetNameForTroopGameObject(troopData);
+
+        shipcountText.text = "" + troop.ShipCount;
+        spaceshipTextureTransform.rotation = Quaternion.FromToRotation(Vector3.up, troop.TargetPlanet.Position - troop.StartPlanet.Position);
+        this.transform.localScale = new Vector3(15, 15, 1);
     }
 
     public void UpdatePosition(int currentDay) {

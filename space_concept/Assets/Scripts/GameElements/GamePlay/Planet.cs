@@ -63,10 +63,6 @@ public class Planet : MonoBehaviour {
     }
 
 
-    void Start() {
-    }
-
-
     public void Init(PlanetData planet) {
         planetData = planet;
         this.name = "Planet '" + planet.Name + "'";

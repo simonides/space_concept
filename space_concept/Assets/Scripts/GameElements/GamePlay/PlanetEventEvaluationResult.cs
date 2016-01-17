@@ -74,7 +74,7 @@ public class AttackEvaluation {
 
     public static AttackEvaluation Attack(TroopData troop, PlayerData oldOwner, PlayerData newOwner, int shipsOnPlanetAfterEvent, int lostShipsByOwner, int lostShipsByAttacker, int lostShipsByLanding) {
         AttackEvaluation evaluation = new AttackEvaluation();
-        if (troop.Owner.IsHumanPlayer) {
+        if (troop.Owner == null || troop.Owner.IsHumanPlayer) { // null-check for debugging purposes: if a ship has been sent from a neutral planet
             evaluation.Type = EvaluationType.AttackedPlanet;
             evaluation.LostShips = lostShipsByAttacker + lostShipsByLanding;
             if (newOwner == troop.Owner) {                   // Captured

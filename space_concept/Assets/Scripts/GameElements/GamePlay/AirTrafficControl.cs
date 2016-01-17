@@ -146,8 +146,6 @@ public class AirTrafficControl : MonoBehaviour {
         direction.Normalize();
 
         troopObject.transform.SetParent(space.transform);
-        troopObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
-        troopObject.transform.localScale = new Vector3(15, 15, 1);
 
         Vector3 initialPosition = startPlanet.Position;
         initialPosition.z = -15;   // In front of planets

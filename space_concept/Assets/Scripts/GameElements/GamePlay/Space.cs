@@ -11,7 +11,7 @@ using System.Collections.Generic;
 public class Space : MonoBehaviour {
 
     // ****    CONFIGURATION    **** //
-    public const float BORDER_WIDTH = 80;            //Additional border on each side of the map which is added to the bounds. In this area are no planets
+    public const float BORDER_WIDTH = 180;            //Additional border on each side of the map which is added to the bounds. In this area are no planets
     public GameObject planetPrefab;
     public Texture2D backgroundTexture;
 
