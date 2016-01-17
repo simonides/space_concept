@@ -142,6 +142,7 @@ public class BigBang : MonoBehaviour {
 
         // Handling players...
         PlayerListData playerListData = saving.map.playerListData;
+        Debug.Assert(playerListData != null);
         PlaceExistingPlayersOnMap(playerListData);
     }
 
