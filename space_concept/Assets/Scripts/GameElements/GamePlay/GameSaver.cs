@@ -6,6 +6,7 @@ using TinyMessenger;
 public class GameSaver : MonoBehaviour {
     Space space;
     AirTrafficControl airTrafficControl;
+    PlayerManager playerManager;
     GameState gameState;
     CollectedMapData mapData;
 
@@ -35,6 +36,11 @@ public class GameSaver : MonoBehaviour {
         {
             throw new MissingComponentException("Unable to find GameState. The 'GameState' script needs to be attached to the same Gameobject as the BigBang.");
         }
+        playerManager = GameObject.Find("PlayerManagement").GetComponent<PlayerManager>();
+        if (playerManager == null)
+        {
+            throw new MissingComponentException("Unable to find playerManager.");
+        }
 	}
 
     void OnDestroy() {
@@ -50,7 +56,7 @@ public class GameSaver : MonoBehaviour {
         mapData.gameStateData = gameState.gameStateData;//get the data
         mapData.airTrafficData = airTrafficControl.GetData();
         mapData.spaceData = space.GetData();
-
+        mapData.playerListData = playerManager.PlayerListData;
         settingsController.SaveGame<CollectedMapData>(mapData, "SaveGames", event_.Content);
     }
 
@@ -61,7 +67,7 @@ public class GameSaver : MonoBehaviour {
         mapData.gameStateData = gameState.gameStateData;//get the data
         mapData.airTrafficData = airTrafficControl.GetData();
         mapData.spaceData = space.GetData();
-
+        mapData.playerListData = playerManager.PlayerListData;
         settingsController.SaveGame<CollectedMapData>(mapData, "SaveGames", "Autosave");
 
     }

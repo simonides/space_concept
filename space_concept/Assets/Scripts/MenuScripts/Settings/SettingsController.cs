@@ -48,6 +48,7 @@ public class SettingsController : SingletonBase<SettingsController> {
     public void SaveGame<T>(T file, string directory, string filename)
          where T : class, new()
     {
+        Debug.Log("Saving game: "  +filename);
         if (directory == "")
         {
             SaveFileSerializer.XMLSave<T>(file, filename + ".xml");
