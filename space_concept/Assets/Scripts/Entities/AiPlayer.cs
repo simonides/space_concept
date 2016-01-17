@@ -2,12 +2,80 @@
 using System.Collections.Generic;
 using System;
 
+//public class AttackDictionary {
+
+//    private Dictionary<PlanetData, Dictionary<PlanetData, int>> dict = new Dictionary<PlanetData, Dictionary<PlanetData, int>>();
+//    private List<PlanetData> deleteList = new List<PlanetData>();
+
+//    public void Add(PlanetData source, PlanetData target, int duration) {
+//        if (this.dict.ContainsKey(target)) {
+//            this.dict[target].Add(source, duration);
+//        } else {
+//            Dictionary<PlanetData, int> list = new Dictionary<PlanetData, int>();
+//            list.Add(source, duration);
+//            this.dict.Add(target, list);
+//        }
+//    }
+
+//    public bool Contains(PlanetData source, PlanetData target) {
+//        if (!this.dict.ContainsKey(target)) {
+//            return false;
+//        }
+//        return this.dict[target].ContainsKey(source);
+//    }
+
+//    public void NextDay() {
+//        foreach (var sources in dict) {
+//            foreach (KeyValuePair<PlanetData, int> entry in sources.Value) {
+//                sources.Value[entry.Key] = sources.Value[entry.Key] - 1;
+//                if (sources.Value[entry.Key] <= 0) {
+//                    deleteList.Add(entry.Key);
+//                }
+//            }
+//            foreach (var p in deleteList) {
+//                sources.Value.Remove(p);
+//            }
+//            deleteList.Clear();
+//        }
+//    }
+//}
+
+
+public class AttackDictionary {
+
+    private Dictionary<PlanetData, List<PlanetData>> dict = new Dictionary<PlanetData, List<PlanetData>>();
+
+    public void Add(PlanetData source, PlanetData target) {
+        if (this.dict.ContainsKey(target)) {
+            this.dict[target].Add(source);
+        } else {
+            List<PlanetData> list = new List<PlanetData>();
+            list.Add(source);
+            this.dict.Add(target, list);
+        }
+    }
+
+    public bool Contains(PlanetData source, PlanetData target) {
+        if (!this.dict.ContainsKey(target)) {
+            return false;
+        }
+        return this.dict[target].Contains(source);        
+    }
+
+    public void Clear() {
+        dict.Clear();
+    }
+}
+
+
 [System.Serializable]
 public class AiPlayer {
     public PlayerData playerData { get; private set; }
     Space space;
-    //SpaceData spaceData;
     public const float NO_POINTS = -10000;
+
+    //List<AttackData> lastDayAtk, todaysAtk;
+    AttackDictionary lastDayAtk, todaysAtk;
 
     //seralization needs a default public constructor
     public AiPlayer() {
@@ -16,8 +84,9 @@ public class AiPlayer {
     public AiPlayer(PlayerData playerData, Space space) {
         this.playerData = playerData;
         this.space = space;
-        //this.spaceData = space.spaceData;
         playerData.IsHumanPlayer = false;
+        lastDayAtk = new AttackDictionary();
+        todaysAtk = new AttackDictionary();
     }
 
     List<TactileInformation> tactileInfo;
@@ -29,6 +98,11 @@ public class AiPlayer {
             while (PerformMovementOnPlanet(planet))
                 ;
         }
+
+        AttackDictionary helper = lastDayAtk;
+        lastDayAtk = todaysAtk;
+        todaysAtk = helper;
+        todaysAtk.Clear();
     }
 
     // Sets up tactileInformation for each owned planet
@@ -101,7 +175,9 @@ public class AiPlayer {
                 shipsForAttack = shouldAttackPoints * 1.2f;
                 shipsForAttack = Mathf.Min(shipsForAttack, planetInfo.origin.Ships);
             }
-            if(shipsForAttack <= 0) { return false; }          
+            if(shipsForAttack <= 0) { return false; }
+
+            todaysAtk.Add(planetInfo.origin, shouldAttackPlanet.planetData);
             MessageHub.Publish(new NewTroopMovementEvent(this, space.getPlanet(planetInfo.origin), space.getPlanet(shouldAttackPlanet.planetData), (int)shipsForAttack));
             return true;    // Make another movement if possible
         } else if(shouldSupportPlanet != null) {
@@ -117,6 +193,9 @@ public class AiPlayer {
 
     float getAttackPoints(PlanetData origin, PlanetData target, int distanceInDays) {        // = ~ <difference of ships between planets
         Debug.Assert(origin.Owner != null);
+        if(lastDayAtk.Contains(origin, target)) {
+            return NO_POINTS;
+        }
         int shipsOnPlanetAtArrivalday = getEstimatedShipsOnPlanet(target, distanceInDays);
         float certanyFactor = 0;
         if (distanceInDays >= 2) {

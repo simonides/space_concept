@@ -12,6 +12,7 @@ public class BigBang : MonoBehaviour {
     AirTrafficControl airTrafficControl;
     GameState gameState;
     PlayerManager playerManager;
+    public GameObject eventListMenu; // set via unity
     // ****                     **** //
 
 
@@ -57,29 +58,32 @@ public class BigBang : MonoBehaviour {
         AnimatedBackgroundDontDestroy.TryDestroySingleton();
 
         Debug.Log("Initialising game...");
+        //bool fogOfWar = SettingsController.GetInstance().dataFile.fogOfWar;
+        int fogOfWar = 0;
         try {
             if (SettingsController.GetInstance().loadMap == false) {
-                InitialiseNewGame(SettingsController.GetInstance().generateRandomMap);                
+                InitialiseNewGame(SettingsController.GetInstance().generateRandomMap, fogOfWar);                
             } else {
-                InitialiseGameFromSaveGame();
+                InitialiseGameFromSaveGame(fogOfWar);
             }
         } catch (MissingComponentException e) {
             Debug.LogWarning("Failed to communicate with SettingsController. \n" + e.ToString());
-            InitialiseNewGame(true);
+            InitialiseNewGame(true, fogOfWar);
         }
+        eventListMenu.GetComponent<EventListFiller>().fogOfWar = (fogOfWar != 0);
         MessageHub.Publish<PlanetUpdateEvent>(new PlanetUpdateEvent(this));     // Update graphical planet representations
         Debug.Log("Player name: '" + playerManager.PlayerListData.HumanPlayer.Name + "', color: '" + playerManager.PlayerListData.HumanPlayer.Color.ToString() + "'");
         Debug.Log("The Big Bang happened guys!");
     }
 
 
-    void InitialiseNewGame(bool generateRandomMap) {
+    void InitialiseNewGame(bool generateRandomMap, int fogOfWar) {
         Debug.Log("Generating new game...");
         GameStateData gameStateData = new GameStateData();
         gameState.Init(gameStateData);
 
         AirTrafficData airTrafficData = new AirTrafficData();
-        airTrafficControl.Init(gameStateData.CurrentDay, airTrafficData);
+        airTrafficControl.Init(gameStateData.CurrentDay, fogOfWar, airTrafficData);
 
         SpaceData spaceData;
         if (generateRandomMap) {
@@ -121,7 +125,7 @@ public class BigBang : MonoBehaviour {
         playerManager.Init(playerListData);
     }
 
-    void InitialiseGameFromSaveGame() {
+    void InitialiseGameFromSaveGame(int fogOfWar) {
         Debug.Log("Loading save game...");
         var saving = SettingsController.GetInstance();
 
@@ -129,7 +133,7 @@ public class BigBang : MonoBehaviour {
         gameState.Init(gameStateData);
 
         AirTrafficData airTrafficData = saving.map.airTrafficData;
-        airTrafficControl.Init(gameStateData.CurrentDay, airTrafficData);
+        airTrafficControl.Init(gameStateData.CurrentDay, fogOfWar, airTrafficData);
 
         SpaceData spaceData = saving.map.spaceData;
         space.Init(spaceData);

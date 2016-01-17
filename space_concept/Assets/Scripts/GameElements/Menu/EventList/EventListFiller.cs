@@ -91,7 +91,7 @@ The planet is now neutral.
 public class EventListFiller : MonoBehaviour
 {
     // ****    CONFIGURATION    **** //
-
+    public bool fogOfWar = false;
     // ****  ATTACHED OBJECTS   **** //
     GameObject pooledGameObjectHolder;
 
@@ -204,6 +204,7 @@ public class EventListFiller : MonoBehaviour
         // add new objects
         foreach (var item in itemList)
         {
+            if(fogOfWar && item.Type == EvaluationType.AttackViewer) { continue; }
             GameObject listItem = eventButtonPool.Get();
             listItem.SetActive(true);
             EventButton eventBtn = listItem.GetComponent<EventButton>();
@@ -297,7 +298,7 @@ public class EventListFiller : MonoBehaviour
                     break;
                 case EvaluationType.CaptureViewer:
                     { //Another player attacked another planet and won - the ownership changed.
-                        var otherAttackedPlayer = item.OriginalOwner == null ? "a neutral planet" : item.PlanetOwner.Name;
+                        var otherAttackedPlayer = item.OriginalOwner == null ? "a neutral planet" : item.OriginalOwner.Name;
 
                         eventBtn.line1.text = item.ShipOwner.Name + " attacked";
                         eventBtn.line2.text = otherAttackedPlayer;
