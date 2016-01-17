@@ -113,7 +113,7 @@ public class BigBang : MonoBehaviour {
         for (int i = 0; i < aiCount; ++i) {
             PlayerData aiData = new PlayerData();
             AiPlayer player = new AiPlayer(aiData, space);
-          
+
             home = space.getRandomEmptyStartPlanet();
             if (home == null) {
                 Debug.LogError("Failed to set home planet for ai. There are no start planets on the map");
@@ -143,12 +143,22 @@ public class BigBang : MonoBehaviour {
         // Handling players...
         PlayerListData playerListData = saving.map.playerListData;
         Debug.Assert(playerListData != null);
-        PlaceExistingPlayersOnMap(playerListData);
+        foreach(AiPlayer ai in playerListData.AiPlayers) {
+            ai.Init(space);
+        }
+        PlaceExistingPlayersOnMap(playerListData, spaceData);
     }
 
 
-    void PlaceExistingPlayersOnMap(PlayerListData playerListData) {
+    void PlaceExistingPlayersOnMap(PlayerListData playerListData, SpaceData spaceData) {
         playerManager.Init(playerListData);
+        foreach (PlanetData planet in spaceData.planets) {
+            if (planet.Owner != null) {
+                PlayerData correctPlayerObject = playerListData.GetPlayerByName(planet.Owner.Name);
+                planet.Owner = correctPlayerObject;
+                planet.Owner.AddPlanetToOwnership(planet);
+            }
+        }
     }
 
 

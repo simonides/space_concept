@@ -79,6 +79,8 @@ public class AiPlayer {
 
     //seralization needs a default public constructor
     public AiPlayer() {
+        lastDayAtk = new AttackDictionary();
+        todaysAtk = new AttackDictionary();
     }
 
     public AiPlayer(PlayerData playerData, Space space) {
@@ -87,6 +89,10 @@ public class AiPlayer {
         playerData.IsHumanPlayer = false;
         lastDayAtk = new AttackDictionary();
         todaysAtk = new AttackDictionary();
+    }
+
+    public void Init(Space space) {
+        this.space = space;
     }
 
     List<TactileInformation> tactileInfo;
