@@ -13,16 +13,16 @@ public class SettingMenuController : MonoBehaviour {
 
     private SettingsController manager;
     void Start() {
-        
-    }
-    void Awake()
-    {
-       
         manager = SettingsController.GetInstance();
         fogOfWarToggle.isOn = manager.dataFile.fogOfWar;
         masterSlider.value = manager.dataFile.masterVolume;
         musicSlider.value = manager.dataFile.musicVolume;
         sfxslider.value = manager.dataFile.sfxVolume;
+    }
+    void Awake()
+    {
+       
+      
        
     }
 

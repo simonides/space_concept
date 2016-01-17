@@ -27,6 +27,10 @@ public class StartMenuController : MonoBehaviour {
         //set name
         playerName.text = fieldNameInput;
         Toggle_DisableDependElement(planetSlider);
+
+        //read the value from the ui elements and set them in the settingscontroller so the match.
+        Slider_OnChangePlanets(planetSlider);
+        SettingsController.GetInstance().kiCount = System.Int32.Parse(kiCount.text);
         loadingScene = false;
     }
 
