@@ -7,6 +7,7 @@ public class AiPlayer {
     public PlayerData playerData { get; private set; }
     Space space;
     //SpaceData spaceData;
+    public const float NO_POINTS = -10000;
 
     //seralization needs a default public constructor
     public AiPlayer() {
@@ -50,7 +51,7 @@ public class AiPlayer {
         float shouldWaitForProductionPoints = getShouldWaitForProductionPoints(planetInfo.origin) -200;
 
         // Get highest attack points...
-        float shouldAttackPoints = 0;
+        float shouldAttackPoints = NO_POINTS;
         TactilePlanet shouldAttackPlanet = null;
         foreach (TactilePlanet enemy in planetInfo.enemies) {
             Debug.Assert(planetInfo.origin.Owner == playerData);
@@ -62,7 +63,7 @@ public class AiPlayer {
         }
 
         // Get points for supporting friends...
-        float shouldSupportPoints = 0;
+        float shouldSupportPoints = NO_POINTS;
         PlanetData shouldSupportPlanet = null;
         foreach (TactileInformation friend in tactileInfo) {
             if (friend == planetInfo) { continue; }
@@ -81,7 +82,7 @@ public class AiPlayer {
             return false;
         }
 
-        if(shouldAttackPoints > shouldSupportPoints && shouldAttackPlanet != null) {
+        if(shouldAttackPoints >= shouldSupportPoints && shouldAttackPlanet != null) {
             float shipsForAttack = Mathf.Max(shouldAttackPoints * 1.2f, planetInfo.origin.Ships);            
             MessageHub.Publish(new NewTroopMovementEvent(this, space.getPlanet(planetInfo.origin), space.getPlanet(shouldAttackPlanet.planetData), (int)shipsForAttack));
             return true;    // Make another movement if possible
@@ -134,7 +135,7 @@ public class AiPlayer {
     }
 
     float getThreatFactor(PlanetData planet, TactileInformation info) { // = Ship difference enemy and this planet if an enemy attacks
-        float threat = -10000;
+        float threat = NO_POINTS;
         foreach(TactilePlanet enemy in info.enemies) {
             if(enemy.planetData.Owner == null) { continue; }
             threat = Math.Max(threat, getAttackPoints(enemy.planetData, planet, enemy.distance));
