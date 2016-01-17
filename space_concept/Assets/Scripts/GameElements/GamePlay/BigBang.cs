@@ -35,11 +35,10 @@ public class BigBang : MonoBehaviour {
             throw new MissingComponentException("Unable to find PlayerManager. This script has to be attached to the global PlayerManagement game object.");
         }
 
-        InitialiseGame();
     }
 
     void Start() {
-        MessageHub.Publish<PlanetUpdateEvent>(new PlanetUpdateEvent(this));     // Update graphical planet representations
+        InitialiseGame();
         CheckForGameEnd();
         MessageHub.Subscribe<TroopEvaluationResultEvent>((TroopEvaluationResultEvent evt) => CheckForGameEnd());     // Check for game end
     }
@@ -60,6 +59,7 @@ public class BigBang : MonoBehaviour {
             Debug.LogWarning("Failed to communicate with SettingsController. \n" + e.ToString());
             InitialiseNewGame(true);
         }
+        MessageHub.Publish<PlanetUpdateEvent>(new PlanetUpdateEvent(this));     // Update graphical planet representations
         Debug.Log("Player name: '" + playerManager.PlayerListData.HumanPlayer.Name + "', color: '" + playerManager.PlayerListData.HumanPlayer.Color.ToString() + "'");
         Debug.Log("The Big Bang happened guys!");
     }

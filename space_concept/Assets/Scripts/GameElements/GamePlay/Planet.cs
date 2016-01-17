@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-
-
+using TinyMessenger;
 
 /**
  * Planet Object.
@@ -37,7 +35,7 @@ public class Planet : MonoBehaviour {
     // ****                     **** //
 
 
-
+    TinyMessageSubscriptionToken planetUpdateEventSubscriptionToken;
 
 
     void Awake() {
@@ -54,12 +52,20 @@ public class Planet : MonoBehaviour {
         if (glowTransform == null) {
             throw new MissingComponentException("Unable to find glow gameobject on Planet. The planet game object should have a child game object called 'Glow'");
         }
+        glow = glowTransform.gameObject.GetComponent<SpriteRenderer>();
+        if (glow == null) {
+            throw new MissingComponentException("Unable to find glow sprite renderer on Planet. The planet game object should have a child game object called 'Glow and a sprite renderer attached to it.'");
+        }
 
         spriteRenderer.transform.localScale = new Vector3(100, 100, 0);
 
         CurrentGlowScale = 0;
         GlowIsGrowing = true;
-        MessageHub.Subscribe<PlanetUpdateEvent>((PlanetUpdateEvent evt) => UpdateGraphicalRepresentation());
+        planetUpdateEventSubscriptionToken = MessageHub.Subscribe<PlanetUpdateEvent>((PlanetUpdateEvent evt) => UpdateGraphicalRepresentation());
+    }
+
+    void OnDestroy() {
+        MessageHub.Unsubscribe<PlanetUpdateEvent>(planetUpdateEventSubscriptionToken);
     }
 
 
