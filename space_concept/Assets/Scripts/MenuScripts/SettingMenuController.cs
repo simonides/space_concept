@@ -11,6 +11,9 @@ public class SettingMenuController : MonoBehaviour {
     public UnityEngine.UI.Slider musicSlider;
     public UnityEngine.UI.Slider sfxslider;
 
+    public UnityEngine.UI.Toggle fogToggle;
+    public UnityEngine.UI.Text fogDist;
+
     private SettingsController manager;
     void Start() {
         manager = SettingsController.GetInstance();
@@ -18,6 +21,8 @@ public class SettingMenuController : MonoBehaviour {
         masterSlider.value = manager.dataFile.masterVolume;
         musicSlider.value = manager.dataFile.musicVolume;
         sfxslider.value = manager.dataFile.sfxVolume;
+
+
     }
     void Awake()
     {
@@ -47,4 +52,21 @@ public class SettingMenuController : MonoBehaviour {
         manager.SaveData();
     }
 
+    public void Slider_OnChange(UnityEngine.UI.Slider slider)
+    {
+        fogDist.text = slider.value.ToString();
+        SettingsController.GetInstance().fogDistance = (int)slider.value;
+    }
+
+    public void Toggle_DisableDependElement(UnityEngine.UI.Selectable t)
+    {
+        if (fogToggle.isOn)
+        {
+            t.interactable = true;
+        }
+        else
+        {
+            t.interactable = false;
+        }
+    }
 }
