@@ -175,7 +175,9 @@ public class AirTrafficControl : MonoBehaviour {
         //targetPosition -= direction * targetPlanet.Diameter / 2;
         troop.TargetPosition = targetPosition;
 
-        if (troopData.Owner != null && troopData.Owner.IsHumanPlayer) {     // Belongs to human
+        if(fogOfWar == 0) {
+            troopObject.SetActive(true);
+        } else if (troopData.Owner != null && troopData.Owner.IsHumanPlayer) {     // Belongs to human
             troopObject.SetActive(true);
         } else if (troopData.TargetPlanet.Owner != null && troopData.TargetPlanet.Owner.IsHumanPlayer) { // Attacks human
             if (troopData.TravelTime <= fogOfWar) {                          // Can already be seen

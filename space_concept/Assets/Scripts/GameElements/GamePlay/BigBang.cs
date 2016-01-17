@@ -60,8 +60,7 @@ public class BigBang : MonoBehaviour {
         AnimatedBackgroundDontDestroy.TryDestroySingleton();
 
         Debug.Log("Initialising game...");
-        //bool fogOfWar = SettingsController.GetInstance().dataFile.fogOfWar;
-        int fogOfWar = 0;
+        int fogOfWar = SettingsController.GetInstance().dataFile.fogDist;
         try {
             if (SettingsController.GetInstance().loadMap == false) {
                 InitialiseNewGame(SettingsController.GetInstance().generateRandomMap, fogOfWar);                
