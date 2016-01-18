@@ -33,7 +33,7 @@ public class Planet : MonoBehaviour {
     private float glowUpscaling = 1f;   // Upscaling factor of the glow depending on the planet size
 
     // ****                     **** //
-
+    AudioController audioCon;
 
     TinyMessageSubscriptionToken planetUpdateEventSubscriptionToken;
 
@@ -58,6 +58,8 @@ public class Planet : MonoBehaviour {
         }
 
         spriteRenderer.transform.localScale = new Vector3(100, 100, 0);
+
+        audioCon = AudioController.GetInstance();
 
         CurrentGlowScale = 0;
         GlowIsGrowing = true;
@@ -129,6 +131,7 @@ public class Planet : MonoBehaviour {
 
     public void SingleTouchClick() {
         Debug.Log("planet clicked ");
+        audioCon.PlaySound(AudioController.SoundCodes.PlanetSelection);
         MessageHub.Publish(new PlanetClickedEvent(this, this));
     }
 

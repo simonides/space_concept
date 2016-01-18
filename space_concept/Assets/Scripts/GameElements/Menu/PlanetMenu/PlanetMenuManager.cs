@@ -113,6 +113,7 @@ public class PlanetMenuManager : AbstractMenuManager
                 if(event_.Content.planetData.Owner == null || 
                     !event_.Content.planetData.Owner.IsHumanPlayer) {
                     MessageHub.Publish(new ClickedOnForeignPlanetEvent(this, event_.Content));
+                    AudioController.GetInstance().PlaySound(AudioController.SoundCodes.PlanetSelectionDenied);
                     return; //TODO !!! uncomment this is just to debug so every planet can be used to send ships from
                 }
                 planetOne = event_.Content;

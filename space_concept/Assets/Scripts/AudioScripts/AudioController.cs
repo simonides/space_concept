@@ -132,6 +132,10 @@ public class AudioController : SingletonBase<AudioController> {
     public void PlaySound(int code) {
         ac.SelectSoundToPlay((SoundCodes)code);
     }
+    public void PlaySound(SoundCodes code)
+    {
+        ac.SelectSoundToPlay(code);
+    }
 
     private void SelectSoundToPlay(SoundCodes code)
     {
