@@ -553,11 +553,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22437318, guid: aa2e8f21aa35a6646a1961e16eca299b, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22428778, guid: aa2e8f21aa35a6646a1961e16eca299b, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22434742, guid: aa2e8f21aa35a6646a1961e16eca299b, type: 2}
       propertyPath: m_AnchorMax.y

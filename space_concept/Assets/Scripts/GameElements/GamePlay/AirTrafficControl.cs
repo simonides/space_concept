@@ -215,11 +215,13 @@ public class AirTrafficControl : MonoBehaviour {
     private void AnimateTroopObjects(int currentDay) {
         foreach (GameObject troopGO in troops) {
             Debug.Assert(troopGO != null);
+            var troop = troopGO.GetComponent<Troop>();
             var troopData = troopGO.GetComponent<Troop>().troopData;
             if (!troopGO.activeSelf) {   // Inactive
                 if (troopData.ArrivalTime - currentDay <= fogOfWar
                     && troopData.TargetPlanet.Owner != null && troopData.TargetPlanet.Owner.IsHumanPlayer) {
                     troopGO.SetActive(true);
+                    troop.SetSprite();
                 } else {
                     continue;
                 }
@@ -229,7 +231,7 @@ public class AirTrafficControl : MonoBehaviour {
                     continue;
                 }
             }
-            Troop troop = troopGO.GetComponent<Troop>();
+            //Troop troop = troopGO.GetComponent<Troop>();
             troop.UpdatePosition(currentDay);
         }
     }

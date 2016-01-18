@@ -6,6 +6,8 @@ using TinyMessenger;
 public class EndScreenManager : AbstractMenuManager
 {
 
+    public EndScreenFiller filler;
+
     public Menu EndScreenMenu;
     private TinyMessageSubscriptionToken GameFinishedEventToken;
 
@@ -15,6 +17,7 @@ public class EndScreenManager : AbstractMenuManager
 
     private void GameFinished(GameFinishedEvent obj)
     {
+        filler.Fill(obj.Content);
         SwitchMenu(EndScreenMenu);
     }
 
