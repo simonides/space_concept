@@ -37,7 +37,10 @@ public class EventListManager : AbstractMenuManager {
         //create planet dictionary for this round
         planetsWithEvent = new Dictionary<PlanetData, EvaluationOutcome>();
         foreach(AttackEvaluation ae in activeEventlist){
-            planetsWithEvent.Add(ae.Planet, ae.Outcome);
+            if (ae.Type != EvaluationType.AttackViewer && SettingsController.GetInstance().dataFile.fogDist == 0)
+            {
+                planetsWithEvent.Add(ae.Planet, ae.Outcome);
+            }
         }
         
         MessageHub.Publish(new SetPlanetSignEvent(this, planetsWithEvent));
