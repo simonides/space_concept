@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 423586}
   - 82: {fileID: 8254810}
+  - 165: {fileID: 16517050}
   m_Layer: 0
   m_Name: HoverSound
   m_TagString: Untagged
@@ -153,6 +154,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 482438}
   - 82: {fileID: 8251616}
+  - 165: {fileID: 16508746}
   m_Layer: 0
   m_Name: PlanetSelectionSound
   m_TagString: Untagged
@@ -744,8 +746,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 2ed6a9affdc76914c988d05c537b8f17, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.5
+  m_Pitch: 0.9
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -819,8 +821,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: c50ce3553089c1043a2433f7b5075427, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.302
+  m_Pitch: 2.64
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1164,6 +1166,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   master: {fileID: 24100000, guid: d4e290c421d3cac43aac709fc6a0c5f8, type: 2}
+--- !u!165 &16508746
+AudioHighPassFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171844}
+  m_Enabled: 1
+  m_CutoffFrequency: 5000
+  m_HighpassResonanceQ: 1
+--- !u!165 &16517050
+AudioHighPassFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111948}
+  m_Enabled: 1
+  m_CutoffFrequency: 4000
+  m_HighpassResonanceQ: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

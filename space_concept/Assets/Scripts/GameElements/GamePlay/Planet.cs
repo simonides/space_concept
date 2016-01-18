@@ -16,6 +16,10 @@ public class Planet : MonoBehaviour {
     public SpriteRenderer glow;
     public Material glowMaterial;
 
+    public Sprite[] infoSigns;
+    public SpriteRenderer sign;
+    public enum SignType { Success, Neutral, Warning, Nothing };
+
     public float MinGlowScale = 1.2f;
     public float MaxGlowScale = 1.5f;
     public float GlowPulseSpeed = 1.1f;
@@ -36,7 +40,7 @@ public class Planet : MonoBehaviour {
     AudioController audioCon;
 
     TinyMessageSubscriptionToken planetUpdateEventSubscriptionToken;
-
+    private TinyMessageSubscriptionToken setPlanetSignToken;
 
     void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -64,10 +68,12 @@ public class Planet : MonoBehaviour {
         CurrentGlowScale = 0;
         GlowIsGrowing = true;
         planetUpdateEventSubscriptionToken = MessageHub.Subscribe<PlanetUpdateEvent>((PlanetUpdateEvent evt) => UpdateGraphicalRepresentation());
+        setPlanetSignToken = MessageHub.Subscribe<SetPlanetSignEvent>(SetPlanetSign);
     }
 
     void OnDestroy() {
         MessageHub.Unsubscribe<PlanetUpdateEvent>(planetUpdateEventSubscriptionToken);
+        MessageHub.Unsubscribe<SetPlanetSignEvent>(setPlanetSignToken);
     }
 
 
@@ -75,7 +81,7 @@ public class Planet : MonoBehaviour {
         planetData = planet;
         this.name = "Planet '" + planet.Name + "'";
         this.transform.position = planet.Position;
-
+       // spriteRenderer = GetComponent<SpriteRenderer>();
         //load planet sprite
         if (planet.TextureName == "") {
             int index = Random.Range(0, planetSprites.Length - 1);
@@ -112,6 +118,7 @@ public class Planet : MonoBehaviour {
         if (spriteSize.x != spriteSize.y) {
             Debug.LogWarning("The used planet sprite for glow is not rectangular and therefore distorted");
         }
+        sign.transform.position = new Vector3(sign.transform.position.x, transform.position.y + planetData.Diameter * 1.6f, transform.position.z);
         UpdateGraphicalRepresentation();
     }
     
@@ -135,6 +142,39 @@ public class Planet : MonoBehaviour {
         MessageHub.Publish(new PlanetClickedEvent(this, this));
     }
 
+    public void SetPlanetSign(SetPlanetSignEvent event_)
+    {
+        if (event_.Dictionary.ContainsKey(planetData))
+        {
+            EvaluationOutcome s;
+            event_.Dictionary.TryGetValue(planetData, out s);
+            SetSign(s);
+        }
+        else
+        {
+            sign.gameObject.SetActive(false);
+        }
+    }
+
+    private void SetSign(EvaluationOutcome st)
+    {
+        switch (st)
+        {
+            case EvaluationOutcome.Success:
+                sign.sprite = infoSigns[0]; 
+                sign.gameObject.SetActive(true);
+                break;
+            case EvaluationOutcome.Neutral:
+                sign.sprite = infoSigns[1];
+                sign.gameObject.SetActive(true);
+                break;
+            case EvaluationOutcome.Lost:
+                sign.sprite = infoSigns[2];
+                sign.gameObject.SetActive(true);
+                break;
+            default: break;
+        }
+    }
     public void Update() {
         // play pulse-animation
         float change = Time.deltaTime * GlowPulseSpeed;

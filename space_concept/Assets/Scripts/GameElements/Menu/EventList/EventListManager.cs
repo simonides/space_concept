@@ -13,9 +13,12 @@ public class EventListManager : AbstractMenuManager {
     private EventListFiller _eventListFiller;
     public List<AttackEvaluation> activeEventlist;
 
+    private Dictionary<PlanetData, EvaluationOutcome> planetsWithEvent;
+    private Dictionary<PlanetData, EvaluationOutcome> emptyDict;
     private TinyMessageSubscriptionToken ShowEventListEventToken;
     private TinyMessageSubscriptionToken HideEventListEventToken;
     private TinyMessageSubscriptionToken TroopEvaluationResultEventToken;
+   
 
     void Awake(){
         _eventListFiller = GetComponentInChildren<EventListFiller>();
@@ -25,10 +28,19 @@ public class EventListManager : AbstractMenuManager {
         ShowEventListEventToken = MessageHub.Subscribe<ShowEventListEvent>(ShowEventList);
         HideEventListEventToken = MessageHub.Subscribe<HideEventListEvent>(HideEventList);
         TroopEvaluationResultEventToken = MessageHub.Subscribe<TroopEvaluationResultEvent>(OnTroopEvalDone);
+        emptyDict = new Dictionary<PlanetData, EvaluationOutcome>();
     }
 
     private void OnTroopEvalDone(TroopEvaluationResultEvent event_){
         activeEventlist = event_.EvaluationData;
+
+        //create planet dictionary for this round
+        planetsWithEvent = new Dictionary<PlanetData, EvaluationOutcome>();
+        foreach(AttackEvaluation ae in activeEventlist){
+            planetsWithEvent.Add(ae.Planet, ae.Outcome);
+        }
+        
+        MessageHub.Publish(new SetPlanetSignEvent(this, planetsWithEvent));
         ShowEventList(null);
     }
 
@@ -36,10 +48,12 @@ public class EventListManager : AbstractMenuManager {
     {
         _eventListFiller.Fill(activeEventlist);
         SwitchMenu(eventListMenu);
+
     }
 
     public void HideEventList(HideEventListEvent event_)
     {
+        
         SwitchMenu(null);
     }
 
