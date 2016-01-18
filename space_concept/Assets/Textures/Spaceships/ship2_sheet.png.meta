@@ -1,0 +1,1575 @@
+fileFormatVersion: 2
+guid: 0747a039c93a81142b9107d7ede52219
+timeCreated: 1453132348
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: ship2_sheet_0
+    21300002: ship2_sheet_1
+    21300004: ship2_sheet_2
+    21300006: ship2_sheet_3
+    21300008: ship2_sheet_4
+    21300010: ship2_sheet_5
+    21300012: ship2_sheet_6
+    21300014: ship2_sheet_7
+    21300016: ship2_sheet_8
+    21300018: ship2_sheet_9
+    21300020: ship2_sheet_10
+    21300022: ship2_sheet_11
+    21300024: ship2_sheet_12
+    21300026: ship2_sheet_13
+    21300028: ship2_sheet_14
+    21300030: ship2_sheet_15
+    21300032: ship2_sheet_16
+    21300034: ship2_sheet_17
+    21300036: ship2_sheet_18
+    21300038: ship2_sheet_19
+    21300040: ship2_sheet_20
+    21300042: ship2_sheet_21
+    21300044: ship2_sheet_22
+    21300046: ship2_sheet_23
+    21300048: ship2_sheet_24
+    21300050: ship2_sheet_25
+    21300052: ship2_sheet_26
+    21300054: ship2_sheet_27
+    21300056: ship2_sheet_28
+    21300058: ship2_sheet_29
+    21300060: ship2_sheet_30
+    21300062: ship2_sheet_31
+    21300064: ship2_sheet_32
+    21300066: ship2_sheet_33
+    21300068: ship2_sheet_34
+    21300070: ship2_sheet_35
+    21300072: ship2_sheet_36
+    21300074: ship2_sheet_37
+    21300076: ship2_sheet_38
+    21300078: ship2_sheet_39
+    21300080: ship2_sheet_40
+    21300082: ship2_sheet_41
+    21300084: ship2_sheet_42
+    21300086: ship2_sheet_43
+    21300088: ship2_sheet_44
+    21300090: ship2_sheet_45
+    21300092: ship2_sheet_46
+    21300094: ship2_sheet_47
+    21300096: ship2_sheet_48
+    21300098: ship2_sheet_49
+    21300100: ship2_sheet_50
+    21300102: ship2_sheet_51
+    21300104: ship2_sheet_52
+    21300106: ship2_sheet_53
+    21300108: ship2_sheet_54
+    21300110: ship2_sheet_55
+    21300112: ship2_sheet_56
+    21300114: ship2_sheet_57
+    21300116: ship2_sheet_58
+    21300118: ship2_sheet_59
+    21300120: ship2_sheet_60
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 1
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: ship2_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -128, y: 128}
+        - {x: -128, y: -124}
+        - {x: 122, y: -124}
+        - {x: 124, y: -122}
+        - {x: 124, y: 128}
+    - name: ship2_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 113, y: 9}
+        - {x: 107, y: 11}
+        - {x: 106, y: 8}
+        - {x: 98, y: 12}
+        - {x: 49, y: 39}
+        - {x: 40, y: 40}
+        - {x: 28, y: 75}
+        - {x: 6, y: 88}
+        - {x: -11, y: 88}
+        - {x: -33, y: 69}
+        - {x: -40, y: 22}
+        - {x: -40, y: 20}
+        - {x: -39, y: 28}
+        - {x: -41, y: 42}
+        - {x: -114, y: 34}
+        - {x: -119, y: 23}
+        - {x: -119, y: -107}
+        - {x: 88, y: -107}
+        - {x: 116, y: -72}
+        - {x: 116, y: -34}
+        - {x: 115, y: -17}
+    - name: ship2_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -62, y: 89}
+        - {x: -118, y: 42}
+        - {x: -118, y: -71}
+        - {x: -66, y: -107}
+        - {x: 78, y: -107}
+        - {x: 116, y: -90}
+        - {x: 116, y: 52}
+        - {x: 49, y: 89}
+    - name: ship2_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 74, y: 30}
+        - {x: 45, y: 90}
+        - {x: -62, y: 90}
+        - {x: -119, y: 42}
+        - {x: -119, y: -72}
+        - {x: -89, y: -107}
+        - {x: 88, y: -107}
+        - {x: 115, y: -71}
+        - {x: 115, y: 38}
+    - name: ship2_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 106, y: 11}
+        - {x: 98, y: 15}
+        - {x: 52, y: 46}
+        - {x: 40, y: 43}
+        - {x: 35, y: 39}
+        - {x: 33, y: 83}
+        - {x: 20, y: 90}
+        - {x: -40, y: 90}
+        - {x: -70, y: 62}
+        - {x: -119, y: 16}
+        - {x: -119, y: -107}
+        - {x: 116, y: -107}
+        - {x: 116, y: 16}
+        - {x: 107, y: 14}
+    - name: ship2_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 99, y: 29}
+        - {x: 33, y: 91}
+        - {x: -62, y: 91}
+        - {x: -117, y: 37}
+        - {x: -117, y: -75}
+        - {x: -99, y: -106}
+        - {x: 101, y: -106}
+        - {x: 117, y: -82}
+        - {x: 117, y: 16}
+        - {x: 109, y: 14}
+    - name: ship2_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 97, y: 29}
+        - {x: 31, y: 91}
+        - {x: -64, y: 91}
+        - {x: -119, y: 37}
+        - {x: -119, y: -75}
+        - {x: -101, y: -106}
+        - {x: 99, y: -106}
+        - {x: 115, y: -82}
+        - {x: 115, y: 16}
+        - {x: 107, y: 14}
+    - name: ship2_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 117, y: -79}
+        - {x: 117, y: 16}
+        - {x: 109, y: 14}
+        - {x: 99, y: 29}
+        - {x: 33, y: 91}
+        - {x: -62, y: 91}
+        - {x: -117, y: 37}
+        - {x: -117, y: -73}
+        - {x: -66, y: -106}
+        - {x: -29, y: -106}
+        - {x: -23, y: -98}
+        - {x: 18, y: -106}
+        - {x: 68, y: -106}
+    - name: ship2_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 76, y: 95}
+        - {x: -66, y: 95}
+        - {x: -120, y: 52}
+        - {x: -120, y: -72}
+        - {x: -76, y: -102}
+        - {x: 68, y: -102}
+        - {x: 114, y: -67}
+        - {x: 114, y: 63}
+    - name: ship2_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 107, y: 18}
+        - {x: 95, y: 80}
+        - {x: 47, y: 95}
+        - {x: -29, y: 95}
+        - {x: -33, y: 76}
+        - {x: -40, y: 29}
+        - {x: -40, y: 27}
+        - {x: -39, y: 35}
+        - {x: -41, y: 41}
+        - {x: -43, y: 46}
+        - {x: -52, y: 48}
+        - {x: -110, y: 37}
+        - {x: -119, y: 22}
+        - {x: -119, y: -103}
+        - {x: 101, y: -103}
+        - {x: 116, y: -71}
+        - {x: 116, y: 18}
+    - name: ship2_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 108, y: 18}
+        - {x: 107, y: 15}
+        - {x: 99, y: 19}
+        - {x: 32, y: 85}
+        - {x: 16, y: 95}
+        - {x: -35, y: 95}
+        - {x: -118, y: 41}
+        - {x: -118, y: -86}
+        - {x: -81, y: -103}
+        - {x: 100, y: -103}
+        - {x: 116, y: -92}
+        - {x: 116, y: 9}
+        - {x: 115, y: 16}
+    - name: ship2_sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 107, y: 18}
+        - {x: 106, y: 15}
+        - {x: 98, y: 19}
+        - {x: 36, y: 90}
+        - {x: 29, y: 95}
+        - {x: -55, y: 95}
+        - {x: -119, y: 39}
+        - {x: -119, y: -89}
+        - {x: -87, y: -103}
+        - {x: 99, y: -103}
+        - {x: 115, y: -92}
+        - {x: 115, y: 9}
+        - {x: 114, y: 16}
+    - name: ship2_sheet_12
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 106, y: 19}
+        - {x: 105, y: 16}
+        - {x: 97, y: 20}
+        - {x: 51, y: 51}
+        - {x: 39, y: 48}
+        - {x: 34, y: 44}
+        - {x: 32, y: 88}
+        - {x: 24, y: 95}
+        - {x: -66, y: 95}
+        - {x: -120, y: 45}
+        - {x: -120, y: -90}
+        - {x: -92, y: -102}
+        - {x: 80, y: -102}
+        - {x: 115, y: -86}
+        - {x: 115, y: -2}
+        - {x: 112, y: 17}
+    - name: ship2_sheet_13
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 79, y: 95}
+        - {x: -21, y: 95}
+        - {x: -60, y: 54}
+        - {x: -114, y: 35}
+        - {x: -117, y: 25}
+        - {x: -117, y: -85}
+        - {x: -97, y: -102}
+        - {x: 82, y: -102}
+        - {x: 117, y: -87}
+        - {x: 117, y: 63}
+    - name: ship2_sheet_14
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 78, y: 95}
+        - {x: -22, y: 95}
+        - {x: -61, y: 54}
+        - {x: -118, y: 20}
+        - {x: -118, y: -86}
+        - {x: -74, y: -102}
+        - {x: 76, y: -102}
+        - {x: 116, y: -67}
+        - {x: 116, y: 63}
+    - name: ship2_sheet_15
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 3072
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 79, y: 95}
+        - {x: -21, y: 95}
+        - {x: -60, y: 54}
+        - {x: -114, y: 35}
+        - {x: -117, y: 25}
+        - {x: -117, y: -85}
+        - {x: -97, y: -102}
+        - {x: 82, y: -102}
+        - {x: 117, y: -87}
+        - {x: 117, y: 63}
+    - name: ship2_sheet_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2560
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 97, y: 24}
+        - {x: 51, y: 55}
+        - {x: 39, y: 52}
+        - {x: 34, y: 48}
+        - {x: 32, y: 92}
+        - {x: 19, y: 99}
+        - {x: -65, y: 99}
+        - {x: -99, y: 84}
+        - {x: -120, y: 29}
+        - {x: -120, y: -108}
+        - {x: 115, y: -108}
+        - {x: 115, y: 15}
+        - {x: 112, y: 21}
+        - {x: 106, y: 23}
+        - {x: 105, y: 20}
+    - name: ship2_sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2560
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 99}
+        - {x: -61, y: 58}
+        - {x: -118, y: 24}
+        - {x: -118, y: -70}
+        - {x: -93, y: -112}
+        - {x: 93, y: -112}
+        - {x: 116, y: -65}
+        - {x: 116, y: 67}
+        - {x: 78, y: 99}
+    - name: ship2_sheet_18
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2560
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23, y: 99}
+        - {x: -62, y: 58}
+        - {x: -119, y: 24}
+        - {x: -119, y: -69}
+        - {x: -81, y: -112}
+        - {x: 71, y: -112}
+        - {x: 115, y: -62}
+        - {x: 115, y: 67}
+        - {x: 77, y: 99}
+    - name: ship2_sheet_19
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2560
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 106, y: 23}
+        - {x: 105, y: 20}
+        - {x: 97, y: 24}
+        - {x: 51, y: 55}
+        - {x: 39, y: 52}
+        - {x: 34, y: 48}
+        - {x: 32, y: 92}
+        - {x: 24, y: 99}
+        - {x: -66, y: 99}
+        - {x: -120, y: 48}
+        - {x: -120, y: -91}
+        - {x: -89, y: -112}
+        - {x: 75, y: -112}
+        - {x: 115, y: -88}
+        - {x: 115, y: 7}
+        - {x: 112, y: 21}
+    - name: ship2_sheet_20
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 2560
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 79, y: 99}
+        - {x: -24, y: 99}
+        - {x: -117, y: 25}
+        - {x: -117, y: -64}
+        - {x: -71, y: -112}
+        - {x: 70, y: -112}
+        - {x: 117, y: -61}
+        - {x: 117, y: 67}
+    - name: ship2_sheet_21
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 2560
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 99}
+        - {x: -61, y: 58}
+        - {x: -118, y: 24}
+        - {x: -118, y: -70}
+        - {x: -91, y: -112}
+        - {x: 92, y: -112}
+        - {x: 116, y: -65}
+        - {x: 116, y: 67}
+        - {x: 78, y: 99}
+    - name: ship2_sheet_22
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 2560
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 98, y: 99}
+        - {x: -83, y: 99}
+        - {x: -115, y: 59}
+        - {x: -115, y: -67}
+        - {x: -64, y: -112}
+        - {x: 87, y: -112}
+        - {x: 119, y: -77}
+        - {x: 119, y: 89}
+    - name: ship2_sheet_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2048
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 108, y: 22}
+        - {x: 100, y: 26}
+        - {x: 38, y: 97}
+        - {x: 27, y: 102}
+        - {x: -32, y: 102}
+        - {x: -117, y: 26}
+        - {x: -117, y: -62}
+        - {x: -66, y: -110}
+        - {x: 117, y: -110}
+        - {x: 117, y: 33}
+        - {x: 109, y: 25}
+    - name: ship2_sheet_24
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2048
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 113, y: 23}
+        - {x: 107, y: 25}
+        - {x: 95, y: 87}
+        - {x: 47, y: 102}
+        - {x: -29, y: 102}
+        - {x: -33, y: 83}
+        - {x: -40, y: 36}
+        - {x: -40, y: 34}
+        - {x: -39, y: 42}
+        - {x: -41, y: 48}
+        - {x: -43, y: 53}
+        - {x: -52, y: 55}
+        - {x: -57, y: 42}
+        - {x: -117, y: 29}
+        - {x: -119, y: 10}
+        - {x: -119, y: -63}
+        - {x: -65, y: -110}
+        - {x: 88, y: -110}
+        - {x: 116, y: -92}
+        - {x: 116, y: 16}
+    - name: ship2_sheet_25
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2048
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 116, y: -61}
+        - {x: 116, y: 19}
+        - {x: 115, y: 23}
+        - {x: 108, y: 26}
+        - {x: 21, y: 102}
+        - {x: -44, y: 102}
+        - {x: -118, y: 26}
+        - {x: -118, y: -62}
+        - {x: -63, y: -110}
+        - {x: 83, y: -110}
+    - name: ship2_sheet_26
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2048
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 115, y: 9}
+        - {x: 114, y: 23}
+        - {x: 107, y: 25}
+        - {x: 106, y: 22}
+        - {x: 98, y: 26}
+        - {x: 36, y: 97}
+        - {x: 25, y: 102}
+        - {x: -43, y: 102}
+        - {x: -119, y: 56}
+        - {x: -119, y: -71}
+        - {x: -109, y: -110}
+        - {x: 96, y: -110}
+        - {x: 115, y: -61}
+    - name: ship2_sheet_27
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2048
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 112, y: 23}
+        - {x: 106, y: 25}
+        - {x: 94, y: 87}
+        - {x: 46, y: 102}
+        - {x: -30, y: 102}
+        - {x: -34, y: 83}
+        - {x: -41, y: 36}
+        - {x: -41, y: 34}
+        - {x: -40, y: 42}
+        - {x: -42, y: 48}
+        - {x: -44, y: 53}
+        - {x: -53, y: 55}
+        - {x: -58, y: 42}
+        - {x: -118, y: 30}
+        - {x: -120, y: 13}
+        - {x: -120, y: -73}
+        - {x: -104, y: -110}
+        - {x: 97, y: -110}
+        - {x: 115, y: -61}
+        - {x: 115, y: -20}
+        - {x: 114, y: -3}
+    - name: ship2_sheet_28
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 2048
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 109, y: 25}
+        - {x: 108, y: 22}
+        - {x: 100, y: 26}
+        - {x: 38, y: 97}
+        - {x: 27, y: 102}
+        - {x: -32, y: 102}
+        - {x: -117, y: 26}
+        - {x: -117, y: -64}
+        - {x: -86, y: -110}
+        - {x: 88, y: -110}
+        - {x: 117, y: -72}
+        - {x: 117, y: 27}
+    - name: ship2_sheet_29
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 2048
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 94, y: 38}
+        - {x: 21, y: 102}
+        - {x: -44, y: 102}
+        - {x: -118, y: 27}
+        - {x: -118, y: -66}
+        - {x: -96, y: -110}
+        - {x: 96, y: -110}
+        - {x: 116, y: -74}
+        - {x: 116, y: 27}
+        - {x: 108, y: 25}
+    - name: ship2_sheet_30
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 2048
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 112, y: 22}
+        - {x: 103, y: 40}
+        - {x: 37, y: 102}
+        - {x: -58, y: 102}
+        - {x: -113, y: 47}
+        - {x: -113, y: -87}
+        - {x: -76, y: -110}
+        - {x: 119, y: -110}
+        - {x: 121, y: -109}
+        - {x: 121, y: 27}
+        - {x: 113, y: 25}
+    - name: ship2_sheet_31
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 116, y: -12}
+        - {x: 113, y: 19}
+        - {x: 107, y: 21}
+        - {x: 106, y: 18}
+        - {x: 98, y: 22}
+        - {x: 52, y: 53}
+        - {x: 40, y: 50}
+        - {x: 35, y: 46}
+        - {x: 33, y: 90}
+        - {x: 27, y: 97}
+        - {x: -84, y: 97}
+        - {x: -119, y: 64}
+        - {x: -119, y: -62}
+        - {x: -69, y: -97}
+        - {x: 72, y: -97}
+        - {x: 112, y: -66}
+        - {x: 116, y: -58}
+    - name: ship2_sheet_32
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 78, y: 97}
+        - {x: -22, y: 97}
+        - {x: -61, y: 56}
+        - {x: -118, y: 22}
+        - {x: -118, y: -70}
+        - {x: -87, y: -100}
+        - {x: 75, y: -100}
+        - {x: 116, y: -80}
+        - {x: 116, y: 65}
+    - name: ship2_sheet_33
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 107, y: 20}
+        - {x: 97, y: 35}
+        - {x: 31, y: 97}
+        - {x: -64, y: 97}
+        - {x: -119, y: 42}
+        - {x: -119, y: -67}
+        - {x: -74, y: -100}
+        - {x: 73, y: -100}
+        - {x: 115, y: -73}
+        - {x: 115, y: 22}
+    - name: ship2_sheet_34
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 105, y: 20}
+        - {x: 93, y: 82}
+        - {x: 45, y: 97}
+        - {x: -31, y: 97}
+        - {x: -35, y: 78}
+        - {x: -42, y: 31}
+        - {x: -42, y: 29}
+        - {x: -41, y: 37}
+        - {x: -43, y: 43}
+        - {x: -45, y: 48}
+        - {x: -54, y: 50}
+        - {x: -59, y: 37}
+        - {x: -116, y: 21}
+        - {x: -121, y: 6}
+        - {x: -121, y: -61}
+        - {x: -117, y: -63}
+        - {x: -83, y: -100}
+        - {x: 74, y: -100}
+        - {x: 114, y: -85}
+        - {x: 114, y: 10}
+        - {x: 111, y: 18}
+    - name: ship2_sheet_35
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21, y: 97}
+        - {x: -62, y: 57}
+        - {x: -115, y: 19}
+        - {x: -117, y: -2}
+        - {x: -117, y: -65}
+        - {x: -88, y: -100}
+        - {x: 90, y: -100}
+        - {x: 117, y: -64}
+        - {x: 117, y: 65}
+        - {x: 79, y: 97}
+    - name: ship2_sheet_36
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 108, y: 20}
+        - {x: 107, y: 17}
+        - {x: 50, y: 97}
+        - {x: -73, y: 97}
+        - {x: -118, y: 64}
+        - {x: -118, y: -75}
+        - {x: -110, y: -101}
+        - {x: 100, y: -101}
+        - {x: 116, y: -66}
+        - {x: 116, y: 13}
+        - {x: 115, y: 18}
+    - name: ship2_sheet_37
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 99, y: 35}
+        - {x: 33, y: 97}
+        - {x: -62, y: 97}
+        - {x: -117, y: 42}
+        - {x: -117, y: -67}
+        - {x: -67, y: -101}
+        - {x: 117, y: -101}
+        - {x: 117, y: 22}
+        - {x: 109, y: 20}
+    - name: ship2_sheet_38
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27, y: 100}
+        - {x: -72, y: 73}
+        - {x: -117, y: 19}
+        - {x: -117, y: -57}
+        - {x: -78, y: -97}
+        - {x: 85, y: -97}
+        - {x: 117, y: -82}
+        - {x: 117, y: 68}
+        - {x: 79, y: 100}
+    - name: ship2_sheet_39
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 106, y: 24}
+        - {x: 105, y: 21}
+        - {x: 97, y: 25}
+        - {x: 51, y: 56}
+        - {x: 39, y: 53}
+        - {x: 34, y: 49}
+        - {x: 32, y: 93}
+        - {x: 24, y: 100}
+        - {x: -66, y: 100}
+        - {x: -120, y: 49}
+        - {x: -120, y: -59}
+        - {x: -85, y: -97}
+        - {x: 82, y: -97}
+        - {x: 115, y: -60}
+        - {x: 115, y: 7}
+        - {x: 112, y: 22}
+    - name: ship2_sheet_40
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 78, y: 100}
+        - {x: -22, y: 100}
+        - {x: -61, y: 59}
+        - {x: -118, y: 25}
+        - {x: -118, y: -83}
+        - {x: -73, y: -101}
+        - {x: 64, y: -101}
+        - {x: 116, y: -62}
+        - {x: 116, y: 68}
+    - name: ship2_sheet_41
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 106, y: 20}
+        - {x: 98, y: 24}
+        - {x: 36, y: 95}
+        - {x: 19, y: 100}
+        - {x: -20, y: 100}
+        - {x: -60, y: 58}
+        - {x: -119, y: 52}
+        - {x: -119, y: -72}
+        - {x: -110, y: -102}
+        - {x: 99, y: -102}
+        - {x: 115, y: -75}
+        - {x: 115, y: 25}
+        - {x: 107, y: 23}
+    - name: ship2_sheet_42
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 105, y: 24}
+        - {x: 104, y: 21}
+        - {x: 96, y: 25}
+        - {x: 50, y: 56}
+        - {x: 38, y: 53}
+        - {x: 33, y: 49}
+        - {x: 31, y: 93}
+        - {x: 23, y: 100}
+        - {x: -66, y: 100}
+        - {x: -121, y: 47}
+        - {x: -121, y: -60}
+        - {x: -70, y: -102}
+        - {x: 87, y: -102}
+        - {x: 114, y: -71}
+        - {x: 114, y: 13}
+        - {x: 111, y: 22}
+    - name: ship2_sheet_43
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 109, y: 20}
+        - {x: 101, y: 24}
+        - {x: 39, y: 95}
+        - {x: 22, y: 100}
+        - {x: -21, y: 100}
+        - {x: -116, y: 32}
+        - {x: -116, y: -102}
+        - {x: 109, y: -102}
+        - {x: 118, y: -79}
+        - {x: 118, y: 25}
+        - {x: 110, y: 23}
+    - name: ship2_sheet_44
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 106, y: 20}
+        - {x: 98, y: 24}
+        - {x: 36, y: 95}
+        - {x: 19, y: 100}
+        - {x: -20, y: 100}
+        - {x: -60, y: 58}
+        - {x: -119, y: 52}
+        - {x: -119, y: -82}
+        - {x: -93, y: -102}
+        - {x: 90, y: -102}
+        - {x: 115, y: -90}
+        - {x: 115, y: 25}
+        - {x: 107, y: 23}
+    - name: ship2_sheet_45
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 120, y: 21}
+        - {x: 113, y: 23}
+        - {x: 112, y: 20}
+        - {x: 104, y: 24}
+        - {x: 42, y: 95}
+        - {x: 33, y: 100}
+        - {x: -38, y: 100}
+        - {x: -113, y: 46}
+        - {x: -113, y: -78}
+        - {x: -75, y: -102}
+        - {x: 79, y: -102}
+        - {x: 121, y: -62}
+        - {x: 121, y: 2}
+    - name: ship2_sheet_46
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 109, y: 24}
+        - {x: 97, y: 86}
+        - {x: 49, y: 101}
+        - {x: -27, y: 101}
+        - {x: -31, y: 82}
+        - {x: -38, y: 35}
+        - {x: -38, y: 33}
+        - {x: -37, y: 41}
+        - {x: -38, y: 57}
+        - {x: -78, y: 48}
+        - {x: -117, y: 25}
+        - {x: -117, y: -60}
+        - {x: -86, y: -101}
+        - {x: 100, y: -101}
+        - {x: 118, y: -61}
+        - {x: 118, y: 20}
+        - {x: 115, y: 22}
+    - name: ship2_sheet_47
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 113, y: 22}
+        - {x: 107, y: 24}
+        - {x: 95, y: 86}
+        - {x: 47, y: 101}
+        - {x: -29, y: 101}
+        - {x: -33, y: 82}
+        - {x: -40, y: 35}
+        - {x: -40, y: 33}
+        - {x: -39, y: 41}
+        - {x: -41, y: 47}
+        - {x: -43, y: 52}
+        - {x: -52, y: 54}
+        - {x: -104, y: 43}
+        - {x: -119, y: 26}
+        - {x: -119, y: -69}
+        - {x: -67, y: -106}
+        - {x: -31, y: -106}
+        - {x: -26, y: -96}
+        - {x: 9, y: -106}
+        - {x: 75, y: -106}
+        - {x: 116, y: -59}
+        - {x: 116, y: -21}
+        - {x: 115, y: -4}
+    - name: ship2_sheet_48
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 106, y: 21}
+        - {x: 96, y: 47}
+        - {x: 33, y: 101}
+        - {x: -78, y: 101}
+        - {x: -119, y: 75}
+        - {x: -119, y: -79}
+        - {x: -109, y: -106}
+        - {x: 69, y: -106}
+        - {x: 115, y: -70}
+        - {x: 115, y: 26}
+        - {x: 107, y: 24}
+    - name: ship2_sheet_49
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 108, y: 24}
+        - {x: 96, y: 86}
+        - {x: 48, y: 101}
+        - {x: -28, y: 101}
+        - {x: -32, y: 82}
+        - {x: -39, y: 35}
+        - {x: -39, y: 33}
+        - {x: -38, y: 41}
+        - {x: -40, y: 55}
+        - {x: -110, y: 47}
+        - {x: -118, y: 32}
+        - {x: -118, y: -106}
+        - {x: 83, y: -106}
+        - {x: 117, y: -84}
+        - {x: 117, y: 21}
+        - {x: 116, y: 24}
+    - name: ship2_sheet_50
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 106, y: 24}
+        - {x: 94, y: 86}
+        - {x: 46, y: 101}
+        - {x: -30, y: 101}
+        - {x: -34, y: 82}
+        - {x: -41, y: 35}
+        - {x: -41, y: 33}
+        - {x: -40, y: 41}
+        - {x: -42, y: 47}
+        - {x: -44, y: 52}
+        - {x: -53, y: 54}
+        - {x: -58, y: 41}
+        - {x: -115, y: 25}
+        - {x: -120, y: 17}
+        - {x: -120, y: -106}
+        - {x: 115, y: -106}
+        - {x: 115, y: 20}
+        - {x: 112, y: 22}
+    - name: ship2_sheet_51
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 109, y: 24}
+        - {x: 108, y: 21}
+        - {x: 100, y: 25}
+        - {x: 38, y: 96}
+        - {x: 27, y: 101}
+        - {x: -32, y: 101}
+        - {x: -117, y: 25}
+        - {x: -117, y: -82}
+        - {x: -65, y: -106}
+        - {x: 71, y: -106}
+        - {x: 117, y: -70}
+        - {x: 117, y: 26}
+    - name: ship2_sheet_52
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 104, y: 21}
+        - {x: 94, y: 47}
+        - {x: 31, y: 101}
+        - {x: -78, y: 101}
+        - {x: -121, y: 73}
+        - {x: -121, y: -71}
+        - {x: -108, y: -106}
+        - {x: 86, y: -106}
+        - {x: 113, y: -72}
+        - {x: 113, y: 26}
+        - {x: 105, y: 24}
+    - name: ship2_sheet_53
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 108, y: 21}
+        - {x: 100, y: 25}
+        - {x: 38, y: 96}
+        - {x: 27, y: 101}
+        - {x: -32, y: 101}
+        - {x: -117, y: 25}
+        - {x: -117, y: -66}
+        - {x: -94, y: -106}
+        - {x: 98, y: -106}
+        - {x: 117, y: -74}
+        - {x: 117, y: 26}
+        - {x: 109, y: 24}
+    - name: ship2_sheet_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 88, y: -104}
+        - {x: 119, y: -87}
+        - {x: 119, y: 18}
+        - {x: 116, y: 28}
+        - {x: 110, y: 30}
+        - {x: 98, y: 92}
+        - {x: 50, y: 107}
+        - {x: -26, y: 107}
+        - {x: -30, y: 88}
+        - {x: -37, y: 41}
+        - {x: -37, y: 39}
+        - {x: -36, y: 47}
+        - {x: -38, y: 53}
+        - {x: -40, y: 58}
+        - {x: -49, y: 60}
+        - {x: -108, y: 49}
+        - {x: -116, y: 31}
+        - {x: -116, y: -94}
+        - {x: -59, y: -104}
+        - {x: -28, y: -104}
+        - {x: -24, y: -95}
+        - {x: -16, y: -104}
+    - name: ship2_sheet_55
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 106, y: 30}
+        - {x: 94, y: 92}
+        - {x: 46, y: 107}
+        - {x: -30, y: 107}
+        - {x: -34, y: 88}
+        - {x: -41, y: 41}
+        - {x: -41, y: 39}
+        - {x: -40, y: 47}
+        - {x: -42, y: 61}
+        - {x: -115, y: 52}
+        - {x: -120, y: 42}
+        - {x: -120, y: -105}
+        - {x: 87, y: -105}
+        - {x: 115, y: -55}
+        - {x: 115, y: 11}
+        - {x: 112, y: 28}
+    - name: ship2_sheet_56
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 114, y: 52}
+        - {x: 92, y: 43}
+        - {x: 19, y: 107}
+        - {x: -46, y: 107}
+        - {x: -120, y: 31}
+        - {x: -120, y: -57}
+        - {x: -71, y: -105}
+        - {x: 114, y: -105}
+    - name: ship2_sheet_57
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 107, y: 30}
+        - {x: 95, y: 92}
+        - {x: 47, y: 107}
+        - {x: -29, y: 107}
+        - {x: -33, y: 88}
+        - {x: -40, y: 41}
+        - {x: -40, y: 39}
+        - {x: -39, y: 47}
+        - {x: -41, y: 53}
+        - {x: -43, y: 58}
+        - {x: -52, y: 60}
+        - {x: -57, y: 47}
+        - {x: -117, y: 34}
+        - {x: -119, y: 15}
+        - {x: -119, y: -58}
+        - {x: -65, y: -105}
+        - {x: 116, y: -105}
+        - {x: 116, y: 24}
+        - {x: 113, y: 28}
+    - name: ship2_sheet_58
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 108, y: -55}
+        - {x: 110, y: -48}
+        - {x: 110, y: -7}
+        - {x: 107, y: 28}
+        - {x: 101, y: 30}
+        - {x: 89, y: 92}
+        - {x: 41, y: 107}
+        - {x: -35, y: 107}
+        - {x: -39, y: 88}
+        - {x: -46, y: 41}
+        - {x: -46, y: 39}
+        - {x: -45, y: 47}
+        - {x: -47, y: 53}
+        - {x: -49, y: 58}
+        - {x: -58, y: 60}
+        - {x: -63, y: 47}
+        - {x: -120, y: 31}
+        - {x: -125, y: 16}
+        - {x: -125, y: -51}
+        - {x: -121, y: -53}
+        - {x: -71, y: -105}
+        - {x: -36, y: -105}
+        - {x: -31, y: -87}
+        - {x: 13, y: -105}
+        - {x: 63, y: -105}
+    - name: ship2_sheet_59
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 109, y: 30}
+        - {x: 108, y: 27}
+        - {x: 100, y: 31}
+        - {x: 25, y: 107}
+        - {x: -64, y: 107}
+        - {x: -117, y: 63}
+        - {x: -117, y: -67}
+        - {x: -89, y: -105}
+        - {x: 96, y: -105}
+        - {x: 117, y: -69}
+        - {x: 117, y: 32}
+    - name: ship2_sheet_60
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 108, y: 30}
+        - {x: 94, y: 43}
+        - {x: 21, y: 107}
+        - {x: -44, y: 107}
+        - {x: -118, y: 31}
+        - {x: -118, y: -63}
+        - {x: -65, y: -105}
+        - {x: 71, y: -105}
+        - {x: 116, y: -64}
+        - {x: 116, y: 32}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
