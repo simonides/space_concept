@@ -103,7 +103,6 @@ public class PlanetMenuManager : AbstractMenuManager
 
     private void PlanetClicked(PlanetClickedEvent event_)
     {
-        MessageHub.Publish(new ToggleNextDayButtonEvent(this, false));
 
         Debug.Assert(_activeMenu == 0 || _activeMenu == 2);
 
@@ -116,6 +115,8 @@ public class PlanetMenuManager : AbstractMenuManager
                     AudioController.GetInstance().PlaySound(AudioController.SoundCodes.PlanetSelectionDenied);
                     return; //TODO !!! uncomment this is just to debug so every planet can be used to send ships from
                 }
+                MessageHub.Publish(new ToggleNextDayButtonEvent(this, false));
+
                 planetOne = event_.Content;
                 ShowPlanetMenu();
 

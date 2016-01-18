@@ -141,7 +141,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 77136425fd674124e9132c691bd5c6c3, type: 3}
+  m_Sprite: {fileID: 21300024, guid: c5f2d6cc90d7d5a4eb0654846dd1b259, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -197,15 +197,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400948, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -0.00006103558
+      value: 0.000023156404
       objectReference: {fileID: 0}
     - target: {fileID: 22400948, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000030517578
+      value: 0.0000049507944
       objectReference: {fileID: 0}
     - target: {fileID: 22400948, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 229
+      value: 274.4
       objectReference: {fileID: 0}
     - target: {fileID: 22400948, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
       propertyPath: m_SizeDelta.y
@@ -235,68 +235,20 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 22435052, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22494538, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 22458268, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430114, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22416204, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
-      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 22416204, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
+    - target: {fileID: 22435052, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 22416204, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22416204, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22416204, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22416204, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22487002, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22487002, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
+    - target: {fileID: 22494538, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22487002, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22487002, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22487002, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22487002, guid: 6ac7a356d25e188429dd54e662280751, type: 2}
-      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
