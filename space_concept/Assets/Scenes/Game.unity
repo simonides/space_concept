@@ -4001,7 +4001,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400170, guid: ac256d9945ead5342aad1275b8c08255, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 21250084, guid: ac256d9945ead5342aad1275b8c08255, type: 2}
       propertyPath: m_Sprite

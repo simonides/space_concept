@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0747a039c93a81142b9107d7ede52219
-timeCreated: 1453132348
+timeCreated: 1453153640
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -65,6 +65,66 @@ TextureImporter:
     21300116: ship2_sheet_58
     21300118: ship2_sheet_59
     21300120: ship2_sheet_60
+    21300122: ship_mini_sheet_1
+    21300124: ship_mini_sheet_2
+    21300126: ship_mini_sheet_3
+    21300128: ship_mini_sheet_4
+    21300130: ship_mini_sheet_5
+    21300132: ship_mini_sheet_6
+    21300134: ship_mini_sheet_7
+    21300136: ship_mini_sheet_8
+    21300138: ship_mini_sheet_9
+    21300140: ship_mini_sheet_10
+    21300142: ship_mini_sheet_11
+    21300144: ship_mini_sheet_12
+    21300146: ship_mini_sheet_13
+    21300148: ship_mini_sheet_14
+    21300150: ship_mini_sheet_15
+    21300152: ship_mini_sheet_16
+    21300154: ship_mini_sheet_17
+    21300156: ship_mini_sheet_18
+    21300158: ship_mini_sheet_19
+    21300160: ship_mini_sheet_20
+    21300162: ship_mini_sheet_21
+    21300164: ship_mini_sheet_22
+    21300166: ship_mini_sheet_23
+    21300168: ship_mini_sheet_24
+    21300170: ship_mini_sheet_25
+    21300172: ship_mini_sheet_26
+    21300174: ship_mini_sheet_27
+    21300176: ship_mini_sheet_28
+    21300178: ship_mini_sheet_29
+    21300180: ship_mini_sheet_30
+    21300182: ship_mini_sheet_31
+    21300184: ship_mini_sheet_32
+    21300186: ship_mini_sheet_33
+    21300188: ship_mini_sheet_34
+    21300190: ship_mini_sheet_35
+    21300192: ship_mini_sheet_36
+    21300194: ship_mini_sheet_37
+    21300196: ship_mini_sheet_38
+    21300198: ship_mini_sheet_39
+    21300200: ship_mini_sheet_40
+    21300202: ship_mini_sheet_41
+    21300204: ship_mini_sheet_42
+    21300206: ship_mini_sheet_43
+    21300208: ship_mini_sheet_44
+    21300210: ship_mini_sheet_45
+    21300212: ship_mini_sheet_46
+    21300214: ship_mini_sheet_47
+    21300216: ship_mini_sheet_48
+    21300218: ship_mini_sheet_49
+    21300220: ship_mini_sheet_50
+    21300222: ship_mini_sheet_51
+    21300224: ship_mini_sheet_52
+    21300226: ship_mini_sheet_53
+    21300228: ship_mini_sheet_54
+    21300230: ship_mini_sheet_55
+    21300232: ship_mini_sheet_56
+    21300234: ship_mini_sheet_57
+    21300236: ship_mini_sheet_58
+    21300238: ship_mini_sheet_59
+    21300240: ship_mini_sheet_60
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -105,29 +165,13 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 200
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: ship2_sheet_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 3584
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -128, y: 128}
-        - {x: -128, y: -124}
-        - {x: 122, y: -124}
-        - {x: 124, y: -122}
-        - {x: 124, y: 128}
-    - name: ship2_sheet_1
+    - name: ship_mini_sheet_1
       rect:
         serializedVersion: 2
         x: 512
@@ -159,7 +203,7 @@ TextureImporter:
         - {x: 116, y: -72}
         - {x: 116, y: -34}
         - {x: 115, y: -17}
-    - name: ship2_sheet_2
+    - name: ship_mini_sheet_2
       rect:
         serializedVersion: 2
         x: 1024
@@ -178,7 +222,7 @@ TextureImporter:
         - {x: 116, y: -90}
         - {x: 116, y: 52}
         - {x: 49, y: 89}
-    - name: ship2_sheet_3
+    - name: ship_mini_sheet_3
       rect:
         serializedVersion: 2
         x: 1536
@@ -198,7 +242,7 @@ TextureImporter:
         - {x: 88, y: -107}
         - {x: 115, y: -71}
         - {x: 115, y: 38}
-    - name: ship2_sheet_4
+    - name: ship_mini_sheet_4
       rect:
         serializedVersion: 2
         x: 2048
@@ -223,7 +267,7 @@ TextureImporter:
         - {x: 116, y: -107}
         - {x: 116, y: 16}
         - {x: 107, y: 14}
-    - name: ship2_sheet_5
+    - name: ship_mini_sheet_5
       rect:
         serializedVersion: 2
         x: 2560
@@ -244,7 +288,7 @@ TextureImporter:
         - {x: 117, y: -82}
         - {x: 117, y: 16}
         - {x: 109, y: 14}
-    - name: ship2_sheet_6
+    - name: ship_mini_sheet_6
       rect:
         serializedVersion: 2
         x: 3072
@@ -265,7 +309,7 @@ TextureImporter:
         - {x: 115, y: -82}
         - {x: 115, y: 16}
         - {x: 107, y: 14}
-    - name: ship2_sheet_7
+    - name: ship_mini_sheet_7
       rect:
         serializedVersion: 2
         x: 3584
@@ -289,7 +333,7 @@ TextureImporter:
         - {x: -23, y: -98}
         - {x: 18, y: -106}
         - {x: 68, y: -106}
-    - name: ship2_sheet_8
+    - name: ship_mini_sheet_8
       rect:
         serializedVersion: 2
         x: 0
@@ -308,7 +352,7 @@ TextureImporter:
         - {x: 68, y: -102}
         - {x: 114, y: -67}
         - {x: 114, y: 63}
-    - name: ship2_sheet_9
+    - name: ship_mini_sheet_9
       rect:
         serializedVersion: 2
         x: 512
@@ -336,7 +380,7 @@ TextureImporter:
         - {x: 101, y: -103}
         - {x: 116, y: -71}
         - {x: 116, y: 18}
-    - name: ship2_sheet_10
+    - name: ship_mini_sheet_10
       rect:
         serializedVersion: 2
         x: 1024
@@ -360,7 +404,7 @@ TextureImporter:
         - {x: 116, y: -92}
         - {x: 116, y: 9}
         - {x: 115, y: 16}
-    - name: ship2_sheet_11
+    - name: ship_mini_sheet_11
       rect:
         serializedVersion: 2
         x: 1536
@@ -384,7 +428,7 @@ TextureImporter:
         - {x: 115, y: -92}
         - {x: 115, y: 9}
         - {x: 114, y: 16}
-    - name: ship2_sheet_12
+    - name: ship_mini_sheet_12
       rect:
         serializedVersion: 2
         x: 2048
@@ -411,7 +455,7 @@ TextureImporter:
         - {x: 115, y: -86}
         - {x: 115, y: -2}
         - {x: 112, y: 17}
-    - name: ship2_sheet_13
+    - name: ship_mini_sheet_13
       rect:
         serializedVersion: 2
         x: 2560
@@ -432,7 +476,7 @@ TextureImporter:
         - {x: 82, y: -102}
         - {x: 117, y: -87}
         - {x: 117, y: 63}
-    - name: ship2_sheet_14
+    - name: ship_mini_sheet_14
       rect:
         serializedVersion: 2
         x: 3072
@@ -452,7 +496,7 @@ TextureImporter:
         - {x: 76, y: -102}
         - {x: 116, y: -67}
         - {x: 116, y: 63}
-    - name: ship2_sheet_15
+    - name: ship_mini_sheet_15
       rect:
         serializedVersion: 2
         x: 3584
@@ -473,7 +517,7 @@ TextureImporter:
         - {x: 82, y: -102}
         - {x: 117, y: -87}
         - {x: 117, y: 63}
-    - name: ship2_sheet_16
+    - name: ship_mini_sheet_16
       rect:
         serializedVersion: 2
         x: 512
@@ -499,7 +543,7 @@ TextureImporter:
         - {x: 112, y: 21}
         - {x: 106, y: 23}
         - {x: 105, y: 20}
-    - name: ship2_sheet_17
+    - name: ship_mini_sheet_17
       rect:
         serializedVersion: 2
         x: 1024
@@ -519,7 +563,7 @@ TextureImporter:
         - {x: 116, y: -65}
         - {x: 116, y: 67}
         - {x: 78, y: 99}
-    - name: ship2_sheet_18
+    - name: ship_mini_sheet_18
       rect:
         serializedVersion: 2
         x: 1536
@@ -539,7 +583,7 @@ TextureImporter:
         - {x: 115, y: -62}
         - {x: 115, y: 67}
         - {x: 77, y: 99}
-    - name: ship2_sheet_19
+    - name: ship_mini_sheet_19
       rect:
         serializedVersion: 2
         x: 2048
@@ -566,7 +610,7 @@ TextureImporter:
         - {x: 115, y: -88}
         - {x: 115, y: 7}
         - {x: 112, y: 21}
-    - name: ship2_sheet_20
+    - name: ship_mini_sheet_20
       rect:
         serializedVersion: 2
         x: 2560
@@ -585,7 +629,7 @@ TextureImporter:
         - {x: 70, y: -112}
         - {x: 117, y: -61}
         - {x: 117, y: 67}
-    - name: ship2_sheet_21
+    - name: ship_mini_sheet_21
       rect:
         serializedVersion: 2
         x: 3072
@@ -605,7 +649,7 @@ TextureImporter:
         - {x: 116, y: -65}
         - {x: 116, y: 67}
         - {x: 78, y: 99}
-    - name: ship2_sheet_22
+    - name: ship_mini_sheet_22
       rect:
         serializedVersion: 2
         x: 3584
@@ -624,7 +668,7 @@ TextureImporter:
         - {x: 87, y: -112}
         - {x: 119, y: -77}
         - {x: 119, y: 89}
-    - name: ship2_sheet_23
+    - name: ship_mini_sheet_23
       rect:
         serializedVersion: 2
         x: 0
@@ -646,7 +690,7 @@ TextureImporter:
         - {x: 117, y: -110}
         - {x: 117, y: 33}
         - {x: 109, y: 25}
-    - name: ship2_sheet_24
+    - name: ship_mini_sheet_24
       rect:
         serializedVersion: 2
         x: 512
@@ -677,7 +721,7 @@ TextureImporter:
         - {x: 88, y: -110}
         - {x: 116, y: -92}
         - {x: 116, y: 16}
-    - name: ship2_sheet_25
+    - name: ship_mini_sheet_25
       rect:
         serializedVersion: 2
         x: 1024
@@ -698,7 +742,7 @@ TextureImporter:
         - {x: -118, y: -62}
         - {x: -63, y: -110}
         - {x: 83, y: -110}
-    - name: ship2_sheet_26
+    - name: ship_mini_sheet_26
       rect:
         serializedVersion: 2
         x: 1536
@@ -722,7 +766,7 @@ TextureImporter:
         - {x: -109, y: -110}
         - {x: 96, y: -110}
         - {x: 115, y: -61}
-    - name: ship2_sheet_27
+    - name: ship_mini_sheet_27
       rect:
         serializedVersion: 2
         x: 2048
@@ -754,7 +798,7 @@ TextureImporter:
         - {x: 115, y: -61}
         - {x: 115, y: -20}
         - {x: 114, y: -3}
-    - name: ship2_sheet_28
+    - name: ship_mini_sheet_28
       rect:
         serializedVersion: 2
         x: 2560
@@ -777,7 +821,7 @@ TextureImporter:
         - {x: 88, y: -110}
         - {x: 117, y: -72}
         - {x: 117, y: 27}
-    - name: ship2_sheet_29
+    - name: ship_mini_sheet_29
       rect:
         serializedVersion: 2
         x: 3072
@@ -798,7 +842,7 @@ TextureImporter:
         - {x: 116, y: -74}
         - {x: 116, y: 27}
         - {x: 108, y: 25}
-    - name: ship2_sheet_30
+    - name: ship_mini_sheet_30
       rect:
         serializedVersion: 2
         x: 3584
@@ -820,7 +864,7 @@ TextureImporter:
         - {x: 121, y: -109}
         - {x: 121, y: 27}
         - {x: 113, y: 25}
-    - name: ship2_sheet_31
+    - name: ship_mini_sheet_31
       rect:
         serializedVersion: 2
         x: 512
@@ -848,7 +892,7 @@ TextureImporter:
         - {x: 72, y: -97}
         - {x: 112, y: -66}
         - {x: 116, y: -58}
-    - name: ship2_sheet_32
+    - name: ship_mini_sheet_32
       rect:
         serializedVersion: 2
         x: 1024
@@ -868,7 +912,7 @@ TextureImporter:
         - {x: 75, y: -100}
         - {x: 116, y: -80}
         - {x: 116, y: 65}
-    - name: ship2_sheet_33
+    - name: ship_mini_sheet_33
       rect:
         serializedVersion: 2
         x: 1536
@@ -889,7 +933,7 @@ TextureImporter:
         - {x: 73, y: -100}
         - {x: 115, y: -73}
         - {x: 115, y: 22}
-    - name: ship2_sheet_34
+    - name: ship_mini_sheet_34
       rect:
         serializedVersion: 2
         x: 2048
@@ -921,7 +965,7 @@ TextureImporter:
         - {x: 114, y: -85}
         - {x: 114, y: 10}
         - {x: 111, y: 18}
-    - name: ship2_sheet_35
+    - name: ship_mini_sheet_35
       rect:
         serializedVersion: 2
         x: 2560
@@ -942,7 +986,7 @@ TextureImporter:
         - {x: 117, y: -64}
         - {x: 117, y: 65}
         - {x: 79, y: 97}
-    - name: ship2_sheet_36
+    - name: ship_mini_sheet_36
       rect:
         serializedVersion: 2
         x: 3072
@@ -964,7 +1008,7 @@ TextureImporter:
         - {x: 116, y: -66}
         - {x: 116, y: 13}
         - {x: 115, y: 18}
-    - name: ship2_sheet_37
+    - name: ship_mini_sheet_37
       rect:
         serializedVersion: 2
         x: 3584
@@ -984,7 +1028,7 @@ TextureImporter:
         - {x: 117, y: -101}
         - {x: 117, y: 22}
         - {x: 109, y: 20}
-    - name: ship2_sheet_38
+    - name: ship_mini_sheet_38
       rect:
         serializedVersion: 2
         x: 0
@@ -1004,7 +1048,7 @@ TextureImporter:
         - {x: 117, y: -82}
         - {x: 117, y: 68}
         - {x: 79, y: 100}
-    - name: ship2_sheet_39
+    - name: ship_mini_sheet_39
       rect:
         serializedVersion: 2
         x: 512
@@ -1031,7 +1075,7 @@ TextureImporter:
         - {x: 115, y: -60}
         - {x: 115, y: 7}
         - {x: 112, y: 22}
-    - name: ship2_sheet_40
+    - name: ship_mini_sheet_40
       rect:
         serializedVersion: 2
         x: 1024
@@ -1051,7 +1095,7 @@ TextureImporter:
         - {x: 64, y: -101}
         - {x: 116, y: -62}
         - {x: 116, y: 68}
-    - name: ship2_sheet_41
+    - name: ship_mini_sheet_41
       rect:
         serializedVersion: 2
         x: 1536
@@ -1075,7 +1119,7 @@ TextureImporter:
         - {x: 115, y: -75}
         - {x: 115, y: 25}
         - {x: 107, y: 23}
-    - name: ship2_sheet_42
+    - name: ship_mini_sheet_42
       rect:
         serializedVersion: 2
         x: 2048
@@ -1102,7 +1146,7 @@ TextureImporter:
         - {x: 114, y: -71}
         - {x: 114, y: 13}
         - {x: 111, y: 22}
-    - name: ship2_sheet_43
+    - name: ship_mini_sheet_43
       rect:
         serializedVersion: 2
         x: 2560
@@ -1124,7 +1168,7 @@ TextureImporter:
         - {x: 118, y: -79}
         - {x: 118, y: 25}
         - {x: 110, y: 23}
-    - name: ship2_sheet_44
+    - name: ship_mini_sheet_44
       rect:
         serializedVersion: 2
         x: 3072
@@ -1148,7 +1192,7 @@ TextureImporter:
         - {x: 115, y: -90}
         - {x: 115, y: 25}
         - {x: 107, y: 23}
-    - name: ship2_sheet_45
+    - name: ship_mini_sheet_45
       rect:
         serializedVersion: 2
         x: 3584
@@ -1172,7 +1216,7 @@ TextureImporter:
         - {x: 79, y: -102}
         - {x: 121, y: -62}
         - {x: 121, y: 2}
-    - name: ship2_sheet_46
+    - name: ship_mini_sheet_46
       rect:
         serializedVersion: 2
         x: 0
@@ -1200,7 +1244,7 @@ TextureImporter:
         - {x: 118, y: -61}
         - {x: 118, y: 20}
         - {x: 115, y: 22}
-    - name: ship2_sheet_47
+    - name: ship_mini_sheet_47
       rect:
         serializedVersion: 2
         x: 512
@@ -1234,7 +1278,7 @@ TextureImporter:
         - {x: 116, y: -59}
         - {x: 116, y: -21}
         - {x: 115, y: -4}
-    - name: ship2_sheet_48
+    - name: ship_mini_sheet_48
       rect:
         serializedVersion: 2
         x: 1024
@@ -1256,7 +1300,7 @@ TextureImporter:
         - {x: 115, y: -70}
         - {x: 115, y: 26}
         - {x: 107, y: 24}
-    - name: ship2_sheet_49
+    - name: ship_mini_sheet_49
       rect:
         serializedVersion: 2
         x: 1536
@@ -1283,7 +1327,7 @@ TextureImporter:
         - {x: 117, y: -84}
         - {x: 117, y: 21}
         - {x: 116, y: 24}
-    - name: ship2_sheet_50
+    - name: ship_mini_sheet_50
       rect:
         serializedVersion: 2
         x: 2048
@@ -1312,7 +1356,7 @@ TextureImporter:
         - {x: 115, y: -106}
         - {x: 115, y: 20}
         - {x: 112, y: 22}
-    - name: ship2_sheet_51
+    - name: ship_mini_sheet_51
       rect:
         serializedVersion: 2
         x: 2560
@@ -1335,7 +1379,7 @@ TextureImporter:
         - {x: 71, y: -106}
         - {x: 117, y: -70}
         - {x: 117, y: 26}
-    - name: ship2_sheet_52
+    - name: ship_mini_sheet_52
       rect:
         serializedVersion: 2
         x: 3072
@@ -1357,7 +1401,7 @@ TextureImporter:
         - {x: 113, y: -72}
         - {x: 113, y: 26}
         - {x: 105, y: 24}
-    - name: ship2_sheet_53
+    - name: ship_mini_sheet_53
       rect:
         serializedVersion: 2
         x: 3584
@@ -1380,7 +1424,7 @@ TextureImporter:
         - {x: 117, y: -74}
         - {x: 117, y: 26}
         - {x: 109, y: 24}
-    - name: ship2_sheet_54
+    - name: ship_mini_sheet_54
       rect:
         serializedVersion: 2
         x: 0
@@ -1413,7 +1457,7 @@ TextureImporter:
         - {x: -28, y: -104}
         - {x: -24, y: -95}
         - {x: -16, y: -104}
-    - name: ship2_sheet_55
+    - name: ship_mini_sheet_55
       rect:
         serializedVersion: 2
         x: 512
@@ -1440,7 +1484,7 @@ TextureImporter:
         - {x: 115, y: -55}
         - {x: 115, y: 11}
         - {x: 112, y: 28}
-    - name: ship2_sheet_56
+    - name: ship_mini_sheet_56
       rect:
         serializedVersion: 2
         x: 1024
@@ -1459,7 +1503,7 @@ TextureImporter:
         - {x: -120, y: -57}
         - {x: -71, y: -105}
         - {x: 114, y: -105}
-    - name: ship2_sheet_57
+    - name: ship_mini_sheet_57
       rect:
         serializedVersion: 2
         x: 1536
@@ -1489,7 +1533,7 @@ TextureImporter:
         - {x: 116, y: -105}
         - {x: 116, y: 24}
         - {x: 113, y: 28}
-    - name: ship2_sheet_58
+    - name: ship_mini_sheet_58
       rect:
         serializedVersion: 2
         x: 2048
@@ -1525,7 +1569,7 @@ TextureImporter:
         - {x: -31, y: -87}
         - {x: 13, y: -105}
         - {x: 63, y: -105}
-    - name: ship2_sheet_59
+    - name: ship_mini_sheet_59
       rect:
         serializedVersion: 2
         x: 2560
@@ -1547,7 +1591,7 @@ TextureImporter:
         - {x: 96, y: -105}
         - {x: 117, y: -69}
         - {x: 117, y: 32}
-    - name: ship2_sheet_60
+    - name: ship_mini_sheet_60
       rect:
         serializedVersion: 2
         x: 3072
