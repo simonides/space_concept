@@ -15,6 +15,7 @@ public class EventListManager : AbstractMenuManager {
 
     private Dictionary<PlanetData, EvaluationOutcome> planetsWithEvent;
     private Dictionary<PlanetData, EvaluationOutcome> emptyDict;
+    private EvaluationOutcome outData;
     private TinyMessageSubscriptionToken ShowEventListEventToken;
     private TinyMessageSubscriptionToken HideEventListEventToken;
     private TinyMessageSubscriptionToken TroopEvaluationResultEventToken;
@@ -38,15 +39,29 @@ public class EventListManager : AbstractMenuManager {
         planetsWithEvent = new Dictionary<PlanetData, EvaluationOutcome>();
         foreach(AttackEvaluation ae in activeEventlist){
 
-            if (ae.Type != EvaluationType.AttackViewer)
+            if (!planetsWithEvent.ContainsKey(ae.Planet))
             {
-                planetsWithEvent.Add(ae.Planet, ae.Outcome);
+                if (ae.Type != EvaluationType.AttackViewer)
+                {
+                    planetsWithEvent.Add(ae.Planet, ae.Outcome);
+                }
+                else
+                {
+                    if (SettingsController.GetInstance().dataFile.fogDist == 0)
+                    {
+                        planetsWithEvent.Add(ae.Planet, ae.Outcome);
+                    }
+                }
             }
             else
             {
-                if (SettingsController.GetInstance().dataFile.fogDist == 0)
+                planetsWithEvent.TryGetValue(ae.Planet, out outData);
+                if (ae.Outcome == EvaluationOutcome.Lost && outData != EvaluationOutcome.Lost)
                 {
-                    planetsWithEvent.Add(ae.Planet, ae.Outcome);
+                    planetsWithEvent[ae.Planet] = ae.Outcome;
+                }
+                else if(ae.Outcome == EvaluationOutcome.Success && outData == EvaluationOutcome.Neutral){
+                    planetsWithEvent[ae.Planet] = ae.Outcome;
                 }
             }
         }
