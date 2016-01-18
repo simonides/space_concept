@@ -29,6 +29,7 @@ GameObject:
   - 114: {fileID: 11495690}
   - 114: {fileID: 11455570}
   - 114: {fileID: 11408296}
+  - 114: {fileID: 11408592}
   m_Layer: 5
   m_Name: SelectSaveGame
   m_TagString: Untagged
@@ -84,6 +85,7 @@ GameObject:
   - 114: {fileID: 11478450}
   - 114: {fileID: 11411042}
   - 114: {fileID: 11441134}
+  - 114: {fileID: 11427934}
   m_Layer: 5
   m_Name: DeleteSaveGame
   m_TagString: Untagged
@@ -127,6 +129,36 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: 0.95
   m_FlexibleHeight: -1
+--- !u!114 &11408592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11469698, guid: ccf8fa6cd6a2dd4459e619937b146c76, type: 2}
+          m_MethodName: PlaySound
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 8
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!114 &11411042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,6 +243,36 @@ MonoBehaviour:
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
+--- !u!114 &11427934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11469698, guid: ccf8fa6cd6a2dd4459e619937b146c76, type: 2}
+          m_MethodName: PlaySound
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 8
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!114 &11441134
 MonoBehaviour:
   m_ObjectHideFlags: 1

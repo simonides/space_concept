@@ -13,8 +13,9 @@ public class AudioController : SingletonBase<AudioController> {
     public AudioSource closeMenu;
     public AudioSource nextDayNothingHappend;
     public AudioSource nextDaySomethingHappend;
+    public AudioSource hover;
 
-    public enum SoundCodes {MenuClick, MenuClickDenied, PlanetSelection, PlanetSelectionDenied, OpenMenu, CloseMenu, NextDayNothing, NextDaySomething};
+    public enum SoundCodes {MenuClick, MenuClickDenied, PlanetSelection, PlanetSelectionDenied, OpenMenu, CloseMenu, NextDayNothing, NextDaySomething, Hover};
     private  Dictionary<SoundCodes, AudioSource> sounds;
     private  List<AudioSource> sources;
 
@@ -55,6 +56,7 @@ public class AudioController : SingletonBase<AudioController> {
             sounds.Add(SoundCodes.CloseMenu, closeMenu);
             sounds.Add(SoundCodes.NextDayNothing, nextDayNothingHappend);
             sounds.Add(SoundCodes.NextDaySomething, nextDaySomethingHappend);
+            sounds.Add(SoundCodes.Hover, hover);
 
             menuClick = null;
             menuClickDenied = null;
@@ -64,6 +66,7 @@ public class AudioController : SingletonBase<AudioController> {
             closeMenu = null;
             nextDayNothingHappend = null;
             nextDaySomethingHappend = null;
+            hover = null;
 
         }
     }
