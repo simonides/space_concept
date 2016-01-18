@@ -11,7 +11,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: space_concept
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: 1607ae855c6507044a069eb60b0c9ecb, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
   m_VirtualRealitySplashScreen: {fileID: 0}
