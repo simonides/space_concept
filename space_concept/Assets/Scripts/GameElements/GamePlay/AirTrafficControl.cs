@@ -225,7 +225,7 @@ public class AirTrafficControl : MonoBehaviour {
                 } else {
                     continue;
                 }
-            } else if (!troopData.Owner.IsHumanPlayer) { // Not my ships
+            } else if (fogOfWar > 0 && !troopData.Owner.IsHumanPlayer) { // Not my ships
                 if (troopData.TargetPlanet.Owner == null || !troopData.TargetPlanet.Owner.IsHumanPlayer) { // Not my planet (anymore)
                     troopGO.SetActive(false);
                     continue;
