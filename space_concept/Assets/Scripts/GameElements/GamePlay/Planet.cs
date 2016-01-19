@@ -36,6 +36,8 @@ public class Planet : MonoBehaviour {
     public bool GlowIsGrowing;
     private float glowUpscaling = 1f;   // Upscaling factor of the glow depending on the planet size
 
+
+    private bool shakePlanet = false;
     // ****                     **** //
     AudioController audioCon;
 
@@ -139,7 +141,70 @@ public class Planet : MonoBehaviour {
     public void SingleTouchClick() {
         Debug.Log("planet clicked ");
         audioCon.PlaySound(AudioController.SoundCodes.PlanetSelection);
+        StartCoroutine(ShakePlanet());
         MessageHub.Publish(new PlanetClickedEvent(this, this));
+    }
+
+    private IEnumerator ShakePlanet()
+    {
+        if (shakePlanet)
+        {
+           yield return null;
+        }
+
+        shakePlanet = true;
+        Vector3 pos = transform.position;
+        float wobbleDistance = planetData.Diameter * 0.5f;
+        wobbleDistance = 10;
+        Vector3 rightMax = pos + Vector3.right * wobbleDistance;
+        Vector3 leftMax = pos + Vector3.left * wobbleDistance;
+        float duration = 0.1f;
+        float startTime = Time.time;
+        
+        //from middle to right
+        while(Time.time - startTime < duration){
+            transform.position = Vector3.Lerp(pos, rightMax, (Time.time - startTime) / (duration));
+            //yield return new WaitForSeconds(0.005f);
+            yield return new WaitForEndOfFrame();
+        }
+        //from right  to left
+        //duration = 0.2f;
+        startTime = Time.time;
+        while (Time.time - startTime < duration )
+        {
+            transform.position = Vector3.Lerp(rightMax, leftMax, (Time.time - startTime) / (duration));
+            //yield return new WaitForSeconds(0.005f);
+            yield return new WaitForEndOfFrame();
+        }
+        //from left  to right
+        //duration = 0.2f;
+        startTime = Time.time;
+        while (Time.time - startTime < duration )
+        {
+            transform.position = Vector3.Lerp(leftMax, rightMax, (Time.time - startTime) / (duration));
+            //yield return new WaitForSeconds(0.005f);
+            yield return new WaitForEndOfFrame();
+        }
+        //from right  to left
+        //duration = 0.2f;
+        startTime = Time.time;
+        while (Time.time - startTime < duration )
+        {
+            transform.position = Vector3.Lerp(rightMax, leftMax, (Time.time - startTime) / (duration));
+            //yield return new WaitForSeconds(0.005f);
+            yield return new WaitForEndOfFrame();
+        }
+        //from left  to middle
+        //duration = 0.1f;
+        startTime = Time.time;
+        while (Time.time - startTime < duration )
+        {
+            transform.position = Vector3.Lerp(leftMax, pos, (Time.time - startTime) / (duration));
+            //yield return new WaitForSeconds(0.005f);
+            yield return new WaitForEndOfFrame();
+        }
+        shakePlanet = false;
+        yield return null;
     }
 
     public void SetPlanetSign(SetPlanetSignEvent event_)
