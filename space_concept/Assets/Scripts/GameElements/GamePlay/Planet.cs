@@ -153,7 +153,7 @@ public class Planet : MonoBehaviour {
 
 
             shakePlanet = true;
-            Vector3 pos = transform.position;
+            Vector3 pos = transform.localPosition;
             float wobbleDistance = planetData.Diameter * 0.5f;
             wobbleDistance = 10;
             Vector3 rightMax = pos + Vector3.right * wobbleDistance;
@@ -164,7 +164,7 @@ public class Planet : MonoBehaviour {
             //from middle to right
             while (Time.time - startTime < duration)
             {
-                transform.position = Vector3.Lerp(pos, rightMax, (Time.time - startTime) / (duration));
+                transform.localPosition = Vector3.Lerp(pos, rightMax, (Time.time - startTime) / (duration));
                 //yield return new WaitForSeconds(0.005f);
                 yield return new WaitForEndOfFrame();
             }
@@ -173,7 +173,7 @@ public class Planet : MonoBehaviour {
             startTime = Time.time;
             while (Time.time - startTime < duration)
             {
-                transform.position = Vector3.Lerp(rightMax, leftMax, (Time.time - startTime) / (duration));
+                transform.localPosition = Vector3.Lerp(rightMax, leftMax, (Time.time - startTime) / (duration));
                 //yield return new WaitForSeconds(0.005f);
                 yield return new WaitForEndOfFrame();
             }
@@ -182,7 +182,7 @@ public class Planet : MonoBehaviour {
             startTime = Time.time;
             while (Time.time - startTime < duration)
             {
-                transform.position = Vector3.Lerp(leftMax, rightMax, (Time.time - startTime) / (duration));
+                transform.localPosition = Vector3.Lerp(leftMax, rightMax, (Time.time - startTime) / (duration));
                 //yield return new WaitForSeconds(0.005f);
                 yield return new WaitForEndOfFrame();
             }
@@ -191,7 +191,7 @@ public class Planet : MonoBehaviour {
             startTime = Time.time;
             while (Time.time - startTime < duration)
             {
-                transform.position = Vector3.Lerp(rightMax, leftMax, (Time.time - startTime) / (duration));
+                transform.localPosition = Vector3.Lerp(rightMax, leftMax, (Time.time - startTime) / (duration));
                 //yield return new WaitForSeconds(0.005f);
                 yield return new WaitForEndOfFrame();
             }
@@ -200,11 +200,11 @@ public class Planet : MonoBehaviour {
             startTime = Time.time;
             while (Time.time - startTime < duration)
             {
-                transform.position = Vector3.Lerp(leftMax, pos, (Time.time - startTime) / (duration));
+                transform.localPosition = Vector3.Lerp(leftMax, pos, (Time.time - startTime) / (duration));
                 //yield return new WaitForSeconds(0.005f);
                 yield return new WaitForEndOfFrame();
             }
-            transform.position = pos;
+            transform.localPosition = pos;
             shakePlanet = false;
         }
         yield return null;
