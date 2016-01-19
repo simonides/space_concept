@@ -6,14 +6,21 @@ using TinyMessenger;
 
 public class PlanetMenuFiller : MonoBehaviour
 {
+    public Number number;
+
     public Text Header;
     public Text FactoryActualIncreaseSpeed;
     public Text FactoryIncreaseAmount;
     public Text FactoryUpgradeCost;
+    public Image FactoryLevel;
+    public Image FactoryLevelMax;
 
     public Text HangarSizeAndFillsize;
     public Text HangarIncreaseAmount;
     public Text HangarUpgradeCost;
+    public Image HangarLevel;
+    public Image HangarLevelMax;
+
 
     PlanetData activePlanet;
 
@@ -62,12 +69,16 @@ public class PlanetMenuFiller : MonoBehaviour
     }
 
     public void UpgradeFactoryUpdate(){
+        FactoryLevel.sprite = number.GetSpriteForNumber(activePlanet.FactoryLevel);
+        FactoryLevelMax.sprite = number.GetSpriteForNumber(activePlanet.MaxFactoryLevel);
         FactoryActualIncreaseSpeed.text = "+" + activePlanet.FactorySpeed;
         FactoryUpgradeCost.text = "" + activePlanet.GetFactoryUpgradeCosts();
         FactoryIncreaseAmount.text = "+" + activePlanet.GetNextFactoryUpgrade();
     }
 
     public void UpgradeHangarUpdate(){
+        HangarLevel.sprite = number.GetSpriteForNumber(activePlanet.HangarLevel);
+        HangarLevelMax.sprite = number.GetSpriteForNumber(activePlanet.MaxHangarLevel);
         HangarSizeAndFillsize.text = activePlanet.Ships + "/" + activePlanet.HangarSize;
         HangarUpgradeCost.text = "" + activePlanet.GetHangarUpgradeCosts();
         HangarIncreaseAmount.text = "" + activePlanet.GetNextHangarUpgrade();
