@@ -60,7 +60,10 @@ public class Troop : MonoBehaviour {
         //Vector2 direction = troopData.TargetPlanet.Position - troopData.StartPlanet.Position;
         //direction.normalized * troopData.
         this.gameObject.SetActive(true);
+
+        this.transform.localScale = new Vector3(15, 15, 1);
         this.transform.localPosition = troop.StartPlanet.Position;
+
 
 
         UpdatePosition(currentDay);   // sets the target progress
@@ -71,9 +74,8 @@ public class Troop : MonoBehaviour {
 
         shipcountText.text = "" + troop.ShipCount;
         spaceshipTextureTransform.rotation = Quaternion.FromToRotation(Vector3.up, troop.TargetPlanet.Position - troop.StartPlanet.Position);
-        this.transform.localScale = new Vector3(15, 15, 1);
     }
-
+     
     public void UpdatePosition(int currentDay) {
 
         int daysRemaining = troopData.ArrivalTime - currentDay;

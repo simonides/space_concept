@@ -161,7 +161,7 @@ public class AirTrafficControl : MonoBehaviour {
         //Vector2 direction = (targetPlanet.Position - startPlanet.Position);
         //direction.Normalize();
 
-        troopObject.transform.SetParent(space.transform);
+        troopObject.transform.SetParent(space.transform,false);
 
         //Vector3 initialPosition = startPlanet.Position;
         //initialPosition.z = -15;   // In front of planets
