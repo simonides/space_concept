@@ -8,21 +8,26 @@ public class PlanetMenuFiller : MonoBehaviour
 {
     public Number number;
 
+    public Button FactoryBtn;
     public Text Header;
     public Text FactoryActualIncreaseSpeed;
     public Text FactoryIncreaseAmount;
     public Text FactoryUpgradeCost;
+    public Text FactoryCostLbl;
     public Image FactoryLevel;
     public Image FactoryLevelMax;
 
+    public Button HangarBtn;
     public Text HangarSizeAndFillsize;
     public Text HangarIncreaseAmount;
     public Text HangarUpgradeCost;
+    public Text HangarCostLbl;
     public Image HangarLevel;
     public Image HangarLevelMax;
 
+    public Button SendShipsBtn;
 
-    PlanetData activePlanet;
+    private PlanetData activePlanet;
 
     private TinyMessageSubscriptionToken UpgradeFactoryEventToken;
     private TinyMessageSubscriptionToken UpgradeHangarEventToken;
@@ -43,6 +48,8 @@ public class PlanetMenuFiller : MonoBehaviour
         if (activePlanet == null /*|| HangarSizeAndFillsize == null*/) { return; }
         UpgradeHangarUpdate();
         UpgradeFactoryUpdate();
+        UpdateSendShipBtn();
+
     }
 
     private void UpgradeHangar(UpgradeHangarEvent event_){
@@ -51,6 +58,8 @@ public class PlanetMenuFiller : MonoBehaviour
             UpgradeHangarUpdate();
             UpgradeFactoryUpdate();
         }
+        UpdateSendShipBtn();
+
     }
 
     private void UpgradeFactory(UpgradeFactoryEvent event_){
@@ -59,6 +68,7 @@ public class PlanetMenuFiller : MonoBehaviour
             UpgradeFactoryUpdate();
             UpgradeHangarUpdate();
         }
+        UpdateSendShipBtn();
     }
 
     public void UpdateInfo(PlanetData planet){
@@ -66,17 +76,48 @@ public class PlanetMenuFiller : MonoBehaviour
         Header.text = planet.Name;
         UpgradeFactoryUpdate();
         UpgradeHangarUpdate();
+        UpdateSendShipBtn();
+
     }
 
     public void UpgradeFactoryUpdate(){
         FactoryLevel.sprite = number.GetSpriteForNumber(activePlanet.FactoryLevel);
         FactoryLevelMax.sprite = number.GetSpriteForNumber(activePlanet.MaxFactoryLevel);
+        if(activePlanet.FactoryLevel == activePlanet.MaxFactoryLevel){
+            Debug.Log("Factory Maxed out");
+
+            FactoryUpgradeCost.text = "maxed Out";
+            FactoryIncreaseAmount.text = "";
+            FactoryCostLbl.enabled = false;
+            FactoryBtn.enabled = false;
+        }else{
+            FactoryUpgradeCost.text = "" + activePlanet.GetFactoryUpgradeCosts();
+            FactoryIncreaseAmount.text = "+" + activePlanet.GetNextFactoryUpgrade();
+            FactoryCostLbl.enabled = true;
+            FactoryBtn.enabled = true;
+        }
         FactoryActualIncreaseSpeed.text = "+" + activePlanet.FactorySpeed;
-        FactoryUpgradeCost.text = "" + activePlanet.GetFactoryUpgradeCosts();
-        FactoryIncreaseAmount.text = "+" + activePlanet.GetNextFactoryUpgrade();
+
     }
 
     public void UpgradeHangarUpdate(){
+        if (activePlanet.HangarLevel == activePlanet.MaxHangarLevel)
+        {
+            Debug.Log("Hangar Maxed out");
+
+            HangarUpgradeCost.text = "maxed Out";
+            HangarIncreaseAmount.text = "";
+            HangarCostLbl.enabled = false;
+            HangarBtn.enabled = false;
+        }
+        else
+        {
+            HangarUpgradeCost.text = "" + activePlanet.GetHangarUpgradeCosts();
+            HangarIncreaseAmount.text = "+" + activePlanet.GetNextHangarUpgrade();
+            HangarCostLbl.enabled = true;
+            HangarBtn.enabled = true;
+
+        }
         HangarLevel.sprite = number.GetSpriteForNumber(activePlanet.HangarLevel);
         HangarLevelMax.sprite = number.GetSpriteForNumber(activePlanet.MaxHangarLevel);
         HangarSizeAndFillsize.text = activePlanet.Ships + "/" + activePlanet.HangarSize;
@@ -89,5 +130,9 @@ public class PlanetMenuFiller : MonoBehaviour
         MessageHub.Unsubscribe<UpgradeFactoryEvent>( UpgradeFactoryEventToken);
         MessageHub.Unsubscribe<UpgradeHangarEvent>( UpgradeHangarEventToken);
         MessageHub.Unsubscribe<NextDayEvent>(NextDayEventToken);
+    }
+
+    private void UpdateSendShipBtn(){
+        SendShipsBtn.enabled = activePlanet.Ships != 0;
     }
 }

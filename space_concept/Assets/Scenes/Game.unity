@@ -3830,17 +3830,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: {fileID: 951502936}
+  FactoryBtn: {fileID: 1817980911}
   Header: {fileID: 1803824330}
   FactoryActualIncreaseSpeed: {fileID: 395325485}
   FactoryIncreaseAmount: {fileID: 21605121}
   FactoryUpgradeCost: {fileID: 764845074}
+  FactoryCostLbl: {fileID: 1835176390}
   FactoryLevel: {fileID: 1951138027}
   FactoryLevelMax: {fileID: 1219743166}
+  HangarBtn: {fileID: 15352325}
   HangarSizeAndFillsize: {fileID: 795476120}
   HangarIncreaseAmount: {fileID: 2101757098}
   HangarUpgradeCost: {fileID: 1513314250}
+  HangarCostLbl: {fileID: 1650067151}
   HangarLevel: {fileID: 115427996}
   HangarLevelMax: {fileID: 1565673370}
+  SendShipsBtn: {fileID: 1484916098}
 --- !u!114 &951502932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5753,11 +5758,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22432196, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22434656, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22497086, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_LocalScale.x
@@ -5777,15 +5782,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22432196, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22434656, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22434656, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11491640, guid: dc457f7ef873eac499d8d6500f8a1a7c, type: 2}
       propertyPath: m_Value
