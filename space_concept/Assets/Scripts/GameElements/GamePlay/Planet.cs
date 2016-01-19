@@ -147,63 +147,66 @@ public class Planet : MonoBehaviour {
 
     private IEnumerator ShakePlanet()
     {
-        if (shakePlanet)
+        if (!shakePlanet)
         {
-           yield return null;
-        }
 
-        shakePlanet = true;
-        Vector3 pos = transform.position;
-        float wobbleDistance = planetData.Diameter * 0.5f;
-        wobbleDistance = 10;
-        Vector3 rightMax = pos + Vector3.right * wobbleDistance;
-        Vector3 leftMax = pos + Vector3.left * wobbleDistance;
-        float duration = 0.1f;
-        float startTime = Time.time;
-        
-        //from middle to right
-        while(Time.time - startTime < duration){
-            transform.position = Vector3.Lerp(pos, rightMax, (Time.time - startTime) / (duration));
-            //yield return new WaitForSeconds(0.005f);
-            yield return new WaitForEndOfFrame();
+
+
+            shakePlanet = true;
+            Vector3 pos = transform.position;
+            float wobbleDistance = planetData.Diameter * 0.5f;
+            wobbleDistance = 10;
+            Vector3 rightMax = pos + Vector3.right * wobbleDistance;
+            Vector3 leftMax = pos + Vector3.left * wobbleDistance;
+            float duration = 0.1f;
+            float startTime = Time.time;
+
+            //from middle to right
+            while (Time.time - startTime < duration)
+            {
+                transform.position = Vector3.Lerp(pos, rightMax, (Time.time - startTime) / (duration));
+                //yield return new WaitForSeconds(0.005f);
+                yield return new WaitForEndOfFrame();
+            }
+            //from right  to left
+            //duration = 0.2f;
+            startTime = Time.time;
+            while (Time.time - startTime < duration)
+            {
+                transform.position = Vector3.Lerp(rightMax, leftMax, (Time.time - startTime) / (duration));
+                //yield return new WaitForSeconds(0.005f);
+                yield return new WaitForEndOfFrame();
+            }
+            //from left  to right
+            //duration = 0.2f;
+            startTime = Time.time;
+            while (Time.time - startTime < duration)
+            {
+                transform.position = Vector3.Lerp(leftMax, rightMax, (Time.time - startTime) / (duration));
+                //yield return new WaitForSeconds(0.005f);
+                yield return new WaitForEndOfFrame();
+            }
+            //from right  to left
+            //duration = 0.2f;
+            startTime = Time.time;
+            while (Time.time - startTime < duration)
+            {
+                transform.position = Vector3.Lerp(rightMax, leftMax, (Time.time - startTime) / (duration));
+                //yield return new WaitForSeconds(0.005f);
+                yield return new WaitForEndOfFrame();
+            }
+            //from left  to middle
+            //duration = 0.1f;
+            startTime = Time.time;
+            while (Time.time - startTime < duration)
+            {
+                transform.position = Vector3.Lerp(leftMax, pos, (Time.time - startTime) / (duration));
+                //yield return new WaitForSeconds(0.005f);
+                yield return new WaitForEndOfFrame();
+            }
+            transform.position = pos;
+            shakePlanet = false;
         }
-        //from right  to left
-        //duration = 0.2f;
-        startTime = Time.time;
-        while (Time.time - startTime < duration )
-        {
-            transform.position = Vector3.Lerp(rightMax, leftMax, (Time.time - startTime) / (duration));
-            //yield return new WaitForSeconds(0.005f);
-            yield return new WaitForEndOfFrame();
-        }
-        //from left  to right
-        //duration = 0.2f;
-        startTime = Time.time;
-        while (Time.time - startTime < duration )
-        {
-            transform.position = Vector3.Lerp(leftMax, rightMax, (Time.time - startTime) / (duration));
-            //yield return new WaitForSeconds(0.005f);
-            yield return new WaitForEndOfFrame();
-        }
-        //from right  to left
-        //duration = 0.2f;
-        startTime = Time.time;
-        while (Time.time - startTime < duration )
-        {
-            transform.position = Vector3.Lerp(rightMax, leftMax, (Time.time - startTime) / (duration));
-            //yield return new WaitForSeconds(0.005f);
-            yield return new WaitForEndOfFrame();
-        }
-        //from left  to middle
-        //duration = 0.1f;
-        startTime = Time.time;
-        while (Time.time - startTime < duration )
-        {
-            transform.position = Vector3.Lerp(leftMax, pos, (Time.time - startTime) / (duration));
-            //yield return new WaitForSeconds(0.005f);
-            yield return new WaitForEndOfFrame();
-        }
-        shakePlanet = false;
         yield return null;
     }
 
