@@ -14,17 +14,13 @@ public class Troop : MonoBehaviour {
     public Animator animator;
 
     public TroopData troopData { get; private set; }
-    public float FlyAnimationSpeed = 50;
+    private float FlyAnimationSpeed = 1f;
 
-    // Graphical movement data (handled by AirTrafficControl):
-    public Vector2 StartPosition;
-    public Vector2 TargetPosition;
+    private Vector3 temporaryMoveToPos;
 
-    // The position (progress) where this ship is flying towards to
-    public float TargetProgress;
-
-    float Progress;
-
+    //private Vector2 oldPosition;
+    //private Vector2 newPosition;
+    //float positionProgress; // 0-1
 
     public void Awake() {
         if(spaceshipTextureTransform != null || this.transform.childCount == 0) {
@@ -61,10 +57,16 @@ public class Troop : MonoBehaviour {
     public void Init(int currentDay, TroopData troop) {
 
         troopData = troop;
-        StartPosition.Set(0, 0);
-        TargetPosition.Set(0, 0);
-        Progress = 0;
+        //Vector2 direction = troopData.TargetPlanet.Position - troopData.StartPlanet.Position;
+        //direction.normalized * troopData.
+        this.gameObject.SetActive(true);
+        this.transform.localPosition = troop.StartPlanet.Position;
+
+
         UpdatePosition(currentDay);   // sets the target progress
+        //todo!
+
+
         this.name = GetNameForTroopGameObject(troopData);
 
         shipcountText.text = "" + troop.ShipCount;
@@ -73,30 +75,87 @@ public class Troop : MonoBehaviour {
     }
 
     public void UpdatePosition(int currentDay) {
-        int remainingDays = troopData.ArrivalTime - currentDay;
-        TargetProgress = 100 - (remainingDays * 100 / troopData.TravelTime);
-        if(TargetProgress > 100) {
-            Debug.LogWarning("Ships have not been destroyed, although they already reached the destination");
-            TargetProgress = 100;
-        }
+
+        int daysRemaining = troopData.ArrivalTime - currentDay;
+        int daysTraveled = troopData.TravelTime- daysRemaining;
+        float distanceBetweenPlanets = (troopData.TargetPlanet.Position - troopData.StartPlanet.Position).magnitude;
+
+        temporaryMoveToPos
+            = Vector3.MoveTowards(troopData.StartPlanet.Position,troopData.TargetPlanet.Position,
+                (distanceBetweenPlanets / troopData.TravelTime) * daysTraveled);
+        temporaryMoveToPos.z = -15f;
+        Debug.Log(temporaryMoveToPos);
+
+
+
+        //oldPosition = this.transform.localPosition;
+        //positionProgress = 0;
+
+        //int remainingDays = troopData.ArrivalTime - currentDay;
+
+        //float targetProgress = 1f - ((float)remainingDays / troopData.TravelTime);  //  [0..1]
+        //if ( targetProgress > 1)
+        //{
+        //    Debug.LogWarning("Ships have not been destroyed, although they already reached the destination");
+        //    targetProgress = 1;
+        //}
+        //Debug.Assert(targetProgress >= 0 && targetProgress <= 1);
+
+        //Vector2 direction = troopData.TargetPlanet.Position - troopData.StartPlanet.Position;
+        //Vector2 direction_norm = direction.normalized;
+        //Vector2 reversedir = direction_norm * troopData.TargetPlanet.Diameter;
+
+        //Debug.Assert(reversedir.magnitude <= direction.magnitude);
+       
+        //newPosition = oldPosition  + (direction) * targetProgress;
     }
 
     public void Update() {
 
-        Progress += Time.deltaTime * FlyAnimationSpeed;
-        if(Progress > TargetProgress) {
-            Progress = TargetProgress;
-        }
-        Vector3 position = GetTargetPosition();
-        position.z = -15;   // In front of planets
-        this.transform.localPosition = position;       
-    }
+        //_shipsToMoveInUpdate[i].GraphicalOutput.transform.localPosition = Vector3.Lerp(_shipsToMoveInUpdate[i].GraphicalOutput.transform.localPosition,
+        //                                                     _shipsToMoveInUpdate[i].TempMoveToPosition, ANIMATIONS_SPEED * Time.smoothDeltaTime);
 
 
-    Vector2 GetTargetPosition() {
-        Vector2 dir = TargetPosition - StartPosition;
-        return StartPosition + (dir * Progress / 100);
+        Vector3 currentPosition = this.transform.localPosition;
+        Debug.Log("current pos: " + currentPosition);
+        currentPosition = Vector3.Lerp(currentPosition, temporaryMoveToPos, FlyAnimationSpeed * Time.smoothDeltaTime);
+        //Vector2 targetVec = temporaryMoveToPos - currentPosition;
+        //if (targetVec.magnitude > 10f)
+        //{
+        //    Debug.Log("Arrived");
+        //    return;
+        //}
+
+        this.transform.localPosition = new Vector3(currentPosition.x, currentPosition.y, -15);
+        //this.transform.localPosition = new Vector3(temporaryMoveToPos.x, temporaryMoveToPos.y, -15);
+
+        ////todo figure out how this should work
+        //float diff = Mathf.Abs(_shipsToMoveInUpdate[i].GraphicalOutput.transform.localPosition.sqrMagnitude - _shipsToMoveInUpdate[i].Destination.position.sqrMagnitude);
+        //if (diff < 1)  // Close enough
+        //{
+        //    if (_shipsToMoveInUpdate[i].ArrivalDay <= StateManager.CurrentDay)
+        //    {
+        //        Destroy(_shipsToMoveInUpdate[i].GraphicalOutput);
+        //    }
+        //    _shipsToMoveInUpdate.RemoveAt(i);
+        //}
+
+        //float deltaInSec = Time.deltaTime;
+        //if(deltaInSec > 0.05) {
+        //    deltaInSec = 0.005f;
+        //}
+        //positionProgress += deltaInSec * FlyAnimationSpeed;
+
+        //if(positionProgress >= 1){
+        //    positionProgress = 1;
+        //    //oldPosition = newPosition;
+        //}
+
+        //Vector3 position = Vector2.Lerp(oldPosition, newPosition, positionProgress );
+        //position.z = -15;   // In front of planets
+        //this.transform.localPosition = position;       
     }
+
 
     private string GetNameForTroopGameObject(TroopData troopData) {
         try {

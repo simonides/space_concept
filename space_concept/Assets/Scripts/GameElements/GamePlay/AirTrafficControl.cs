@@ -152,28 +152,28 @@ public class AirTrafficControl : MonoBehaviour {
         if (troop == null) {
             throw new MissingComponentException("A pooled Troop-GameObect doesn't have a Troop-Component. Each Troop-GO should have a Troop Script attached.");
         }
-
+        //troopObject.SetActive(true);
         troop.Init(currentDay, troopData);
 
-        PlanetData startPlanet = troopData.StartPlanet;
-        PlanetData targetPlanet = troopData.TargetPlanet;
+        //PlanetData startPlanet = troopData.StartPlanet;
+        //PlanetData targetPlanet = troopData.TargetPlanet;
 
-        Vector2 direction = (targetPlanet.Position - startPlanet.Position);
-        direction.Normalize();
+        //Vector2 direction = (targetPlanet.Position - startPlanet.Position);
+        //direction.Normalize();
 
         troopObject.transform.SetParent(space.transform);
 
-        Vector3 initialPosition = startPlanet.Position;
-        initialPosition.z = -15;   // In front of planets
-        troopObject.transform.localPosition = initialPosition;
+        //Vector3 initialPosition = startPlanet.Position;
+        //initialPosition.z = -15;   // In front of planets
+        //troopObject.transform.localPosition = initialPosition;
 
-        Vector2 startPosition = initialPosition;
-        startPosition += direction * startPlanet.Diameter / 2;
-        troop.StartPosition = startPosition;
+        //Vector2 startPosition = initialPosition;
+        //startPosition += direction * startPlanet.Diameter / 2;
+        //troop.StartPosition = startPosition;
 
-        Vector2 targetPosition = targetPlanet.Position;
+        //Vector2 targetPosition = targetPlanet.Position;
         //targetPosition -= direction * targetPlanet.Diameter / 2;
-        troop.TargetPosition = targetPosition;
+        //troop.TargetPosition = targetPosition;
         
         if(fogOfWar == 0) {
             troopObject.SetActive(true);
