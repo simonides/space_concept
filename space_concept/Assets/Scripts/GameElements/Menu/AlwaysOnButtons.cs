@@ -15,7 +15,7 @@ public class AlwaysOnButtons : MonoBehaviour {
 
     private void ToggleNextDayButton(ToggleNextDayButtonEvent obj){
         Debug.Log("Nextday button active: " + obj.Content);
-        NextDayButton.enabled = obj.Content;
+        NextDayButton.interactable = obj.Content;
     }
 
     public void NextDay() {
