@@ -12,6 +12,7 @@ public class SendShipMenuFiller : MonoBehaviour
     public Slider slider;
     public Text PlanetNameTwo;
     public Text TravelDistance;
+    public Text ArrivalDay;
 
     private Planet planetOne;
     private Planet planetTwo;
@@ -38,8 +39,8 @@ public class SendShipMenuFiller : MonoBehaviour
         this.planetOne = planetOne;
         this.planetTwo = planetTwo;
         var travelTime = TroopData.GetTravelTime(planetOne.planetData, planetTwo.planetData);
-        TravelDistance.text = "" + travelTime
-            + " Ship arrives on day: " + (gameState.gameStateData.CurrentDay + travelTime);
+        TravelDistance.text = travelTime.ToString();
+       ArrivalDay.text = (gameState.gameStateData.CurrentDay + travelTime).ToString();
 
         slider.maxValue = planetOne.planetData.Ships;
         slider.value = (int)planetOne.planetData.Ships * 0.5f;
@@ -50,8 +51,8 @@ public class SendShipMenuFiller : MonoBehaviour
 
     public void OnSliderValueChanged()
     {
-        FromShips.text = (planetOne.planetData.Ships - slider.value).ToString();
-        ToShips.text = slider.value.ToString();
+        FromShips.text = (planetOne.planetData.Ships - slider.value).ToString() + " ships stay";
+        ToShips.text = "Send: "+ slider.value.ToString();
     }
 
 

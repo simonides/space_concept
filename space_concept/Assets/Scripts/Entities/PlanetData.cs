@@ -78,6 +78,13 @@ public class PlanetData {
     public int MaxFactoryLevel { get; private set; }
     public int MaxHangarLevel { get; private set; }
 
+    public int GetNextFactoryLevel(){
+        return (FactoryLevel + 1) == MaxFactoryLevel ? MaxFactoryLevel : (FactoryLevel + 1);
+    }
+
+    public int GetNextHangarLevel(){
+        return (HangarLevel + 1) == MaxHangarLevel ? MaxHangarLevel : (HangarLevel + 1);
+    }
 
     public void SetOwner(PlayerData owner) {
         PlayerData oldOwner = this.Owner;

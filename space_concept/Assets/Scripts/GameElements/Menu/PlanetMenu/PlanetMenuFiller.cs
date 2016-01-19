@@ -16,6 +16,8 @@ public class PlanetMenuFiller : MonoBehaviour
     public Text FactoryCostLbl;
     public Image FactoryLevel;
     public Image FactoryLevelMax;
+    public GameObject FactoryNormalPnl;
+    public GameObject FactoryDisableText;
 
     public Button HangarBtn;
     public Text HangarSizeAndFillsize;
@@ -24,8 +26,11 @@ public class PlanetMenuFiller : MonoBehaviour
     public Text HangarCostLbl;
     public Image HangarLevel;
     public Image HangarLevelMax;
+    public GameObject HangarNormalPnl;
+    public GameObject HangarDisableText;
 
     public Button SendShipsBtn;
+    public Text SendShipText;
 
     private PlanetData activePlanet;
 
@@ -82,44 +87,38 @@ public class PlanetMenuFiller : MonoBehaviour
 
     public void UpgradeFactoryUpdate(){
         FactoryLevel.sprite = number.GetSpriteForNumber(activePlanet.FactoryLevel);
-        FactoryLevelMax.sprite = number.GetSpriteForNumber(activePlanet.MaxFactoryLevel);
-        if(activePlanet.FactoryLevel == activePlanet.MaxFactoryLevel){
-            Debug.Log("Factory Maxed out");
+        FactoryLevelMax.sprite = number.GetSpriteForNumber(activePlanet.GetNextFactoryLevel());
 
-            FactoryUpgradeCost.text = "maxed Out";
-            FactoryIncreaseAmount.text = "";
-            FactoryCostLbl.enabled = false;
-            FactoryBtn.enabled = false;
-        }else{
-            FactoryUpgradeCost.text = "" + activePlanet.GetFactoryUpgradeCosts();
-            FactoryIncreaseAmount.text = "+" + activePlanet.GetNextFactoryUpgrade();
-            FactoryCostLbl.enabled = true;
-            FactoryBtn.enabled = true;
-        }
+        FactoryUpgradeCost.text = "" + activePlanet.GetFactoryUpgradeCosts();
+        FactoryIncreaseAmount.text = "+" + activePlanet.GetNextFactoryUpgrade();
         FactoryActualIncreaseSpeed.text = "+" + activePlanet.FactorySpeed;
+        
+        var isFactoryMaxedOut = (activePlanet.FactoryLevel == activePlanet.MaxFactoryLevel);
+        if (isFactoryMaxedOut) {
+            Debug.Log("Factory Maxed out");
+        }
+        FactoryDisableText.SetActive(isFactoryMaxedOut);
+        FactoryBtn.interactable = !isFactoryMaxedOut;
+        FactoryNormalPnl.SetActive(!isFactoryMaxedOut);
+
 
     }
 
     public void UpgradeHangarUpdate(){
-        if (activePlanet.HangarLevel == activePlanet.MaxHangarLevel)
-        {
+
+        HangarUpgradeCost.text = "" + activePlanet.GetHangarUpgradeCosts();
+        HangarIncreaseAmount.text = "+" + activePlanet.GetNextHangarUpgrade();
+
+        var isHangarMaxedOut = (activePlanet.HangarLevel == activePlanet.MaxHangarLevel);
+        if (isHangarMaxedOut){
             Debug.Log("Hangar Maxed out");
-
-            HangarUpgradeCost.text = "maxed Out";
-            HangarIncreaseAmount.text = "";
-            HangarCostLbl.enabled = false;
-            HangarBtn.enabled = false;
         }
-        else
-        {
-            HangarUpgradeCost.text = "" + activePlanet.GetHangarUpgradeCosts();
-            HangarIncreaseAmount.text = "+" + activePlanet.GetNextHangarUpgrade();
-            HangarCostLbl.enabled = true;
-            HangarBtn.enabled = true;
+        HangarDisableText.SetActive( isHangarMaxedOut);
+        HangarBtn.interactable = !isHangarMaxedOut;
+        HangarNormalPnl.SetActive(!isHangarMaxedOut);
 
-        }
         HangarLevel.sprite = number.GetSpriteForNumber(activePlanet.HangarLevel);
-        HangarLevelMax.sprite = number.GetSpriteForNumber(activePlanet.MaxHangarLevel);
+        HangarLevelMax.sprite = number.GetSpriteForNumber(activePlanet.GetNextHangarLevel());
         HangarSizeAndFillsize.text = activePlanet.Ships + "/" + activePlanet.HangarSize;
         HangarUpgradeCost.text = "" + activePlanet.GetHangarUpgradeCosts();
         HangarIncreaseAmount.text = "" + activePlanet.GetNextHangarUpgrade();
@@ -133,6 +132,15 @@ public class PlanetMenuFiller : MonoBehaviour
     }
 
     private void UpdateSendShipBtn(){
-        SendShipsBtn.enabled = activePlanet.Ships != 0;
+        var planetHasShips = activePlanet.Ships != 0;
+        SendShipsBtn.interactable = planetHasShips;
+        if (planetHasShips){
+            SendShipText.color = Color.white;
+        }
+        else
+        {
+            SendShipText.color = new Color32(126,126,126,126);
+
+        }
     }
 }
