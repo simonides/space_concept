@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 0.3
+  animationSpeed: 0.1
   maxScale: 50
 --- !u!114 &11428514
 MonoBehaviour:
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 0.3
+  animationSpeed: 0.1
   maxScale: 50
 --- !u!114 &11482924
 MonoBehaviour:
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 0.3
+  animationSpeed: 0.1
   maxScale: 50
 --- !u!114 &11487008
 MonoBehaviour:
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 0.3
+  animationSpeed: 0.1
   maxScale: 50
 --- !u!114 &11488648
 MonoBehaviour:
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 0.3
+  animationSpeed: 0.1
   maxScale: 50
 --- !u!114 &11490924
 MonoBehaviour:
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 0.3
+  animationSpeed: 0.1
   maxScale: 50
 --- !u!114 &11497010
 MonoBehaviour:
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd636a86043e71d488d43e720a730c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 0.3
+  animationSpeed: 0.1
   maxScale: 50
 --- !u!212 &21228836
 SpriteRenderer:
@@ -366,7 +366,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a015db0c0db4d04286e646905a81266, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -396,7 +396,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a015db0c0db4d04286e646905a81266, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -426,7 +426,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a015db0c0db4d04286e646905a81266, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -456,7 +456,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a015db0c0db4d04286e646905a81266, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -486,7 +486,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a015db0c0db4d04286e646905a81266, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -516,7 +516,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a015db0c0db4d04286e646905a81266, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -546,7 +546,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cce2ea1cb16d3b047aa0a889e9aa6ba1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a015db0c0db4d04286e646905a81266, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
