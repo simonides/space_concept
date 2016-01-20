@@ -672,7 +672,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22407780, guid: 92aa63a6c61b5664ebc7c6c89da2c7de, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -10
+      value: -20.6
       objectReference: {fileID: 0}
     - target: {fileID: 22407780, guid: 92aa63a6c61b5664ebc7c6c89da2c7de, type: 2}
       propertyPath: m_SizeDelta.x
@@ -680,7 +680,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22407780, guid: 92aa63a6c61b5664ebc7c6c89da2c7de, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 309
+      value: 287.7
       objectReference: {fileID: 0}
     - target: {fileID: 22407780, guid: 92aa63a6c61b5664ebc7c6c89da2c7de, type: 2}
       propertyPath: m_AnchorMin.x
@@ -705,6 +705,36 @@ Prefab:
     - target: {fileID: 22407780, guid: 92aa63a6c61b5664ebc7c6c89da2c7de, type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410758, guid: 92aa63a6c61b5664ebc7c6c89da2c7de, type: 2}
+      propertyPath: m_Text
+      value: 'S p a c e
+
+        C o m m a n d e r'
+      objectReference: {fileID: 0}
+    - target: {fileID: 22446082, guid: 92aa63a6c61b5664ebc7c6c89da2c7de, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 42.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 22446082, guid: 92aa63a6c61b5664ebc7c6c89da2c7de, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 76.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410758, guid: 92aa63a6c61b5664ebc7c6c89da2c7de, type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410758, guid: 92aa63a6c61b5664ebc7c6c89da2c7de, type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410758, guid: 92aa63a6c61b5664ebc7c6c89da2c7de, type: 2}
+      propertyPath: m_FontData.m_MaxSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410758, guid: 92aa63a6c61b5664ebc7c6c89da2c7de, type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92aa63a6c61b5664ebc7c6c89da2c7de, type: 2}
