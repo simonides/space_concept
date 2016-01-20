@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c5f2d6cc90d7d5a4eb0654846dd1b259
-timeCreated: 1453168719
+timeCreated: 1453287668
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -39,6 +39,7 @@ TextureImporter:
     21300064: Mouse_cursor
     21300066: DeleteButton
     21300068: ToogleSlider
+    21300070: TroopTextBG
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -10055,6 +10056,41 @@ TextureImporter:
         - {x: -67.5, y: -33}
         - {x: 67.5, y: -33}
         - {x: 67.5, y: 33}
+    - name: TroopTextBG
+      rect:
+        serializedVersion: 2
+        x: 1220
+        y: 2877
+        width: 524
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 256, y: -52.5}
+        - {x: 259, y: -51.5}
+        - {x: 261, y: -48.5}
+        - {x: 262, y: -48.5}
+        - {x: 262, y: 49.5}
+        - {x: 260, y: 49.5}
+        - {x: 256, y: 52.5}
+        - {x: 240, y: 52.5}
+        - {x: 240, y: 68.5}
+        - {x: 235, y: 73.5}
+        - {x: -236, y: 73.5}
+        - {x: -241, y: 68.5}
+        - {x: -241, y: 52.5}
+        - {x: -256, y: 52.5}
+        - {x: -262, y: 48.5}
+        - {x: -262, y: -48.5}
+        - {x: -261, y: -49.5}
+        - {x: -256, y: -52.5}
+        - {x: -241, y: -52.5}
+        - {x: -241, y: -69.5}
+        - {x: -237, y: -73.5}
+        - {x: 235, y: -73.5}
+        - {x: 240, y: -69.5}
+        - {x: 240, y: -52.5}
     outline: []
   spritePackingTag: 
   userData: 

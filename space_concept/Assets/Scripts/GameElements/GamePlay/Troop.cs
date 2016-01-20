@@ -9,6 +9,7 @@ public class Troop : MonoBehaviour
     // ****  ATTACHED OBJECTS   **** //
     Transform spaceshipTextureTransform;
     SpriteRenderer spaceshipRenderer;
+    SpriteRenderer textBackgroundRenderer;
     TextMesh shipcountText;
     // ****                     **** //
 
@@ -44,6 +45,11 @@ public class Troop : MonoBehaviour
         {
             throw new MissingComponentException("Unable to find TextMesh on Troop to print ship count.");
         }
+
+        textBackgroundRenderer = this.transform.FindChild("TextTransformHolder").GetComponent<SpriteRenderer>();
+        if (textBackgroundRenderer == null) {
+            throw new MissingComponentException("Unable to find child of name TextTransformHolder on Troop.");
+        }        
     }
 
     // Set me after the object has been enabled!
@@ -81,13 +87,13 @@ public class Troop : MonoBehaviour
         this.transform.localPosition = troop.StartPlanet.Position;
 
         UpdatePosition(currentDay);   // sets the target progress
-        //todo!
-
-
         this.name = GetNameForTroopGameObject(troopData);
 
         shipcountText.text = "" + troop.ShipCount;
         spaceshipTextureTransform.rotation = Quaternion.FromToRotation(Vector3.up, troop.TargetPlanet.Position - troop.StartPlanet.Position);
+
+        textBackgroundRenderer.color = troop.Owner.Color;
+
     }
 
     public void UpdatePosition(int currentDay)
