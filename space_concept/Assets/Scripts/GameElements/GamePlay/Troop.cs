@@ -109,7 +109,7 @@ public class Troop : MonoBehaviour
         float deltaTime = Time.smoothDeltaTime;
         if (Time.smoothDeltaTime > 0.051f)
         {
-            deltaTime = 0.0005f;
+            deltaTime = 0.005f;
         }
         Vector3 currentPosition = this.transform.localPosition;
         currentPosition = Vector3.Lerp(currentPosition, temporaryMoveToPos, FlyAnimationSpeed * deltaTime);
