@@ -3,7 +3,8 @@ using System.Collections;
 using System;
 
 //[RequireComponent(typeof(SpriteRenderer))]
-public class Troop : MonoBehaviour {
+public class Troop : MonoBehaviour
+{
 
     // ****  ATTACHED OBJECTS   **** //
     Transform spaceshipTextureTransform;
@@ -22,20 +23,25 @@ public class Troop : MonoBehaviour {
     //private Vector2 newPosition;
     //float positionProgress; // 0-1
 
-    public void Awake() {
-        if(spaceshipTextureTransform != null || this.transform.childCount == 0) {
+    public void Awake()
+    {
+        if (spaceshipTextureTransform != null || this.transform.childCount == 0)
+        {
             return;
         }
         spaceshipTextureTransform = this.transform.FindChild("SpriteHolder");
-        if (spaceshipTextureTransform == null) {
+        if (spaceshipTextureTransform == null)
+        {
             throw new MissingComponentException("Unable to find child of name SpriteHolder on Troop.");
         }
         spaceshipRenderer = spaceshipTextureTransform.gameObject.GetComponent<SpriteRenderer>();
-        if (spaceshipRenderer == null) {
+        if (spaceshipRenderer == null)
+        {
             throw new MissingComponentException("Unable to find SpriteRenderer on Troop. The game object 'SpriteHolder' should have a sprite renderer attached.");
         }
         shipcountText = GetComponentInChildren<TextMesh>();
-        if (shipcountText == null) {
+        if (shipcountText == null)
+        {
             throw new MissingComponentException("Unable to find TextMesh on Troop to print ship count.");
         }
     }
@@ -43,18 +49,32 @@ public class Troop : MonoBehaviour {
     // Set me after the object has been enabled!
     public void SetSprite()
     {
-        if (troopData.ShipCount > 50)
-        {
-            animator.SetInteger("ShipType", 1);
-            Debug.Log("Ship type: " + animator.GetInteger("ShipType"));
-        }
-        else
+        if (troopData.ShipCount < 10)
         {
             animator.SetInteger("ShipType", 0);
         }
+        else if (troopData.ShipCount < 100)
+        {
+            animator.SetInteger("ShipType", 1);
+        }
+        else if (troopData.ShipCount < 500)
+        {
+            animator.SetInteger("ShipType", 2);
+        }
+        else if (troopData.ShipCount < 1000)
+        {
+            animator.SetInteger("ShipType", 3);
+        }
+        else if (troopData.ShipCount < 2000)
+        {
+            animator.SetInteger("ShipType", 4);
+        } else {
+            animator.SetInteger("ShipType", 5);
+        }
     }
 
-    public void Init(int currentDay, TroopData troop) {
+    public void Init(int currentDay, TroopData troop)
+    {
 
         troopData = troop;
         this.transform.localScale = new Vector3(15, 15, 1);
@@ -69,24 +89,27 @@ public class Troop : MonoBehaviour {
         shipcountText.text = "" + troop.ShipCount;
         spaceshipTextureTransform.rotation = Quaternion.FromToRotation(Vector3.up, troop.TargetPlanet.Position - troop.StartPlanet.Position);
     }
-     
-    public void UpdatePosition(int currentDay) {
+
+    public void UpdatePosition(int currentDay)
+    {
 
         int daysRemaining = troopData.ArrivalTime - currentDay;
-        int daysTraveled = troopData.TravelTime- daysRemaining;
+        int daysTraveled = troopData.TravelTime - daysRemaining;
         float distanceBetweenPlanets = (troopData.TargetPlanet.Position - troopData.StartPlanet.Position).magnitude;
 
         temporaryMoveToPos
-            = Vector3.MoveTowards(troopData.StartPlanet.Position,troopData.TargetPlanet.Position,
+            = Vector3.MoveTowards(troopData.StartPlanet.Position, troopData.TargetPlanet.Position,
                 (distanceBetweenPlanets / troopData.TravelTime) * daysTraveled);
         temporaryMoveToPos.z = -15f;
         Debug.Log("speed: " + FlyAnimationSpeed);
     }
 
-    public void Update() {      
+    public void Update()
+    {
         float deltaTime = Time.smoothDeltaTime;
-        if(Time.smoothDeltaTime > 0.051f){
-            deltaTime = 0.0005f; 
+        if (Time.smoothDeltaTime > 0.051f)
+        {
+            deltaTime = 0.0005f;
         }
         Vector3 currentPosition = this.transform.localPosition;
         currentPosition = Vector3.Lerp(currentPosition, temporaryMoveToPos, FlyAnimationSpeed * deltaTime);
@@ -94,18 +117,23 @@ public class Troop : MonoBehaviour {
         Vector2 targetVec = temporaryMoveToPos - currentPosition;
         float shipSpeed = targetVec.magnitude;
         animator.SetFloat("ShipSpeed", shipSpeed);
-        if (shipSpeed < 5.1f){
+        if (shipSpeed < 5.1f)
+        {
             animator.SetFloat("ShipSpeed", 0);
             return;
         }
-        this.transform.localPosition = new Vector3(currentPosition.x, currentPosition.y, -15);    
+        this.transform.localPosition = new Vector3(currentPosition.x, currentPosition.y, -15);
     }
 
 
-    private string GetNameForTroopGameObject(TroopData troopData) {
-        try {
+    private string GetNameForTroopGameObject(TroopData troopData)
+    {
+        try
+        {
             return troopData.Owner.Name + " (" + troopData.ShipCount + "): " + troopData.StartPlanet.Name + " > " + troopData.TargetPlanet.Name;
-        } catch (NullReferenceException) {
+        }
+        catch (NullReferenceException)
+        {
             return "Troop of " + troopData.ShipCount + " ships";
         }
     }
